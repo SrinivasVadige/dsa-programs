@@ -24,6 +24,7 @@ EVERY JAVA LAMBDA METHODS AND METHOD REFERENCES USES THIS FUNCTIONAL INTERFACE P
 public class FunctionalInterfaceExample {
 
 	// 4 ways to define and use single method interface
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		// 1) IMPLEMENT THE INTERFACE IN OUR CLASS AND OVERRIDE THE METHOD
@@ -46,6 +47,9 @@ public class FunctionalInterfaceExample {
 		i_methodReference.display(); // if we have parameters then pass here not in show method
 
 
+		// Function Functional Interface examples
+		Function<Integer, Integer> f1 = (i) -> i * i;
+		Function<Object, String> f2 = (a) -> a.toString();
 	}
 
 	// static class method
