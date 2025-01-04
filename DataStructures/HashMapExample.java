@@ -183,6 +183,11 @@ public class HashMapExample {
         // But we cannot setKey()
         // and cannot AbstractMap.SimpleEntry<Integer, String> entry3 = Map.entry(1, "foo");
 
+
+        // IMMUTABLE MAP
+        Map<Integer, String> mapOf = Map.of(1, "foo", 2, "bar");
+        Map<Integer, String> mapOfEntries = Map.ofEntries(Map.entry(1, "foo"), Map.entry(2, "bar"));
+
     }
 
     public class Department {}
