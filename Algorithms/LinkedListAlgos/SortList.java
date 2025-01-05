@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Srinivas Vadige, srinivas.vadige@gmail.com
+ * @since 04 Jan 2025
+ */
 public class SortList {
 
     static class ListNode {int val; ListNode next; ListNode(int val){this.val=val;} ListNode(int val, ListNode next){this.val=val; this.next=next;}}
