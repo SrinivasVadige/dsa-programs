@@ -19,6 +19,10 @@ class ReverseLinkedList {
         System.out.println("\nreverseListUsingRecursion: ");
         head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         for (ListNode trav = reverseListUsingRecursion(head, null); trav != null; trav = trav.next) System.out.print(trav.val + " ");
+
+        System.out.println("\nreverseList: ");
+        head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        for (ListNode trav = reverseList(head); trav != null; trav = trav.next) System.out.print(trav.val + " ");
     }
 
     /**
@@ -84,5 +88,41 @@ class ReverseLinkedList {
         curr.next = prev; // from -> to <-
         prev = curr;
         return reverseListUsingRecursion(next, prev);
+    }
+
+
+    /**
+     * same SortList Approach
+     */
+    public static ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode left = head;
+        ListNode middle = getMiddleNode(head);
+        ListNode right = middle.next;
+
+        // to break l & r connection
+        middle.next = null;
+
+        left = reverseList(left);
+        right = reverseList(right);
+
+        return mergeLists(left, right);
+    }
+
+    private static ListNode getMiddleNode(ListNode node) {
+        ListNode s=node, f = node; // initial f=node.next.next returns 3 for {3,4,5} list
+        if (f!=null && f.next!=null && f.next.next==null) return f; // for {3,4} list return 3 as middle
+        while (f!=null && f.next!=null) {
+            s=s.next;
+            f=f.next.next;
+        }
+        return s;
+    }
+
+    private static ListNode mergeLists(ListNode l, ListNode r) {
+        ListNode trav = r;
+        while(trav.next!=null) trav=trav.next; // loop to last and connect the right most of the rightSection and connect it to first node of leftSection
+        trav.next=l;
+        return r;
     }
 }

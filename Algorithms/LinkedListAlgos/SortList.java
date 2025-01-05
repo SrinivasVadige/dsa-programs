@@ -51,7 +51,7 @@ public class SortList {
     }
 
     static ListNode getMiddle(ListNode node) {
-        ListNode s = node, f = node.next.next;
+        ListNode s = node, f = node.next.next; // for {3,4} list return 3 as middle
         while (f != null && f.next != null) {
             s = s.next;
             f = f.next.next;
