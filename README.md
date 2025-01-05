@@ -124,6 +124,7 @@ Data Structures And Algorithm Programs
     * [Copy/Clone ListWithRandomPointer](/Algorithms/LinkedListAlgos/CopyListWithRandomPointer.java)
     * [LinkedListCycle](/Algorithms/LinkedListAlgos/LinkedListCycle.java)
     * [LinkedListCycle 2](/Algorithms/LinkedListAlgos/LinkedListCycle2.java)
+    * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
 
 12. #### [Matrix](/Algorithms/Matrix/)
 
