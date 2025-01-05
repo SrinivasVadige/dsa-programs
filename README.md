@@ -126,6 +126,7 @@ Data Structures And Algorithm Programs
     * [LinkedListCycle 2](/Algorithms/LinkedListAlgos/LinkedListCycle2.java)
     * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
     * [LRUCache](/Algorithms/LinkedListAlgos/LRUCache.java)
+    * [IntersectionOfTwoLinkedLists](/Algorithms/LinkedListAlgos/IntersectionOfTwoLinkedLists.java)
 
 12. #### [Matrix](/Algorithms/Matrix/)
 
