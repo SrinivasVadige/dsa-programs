@@ -20,10 +20,22 @@ import java.util.Queue;
 */
 public class BinaryTree {
 
+    static class TreeNode {
+        int val;
+        TreeNode left, right;
+        TreeNode() {}
+        TreeNode(int val) { this.val = val; }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         TreeNode root = buildTree(nums);
-
+        printTree(root).forEach(System.out::println);
         /*
                    1
                   / \
@@ -33,8 +45,11 @@ public class BinaryTree {
               / \ /
              8  9 10
 
+
+             1 2 3 4 5 6 7 8 9 10
+
         */
-        printTree(root).forEach(System.out::println);
+
         invertTree(root);
         System.out.println();
         printTree(root).forEach(System.out::println);
@@ -47,9 +62,9 @@ public class BinaryTree {
                7  6 5  4
                    /\  /\
                null 10 9 8
-             
 
-             1 3 1 5 4 7 6 9 8 null 10
+
+             1 3 2 7 6 5 4 10 9 8
         */
     }
 
