@@ -60,6 +60,7 @@ Data Structures And Algorithm Programs
 
     * [Binary Tree basic methods](/DataStructures/BinaryTree.java)
     * [InvertBinaryTree](/Algorithms/BinaryTrees/InvertBinaryTree.java)
+    * [BinaryTreeInOrderTraversal](/Algorithms/BinaryTrees/BinaryTreeInOrderTraversal.java)
 
 3. #### [BitManipulation](Algorithms/BitManipulation/)
 
