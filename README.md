@@ -25,8 +25,8 @@ Data Structures And Algorithm Programs
   * [HashMap](/DataStructures/HashMapExample.java)
   * [Queue, Dequeue & PriorityQueue](/DataStructures/QueueDequeuePriorityQueue.java)
   * [Stack](/DataStructures/StackExample.java)
-  * [BinaryTree](DataStructures/BinaryTree.java)
   * [BinaryTreeNode custom class](DataStructures/BinaryTreeNode.java)
+  * [BinaryTree](DataStructures/BinaryTree.java)
   * [BinarySearchTree](DataStructures/BinarySearchTree.java)
   * [Union Find / Disjoint Set Union DSU](DataStructures/UnionFind.java)
   * [AnnotationType](DataStructures/AnnotationTypeExample.java)
@@ -61,7 +61,7 @@ Data Structures And Algorithm Programs
 
     * [NonContiguousSubArraySum](/Algorithms/BackTracking/NonContiguousSubArraySum.java)
 
-2. #### [BinaryTrees](Algorithms/BinaryTrees/)
+2. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
     * [Binary Tree basic methods](/DataStructures/BinaryTree.java)
     * [InvertBinaryTree](/Algorithms/BinaryTrees/InvertBinaryTree.java)
@@ -70,7 +70,7 @@ Data Structures And Algorithm Programs
 
 3. #### [BitManipulation](Algorithms/BitManipulation/)
 
-4. #### [Disjoint Set / Union Find](Algorithms/DisjointSetUnionFind/)
+4. #### [Union Find / Disjoint Set Union DSU](Algorithms/DisjointSetUnionFind/)
 
 5. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
@@ -145,7 +145,7 @@ Data Structures And Algorithm Programs
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [SubArraySumEqualsK](Algorithms/Hashing/SubArraySumEqualsK.java)
 
-14. #### [Queues](/Algorithms/QueueAlgos/)
+14. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
 
 15. #### [Recursion](/Algorithms/Recursion/)
 
@@ -193,15 +193,16 @@ Data Structures And Algorithm Programs
 </br>
 </br>
 
-# COMPANIES [Hiring Overview](https://interviewing.io/guides/hiring-process)
+# COMPANIES Hiring Overview [(FAANG / MAANG PROCESS)](https://interviewing.io/guides/hiring-process)
 
 ## AMAZON
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/amazon)
-2. [LeetCode Amazon top questions](https://leetcode.com/problem-list/xyknlrg2/)
-3. [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
-4. [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
-5. [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
+2. Check out my "Amazon Interview Process" personal Google Keep notes
+3. [LeetCode Amazon top questions](https://leetcode.com/problem-list/xyknlrg2/)
+4. [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
+5. [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
+6. [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
 
 ## GOOGLE
 
@@ -233,16 +234,17 @@ Data Structures And Algorithm Programs
 ## Sources
 
 1) [From my LeetCode experience- leetcode/srinivasvadige](https://leetcode.com/u/srinivasvadige/)
-2) Personal experience and research
-3) Official java documentations, blogs
-4) [WilliamFiset - YT Data structures playlist](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
-5) [takeuforward.org - Strivers A2Z DSA Course/Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
-6) [COURSERA DSA ROADMAP PART 1](https://www.coursera.org/learn/algorithms-part1)
-7) [COURSERA DSA ROADMAP PART 2](https://www.coursera.org/learn/algorithms-part2)
-8) [GFG DSA course](https://www.geeksforgeeks.org/fundamentals-of-algorithms/)
-9) [FCC DSA course with 48hrs YT video](https://www.freecodecamp.org/news/learn-data-structures-and-algorithms-2/)
-10) [GFG interview DSA FAQs](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/)
-11) [Columbia University DSA Research Papers](https://timroughgarden.org/)
+2) Hackerrank
+3) Personal experience and research
+4) Official java documentations, blogs
+5) [WilliamFiset - YT Data structures playlist](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
+6) [takeuforward.org - Strivers A2Z DSA Course/Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
+7) [COURSERA DSA ROADMAP PART 1](https://www.coursera.org/learn/algorithms-part1)
+8) [COURSERA DSA ROADMAP PART 2](https://www.coursera.org/learn/algorithms-part2)
+9) [GFG DSA course](https://www.geeksforgeeks.org/fundamentals-of-algorithms/)
+10) [FCC DSA course with 48hrs YT video](https://www.freecodecamp.org/news/learn-data-structures-and-algorithms-2/)
+11) [GFG interview DSA FAQs](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions/)
+12) [Columbia University DSA Research Papers](https://timroughgarden.org/)
 
 </br>
 </br>
