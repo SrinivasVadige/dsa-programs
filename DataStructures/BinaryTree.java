@@ -12,8 +12,12 @@ import java.util.Queue;
     4. swap left and right nodes
     5. invert tree
  *
- *
- *
+ * A tree is a undirected graph which satisfies the following properties:
+ * - Only one Root Node (Root Node has no parent or parent node is itself)
+ * - An Acyclic connect graph
+ * - N nodes & N-1 edges
+ * - Two vertices are connected by exactly one edge i.e exactly one path
+ * Example: File System Tree or directories --> /, /usr, /temp, /usr/local, /usr/local/bin
  *
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 23 Sept 2024
