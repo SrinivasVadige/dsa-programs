@@ -28,6 +28,7 @@ Data Structures And Algorithm Programs
   * [LinkedList, DoubleLinkedList & CircularLinkedList](/DataStructures/LinkedListExample.java)
   * [Record](DataStructures/RecordExample.java)
   * [Stream API](DataStructures/StreamApiExample.java)
+  * [Union Find / Disjoint Set Union DSU](DataStructures/UnionFind.java)
 
 * ### [Basic Programs](BasicPrograms/)
 
