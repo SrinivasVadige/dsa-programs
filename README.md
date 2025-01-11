@@ -19,6 +19,7 @@ Data Structures And Algorithm Programs
 
   * [DynamicIntArray](/DataStructures/DynamicIntArray.java)
   * [Stream API](DataStructures/StreamApiExample.java)
+  * [Collections Utility Class](DataStructures/CollectionsUtilityClass.java)
   * [List](/DataStructures/ListExample.java)
   * [LinkedList, DoubleLinkedList & CircularLinkedList](/DataStructures/LinkedListExample.java)
   * [HashMap](/DataStructures/HashMapExample.java)
