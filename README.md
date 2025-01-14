@@ -93,6 +93,7 @@ Data Structures And Algorithm Programs
     * [CoinChange](/Algorithms/DynamicProgramming/CoinChange.java)
     * [PartitionEqualSubsetSum](/Algorithms/DynamicProgramming/PartitionEqualSubsetSum.java)
     * [LongestCommonSubsequence](/Algorithms/DynamicProgramming/LongestCommonSubsequence.java)
+    * [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
 
 6. #### [Graphs](/Algorithms/Graphs/)
 
@@ -181,6 +182,9 @@ Data Structures And Algorithm Programs
 
 20. #### [Strings](/Algorithms/Strings/)
 
+    * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
+    * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
+
 21. #### [Tries](/Algorithms/Tries/)
 
 22. #### [Two Pointers](/Algorithms/TwoPointers/)
@@ -203,6 +207,9 @@ Data Structures And Algorithm Programs
 4. [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
 5. [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
 6. [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
+7. [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
+8. [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
+9. [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
 
 ## GOOGLE
 
