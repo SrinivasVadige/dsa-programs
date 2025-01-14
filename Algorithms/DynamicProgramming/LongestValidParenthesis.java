@@ -39,7 +39,7 @@ class  LongestValidParenthesis{
             else
                 close++;
 
-            if (open == close)  
+            if (open == close)
                 maxL = Math.max(maxL, 2*close);
             else if(open < close) { // i.e for first right orphan for "())" -- to maintain even width
                 open = 0;
@@ -52,13 +52,13 @@ class  LongestValidParenthesis{
 
         open=close=0;
 
-        for (int i=s.length()-1; i>-1; i--) { 
+        for (int i=s.length()-1; i>-1; i--) {
             if(s.charAt(i) == '(')
                 open++;
             else
                 close++;
 
-            if (open == close)  
+            if (open == close)
                 maxL = Math.max(maxL, 2*close);
             else if(open > close) { // i.e for first right orphan for "())", "()(()" -- to maintain even width
                 open = 0;
@@ -101,7 +101,6 @@ class  LongestValidParenthesis{
                 else // ')' && stack.size() > 0 i.e we have start index of the valid Parenthesis at top-most index
                     maxL = Math.max(maxL, i - stack.peek()); // stack.peek() gives top element i.e last index element
             }
-            
         }
         return maxL;
     }
