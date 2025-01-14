@@ -1,11 +1,14 @@
 package Algorithms.Strings;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.TreeSet;
 
 /**
-<pre>
+ * <pre>
 At Amazon, a user owns a unique tool called the
 "Parentheses Perfection Kit." This kit contains different types of parentheses, each with a specific efficiency rating. The goal is to create a balanced sequence of parentheses by adding zero or more parentheses from the kit to maximize the sequences total EfficiencyScore. The EfficiencyScore of a sequence is the sum of the efficiency ratings of the parentheses used from the kit.
 
@@ -42,75 +45,167 @@ print(find_max_to_balance(s, kit, efficiency_rating))  # Output: 1
 # Example 2
 s = ")(("
 kit = ")(()))"
-efficiency_rating = [3, 4, 2, -4, -1, -3]
+efficiency_rating = [3,4,2,-4,-1,-3]
 print(find_max_to_balance(s, kit, efficiency_rating))  # Output: 6
-
+)    (    (    )    )    )
+3    4    2   -4   -1   -3
+is same as
+(    (    )    )    )    )
+4    2    3   -1   -3   -4
+*         *    *
+i.e we need 4 + 3 + (-1) => 6
 
 Explanation
 If the user used the 0th indexed and 2nd indexed parentheses from the bag and add them to the start and end of the
 string respectively, then the final balanced sequence will be "(0)" with a total EfficiencyScore of 4 + (-3) = 1. There are
 no other combinations of adding parentheses that can yield a balanced sequence with total EfficiencyScore greater than 1, Hence return 1 as answer.
-</pre>
- *
+ * </pre>
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 11 Jan 2025
+ * @see {@link Algorithms.DynamicProgramming.LongestValidParenthesis}
  */
 public class ParenthesesPerfectionKit {
     public static void main(String[] args) {
-        String s = "()";
+        String s = "))(()";
         String kit = "(())";
-        int[] efficiencyRating = {4, 2, -3, -3};
-        System.out.println("findMaxToBalance = " + findMaxToBalance(s, kit, efficiencyRating));
+        int[] efficiencyRating = { 4, 2, -3, -1 };
+        System.out.println("findMaxToBalance using PriorityQueue My Approach : " + findMaxToBalanceUsingPriorityQueueMyApproach(s, kit, efficiencyRating));
+        System.out.println("findMaxToBalance using TreeSet : " + findMaxToBalanceUsingTreeSet(s, kit, efficiencyRating));
+        // System.out.println("findMaxToBalance using PriorityQueue : " + findMaxToBalanceUsingPriorityQueue(s, kit, efficiencyRating));
     }
 
-    public static int findMaxToBalance(String s, String kit, int[] efficiencyRating) {
+    /**
+        ")(", ")((" scenarios.
+        s = ")(("
+        kit = ")(()))"
+        efficiency_rating = []
+        print(find_max_to_balance(s, kit, efficiency_rating))  # Output: 6
+        )    (    (    )    )    )
+        3    4    2   -4   -1   -3
+        is same as
+        (    (    )    )    )    )
+        4    2    3   -1   -3   -4
+        *         *    *
+        i.e we need 4 + 3 + (-1) => 6
 
-    Stack<Character> tmpStack = new Stack<>();
-
-    PriorityQueue<Integer> openPar = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
-    PriorityQueue<Integer> closedPar = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
-
-    for (int i = 0; i < kit.length(); i++) {
-      if (kit.charAt(i) == '(') {
-        openPar.add(efficiencyRating[i]);
-      } else {
-        closedPar.add(efficiencyRating[i]);
-      }
-    }
-
-    int max = 0;
-    // Loop over String to find all needed to balance the string
-    for (int i = 0; i < s.length(); i++) {
-      if (s.charAt(i) == ')' && tmpStack.isEmpty()) {
-        // We need opening para
-        if (!openPar.isEmpty()) {
-          max += openPar.poll();
+        s = ")(()))"
+     */
+    // TODO: validate open & close count with different test cases
+    public static int findMaxToBalanceUsingPriorityQueueMyApproach(String s, String kit, int[] efficiencyRating) {
+        int open, close; open=close=0;
+        // check if s is balanced or not
+        for (String s1 : s.split("")){
+            if (s1.equals("(")) {
+                open++;
+            }
+            else if (s1.equals(")")) {
+                if (open == 0) close++;
+                else open--; // sub parenthesis balanced
+            }
         }
-      } else if (s.charAt(i) == ')' && tmpStack.peek() == '(') {
-        tmpStack.pop();
-      } else {
-        tmpStack.push(s.charAt(i));
-      }
-    }
+        if (open == 0 && close == 0) return 1;
 
-    while (!tmpStack.isEmpty()) {
-      if (tmpStack.pop() == '(') {
-        if (!closedPar.isEmpty()) {
-          max += closedPar.poll();
+        // Prepare PQs
+        PriorityQueue<Integer> openPQ = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Integer> closePQ = new PriorityQueue<>(Comparator.reverseOrder());
+        for (int i = 0; i < kit.length(); i++) {
+            if(kit.charAt(i)=='(')
+            openPQ.add(efficiencyRating[i]);
+            else closePQ.add(efficiencyRating[i]);
         }
-      } else {
-        if (!openPar.isEmpty()) {
-          max +=openPar.poll();
+
+        int max = 0;
+        while(open>0) {
+            max += openPQ.isEmpty()?0:openPQ.poll();
+            open--;
         }
-      }
+        for (;close>0;close--)
+            max += closePQ.isEmpty()?0:closePQ.poll();
+
+        return max;
     }
 
-    while (!openPar.isEmpty() && !closedPar.isEmpty()){
-      max = Math.max(max , openPar.poll()+closedPar.poll()+max);
+    /*
+        TreeSet can't handle duplicates
+     */
+    @SuppressWarnings("unused")
+    public static int findMaxToBalanceUsingTreeSet(String s, String kit, int[] efficiencyRating) {
+        int open, close; open=close=0;
+        // check if s is balanced or not
+        for (String s1 : s.split("")){
+            if (s1.equals("(")) {
+                open++;
+            }
+            else if (s1.equals(")")) {
+                if (open == 0)
+                    close++;
+                else
+                    open--; // sub parenthesis balanced
+            }
+        }
+        if (open == close) return 1;
+
+        int max = 0;
+        String needed = (open>close)? "(" : ")";
+
+        // Prepare TreeSet
+        Map<String, TreeSet<Integer>> map = new HashMap<>(); // or we can use "new PriorityQueue<>(Comparator.reverseOrder());"
+        for (int i = 0; i < kit.length(); i++) {
+            String key = kit.charAt(i)+"";
+            if(map.containsKey(key)){
+                map.get(key).add(efficiencyRating[i]);
+            } else {
+                TreeSet<Integer> set = new TreeSet<>(Comparator.reverseOrder());
+                set.add(efficiencyRating[i]);
+                map.put(key, set);
+            }
+        }
+
+        while(open>0) {
+            max += (map.containsKey("(")&&!map.get("(").isEmpty()) ? map.get("(").pollFirst():0;
+            open--;
+        }
+        while(close>0) {
+            max += (map.containsKey(")")&&!map.get(")").isEmpty()) ? map.get(")").pollFirst():0;
+            close--;
+        }
+
+        return max;
     }
 
+    public static int findMaxToBalanceUsingPriorityQueue(String s, String kit, int[] efficiencyRating) {
 
-    return max;
+        Stack<Character> tmpStack = new Stack<>();
+        PriorityQueue<Integer> openPQ = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Integer> closePQ = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
 
-  }
+        for (int i = 0; i < kit.length(); i++) {
+            if (kit.charAt(i) == '(')
+                openPQ.add(efficiencyRating[i]);
+            else
+                closePQ.add(efficiencyRating[i]);
+        }
+
+        int max = 0;
+        // Loop over String to find all needed to balance the string
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ')' && tmpStack.isEmpty())
+                if (!openPQ.isEmpty()) max += openPQ.poll(); // We need opening parenthesis
+            else if (s.charAt(i) == ')' && tmpStack.peek() == '(')
+                tmpStack.pop();
+            else tmpStack.push(s.charAt(i));
+        }
+
+        while (!tmpStack.isEmpty()) {
+            if (tmpStack.pop() == '(')
+                if (!closePQ.isEmpty()) max += closePQ.poll();
+            else
+                if (!openPQ.isEmpty()) max += openPQ.poll();
+        }
+
+        while (!openPQ.isEmpty() && !closePQ.isEmpty())
+            max = Math.max(max, openPQ.poll() + closePQ.poll() + max);
+
+        return max;
+    }
 }
