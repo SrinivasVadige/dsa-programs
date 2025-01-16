@@ -62,12 +62,15 @@ no other combinations of adding parentheses that can yield a balanced sequence w
  */
 public class ParenthesesPerfectionKit {
     public static void main(String[] args) {
-        String s = "))(()";
-        String kit = "(())";
-        int[] efficiencyRating = { 4, 2, -3, -1 };
+        String s = "())()()";
+        String kit = "()()()";
+        int[] efficiencyRating = { 5,5,5,5,5,5 };
+        // String s = "))(()";
+        // String kit = "(())";
+        // int[] efficiencyRating = { 4, 2, -3, -1 };
         System.out.println("findMaxToBalance using PriorityQueue My Approach : " + findMaxToBalanceUsingPriorityQueueMyApproach(s, kit, efficiencyRating));
-        System.out.println("findMaxToBalance using TreeSet : " + findMaxToBalanceUsingTreeSet(s, kit, efficiencyRating));
         // System.out.println("findMaxToBalance using PriorityQueue : " + findMaxToBalanceUsingPriorityQueue(s, kit, efficiencyRating));
+        // System.out.println("findMaxToBalance using TreeSet : " + findMaxToBalanceUsingTreeSet(s, kit, efficiencyRating));
     }
 
     /**
@@ -95,15 +98,15 @@ public class ParenthesesPerfectionKit {
      */
     // TODO: validate open & close count with different test cases
     public static int findMaxToBalanceUsingPriorityQueueMyApproach(String s, String kit, int[] efficiencyRating) {
-        int open, close; open=close=0;
-        // check if s is balanced or not
+        int open, close; open=close=0; // '(' open orphan count and ')' close orphan count
+        // check if s is balanced or not AND // get orphanOpenCount & orphanCloseCount
         for (String s1 : s.split("")){
             if (s1.equals("(")) {
                 open++;
             }
             else if (s1.equals(")")) {
                 if (open == 0) close++;
-                else open--; // sub parenthesis balanced
+                else open--; // decrease '(' open orphan count when it becomes balanced
             }
         }
         if (open == 0 && close == 0) return 1;
@@ -127,6 +130,52 @@ public class ParenthesesPerfectionKit {
 
         return max;
     }
+
+
+    public static int findMaxToBalanceUsingPriorityQueue(String s, String kit, int[] efficiencyRating) {
+
+        Stack<Character> tmpStack = new Stack<>();
+        PriorityQueue<Integer> openPQ = new PriorityQueue<>(Comparator.reverseOrder());
+        PriorityQueue<Integer> closePQ = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
+
+        for (int i = 0; i < kit.length(); i++) {
+            if (kit.charAt(i) == '(')
+                openPQ.add(efficiencyRating[i]);
+            else
+                closePQ.add(efficiencyRating[i]);
+        }
+
+        int max = 0;
+        // Loop over String to find all needed to balance the string
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ')' && tmpStack.isEmpty())
+                if (!openPQ.isEmpty()) max += openPQ.poll(); // We need opening parenthesis
+            else if (s.charAt(i) == ')' && tmpStack.peek() == '(')
+                tmpStack.pop();
+            else tmpStack.push(s.charAt(i));
+        }
+
+        while (!tmpStack.isEmpty()) {
+            if (tmpStack.pop() == '(')
+                if (!closePQ.isEmpty()) max += closePQ.poll();
+            else
+                if (!openPQ.isEmpty()) max += openPQ.poll();
+        }
+
+        while (!openPQ.isEmpty() && !closePQ.isEmpty())
+            max = Math.max(max, openPQ.poll() + closePQ.poll() + max);
+
+        return max;
+    }
+
+
+
+
+
+
+
+
+
 
     /*
         TreeSet can't handle duplicates
@@ -172,42 +221,6 @@ public class ParenthesesPerfectionKit {
             max += (map.containsKey(")")&&!map.get(")").isEmpty()) ? map.get(")").pollFirst():0;
             close--;
         }
-
-        return max;
-    }
-
-    public static int findMaxToBalanceUsingPriorityQueue(String s, String kit, int[] efficiencyRating) {
-
-        Stack<Character> tmpStack = new Stack<>();
-        PriorityQueue<Integer> openPQ = new PriorityQueue<>(Comparator.reverseOrder());
-        PriorityQueue<Integer> closePQ = new PriorityQueue<>(Comparator.comparingInt(a -> -a));
-
-        for (int i = 0; i < kit.length(); i++) {
-            if (kit.charAt(i) == '(')
-                openPQ.add(efficiencyRating[i]);
-            else
-                closePQ.add(efficiencyRating[i]);
-        }
-
-        int max = 0;
-        // Loop over String to find all needed to balance the string
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == ')' && tmpStack.isEmpty())
-                if (!openPQ.isEmpty()) max += openPQ.poll(); // We need opening parenthesis
-            else if (s.charAt(i) == ')' && tmpStack.peek() == '(')
-                tmpStack.pop();
-            else tmpStack.push(s.charAt(i));
-        }
-
-        while (!tmpStack.isEmpty()) {
-            if (tmpStack.pop() == '(')
-                if (!closePQ.isEmpty()) max += closePQ.poll();
-            else
-                if (!openPQ.isEmpty()) max += openPQ.poll();
-        }
-
-        while (!openPQ.isEmpty() && !closePQ.isEmpty())
-            max = Math.max(max, openPQ.poll() + closePQ.poll() + max);
 
         return max;
     }
