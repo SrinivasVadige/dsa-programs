@@ -8,7 +8,7 @@ import java.util.Stack;
 import java.util.TreeSet;
 
 /**
- * <pre>
+<pre>
 At Amazon, a user owns a unique tool called the
 "Parentheses Perfection Kit." This kit contains different types of parentheses, each with a specific efficiency rating. The goal is to create a balanced sequence of parentheses by adding zero or more parentheses from the kit to maximize the sequences total EfficiencyScore. The EfficiencyScore of a sequence is the sum of the efficiency ratings of the parentheses used from the kit.
 
@@ -47,19 +47,15 @@ s = ")(("
 kit = ")(()))"
 efficiency_rating = [3,4,2,-4,-1,-3]
 print(find_max_to_balance(s, kit, efficiency_rating))  # Output: 6
-)    (    (    )    )    )
-3    4    2   -4   -1   -3
-is same as
-(    (    )    )    )    )
-4    2    3   -1   -3   -4
-*         *    *
-i.e we need 4 + 3 + (-1) => 6
+
 
 Explanation
 If the user used the 0th indexed and 2nd indexed parentheses from the bag and add them to the start and end of the
 string respectively, then the final balanced sequence will be "(0)" with a total EfficiencyScore of 4 + (-3) = 1. There are
 no other combinations of adding parentheses that can yield a balanced sequence with total EfficiencyScore greater than 1, Hence return 1 as answer.
- * </pre>
+</pre>
+
+
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 11 Jan 2025
  * @see {@link Algorithms.DynamicProgramming.LongestValidParenthesis}
@@ -75,20 +71,27 @@ public class ParenthesesPerfectionKit {
     }
 
     /**
-        ")(", ")((" scenarios.
         s = ")(("
         kit = ")(()))"
-        efficiency_rating = []
+        efficiency_rating = [3,4,2,-4,-1,-3]
         print(find_max_to_balance(s, kit, efficiency_rating))  # Output: 6
+
+        ")(", ")((", ")(()))" scenarios
+
+		the map of kit and efficiency_rating looks like:
         )    (    (    )    )    )
         3    4    2   -4   -1   -3
-        is same as
-        (    (    )    )    )    )
-        4    2    3   -1   -3   -4
-        *         *    *
-        i.e we need 4 + 3 + (-1) => 6
 
-        s = ")(()))"
+	   which is same as
+        (    (
+		4    2
+		*
+
+		)    )    )    )
+        3   -1   -3   -4
+        *    *
+
+	   i.e we need 4 + 3 + (-1) => 6
      */
     // TODO: validate open & close count with different test cases
     public static int findMaxToBalanceUsingPriorityQueueMyApproach(String s, String kit, int[] efficiencyRating) {
