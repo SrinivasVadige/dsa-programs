@@ -61,7 +61,7 @@ public class SymmetricTree {
     public static boolean dfs(TreeNode left, TreeNode right) {
         if (left == null && right == null) return true;
         else if (left == null || right == null) return false;
-        else if (left.val != right.val) return false; // for root children
+        else if (left.val != right.val) return false; // for root and all of its children
         else return dfs(left.left, right.right) && dfs(left.right, right.left);
     }
 
@@ -98,7 +98,7 @@ public class SymmetricTree {
         TreeNode trav = null;
         q.add(root.left);
         q.add(root.right);
-        q.add(new TreeNode(Integer.MAX_VALUE, root, root)); // or use levelSize-for-loop as this is a unique node in an binary tree, we can use this for level separator in level order traversal
+        q.add(new TreeNode(Integer.MAX_VALUE, root, root)); // or use levelSize-for-loop or add levelSize in new TreeNode(levelSize, root, root) as this level-separator-node is a unique node in an binary tree, we get this exactly once after each level at the end
         // String str="" + root.left.val + "" + root.right.val;
         String str = "";
 
@@ -123,7 +123,7 @@ public class SymmetricTree {
                 rStr = rStr.substring(0, rStr.length()-1);
                 if (lStr.length() != rStr.length() ||  !lStr.equals(rStr)) return false;
                 str="";
-                q.add(new TreeNode(Integer.MAX_VALUE));
+                q.add(new TreeNode(Integer.MAX_VALUE)); // or new TreeNode(levelSize, root, root)
             }
         }
 
