@@ -131,7 +131,7 @@ public class BinaryTreeBasics {
         levelOrderTraversalPrintLevelUsingNullSeparator(root);
         System.out.println("\n6.3 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING DUMMY NODE SEPARATOR");
         levelOrderTraversalPrintLevelUsingDummyNodeSeparator(root);
-        System.out.println("\n6.4 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING QUEUE SIZE FOR LOOP");
+        System.out.println("\n6.4 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING LEVEL/QUEUE SIZE FOR LOOP"); // levelSize if number of nodes at that level and level number is difference
         levelOrderTraversalPrintLevelUsingLevelSizeForLoop(root);
         System.out.println("\n6.5 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING QUEUE NODES COUNT FOR LOOP");
         levelOrderTraversalPrintLevelUsingCountAndLevelSizeForLoop(root);
@@ -414,7 +414,7 @@ public class BinaryTreeBasics {
     private static void levelOrderTraversalPrintLevelUsingLevelSizeForLoop(final TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int queueSize = queue.size();
+        int queueSize = queue.size(); // levelSize or queueSize if number of nodes at that level and level number is difference
         int level = 0;
 
         while (!queue.isEmpty()) {
