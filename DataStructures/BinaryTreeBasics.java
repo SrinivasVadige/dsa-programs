@@ -138,11 +138,11 @@ public class BinaryTreeBasics {
 
 
         // 7. HEIGHT OF TREE
-        System.out.println("\n\n7.1 HEIGHT OF TREE USING RECURSION");
+        System.out.println("\n\n7.1 HEIGHT / DEPTH OF TREE USING RECURSION");
         System.out.println(getHeight(root));
-        System.out.println("\n7.2 HEIGHT OF TREE USING DFS STACK");
+        System.out.println("\n7.2 HEIGHT / DEPTH OF TREE USING DFS STACK");
         System.out.println(getHeightUsingDfsStack(root));
-        System.out.println("\n7.3 HEIGHT OF TREE USING BFS QUEUE");
+        System.out.println("\n7.3 HEIGHT / DEPTH OF TREE USING BFS QUEUE");
         System.out.println(getHeightUsingBfsQueue(root));
 
         // 8. DIAMETER OF TREE
@@ -486,10 +486,13 @@ public class BinaryTreeBasics {
     }
 
     public static int getHeightUsingDfsStack2(TreeNode root) {
-        if (root == null) return 0; Stack<TreeNode> nodeStack = new Stack<>();
+        if (root == null) return 0;
+        Stack<TreeNode> nodeStack = new Stack<>();
         Stack<Integer> depthStack = new Stack<>();
         nodeStack.push(root);
-        depthStack.push(1); int maxHeight = 0;
+        depthStack.push(1);
+        int maxHeight = 0;
+
         while (!nodeStack.isEmpty()) {
             TreeNode currentNode = nodeStack.pop();
             int currentDepth = depthStack.pop();
