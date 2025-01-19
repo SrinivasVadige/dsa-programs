@@ -36,7 +36,7 @@ package DataStructures;
  * - Splay Trees
  * - Binary Heaps
  * - Syntax trees (used by compilers and calculators)
- * - Treap tree - A probabilistic DS called Randomized BST
+ * - Treap tree - A probabilistic DS called Randomized BST --> Balanced BST just like Red-Black and AVL Trees
  * - In Priority Queues but not Heaps
  *
  *
