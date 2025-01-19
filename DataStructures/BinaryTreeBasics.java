@@ -131,9 +131,9 @@ public class BinaryTreeBasics {
         levelOrderTraversalPrintLevelUsingNullSeparator(root);
         System.out.println("\n6.3 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING DUMMY NODE SEPARATOR");
         levelOrderTraversalPrintLevelUsingDummyNodeSeparator(root);
-        System.out.println("\n6.4 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING LEVEL SIZE FOR LOOP ---- FOR BALANCED TREE");
+        System.out.println("\n6.4 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING QUEUE SIZE FOR LOOP");
         levelOrderTraversalPrintLevelUsingLevelSizeForLoop(root);
-        System.out.println("\n6.5 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING COUNT & LEVEL SIZE FOR LOOP ---- FOR BALANCED TREE");
+        System.out.println("\n6.5 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING QUEUE NODES COUNT FOR LOOP");
         levelOrderTraversalPrintLevelUsingCountAndLevelSizeForLoop(root);
 
 
@@ -410,34 +410,36 @@ public class BinaryTreeBasics {
         }
     }
 
-    // ONLY FOR BALANCED BINARY TREE
+    // ONLY FOR BOTH BALANCED & UNBALANCED BINARY TREE
     private static void levelOrderTraversalPrintLevelUsingLevelSizeForLoop(final TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int levelSize = queue.size();
+        int queueSize = queue.size();
+        int level = 0;
 
         while (!queue.isEmpty()) {
-            for (int i = 0; i < levelSize; i++) {
+            for (int i = 0; i < queueSize; i++) {
                 TreeNode node = queue.poll();
                 System.out.println("Node value: " + node.val);
                 // process node as usual
                 if (node.left != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);
             }
-            System.out.println("End of Level number: " + levelSize);
-            levelSize = queue.size();
+            System.out.println("End of Level number: " + ++level);
+            queueSize = queue.size();
         }
     }
 
-    // ONLY FOR BALANCED BINARY TREE
+    // ONLY FOR BOTH BALANCED & UNBALANCED BINARY TREE
     private static void levelOrderTraversalPrintLevelUsingCountAndLevelSizeForLoop(final TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        int levelSize = queue.size();
+        int queueSize = queue.size();
+        int level = 0;
 
         while (!queue.isEmpty()) {
             int count =0;
-            for (int i = 0; i < levelSize; i++) {
+            for (int i = 0; i < queueSize; i++) {
                 TreeNode node = queue.poll();
                 System.out.println("Node value: " + node.val);
                 // process node as usual
@@ -450,8 +452,8 @@ public class BinaryTreeBasics {
                     count++;
                 }
             }
-            System.out.println("End of Level number: " + levelSize);
-            levelSize = count;
+            System.out.println("End of Level number: " + ++level);
+            queueSize = count;
         }
     }
 
