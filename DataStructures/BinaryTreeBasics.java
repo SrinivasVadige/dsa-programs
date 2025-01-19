@@ -124,9 +124,17 @@ public class BinaryTreeBasics {
 
 
         // 6. BFS TRAVERSAL
-        System.out.println("\n\n6. BFS TRAVERSAL");
+        System.out.println("\n\n6.1 BFS TRAVERSAL");
         System.out.println("LEVEL ORDER TRAVERSAL");
         levelOrderTraversal(root);
+        System.out.println("\n6.2 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING NULL SEPARATOR");
+        levelOrderTraversalPrintLevelUsingNullSeparator(root);
+        System.out.println("\n6.3 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING DUMMY NODE SEPARATOR");
+        levelOrderTraversalPrintLevelUsingDummyNodeSeparator(root);
+        System.out.println("\n6.4 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING LEVEL SIZE FOR LOOP ---- FOR BALANCED TREE");
+        levelOrderTraversalPrintLevelUsingLevelSizeForLoop(root);
+        System.out.println("\n6.5 BFS LEVEL ORDER TRAVERSAL PRINT EACH LEVEL USING COUNT & LEVEL SIZE FOR LOOP ---- FOR BALANCED TREE");
+        levelOrderTraversalPrintLevelUsingCountAndLevelSizeForLoop(root);
 
 
         // 7. HEIGHT OF TREE
@@ -355,6 +363,98 @@ public class BinaryTreeBasics {
             if (curr.right != null) queue.add(curr.right);
         }
     }
+
+    // FOR BOTH BALANCED & UNBALANCED BINARY TREE
+    // LEVEL SEPARATOR AS NULL
+    private static void levelOrderTraversalPrintLevelUsingNullSeparator(final TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null); // null marker for end of level
+        int level = 0;
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node==null) {
+                System.out.println("End of Level number: " + ++level);
+                if (queue.isEmpty()) break; // end of tree
+                // reached end of level, do something if needed
+                queue.add(null); // add null marker for next level
+            } else {
+                System.out.println("Node value: " + node.val);
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+            }
+        }
+    }
+
+    // FOR BOTH BALANCED & UNBALANCED BINARY TREE
+    // LEVEL SEPARATOR AS DUMMY NODE WITH LEFT & RIGHT CHILDREN AS ROOT
+    private static void levelOrderTraversalPrintLevelUsingDummyNodeSeparator(final TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int level = 0;
+        queue.add(new TreeNode(++level, root, root)); // separator use LEVEL as val variable or Integer.MAX_VALUE
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node!=null && node.left==root) {
+                System.out.println("End of Level number: " + node.val);
+                if (queue.isEmpty()) break; // end of tree
+                // reached end of level, do something if needed
+                queue.add(new TreeNode(++level, root, root)); // add dummy node for next level
+            } else {
+                System.out.println("Node value: " + node.val);
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+            }
+        }
+    }
+
+    // ONLY FOR BALANCED BINARY TREE
+    private static void levelOrderTraversalPrintLevelUsingLevelSizeForLoop(final TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int levelSize = queue.size();
+
+        while (!queue.isEmpty()) {
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                System.out.println("Node value: " + node.val);
+                // process node as usual
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+            }
+            System.out.println("End of Level number: " + levelSize);
+            levelSize = queue.size();
+        }
+    }
+
+    // ONLY FOR BALANCED BINARY TREE
+    private static void levelOrderTraversalPrintLevelUsingCountAndLevelSizeForLoop(final TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int levelSize = queue.size();
+
+        while (!queue.isEmpty()) {
+            int count =0;
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                System.out.println("Node value: " + node.val);
+                // process node as usual
+                if (node.left != null){
+                    queue.add(node.left);
+                    count++;
+                }
+                if (node.right != null){
+                    queue.add(node.right);
+                    count++;
+                }
+            }
+            System.out.println("End of Level number: " + levelSize);
+            levelSize = count;
+        }
+    }
+
 
     private static int getHeight(final TreeNode root) {
         if(root == null)
