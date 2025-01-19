@@ -1,4 +1,4 @@
-package Algorithms.BinaryTrees;
+package DataStructures;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -32,6 +32,12 @@ import java.util.Stack;
 
 </pre>
  *
+ * A tree is a undirected graph which satisfies the following properties:
+ * - Only one Root Node (Root Node has no parent or parent node is itself)
+ * - An Acyclic connect graph
+ * - N nodes & N-1 edges
+ * - Two vertices are connected by exactly one edge i.e exactly one path
+ * Example: File System Tree or directories --> /, /usr, /temp, /usr/local, /usr/local/bin
  *
  *
  *
@@ -39,7 +45,7 @@ import java.util.Stack;
 * @since 23 Sept 2024
 */
 @SuppressWarnings("unused")
-public class BinaryTree {
+public class BinaryTreeBasics {
 
     static class TreeNode {
         int val;
