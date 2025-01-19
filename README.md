@@ -26,7 +26,7 @@ Data Structures And Algorithm Programs
   * [Queue, Dequeue & PriorityQueue](/DataStructures/QueueDequeuePriorityQueue.java)
   * [Stack](/DataStructures/StackExample.java)
   * [BinaryTreeNode sample / example class](DataStructures/BinaryTreeNode.java)
-  * [BinaryTree Basics](DataStructures/BinaryTree.java)
+  * [BinaryTree Basics](DataStructures/BinaryTreeBasics.java)
   * [BinarySearchTree](DataStructures/BinarySearchTree.java)
   * [Union Find / Disjoint Set Union DSU](DataStructures/UnionFind.java)
   * [AnnotationType](DataStructures/AnnotationTypeExample.java)
