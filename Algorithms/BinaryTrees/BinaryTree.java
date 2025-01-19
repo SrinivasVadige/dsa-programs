@@ -354,7 +354,7 @@ public class BinaryTree {
     private static boolean isSymmetricUsingDfs(final TreeNode left, final TreeNode right) {
         if (left == null && right == null) return true;
         else if (left == null || right == null) return false;
-        // else if (left.val != right.val) return false; // not needed
+        else if (left.val != right.val) return false; // for root children
         else return isSymmetricUsingDfs(left.left, right.right) && isSymmetricUsingDfs(left.right, right.left);
     }
 
