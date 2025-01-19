@@ -25,7 +25,7 @@ Data Structures And Algorithm Programs
   * [HashMap](/DataStructures/HashMapExample.java)
   * [Queue, Dequeue & PriorityQueue](/DataStructures/QueueDequeuePriorityQueue.java)
   * [Stack](/DataStructures/StackExample.java)
-  * [BinaryTreeNode custom class](DataStructures/BinaryTreeNode.java)
+  * [BinaryTreeNode sample / example class](DataStructures/BinaryTreeNode.java)
   * [BinaryTree Basics](DataStructures/BinaryTree.java)
   * [BinarySearchTree](DataStructures/BinarySearchTree.java)
   * [Union Find / Disjoint Set Union DSU](DataStructures/UnionFind.java)
@@ -66,6 +66,7 @@ Data Structures And Algorithm Programs
     * [InvertBinaryTree](/Algorithms/BinaryTrees/InvertBinaryTree.java)
     * [BinaryTreeInOrderTraversal](/Algorithms/BinaryTrees/BinaryTreeInOrderTraversal.java)
     * [ValidateBinarySearchTree](/Algorithms/BinaryTrees/ValidateBinarySearchTree.java)
+    * [SymmetricTree](/Algorithms/BinaryTrees/SymmetricTree.java)
 
 3. #### [BitManipulation](Algorithms/BitManipulation/)
 
