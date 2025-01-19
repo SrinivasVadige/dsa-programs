@@ -38,16 +38,16 @@ public class InvertBinaryTree {
                7  6 5  4
                    /\  /\
                null 10 9 8
-             
+
 
              1 3 1 5 4 7 6 9 8 null 10
         */
     }
-    
-    
+
+
     public static TreeNode invertTree(TreeNode root) {
         if (root == null) return null;
-        swapNodes(root);        
+        swapNodes(root);
         return root;
     }
 
@@ -104,7 +104,7 @@ public class InvertBinaryTree {
             }
 
             final int mid = (l + r) / 2;
-            
+
             result.get(level).set(mid, String.valueOf(root.val));
 
             dfs(root.left, result, l, mid, level + 1, width);
@@ -115,7 +115,7 @@ public class InvertBinaryTree {
     private static int getHeight(final TreeNode root) {
         if(root == null)
             return 0;
-        
+
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
