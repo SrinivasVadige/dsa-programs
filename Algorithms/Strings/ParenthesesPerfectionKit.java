@@ -53,6 +53,8 @@ Explanation
 If the user used the 0th indexed and 2nd indexed parentheses from the bag and add them to the start and end of the
 string respectively, then the final balanced sequence will be "(0)" with a total EfficiencyScore of 4 + (-3) = 1. There are
 no other combinations of adding parentheses that can yield a balanced sequence with total EfficiencyScore greater than 1, Hence return 1 as answer.
+
+consider ")(", ")((", ")(()))" scenarios
 </pre>
 
 
@@ -79,8 +81,6 @@ public class ParenthesesPerfectionKit {
         efficiency_rating = [3,4,2,-4,-1,-3]
         print(find_max_to_balance(s, kit, efficiency_rating))  # Output: 6
 
-        ")(", ")((", ")(()))" scenarios
-
 		the map of kit and efficiency_rating looks like:
         )    (    (    )    )    )
         3    4    2   -4   -1   -3
@@ -94,7 +94,13 @@ public class ParenthesesPerfectionKit {
         3   -1   -3   -4
         *    *
 
-	   i.e we need 4 + 3 + (-1) => 6
+	    "(" openOrphanCount == ")" close efficiency counter-part and vice-versa
+
+        s = ")(("
+        Here, we have 2 openOrphans and 1 closeOrphans then we need to add 2 maxCloseEfficiencies and 2 maxOpenEfficiency
+
+        i.e
+        2 openOrphans + 1 closeOrphans=> 2 ")" closeEff + 1 "(" openEff => 3+(-1)+4 => 6
      */
     // TODO: validate open & close count with different test cases
     public static int findMaxToBalanceUsingPriorityQueueMyApproach(String s, String kit, int[] efficiencyRating) {
@@ -120,13 +126,16 @@ public class ParenthesesPerfectionKit {
             else closePQ.add(efficiencyRating[i]);
         }
 
+        // sum all the orphans efficiency score
+	    // "(" openOrphanCount = ")" close counter part and vice-versa
         int max = 0;
-        while(open>0) {
-            max += openPQ.isEmpty()?0:openPQ.poll();
-            open--;
-        }
-        for (;close>0;close--)
+        for (;open>0;open--)
             max += closePQ.isEmpty()?0:closePQ.poll();
+
+        while(close>0) {
+            max += openPQ.isEmpty()?0:openPQ.poll();
+            close--;
+        }
 
         return max;
     }
