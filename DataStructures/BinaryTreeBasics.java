@@ -109,19 +109,39 @@ public class BinaryTreeBasics {
 
         // 5. DFS TRAVERSAL
         System.out.println("\n\n5. DFS TRAVERSAL");
-        System.out.println("PRE-ORDER TRAVERSAL USING RECURSION");
-        preOrderRecursion(root);
-        System.out.println("\nPRE-ORDER TRAVERSAL USING STACK");
-        preOrderUsingStack(root);
-        System.out.println("\nIN-ORDER TRAVERSAL USING RECURSION");
-        inOrderRecursion(root);
-        System.out.println("\nIN-ORDER TRAVERSAL USING STACK");
-        inOrderUsingStack(root);
-        System.out.println("\nPOST-ORDER TRAVERSAL USING RECURSION");
-        postOrderRecursion(root);
-        System.out.println("\nPOST-ORDER TRAVERSAL USING STACK");
-        postOrderUsingStack(root);
+        /*
+                               1
+                              / \
+                             2   3
+                            / \ / \
+                           4  5 6  7
+                          / \ /
+                         8  9 10
 
+            treeNode =  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            preOrder =  [1, 2, 4, 8, 9, 5, 10, 3, 6, 7] // same as pre-order recursion
+            inOrder =   [8, 4, 9, 2, 10, 5, 1, 6, 3, 7]
+            postOrder = [8, 9, 4, 10, 5, 2, 6, 7, 3, 1]
+         */
+        System.out.println("PRE-ORDER TRAVERSAL USING RECURSION");
+        preOrderTraversalRecursion(root);
+        System.out.println("\nPRE-ORDER TRAVERSAL USING STACK");
+        preOrderTraversalUsingStack(root);
+        System.out.println("\nPRE-ORDER TRAVERSAL USING QUEUE ----> TODO: can't use queue for pre-order traversal");
+        preOrderTraversalUsingQueue(root);
+        System.out.println("\nIN-ORDER TRAVERSAL USING RECURSION");
+        inOrderTraversalRecursion(root);
+        System.out.println("\nIN-ORDER TRAVERSAL USING STACK");
+        inOrderTraversalUsingStack(root);
+        System.out.println("\nIN-ORDER TRAVERSAL USING QUEUE");
+        inOrderTraversalUsingQueue(root);
+        System.out.println("\nPOST-ORDER TRAVERSAL USING RECURSION");
+        postOrderTraversalRecursion(root);
+        System.out.println("\nPOST-ORDER TRAVERSAL USING STACK");
+        postOrderTraversalUsingStack(root);
+        System.out.println("\nPOST-ORDER TRAVERSAL USING QUEUE");
+        postOrderTraversalUsingQueue(root);
+        System.exit(0);
 
         // 6. BFS TRAVERSAL
         System.out.println("\n\n6.1 BFS TRAVERSAL");
@@ -291,28 +311,28 @@ public class BinaryTreeBasics {
         travUsingRecursion(root.right);
     }
 
-    private static void preOrderRecursion(final TreeNode root) {
+    private static void preOrderTraversalRecursion(final TreeNode root) {
         if (root == null) return;
         System.out.print(root.val + " ");
-        preOrderRecursion(root.left);
-        preOrderRecursion(root.right);
+        preOrderTraversalRecursion(root.left);
+        preOrderTraversalRecursion(root.right);
     }
 
-    private static void inOrderRecursion(final TreeNode root) {
+    private static void inOrderTraversalRecursion(final TreeNode root) {
         if (root == null) return;
-        inOrderRecursion(root.left);
+        inOrderTraversalRecursion(root.left);
         System.out.print(root.val + " ");
-        inOrderRecursion(root.right);
+        inOrderTraversalRecursion(root.right);
     }
 
-    private static void postOrderRecursion(final TreeNode root) {
+    private static void postOrderTraversalRecursion(final TreeNode root) {
         if (root == null) return;
-        postOrderRecursion(root.left);
-        postOrderRecursion(root.right);
+        postOrderTraversalRecursion(root.left);
+        postOrderTraversalRecursion(root.right);
         System.out.print(root.val + " ");
     }
 
-    private static void preOrderUsingStack(final TreeNode root) {
+    private static void preOrderTraversalUsingStack(final TreeNode root) {
         if (root == null) return;
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
@@ -324,7 +344,7 @@ public class BinaryTreeBasics {
         }
     }
 
-    private static void inOrderUsingStack(final TreeNode root) {
+    private static void inOrderTraversalUsingStack(final TreeNode root) {
         if (root == null) return;
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
@@ -340,15 +360,110 @@ public class BinaryTreeBasics {
         }
     }
 
-    private static void postOrderUsingStack(final TreeNode root) {
+    public static void postOrderTraversalUsingStack(TreeNode root) {
         if (root == null) return;
         Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> helperStack = new Stack<>();
         stack.push(root);
-        while(!stack.isEmpty()) {
-            TreeNode curr = stack.pop();
-            System.out.print(curr.val + " ");
-            if (curr.left != null) stack.push(curr.left);
-            if (curr.right != null) stack.push(curr.right);
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.pop();
+            helperStack.push(current);
+            if (current.left != null) {
+                stack.push(current.left);
+            }
+            if (current.right != null) {
+                stack.push(current.right);
+            }
+        }
+        while (!helperStack.isEmpty()) {
+            System.out.print(helperStack.pop().val + " ");
+        }
+    }
+
+    private static void postOrderTraversalUsingStack2(final TreeNode root) {
+        if (root == null) return;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        TreeNode prev = null;
+        do {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            while (current == null && !stack.isEmpty()) {
+                current = stack.peek();
+                if (current.right == null || current.right == prev) {
+                    System.out.print(current.val + " ");
+                    stack.pop();
+                    prev = current;
+                    current = null;
+                } else {
+                    current = current.right;
+                }
+            }
+        } while (!stack.isEmpty());
+    }
+
+    public static void preOrderTraversalUsingQueue(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return;
+
+        Stack<Integer> stack = new Stack<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root); // Add the root to the queue
+
+        while (!queue.isEmpty()) { // Process nodes in modified reverse order: root → left → right
+
+            TreeNode current = queue.poll();
+            stack.push(current.val);
+            System.out.print(current.val + " ");
+
+            if (current.left != null) queue.add(current.left);
+            if (current.right != null) queue.add(current.right);
+        }
+        // System.out.println( "\n"+ stack);
+    }
+
+    public static void inOrderTraversalUsingQueue(TreeNode root) {
+        if (root == null) return;
+        Queue<TreeNode> queue = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            queue.add(current);
+            current = current.right;
+        }
+        while (!queue.isEmpty()) {
+            System.out.print(queue.poll().val + " ");
+        }
+    }
+
+    public static void postOrderTraversalUsingQueue(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return;
+
+        Stack<TreeNode> stack = new Stack<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+
+        queue.add(root); // Add the root to the queue
+
+        while (!queue.isEmpty()) { // Process nodes in modified reverse order: root → left → right
+            TreeNode current = queue.poll();
+            stack.push(current);
+
+            // Add right child first, then left child
+            if (current.right != null) queue.add(current.right);
+            if (current.left != null) queue.add(current.left);
+        }
+
+        // Pop from the stack to reverse order into post-order: left → right → root
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop().val + " ");
         }
     }
 
