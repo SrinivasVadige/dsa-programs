@@ -68,6 +68,7 @@ Data Structures And Algorithm Programs
     * [ValidateBinarySearchTree](/Algorithms/BinaryTrees/ValidateBinarySearchTree.java)
     * [SymmetricTree](/Algorithms/BinaryTrees/SymmetricTree.java)
     * [BinaryTree LevelOrderTraversal](/Algorithms/BinaryTrees/BinaryTreeLevelOrderTraversal.java)
+    * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
 
 3. #### [BitManipulation](Algorithms/BitManipulation/)
 
