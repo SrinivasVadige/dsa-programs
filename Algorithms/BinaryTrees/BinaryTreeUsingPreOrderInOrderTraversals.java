@@ -2,6 +2,10 @@ package Algorithms.BinaryTrees;
 
 import java.util.Arrays;
 
+/**
+ * @author Srinivas Vadige, srinivas.vadige@gmail.com
+ * @since 27 Jan 2025
+ */
 public class BinaryTreeUsingPreOrderInOrderTraversals {
     static class TreeNode {int val; TreeNode left, right; TreeNode() {}TreeNode(int val) { this.val = val; } TreeNode(int val, TreeNode left, TreeNode right) {this.val = val;this.left = left;this.right = right;}}
     public static void main(String[] args) {
