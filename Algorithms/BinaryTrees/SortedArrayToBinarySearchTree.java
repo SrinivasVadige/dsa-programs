@@ -19,6 +19,8 @@ public class SortedArrayToBinarySearchTree {
 
             => 3 1 5 0 2 4
 
+            so, root node is always mid-index-num
+            left node is mid-index-num of left part and same for right node
          */
         TreeNode root = sortedArrayToBST(nums);
         printTree(root);
