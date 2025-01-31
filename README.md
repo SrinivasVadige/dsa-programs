@@ -70,6 +70,8 @@ Data Structures And Algorithm Programs
     * [BinaryTree LevelOrderTraversal](/Algorithms/BinaryTrees/BinaryTreeLevelOrderTraversal.java)
     * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
     * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
+    * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
+    * [BinaryTree RightSideView](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
 
 3. #### [BitManipulation](Algorithms/BitManipulation/)
 
