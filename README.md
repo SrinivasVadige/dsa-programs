@@ -72,6 +72,7 @@ Data Structures And Algorithm Programs
     * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
     * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
     * [BinaryTree RightSideView](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
+    * [Kth Smallest Element in BST](/Algorithms/BinaryTrees/KthSmallestElementInBST.java)
 
 3. #### [BitManipulation](Algorithms/BitManipulation/)
 
