@@ -124,6 +124,12 @@ public class BinaryTreeBasics {
         // 5. DFS TRAVERSAL
         System.out.println("\n\n5. DFS TRAVERSAL");
         /*
+
+            DFS TRAVERSAL is of 3 types:
+            1. PRE-ORDER TRAVERSAL
+            2. IN-ORDER TRAVERSAL
+            3. POST-ORDER TRAVERSAL
+
                                1
                               / \
                              2   3
@@ -141,6 +147,8 @@ public class BinaryTreeBasics {
         preOrderTraversalRecursion(root);
         System.out.println("\nPRE-ORDER TRAVERSAL USING STACK");
         preOrderTraversalUsingStack(root);
+        System.out.println("\nPRE-ORDER TRAVERSAL USING STACK LEFT SCAN APPROACH"); // 🔥
+        preOrderTraversalUsingStackLeftScan(root);
         System.out.println("\nPRE-ORDER TRAVERSAL USING QUEUE ----> TODO: can't use queue for pre-order traversal");
         preOrderTraversalUsingQueue(root);
         System.out.println("\nIN-ORDER TRAVERSAL USING RECURSION");
@@ -155,7 +163,9 @@ public class BinaryTreeBasics {
         postOrderTraversalUsingStack(root);
         System.out.println("\nPOST-ORDER TRAVERSAL USING QUEUE");
         postOrderTraversalUsingQueue(root);
-        System.exit(0);
+
+
+
 
         // 6. BFS TRAVERSAL
         System.out.println("\n\n6.1 BFS TRAVERSAL");
@@ -355,6 +365,21 @@ public class BinaryTreeBasics {
             System.out.print(curr.val + " ");
             if (curr.right != null) stack.push(curr.right);
             if (curr.left != null) stack.push(curr.left);
+        }
+    }
+
+    public static void preOrderTraversalUsingStackLeftScan(TreeNode root) { // 🔥
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode trav = root;
+        while (trav != null || !stack.isEmpty()) {
+            // traverse to left most
+            while (trav != null) {
+                System.out.print(trav.val + " ");
+                stack.push(trav);
+                trav = trav.left;
+            }
+            trav = stack.pop(); // pop top one in stack
+            trav = trav.right; // => if trav.right == null then above while(trav!=null){} will skip and pop the parent node and trav.right and trav will continue
         }
     }
 
