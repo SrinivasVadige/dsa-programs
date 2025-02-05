@@ -63,6 +63,8 @@ Data Structures And Algorithm Programs
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
+    * [MedianOfTwoSortedArrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
+
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
     * [InvertBinaryTree](/Algorithms/BinaryTrees/InvertBinaryTree.java)

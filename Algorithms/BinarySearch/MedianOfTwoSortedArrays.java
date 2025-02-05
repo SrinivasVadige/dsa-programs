@@ -1,0 +1,105 @@
+package Algorithms.BinarySearch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
+
+/**
+ * @author Srinivas Vadige, srinivas.vadige@gmail.com
+ * @since 04 Feb 2025
+ */
+public class MedianOfTwoSortedArrays {
+    public static void main(String[] args) {
+
+        int[] nums1 = {1, 3};
+        int[] nums2 = {2};
+        System.out.println("findMedianSortedArrays(nums1, nums2) => " + findMedianSortedArrays(nums1, nums2));
+        System.out.println("findMedianSortedArrays2(nums1, nums2) => " + findMedianSortedArrays2(nums1, nums2));
+        System.out.println("findMedianSortedArraysUsingArraySort(nums1, nums2) => " + findMedianSortedArraysUsingArraySort(nums1, nums2));
+        System.out.println("findMedianSortedArraysUsingListSort(nums1, nums2) => " + findMedianSortedArraysUsingListSort(nums1, nums2));
+        System.out.println("findMedianSortedArraysUsingPq(nums1, nums2) => " + findMedianSortedArraysUsingPq(nums1, nums2));
+    }
+
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int totalLength = nums1.length + nums2.length;
+        if (totalLength % 2 == 1) {
+            return findKthElement(nums1, nums2, totalLength / 2 + 1);
+        } else {
+            return (findKthElement(nums1, nums2, totalLength / 2) + findKthElement(nums1, nums2, totalLength / 2 + 1)) / 2.0;
+        }
+    }
+
+    public static int findKthElement(int[] nums1, int[] nums2, int k) {
+        if (nums1.length > nums2.length) {
+            return findKthElement(nums2, nums1, k);
+        }
+        int low = Math.max(0, k - nums2.length);
+        int high = Math.min(k, nums1.length);
+        while (low <= high) {
+            int mid1 = (low + high) / 2;
+            int mid2 = k - mid1;
+            int l1 = mid1 == 0 ? Integer.MIN_VALUE : nums1[mid1 - 1];
+            int l2 = mid2 == 0 ? Integer.MIN_VALUE : nums2[mid2 - 1];
+            int r1 = mid1 == nums1.length ? Integer.MAX_VALUE : nums1[mid1];
+            int r2 = nums2.length == mid2 ? Integer.MAX_VALUE : nums2[mid2];
+            if (l1 <= r2 && l2 <= r1) {
+                return Math.max(l1, l2);
+            } else if (l1 > r2) {
+                high = mid1 - 1;
+            } else {
+                low = mid1 + 1;
+            }
+        }
+        return 0;
+    }
+
+
+    public static double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        int n1=nums1.length,n2=nums2.length,i=0,j=0,count=0,mid=(n1+n2)/2;
+        int[] nums=new int[n1+n2];
+        while(count<=mid){
+            if(i==n1 && j<n2) nums[count++]=nums2[j++];
+            else if(j==n2 && i<n1) nums[count++]=nums1[i++];
+            else if(nums1[i]<nums2[j]){
+                nums[count++]=nums1[i++];
+            }else nums[count++]=nums2[j++];
+        }
+        if((n1+n2)%2!=0) return nums[mid];
+        return (nums[mid]+nums[mid-1])/2.0;
+    }
+
+    public static double findMedianSortedArraysUsingArraySort(int[] nums1, int[] nums2) {
+        int[] nums = new int[nums1.length+nums2.length];
+        double median;
+        for(int i=0; i<nums1.length; i++) nums[i] = nums1[i];
+        for(int i=nums1.length, j=0; i<nums.length; i++, j++) nums[i] = nums2[j];
+        Arrays.sort(nums);
+        int len = nums.length;
+        if(len%2==0) median = (double) (nums[(len/2)-1] + nums[(len/2)])/2; // or /2.0
+        else median = nums[len/2];
+        return median;
+    }
+
+    public static double findMedianSortedArraysUsingListSort(int[] nums1, int[] nums2) {
+        double d = 0.0;
+        List<Integer> lst = new ArrayList<>();
+        for (int i: nums1) lst.add(i);
+        for (int i: nums2) lst.add(i);
+        Collections.sort(lst);
+        if (lst.size()%2==1) d = lst.get(lst.size()/2);
+        else d = (lst.get((lst.size()/2) -1) + lst.get(lst.size()/2))/2;
+        return d;
+    }
+
+    public static double findMedianSortedArraysUsingPq(int[] nums1, int[] nums2) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for (int i: nums1) pq.add(i);
+        for (int i: nums2) pq.add(i);
+        int mid = pq.size()/2;
+        boolean isEven = pq.size()%2==0;
+        for (int i=0; i< (isEven? (mid-1):mid); i++) pq.poll();
+        return isEven? (pq.poll() + pq.poll())/2.0 : pq.poll();
+    }
+}
