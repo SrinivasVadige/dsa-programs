@@ -23,6 +23,37 @@ public class MedianOfTwoSortedArrays {
         System.out.println("findMedianSortedArraysUsingPq(nums1, nums2) => " + findMedianSortedArraysUsingPq(nums1, nums2));
     }
 
+    /**
+     * EVEN CASE SCENARIO
+     * ------------------
+     * A1 = {2, 4, 9, 12}
+     * A2 = {5, 6, 8, 13}
+     *
+     * Make then two halves like
+     * A1 = l1{2, 4} r1{9, 12}
+     * A2 = l2{5, 6} r2{8, 13}
+     *
+     * In even mixed array we need middle two elements i.e e1 and e2 as (e1 + e2)/2 is median
+     * e1 = max(l1, l2)
+     * e2 = min(r1, r2)
+     *
+     *
+     * ODD CASE SCENARIO
+     * ------------------
+     * A1 = {2, 4, 9, 12}
+     * A2 = {5, 6, 8}
+     *
+     * Make then two halves like
+     * A1 = l1{2, 4} r1{9, 12}
+     * A2 = l2{5} r2{6, 8}
+     *
+     * In odd mixed array we need middle one element i.e e1 and itself is median
+     * e1 = min(r1, r2)
+     *
+     * But how to find the cut? --> using binary search of smaller array
+     * l1 <= r2 && l2 <= r1 check this condition in all the cuts to get valid cut
+     *
+     */
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         // make num1 as min length array.
         // call same function, and change the params
@@ -30,9 +61,10 @@ public class MedianOfTwoSortedArrays {
         // so because we swapped these two, now nums1 is smaller and
         // nums2 is greater.
         if(nums1.length > nums2.length){
-            return findMedianSortedArrays(nums2,nums1);
+            return findMedianSortedArrays(nums2,nums1); // no recursion here, we're just swapping to make nums1 smaller
         }
         // nums1 is smaller and num2 is greater.
+        // Now apply binary search in smaller array i.e nums1
         int n1 = nums1.length;
         int n2 = nums2.length;
         final int N = n1+n2;
