@@ -66,6 +66,7 @@ Data Structures And Algorithm Programs
     * [Median of Two Sorted Arrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
     * [Search in Rotated Sorted Array](/Algorithms/BinarySearch/SearchInRotatedSortedArray.java)
     * [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
+    * [Search Insert Position](/Algorithms/BinarySearch/SearchInsertPosition.java)
 
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
