@@ -67,6 +67,7 @@ Data Structures And Algorithm Programs
     * [Search in Rotated Sorted Array](/Algorithms/BinarySearch/SearchInRotatedSortedArray.java)
     * [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
     * [Search Insert Position](/Algorithms/BinarySearch/SearchInsertPosition.java)
+    * [Search in 2D Sorted Matrix](/Algorithms/BinarySearch/Search2DSortedMatrix.java)
 
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
