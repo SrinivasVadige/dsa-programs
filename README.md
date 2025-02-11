@@ -197,6 +197,8 @@ Data Structures And Algorithm Programs
 
 20. #### [Stack](/Algorithms/StackAlgos/)
 
+    * [ValidParentheses](Algorithms/StackAlgos/ValidParentheses.java)
+
 21. #### [Strings](/Algorithms/Strings/)
 
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
