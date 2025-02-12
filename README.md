@@ -158,6 +158,8 @@ Data Structures And Algorithm Programs
 
 13. #### [Misc](/Algorithms/MiscAlgos/)
 
+    * [SingleNumber](Algorithms/MiscAlgos/SingleNumber.java)
+
 14. #### [PrefixSum](/Algorithms/PrefixSum/)
 
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
