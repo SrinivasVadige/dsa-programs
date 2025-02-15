@@ -116,6 +116,7 @@ Data Structures And Algorithm Programs
 
     * [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
     * [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
+    * [Course Schedule](Algorithms/Graphs/CourseSchedule.java)
 
 7. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms/)
 
