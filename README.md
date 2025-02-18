@@ -61,6 +61,7 @@ Data Structures And Algorithm Programs
 
     * [NonContiguousSubArraySum](/Algorithms/BackTracking/NonContiguousSubArraySum.java)
     * [LetterCombinations of a PhoneNumber](/Algorithms/BackTracking/LetterCombinationsOfPhoneNumber.java)
+    * [GenerateParentheses](/Algorithms/BackTracking/GenerateParentheses.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
