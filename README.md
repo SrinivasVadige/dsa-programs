@@ -63,6 +63,7 @@ Data Structures And Algorithm Programs
     * [LetterCombinations of a PhoneNumber](/Algorithms/BackTracking/LetterCombinationsOfPhoneNumber.java)
     * [GenerateParentheses](/Algorithms/BackTracking/GenerateParentheses.java)
     * [CombinationSum](/Algorithms/BackTracking/CombinationSum.java)
+    * [Permutations](/Algorithms/BackTracking/Permutations.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
