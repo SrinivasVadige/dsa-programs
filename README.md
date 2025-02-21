@@ -64,6 +64,7 @@ Data Structures And Algorithm Programs
     * [GenerateParentheses](/Algorithms/BackTracking/GenerateParentheses.java)
     * [CombinationSum](/Algorithms/BackTracking/CombinationSum.java)
     * [Permutations](/Algorithms/BackTracking/Permutations.java)
+    * [N-Queens](/Algorithms/BackTracking/NQueens.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
