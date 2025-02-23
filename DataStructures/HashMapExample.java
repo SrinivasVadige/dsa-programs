@@ -26,7 +26,7 @@ public class HashMapExample {
     public static void main(String[] args) {
 
 
-        // to get the all characters occurances in a string
+        // to get the all characters occurrences in a string
         String str = "srinivasrepo";
         Map<String, Long> charMap = Arrays.stream(str.split(""))
                                         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -38,7 +38,7 @@ public class HashMapExample {
         // Collectors.summingInt(e -> 1) will count but Collectors.summingInt(Integer::valueOf) will sum all the items / values but here the item is char.
 /*
         Here we cannot use identity (Function::identity) and counting as method references and get error 
-        Because this identity and counting methods don't have expected number of arguments 
+        Because this identity and counting methods don't have expected number of arguments
         (here expected number of args in classifier.apply(t) is 1 but Function.identity() method has 0 args) 
         (and downstream.supplier() return type is Supplier<A> but Collectors.counting() return type is Collector)
 */
@@ -92,7 +92,7 @@ public class HashMapExample {
         map.merge('A', 5, (oldV,newV)-> oldV==null? 1:newV+oldV);
 
         // COMPUTE
-        map.compute('S', (k,v)-> v==null?1:v+1); // map.compute(Keysymbol, (k,v)-> v==null?1:v+1);
+        map.compute('S', (k,v)-> v==null?1:v+1); // map.compute(KeySymbol, (k,v)-> v==null?1:v+1);
         map.computeIfAbsent('S', (v)-> v==null?1:v+1);
         map.computeIfPresent('S', (k,v)-> v==null?1:v+1);
 
@@ -113,7 +113,7 @@ public class HashMapExample {
         set.stream().toList().get(0); // => key
 
         // MAP TO VALUES COLLECTION
-        Collection<Integer> collecOfVals = map.values(); // => Collection<ValDataType>
+        Collection<Integer> collectionOfVals = map.values(); // => Collection<ValDataType>
 
         // MAP FOREACH
         map.forEach( (k,v) -> System.out.printf("%s%s, ", k, v));
@@ -157,10 +157,12 @@ public class HashMapExample {
        // And in AbstractMap we have AbstractMap.SimpleEntry, AbstractMap.SimpleImmutableEntry
        // i.e just like 'cpp STL <utility> header - pair container' --> SimpleEntry & 'python tuple' --> SimpleImmutableEntry
        // Note that we can also use Map.Entry & map.entry() in the same way
-       AbstractMap.SimpleEntry<Integer, String> entry = new SimpleEntry<>(1, "foo");
+        AbstractMap.SimpleEntry<Integer, String> entry = new SimpleEntry<>(1, "foo");
 		entry.getKey();
 		entry.getValue();
 		entry.setValue("bar");
+        // or
+        Map.Entry<Integer, String> entry1 = new AbstractMap.SimpleEntry<>(1, "foo");
 
 		AbstractMap.SimpleImmutableEntry<Integer, String> entry2 = new SimpleImmutableEntry<>(1, "foo");
 		entry2.getKey();
@@ -178,10 +180,18 @@ public class HashMapExample {
         Map.Entry<Integer, String> entry4 = Map.entry(1, "foo");
         entry4.getKey();
         entry4.getValue();
-        entry4.setValue("bar");
+        //entry4.setValue("bar"); // java.lang.UnsupportedOperationException
 
         // But we cannot setKey()
         // and cannot AbstractMap.SimpleEntry<Integer, String> entry3 = Map.entry(1, "foo");
+
+        /**
+         * NOTE: new AbstractMap.SimpleEntry<>() is introduces in Java 4
+         * and Map.entry() is introduced in Java 9 and Map.entry() is immutable and get java.lang.UnsupportedOperationException in setValue
+         * So, always use new AbstractMap.SimpleEntry<>(); but with Immutable Key and Mutable Value
+         * 🔥
+         * And if you want a Mutable Key & Value then use a custom class with getter and setter.
+         */
 
 
         // IMMUTABLE MAP
