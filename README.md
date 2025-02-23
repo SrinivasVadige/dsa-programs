@@ -67,6 +67,7 @@ Data Structures And Algorithm Programs
     * [N-Queens](/Algorithms/BackTracking/NQueens.java)
     * [Subsets](/Algorithms/BackTracking/Subsets.java)
     * [WordSearch](/Algorithms/BackTracking/WordSearch.java)
+    * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
