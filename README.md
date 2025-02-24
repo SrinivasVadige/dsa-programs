@@ -221,7 +221,9 @@ Data Structures And Algorithm Programs
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
 
-23. #### [Tries](/Algorithms/Tries/)
+23. #### [Tries / Prefix Tree](/Algorithms/Tries/)
+
+    * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
 
 24. #### [Two Pointers](/Algorithms/TwoPointers/)
 
