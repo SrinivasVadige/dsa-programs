@@ -133,6 +133,7 @@ Data Structures And Algorithm Programs
 
     * [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
     * [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
+    * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
 
 9. #### [Hashing / HashMap](Algorithms/Hashing/)
 
