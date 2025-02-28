@@ -136,6 +136,7 @@ Data Structures And Algorithm Programs
     * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
     * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
     * [BestTime To Buy And Sell Stock](/Algorithms/GreedyAlgorithms/BestTimeToBuyAndSellStock.java)
+    * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
 
 9. #### [Hashing / HashMap](Algorithms/Hashing/)
 
