@@ -219,6 +219,10 @@ Data Structures And Algorithm Programs
 21. #### [Stack](/Algorithms/StackAlgos/)
 
     * [ValidParentheses](Algorithms/StackAlgos/ValidParentheses.java)
+    * [DailyTemperatures](Algorithms/StackAlgos/DailyTemperatures.java)
+    * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
+    * [Min Stack](Algorithms/StackAlgos/MinStackClass.java)
+    * [Decode String](Algorithms/StackAlgos/DecodeString.java)
 
 22. #### [Strings](/Algorithms/Strings/)
 
