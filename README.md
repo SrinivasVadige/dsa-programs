@@ -148,6 +148,10 @@ Data Structures And Algorithm Programs
 
 10. #### [Heap](/Algorithms/HeapAlgos/)
 
+    * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
+    * [Top K Frequent Elements](Algorithms/HeapAlgos/TopKFrequentElements.java)
+    * [Find Median from Data Stream](Algorithms/HeapAlgos/FindMedianFromDataStream.java)
+
 11. #### [IntegerArray](/Algorithms/IntegerArray/)
 
     * [MaximumRepeatingNumber](Algorithms/IntegerArray/MaximumRepeatingNumber.java)
