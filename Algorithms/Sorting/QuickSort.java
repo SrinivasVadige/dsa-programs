@@ -134,15 +134,93 @@ public class QuickSort{
 
 
 
-    // Use i,j as two pointers sliding window but i starts from lowI and j starts from highI
-    private static void quickSort3(int[] arr, int low, int high) {
-        if (low < high) {
-            int pivotIndex = partition3(arr, low, high);
-            quickSort3(arr, low, pivotIndex - 1);
-            quickSort3(arr, pivotIndex + 1, high);
+
+    // lowI, highI as 2p sliding window, but lowI starts from leftI & highI starts from rightI
+    public static void quickSort3(int[] nums, int left, int right) {
+        if (left < right) {
+            int pivotIndex = partition3(nums, left, right);
+            quickSort3(nums, left, pivotIndex);  // Sort left partition
+            quickSort3(nums, pivotIndex + 1, right);  // Sort right partition
         }
     }
-    private static int partition3(int[] nums, int low, int high) {
+    private static int partition3(int[] nums, int left, int right) {
+        int pivot = nums[right]; // don't use nums[left]
+        int low = left, high = right;
+
+        while (low <= high) {
+            // Move low forward until finding an element >= pivot
+            while (low <= high && nums[low] < pivot) {
+                low++;
+            }
+            // Move high backward until finding an element <= pivot
+            while (low <= high && nums[high] > pivot) {
+                high--;
+            }
+            if (low <= high) {
+                // Swap misplaced elements
+                swap(nums, low, high);
+                // Move pointers
+                low++;
+                high--;
+            }
+        }
+        return high; // Correct partition index
+    }
+
+
+
+
+
+
+
+    // public static void quickSort8(int[] nums, int left, int right) {
+    //     if (left < right) {
+    //         int pivotIndex = partition8(nums, left, right);
+    //         quickSort8(nums, left, pivotIndex);  // Sort left partition (up to pivot)
+    //         quickSort8(nums, pivotIndex + 1, right);  // Sort right partition (after pivot)
+    //     }
+    // }
+
+    // private static int partition8(int[] nums, int left, int right) {
+    //     int pivot = nums[right]; // Use the rightmost element as the pivot
+    //     int low = left, high = right; // high starts just before the pivot
+
+    //     while (low <= high) {
+    //         // Move low forward until finding an element >= pivot
+    //         while (low <= high && nums[low] < pivot) {
+    //             low++;
+    //         }
+    //         // Move high backward until finding an element <= pivot
+    //         while (low <= high && nums[high] > pivot) {
+    //             high--;
+    //         }
+    //         if (low <= high) {
+    //             // Swap misplaced elements
+    //             swap(nums, low, high);
+    //             low++;
+    //             high--;
+    //         }
+    //     }
+    //     // Swap pivot into correct position (just after the high pointer)
+    //     swap(nums, low, right);
+    //     return low;  // Return the pivot index
+    // }
+
+
+
+
+
+
+
+    // Use i,j as two pointers sliding window but i starts from lowI and j starts from highI
+    private static void quickSort4(int[] arr, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition4(arr, low, high);
+            quickSort4(arr, low, pivotIndex - 1);
+            quickSort4(arr, pivotIndex + 1, high);
+        }
+    }
+    private static int partition4(int[] nums, int low, int high) {
         int pivot = nums[low];  // Choosing the first element as pivot
         int i = low + 1; // Index for elements smaller than pivot
         int j = high; // Index for elements greater than pivot
@@ -185,14 +263,14 @@ public class QuickSort{
 
 
 
-    public static void quickSort4(int[] arr, int low, int high) {
+    public static void quickSort5(int[] arr, int low, int high) {
         if (low < high) {
-            int pivotIndex = partition4(arr, low, high);  // Get pivot index
-            quickSort4(arr, low, pivotIndex);  // Sort left partition
-            quickSort4(arr, pivotIndex + 1, high);  // Sort right partition
+            int pivotIndex = partition5(arr, low, high);  // Get pivot index
+            quickSort5(arr, low, pivotIndex);  // Sort left partition
+            quickSort5(arr, pivotIndex + 1, high);  // Sort right partition
         }
     }
-    private static int partition4(int[] arr, int low, int high) {
+    private static int partition5(int[] arr, int low, int high) {
         int pivot = arr[low]; // Choosing the first element as pivot
         int i = low - 1, j = high + 1; // Hoare's partition requires out-of-bounds start
 
@@ -215,14 +293,14 @@ public class QuickSort{
 
 
 
-    public static void quickSort5(int[] arr, int low, int high) {
+    public static void quickSort6(int[] arr, int low, int high) {
         if (low < high) {
-            int pivotIndex = partition5(arr, low, high);  // Get pivot index
-            quickSort5(arr, low, pivotIndex);  // Sort left partition
-            quickSort5(arr, pivotIndex + 1, high);  // Sort right partition
+            int pivotIndex = partition6(arr, low, high);  // Get pivot index
+            quickSort6(arr, low, pivotIndex);  // Sort left partition
+            quickSort6(arr, pivotIndex + 1, high);  // Sort right partition
         }
     }
-    private static int partition5(int[] arr, int low, int high) {
+    private static int partition6(int[] arr, int low, int high) {
         int pivot = arr[low];
         int i = low - 1, j = high + 1;
         while (true) {
