@@ -179,6 +179,7 @@ Data Structures And Algorithm Programs
 
     * [Gifting Groups](/Algorithms/Matrix/GiftingGroups.java)
     * [Rotate Image](/Algorithms/Matrix/RotateImage.java)
+    * [Spiral Matrix](/Algorithms/Matrix/SpiralMatrix.java)
 
 14. #### [Misc](/Algorithms/MiscAlgos/)
 
