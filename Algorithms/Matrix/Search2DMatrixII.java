@@ -1,6 +1,8 @@
 package Algorithms.Matrix;
 
 /**
+ * Integers in each row are sorted in ascending from left to right.
+ * Integers in each column are sorted in ascending from top to bottom.
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 11 March 2025
  */
@@ -13,6 +15,8 @@ public class Search2DMatrixII {
     }
 
     /**
+        @TimeComplexity: O(m+n)
+        @SpaceComplexity: O(1)
             19 inside ---
             [1 ,2 ,3 ,4 ,5 ]
             [6 ,7 ,8 ,9 ,10]
@@ -33,13 +37,16 @@ public class Search2DMatrixII {
             [3 ,6 ,9 ,16,22]
             [10,13,14,17,24]
             [18,21,23,26,30]
+
+        Here start from 1st row's last col --->
+        Because at that point only one side(down) is increasing and other side(left) is decreasing
      */
     public static boolean searchMatrix(int[][] matrix, int target) {
         int row = 0, col = matrix[0].length - 1;
         while (row < matrix.length && col >= 0) {
             if (matrix[row][col] == target) return true;
-            if (matrix[row][col] > target) col--;
-            else row++; // matrix[row][col] < target
+            else if (matrix[row][col] > target) col--; // --- move left
+            else row++; // matrix[row][col] < target --- move down
         }
         return false;
     }
@@ -76,36 +83,17 @@ public class Search2DMatrixII {
     }
 
 
-
-
-
-
-
-    public static boolean searchMatrix3(int[][] matrix, int target) {
-        int row=matrix.length,
-            col=matrix[0].length;
-        if(row>col){
-            for(int i=0; i<col; i++){
-            if(matrix[0][i]<=target && target<=matrix[row-1][i]){
-                if(bSCol(matrix, i, target)){
-                    return true;
-                }
-            }
-            }
-            return false;
-        }else{
-
-        for(int i=0; i<row; i++){
-            if(matrix[i][0]<=target && target<=matrix[i][col-1]){
-                if(bS(matrix[i], target)){
-                    return true;
-                }
-            }
+    /**
+     * @TimeComplexity O(m*long(n))
+     * @SpaceComplexity O(1)
+    */
+    public static boolean searchMatrixUsingBinarySearch1(int[][] matrix, int target) {
+        for (int i = 0; i < matrix.length; i++) {
+            if (binarySearch(matrix[i], target)) return true;
         }
         return false;
-        }
     }
-    private static boolean bS(int[] mat, int target){
+    private static boolean binarySearch(int[] mat, int target){
         int low=0,
             high=mat.length-1,
             mid=0;
@@ -121,7 +109,34 @@ public class Search2DMatrixII {
         }
         return false;
     }
-    private static boolean bSCol(int[][] mat, int i, int target){
+
+
+
+    public static boolean searchMatrixUsingBinarySearch2(int[][] matrix, int target) {
+        int row=matrix.length,
+            col=matrix[0].length;
+        if(row>col){
+            for(int i=0; i<col; i++){
+            if(matrix[0][i]<=target && target<=matrix[row-1][i]){
+                if(binarySearchCol(matrix, i, target)){
+                    return true;
+                }
+            }
+            }
+            return false;
+        }else{
+
+        for(int i=0; i<row; i++){
+            if(matrix[i][0]<=target && target<=matrix[i][col-1]){
+                if(binarySearch(matrix[i], target)){
+                    return true;
+                }
+            }
+        }
+        return false;
+        }
+    }
+    private static boolean binarySearchCol(int[][] mat, int i, int target){
         int low=0,
             high=mat.length-1,
             mid=0;
