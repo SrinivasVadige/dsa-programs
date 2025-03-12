@@ -26,7 +26,7 @@ public class HashMapExample {
     public static void main(String[] args) {
 
 
-        // to get the all characters occurrences in a string
+        // USING GROUPING_BY: get the all characters occurrences in a string
         String str = "srinivasrepo";
         Map<String, Long> charMap = Arrays.stream(str.split(""))
                                         .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -36,10 +36,34 @@ public class HashMapExample {
                                         .collect(Collectors.groupingBy(i-> i, Collectors.summingInt(e -> 1)));
         // Function.identity() or i->i ---- both works
         // Collectors.summingInt(e -> 1) will count but Collectors.summingInt(Integer::valueOf) will sum all the items / values but here the item is char.
+
+        // USING TO_MAP: get the all characters occurrences in a string
+        Map<Character, Integer> charMap4 = Arrays.stream(str.split(""))
+                                        .collect(Collectors.toMap(i-> i.charAt(0), i->1, Integer::sum));
+        Map<Character, Integer> charMap5 = str.chars().mapToObj(e->(char)e)
+                                        .collect(Collectors.toMap(i-> i, i->1, Integer::sum));
+        Map<Character, Integer> charMap6 = str.chars().mapToObj(e->(char)e)
+                                        .collect(Collectors.toMap(i-> i, i->1, Integer::sum, HashMap::new));
+
+        // DIFF BETWEEN GROUPING_BY AND TO_MAP
+        List<String> names = List.of("apple", "banana", "apricot", "blueberry");
+        Map<Character, List<String>> groupedByFirstChar = names.stream()
+            .collect(Collectors.groupingBy(name -> name.charAt(0))); // {a=[apple, apricot], b=[banana, blueberry]}
+        System.out.println(groupedByFirstChar);
+        Map<Character, String> mapByFirstChar = names.stream()
+            .collect(Collectors.toMap(
+                name -> name.charAt(0),
+                name -> name,
+                (existing, replacement) -> existing + ", " + replacement // merge function
+            ));
+        System.out.println(mapByFirstChar);
+        // Use groupingBy when you expect multiple values per key (grouping scenarios).
+        // Use toMap when you expect unique keys, or when you can merge values meaningfully.
+
 /*
-        Here we cannot use identity (Function::identity) and counting as method references and get error 
+        Here we cannot use identity (Function::identity) and counting as method references and get error
         Because this identity and counting methods don't have expected number of arguments
-        (here expected number of args in classifier.apply(t) is 1 but Function.identity() method has 0 args) 
+        (here expected number of args in classifier.apply(t) is 1 but Function.identity() method has 0 args)
         (and downstream.supplier() return type is Supplier<A> but Collectors.counting() return type is Collector)
 */
         // str.chars().mapToObj(e->(char)e) --- Stream<Character> and in console it's type of IntPipeline$1
