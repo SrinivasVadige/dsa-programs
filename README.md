@@ -186,6 +186,8 @@ Data Structures And Algorithm Programs
 14. #### [Misc](/Algorithms/MiscAlgos/)
 
     * [SingleNumber](Algorithms/MiscAlgos/SingleNumber.java)
+    * [Majority Element](Algorithms/MiscAlgos/MajorityElement.java)
+    * [Maximum SubArray](Algorithms/MiscAlgos/MaximumSubArray.java)
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
