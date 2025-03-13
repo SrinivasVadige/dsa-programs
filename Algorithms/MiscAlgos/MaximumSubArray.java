@@ -22,6 +22,7 @@ public class MaximumSubArray {
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
         System.out.println("maxSubArrayUsingPrefixSum => " + maxSubArrayUsingPrefixSum(nums));
         System.out.println("maxSubArray => " + maxSubArray(nums));
+        System.out.println("maxSubArrayUsingDivideAndConquer => " + maxSubArrayUsingDivideAndConquer(nums));
     }
 
     /**
@@ -147,6 +148,46 @@ public class MaximumSubArray {
         }
         return max ;
     }
+
+
+
+
+    public static int maxSubArrayUsingDivideAndConquer(int[] nums) {
+        return maxSubArrayHelper(nums, 0, nums.length-1);
+    }
+
+    public static int maxSubArrayHelper(int[] nums, int start, int end) {
+        if (start == end) return nums[start];
+        int mid = (start + end) / 2;
+        int leftSum = maxSubArrayHelper(nums, start, mid);
+        int rightSum = maxSubArrayHelper(nums, mid + 1, end);
+        int crossSum = maxCrossingSum(nums, start, mid, end);
+        return Math.max(Math.max(leftSum, rightSum), crossSum);
+    }
+
+    public static int maxCrossingSum(int[] nums, int start, int mid, int end) {
+        int leftSum = Integer.MIN_VALUE, sum = 0;
+        for (int i = mid; i >= start; i--) {
+            sum += nums[i];
+            leftSum = Math.max(leftSum, sum);
+        }
+        sum = 0;
+        int rightSum = Integer.MIN_VALUE;
+        for (int i = mid + 1; i <= end; i++) {
+            sum += nums[i];
+            rightSum = Math.max(rightSum, sum);
+        }
+        return leftSum + rightSum;
+    }
+
+
+
+
+
+
+
+
+
 
 
     /**
