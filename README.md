@@ -68,6 +68,7 @@ Data Structures And Algorithm Programs
     * [Subsets](/Algorithms/BackTracking/Subsets.java)
     * [WordSearch](/Algorithms/BackTracking/WordSearch.java)
     * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
+    * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
@@ -182,12 +183,14 @@ Data Structures And Algorithm Programs
     * [Spiral Matrix](/Algorithms/Matrix/SpiralMatrix.java)
     * [Set Matrix Zeroes](/Algorithms/Matrix/SetMatrixZeroes.java)
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
+    * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
 
 14. #### [Misc](/Algorithms/MiscAlgos/)
 
     * [SingleNumber](Algorithms/MiscAlgos/SingleNumber.java)
     * [Majority Element](Algorithms/MiscAlgos/MajorityElement.java)
     * [Maximum SubArray](Algorithms/MiscAlgos/MaximumSubArray.java)
+    * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
@@ -238,6 +241,7 @@ Data Structures And Algorithm Programs
 
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
+    * [Longest Common Prefix](/Algorithms/Strings/LongestCommonPrefix.java)
 
 23. #### [Tries / Prefix Tree](/Algorithms/Tries/)
 
