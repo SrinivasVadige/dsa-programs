@@ -191,6 +191,7 @@ Data Structures And Algorithm Programs
     * [Majority Element](Algorithms/MiscAlgos/MajorityElement.java)
     * [Maximum SubArray](Algorithms/MiscAlgos/MaximumSubArray.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
+    * [Product of Array Except Self](Algorithms/MiscAlgos/ProductOfArrayExceptSelf.java)
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
