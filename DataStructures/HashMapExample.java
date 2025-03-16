@@ -120,6 +120,13 @@ public class HashMapExample {
         map.computeIfAbsent('S', (v)-> v==null?1:v+1);
         map.computeIfPresent('S', (k,v)-> v==null?1:v+1);
 
+        // COMPUTE IF ABSENT TO MAKE VALUE AS LIST AND ADD NEW VALUE IN ONE LINE
+        int[] nums = {1,2,3,1};
+        Map<Integer, List<Integer>> indices = new HashMap<>();
+        for (int i = 0; i < nums.length; i++)
+            indices.computeIfAbsent(nums[i], v -> new ArrayList<>()).add(i);
+        // => {1=[0, 3], 2=[1], 3=[2]}
+
 
         // TO ITERATE Map.entrySet() & Map.keySet() => In collection or stream Java8 Iterable.forEach() lambda
         // we can only use continue using “return;” but cannot break the look. So, use collection.forEach or stream.forEach or java 5 traditional 'enhanced for loop (for each)' / traditional for loop.
