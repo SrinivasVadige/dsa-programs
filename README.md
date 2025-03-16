@@ -156,6 +156,8 @@ Data Structures And Algorithm Programs
 11. #### [IntegerArray](/Algorithms/IntegerArray/)
 
     * [MaximumRepeatingNumber](Algorithms/IntegerArray/MaximumRepeatingNumber.java)
+    * [Closest Equal Element Queries](Algorithms/IntegerArray/ClosestEqualElementQueries.java)
+    * [Maximum Unique SubArray Sum After Deletion](Algorithms/IntegerArray/MaximumUniqueSubArraySumAfterDeletion.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
