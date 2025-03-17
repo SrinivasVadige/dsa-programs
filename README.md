@@ -195,6 +195,7 @@ Data Structures And Algorithm Programs
     * [Maximum SubArray](Algorithms/MiscAlgos/MaximumSubArray.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
     * [Product of Array Except Self](Algorithms/MiscAlgos/ProductOfArrayExceptSelf.java)
+    * [Rotate Array by K times](Algorithms/MiscAlgos/RotateArray.java)
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
@@ -298,6 +299,13 @@ Data Structures And Algorithm Programs
 ## NETFLIX
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/netflix)
+
+</br>
+</br>
+
+## My LeetCode Notes
+
+1. My "50 Days badge 2025" received on 12th March 2025
 
 </br>
 </br>
