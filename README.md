@@ -196,6 +196,7 @@ Data Structures And Algorithm Programs
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
     * [Product of Array Except Self](Algorithms/MiscAlgos/ProductOfArrayExceptSelf.java)
     * [Rotate Array by K times](Algorithms/MiscAlgos/RotateArray.java)
+    * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
