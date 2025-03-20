@@ -198,6 +198,8 @@ Data Structures And Algorithm Programs
     * [Rotate Array by K times](Algorithms/MiscAlgos/RotateArray.java)
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
     * [Merge Intervals](Algorithms/MiscAlgos/MergeIntervals.java)
+    * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
+    * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
@@ -308,6 +310,9 @@ Data Structures And Algorithm Programs
 ## My LeetCode Notes
 
 1. My "50 Days badge 2025" received on 12th March 2025
+2. My "Top 100 Liked" badge received on 20 March 2025
+3. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153/)
+4. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552/)
 
 </br>
 </br>
