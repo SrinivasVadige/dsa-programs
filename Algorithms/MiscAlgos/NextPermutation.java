@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 19 March 2025
+ *
+ * Note that the next permutation has to be the next lexicographically element in ascending order series.
  */
 public class NextPermutation {
     public static void main(String[] args) {
@@ -18,16 +20,37 @@ public class NextPermutation {
         nextPermutation(nums);
         System.out.println("nums => " + Arrays.toString(nums));
     }
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     *
+     * PATTERNS:
+     * The next permutation is the next lexicographically element in ascending order series.
+     * We can interchange some or all elements to get the next permutation
+     * Trav from right to left & swap smallest number with slightly bigger number
+     * Sometimes we need to swap more than one element or reverse
+     * Recursive backtracking O(!n + nlogn) contains all permutations but not in ascending order
+     *
+     * INTUITION:
+     * Using given nums[] permutation, just find the breaking point(smaller) from back to front
+     * and swap it with the next greater element
+     *
+     * APPROACH:
+     * 1. Find the breaking point from back to front ---> need nums[i] < nums[i+1] i.e smallest number
+     * 2. Find the next greater element from the breaking point ---> need nums[j] > nums[i] i.e next slightly bigger
+     * 3. Swap the breaking point with the next greater element
+     * 4. Reverse the elements from the breaking point to the end
+     */
     public static void nextPermutation(int[] nums) {
         int n = nums.length;
-        int i = n - 2;
-        while (i >= 0 && nums[i] >= nums[i + 1]) i--;
+        int i = n - 2; // n-2 because initially try to check & swap with n-1
+        while (i >= 0 && nums[i] >= nums[i + 1]) i--; // until we find a smaller element
         if (i >= 0) {
             int j = n - 1;
             while (j >= 0 && nums[i] >= nums[j]) j--;
             swap(nums, i, j);
         }
-        reverse(nums, i + 1, n - 1);
+        reverse(nums, i+1, n-1); // if i=-1, we'll reverse the whole array
     }
     private static void reverse(int[] nums, int start, int end) {
         while (start < end) {
