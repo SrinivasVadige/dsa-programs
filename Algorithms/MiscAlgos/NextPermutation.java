@@ -74,9 +74,7 @@ public class NextPermutation {
 
 
 
-
-
-
+    // same as nextPermutation
     public void nextPermutation2(int[] nums) {
         int len = nums.length;
         int index = -1;
@@ -89,8 +87,8 @@ public class NextPermutation {
             }
         }
 
-        if(index == -1){
-            Arrays.sort(nums);
+        if(index == -1){ // all elements are in descending order
+            Arrays.sort(nums); // still O(nlogn) even if all elements are in descending order. so, use reverse() instead
         } else {
             //swapping the breaking point with an element least greatest to it
             for(int i = len-1;i>index;i--) {
@@ -101,7 +99,7 @@ public class NextPermutation {
                     break;
                 }
             }
-            Arrays.sort(nums, index+1, len);
+            Arrays.sort(nums, index+1, len); // O(nlogn) even if all elements are in descending order. so, use reverse() instead
         }
     }
 
@@ -109,31 +107,8 @@ public class NextPermutation {
 
 
 
-
-
-
+    // same as nextPermutation2 but using reverse instead of sort
     public void nextPermutation3(int[] nums) {
-        TreeMap<Integer, Integer> numToIdx = new TreeMap<>();
-        numToIdx.put(nums[nums.length - 1], nums.length - 1);
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] < nums[i + 1]) {
-                swap(nums, i, numToIdx.get(numToIdx.higherKey(nums[i])));
-                Arrays.sort(nums, i + 1, nums.length);
-                return;
-            }
-            numToIdx.put(nums[i], i);
-        }
-
-        Arrays.sort(nums);
-    }
-
-
-
-
-
-
-
-    public void nextPermutation4(int[] nums) {
         int n=nums.length;
         int idx=-1;
         for(int i=n-2;i>=0;i--){
@@ -162,8 +137,8 @@ public class NextPermutation {
 
 
 
-
-    public void nextPermutation5(int[] nums) {
+    // same as nextPermutation3 but start from n-1 instead of n-2
+    public void nextPermutation4(int[] nums) {
         int n = nums.length;
         int start = -1;
 
@@ -182,18 +157,27 @@ public class NextPermutation {
                 }
             }
         }
-
-        int end = n-1;
-        start = start + 1;
-        while (start < end) {
-            swap(nums, start, end);
-            start++;
-            end--;
-        }
+        reverse(nums, start+1, n-1);
     }
 
 
 
+
+
+    public void nextPermutationUsingTreeMap(int[] nums) {
+        TreeMap<Integer, Integer> numToIdx = new TreeMap<>();
+        numToIdx.put(nums[nums.length - 1], nums.length - 1);
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (nums[i] < nums[i + 1]) {
+                swap(nums, i, numToIdx.get(numToIdx.higherKey(nums[i])));
+                Arrays.sort(nums, i + 1, nums.length);
+                return;
+            }
+            numToIdx.put(nums[i], i);
+        }
+
+        Arrays.sort(nums);
+    }
 
 
 
