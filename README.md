@@ -100,6 +100,8 @@ Data Structures And Algorithm Programs
 
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion/)
 
+    * [Number of Connected Components in an Undirected Graph](/Algorithms/DisjointSetUnion/NumberOfConnectedComponents.java)
+
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
     * [Fibonacci_DP_Recursive_Backtracking](Algorithms/DynamicProgramming/Fibonacci_DP_Recursive_Backtracking.java)
