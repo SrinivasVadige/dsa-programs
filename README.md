@@ -101,6 +101,7 @@ Data Structures And Algorithm Programs
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion/)
 
     * [Number of Connected Components in an Undirected Graph](/Algorithms/DisjointSetUnion/NumberOfConnectedComponents.java)
+    * [Number Of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
     * [Find the Index of the First Occurrence in a String](/Algorithms/DisjointSetUnion/FindIndexOfFirstOccurrenceInString.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
