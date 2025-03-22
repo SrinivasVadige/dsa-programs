@@ -27,13 +27,62 @@ public class NumberOfConnectedComponents {
     public static int countComponents(int n, int[][] edges) {
         parent = new int[n];
         rank = new int[n];
-        for (int i = 0; i < n; i++) parent[i] = i; // or -1
-        for (int[] edge : edges) union(edge[0], edge[1]);
-        return numComponents();
+        for (int i = 0; i < n; i++) {
+            parent[i]=i; // or -1
+            rank[i]=1; // or 0
+        }
+        int c=n;
+        for (int[] edge : edges) c-=union(edge[0], edge[1]);
+        // or c=0; for (int i=0; i<parent.length; i++) if (parent[i]==i) c++;
+        return c;
+        // NOTE: return distinct roots from parent array -- for(int i=0; i<parent.length; i++) find(i);
+        // but find()'s while(i != parent[i]){parent[i] = parent[parent[i]];} won't work always
+        // Eg: [[0,1],[2,3],[4,5],[1,2],[3,4]]
     }
-    public static void union(int x, int y) {
+    private static int union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
+        if (rootX == rootY) return 0; // same root
+        // compare roots and connect roots, and now update the parent of this small rank root
+        if (rank[rootX] < rank[rootY]) parent[rootX] = rootY;
+        else if (rank[rootX] > rank[rootY]) parent[rootY] = rootX;
+        else {
+            parent[rootX] = rootY;
+            rank[rootY]++;
+        }
+        return 1;
+    }
+    private static int find(int i) {
+        while (i != parent[i]) { // loop until we reach Self-Parent
+            // update curr parent to it's grandparent -- OPTIONAL
+            // it's just a optimization but note that we don't see root value for all i's
+            // we need to refactor find() to return root value
+            parent[i] = parent[parent[i]];
+            i = parent[i];
+        }
+        return i;
+        // or while (x != parent[x]) x = parent[x];
+    }
+
+
+
+
+
+
+
+    public static int countComponents2(int n, int[][] edges) {
+        parent = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i]=i; // or -1
+            rank[i]=1; // or 0
+        }
+        for (int[] edge : edges) union2(edge[0], edge[1]);
+        return numComponents2();
+    }
+    private static void union2(int x, int y) {
+        int rootX = find2(x);
+        int rootY = find2(y);
         if (rootX == rootY) return;
         // compare roots and update roots, not x and y
         if (rank[rootX] < rank[rootY]) parent[rootX] = rootY;
@@ -43,11 +92,11 @@ public class NumberOfConnectedComponents {
             rank[rootX]++;
         }
     }
-    public static int find(int x) {
-        if (parent[x] != x) parent[x] = find(parent[x]);
+    private static int find2(int x) {
+        if (parent[x] != x) parent[x] = find2(parent[x]);
         return parent[x];
     }
-    public static int numComponents() {
+    private static int numComponents2() {
         int count = 0;
         for (int i = 0; i < parent.length; i++) if (parent[i] == i) count++;
         return count;
@@ -84,7 +133,7 @@ public class NumberOfConnectedComponents {
         }
     }
     private static int findMyApproach(int i) {
-        if (parent[i]==-1) return i;
+        if (parent[i]==-1) return i; // or while(parent[i]!=-1) i=parent[i]; return i;
         return findMyApproach(parent[i]);
     }
 
