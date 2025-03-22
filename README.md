@@ -28,7 +28,7 @@ Data Structures And Algorithm Programs
   * [BinaryTreeNode sample / example class](DataStructures/BinaryTreeNode.java)
   * [BinaryTree Basics](DataStructures/BinaryTreeBasics.java)
   * [BinarySearchTree](DataStructures/BinarySearchTree.java)
-  * [Disjoint Set Union DSU / Union Find](DataStructures/DisjointSetUnion.java.java)
+  * [Disjoint Set Union DSU / Union Find](DataStructures/DisjointSetUnion.java)
   * [AnnotationType](DataStructures/AnnotationTypeExample.java)
   * [Enum Types & Conversions](DataStructures/EnumExample.java)
   * [FunctionalInterface](DataStructures/FunctionalInterfaceExample.java)
