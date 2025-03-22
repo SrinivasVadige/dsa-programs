@@ -1,5 +1,8 @@
 package DataStructures;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 20 March 2025
@@ -235,8 +238,11 @@ public class DisjointSetUnion {
 
     public int numComponentsOfSize(int size) {
         int count = 0;
+        Set<Integer> set = new HashSet<>();
         for (int i = 0; i < parent.length; i++) {
-            int root = find(i); // USE SOME MEMO to avoid recomputation
+            // USE SOME MEMO to avoid recomputation
+            int root = find(i);
+            if (!set.add(root)) continue; // skip the same root
             int tempSize = 0;
             // Count how many nodes have the same root
             for (int j = 0; j < parent.length; j++) {
