@@ -69,6 +69,7 @@ Data Structures And Algorithm Programs
     * [WordSearch](/Algorithms/BackTracking/WordSearch.java)
     * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
     * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
+    * [Find Unique BinaryString](/Algorithms/BackTracking/FindUniqueBinaryString.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch/)
 
