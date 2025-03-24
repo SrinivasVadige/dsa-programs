@@ -1,6 +1,9 @@
 package DataStructures;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -88,6 +91,8 @@ public class DisjointSetUnion {
     // private int[] root; // To track the root of each component
     // private List<Set<Integer>> components; // Tracks the each component
     // private Map<Integer, Integer> sizeFrequency; // Tracks the frequency of component sizes
+    Map<Integer, Set<Integer>> comps = new HashMap<>(); // check union4() & refactorCompsAfterUnion() to maintain components
+
 
 
     public DisjointSetUnion(int size) {
@@ -177,6 +182,49 @@ public class DisjointSetUnion {
                 parent[rootY] = rootX;
                 size[rootX] += size[rootY]; // Update size of rootX
                 rank[rootX]++;
+            }
+        }
+    }
+    public void union4(int a, int b){
+        int pa = find(a);
+        int pb = find(b);
+        if (pa==pb) return;
+
+        if (!comps.containsKey(pa)) {
+            Set<Integer> aSet = new HashSet<>();
+            aSet.add(a);
+            aSet.add(pa);
+            comps.put(pa, aSet);
+        }
+        if (!comps.containsKey(pb)) {
+            Set<Integer> bSet = new HashSet<>();
+            bSet.add(b);
+            bSet.add(pb);
+            comps.put(pb, bSet);
+        }
+
+        if (rank[pa]<rank[pb]) {
+            parent[pa]=pb;
+            comps.get(pb).addAll(comps.get(pa));
+            comps.remove(pa);
+        }
+        else if (rank[pb]<rank[pa]) {
+            parent[pb]=pa;
+            comps.get(pa).addAll(comps.get(pb));
+            comps.remove(pb);
+        }
+        else {
+            parent[pb]=pa;
+            rank[pa]++;
+            comps.get(pa).addAll(comps.get(pb));
+            comps.remove(pb);
+        }
+    }
+    // comps that are not in edges[] in union4() method
+    public void refactorCompsAfterUnion(){
+        for (int i=0; i<parent.length; i++) {
+            if (!comps.containsKey(i) && i == parent[i]) {
+                comps.put(i, new HashSet<>(Arrays.asList(i)));
             }
         }
     }
