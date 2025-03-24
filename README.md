@@ -105,6 +105,7 @@ Data Structures And Algorithm Programs
     * [Number Of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
     * [Find the Index of the First Occurrence in a String](/Algorithms/DisjointSetUnion/FindIndexOfFirstOccurrenceInString.java)
     * [Redundant Connection](/Algorithms/DisjointSetUnion/RedundantConnection.java)
+    * [Accounts Merge](/Algorithms/DisjointSetUnion/AccountsMerge.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
