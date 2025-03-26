@@ -75,6 +75,24 @@ public class NumberOfOperationsToMakeNetworkConnected {
         for (int i=0; i<n; i++) if (i==par[i]) p++;
         return p-1; // only one parent has to be there, if it's more than 1, then those are disjointSets / not connected
     }
+    public int makeConnectedMyApproach2(int n, int[][] connections) {
+        if (n-1 > connections.length) return -1; // not enough cables to connect all n nodes
+
+        par=new int[n];
+        rank=new int[n];
+        for(int i=0; i<n; i++) par[i]=i;
+
+        int extraCables=0; // optional as we already check "if (n-1 > connections.length) return -1;"
+        for (int[] c: connections) {
+            if(!union(c[0], c[1])) extraCables++;
+        }
+
+        int disjointSets=0;
+        for (int i=0; i<n; i++) if (i==par[i]) disjointSets++;
+
+        if (disjointSets-1 > extraCables) return -1; // one disjointSet is parent
+        else return disjointSets-1;
+    }
 
     private boolean union(int a, int b) {
         a=find(a);
