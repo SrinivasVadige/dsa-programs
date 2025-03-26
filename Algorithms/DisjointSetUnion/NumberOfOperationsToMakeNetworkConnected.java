@@ -14,14 +14,14 @@ public class NumberOfOperationsToMakeNetworkConnected {
         if (connections.length < n - 1) return -1;
         UnionFind uf = new UnionFind(n);
         for (int[] c : connections) uf.union(c[0], c[1]);
-        return uf.cables; // only one parent
+        return uf.comps-1; // only one parent
     }
     static class UnionFind {
         int[] parent;
-        int cables; // or groups=n=1
+        int comps; // or cables=n=1
         public UnionFind(int n) {
             parent = new int[n];
-            cables = n-1;
+            comps = n-1;
             for (int i = 0; i < n; i++) parent[i] = i;
         }
         public int find(int x) {
@@ -33,7 +33,7 @@ public class NumberOfOperationsToMakeNetworkConnected {
             int rootY = find(y);
             if (rootX != rootY) {
                 parent[rootX] = rootY;
-                cables--; // used one cable if they don't have common parent
+                comps--; // used one cable if they don't have common parent
             }
         }
     }
@@ -93,12 +93,25 @@ public class NumberOfOperationsToMakeNetworkConnected {
         if (disjointSets-1 > extraCables) return -1; // one disjointSet is parent
         else return disjointSets-1;
     }
+    public int makeConnectedMyApproach3(int n, int[][] connections) {
+        if (n-1 > connections.length) return -1; // not enough cables to connect all n nodes
+
+        par=new int[n];
+        rank=new int[n];
+        for(int i=0; i<n; i++) par[i]=i;
+
+        int remainingComps=n;
+        for (int[] c: connections) {
+            if(union(c[0], c[1])) remainingComps--; // connected
+        }
+        return remainingComps-1; // skip the main parent & we already have enough cables to connect them
+    }
 
     private boolean union(int a, int b) {
         a=find(a);
         b=find(b);
 
-        if (a==b) return false;
+        if (a==b) return false; // extra cable
 
         if(rank[b] < rank[a]) par[b]=a;
         else if(rank[a] < rank[b]) par[a]=b;
@@ -106,7 +119,7 @@ public class NumberOfOperationsToMakeNetworkConnected {
             par[b]=a;
             rank[a]++;
         }
-        return true;
+        return true; // comps--;
     }
     private int find(int i){
         while(i != par[i]) i=par[i];
