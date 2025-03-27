@@ -107,6 +107,7 @@ Data Structures And Algorithm Programs
     * [Redundant Connection](/Algorithms/DisjointSetUnion/RedundantConnection.java)
     * [Accounts Merge](/Algorithms/DisjointSetUnion/AccountsMerge.java)
     * [Number of Operations to Make Network Connected](/Algorithms/DisjointSetUnion/NumberOfOperationsToMakeNetworkConnected.java)
+    * [Regions Cut By Slashes](/Algorithms/DisjointSetUnion/RegionsCutBySlashes.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
