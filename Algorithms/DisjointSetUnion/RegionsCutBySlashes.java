@@ -12,7 +12,7 @@ public class RegionsCutBySlashes {
     public static void main(String[] args) {
         String[] grid = {" /", "/ "};
         System.out.println("regionsBySlashesUsingNorthEastWestSouth => " + regionsBySlashesUsingNorthEastWestSouth(grid));
-        System.out.println( "regionsBySlashes(grid) => " + regionsBySlashes(grid));
+        System.out.println( "regionsBySlashesUsingRootIndexes(grid) => " + regionsBySlashesUsingRootIndexes(grid));
     }
 
     /**
@@ -28,12 +28,32 @@ public class RegionsCutBySlashes {
      *
      * PRE-REQUISITES:
      * --------------
-     * 1. Dividing Each Cell into 4 Regions:
+     * When String[] grid = new String[]{"/\","\/"};
+     * n=2
+     * ----
+     * |/\|
+     * |\/|
+     * ----
+     * Our first thought will be
+     *
+     * 1 - 2 - 3
+     * | /   \ |
+     * 4   5   6
+     * | \   / |
+     * 7 - 8 - 9
+     *
+     * 1 - 2        1 - 2           1 - 2          1 - 2
+     * |   | =>     | / |     or    | \ |    or    | ""|
+     * 4 - 5        4 - 5           4 - 5          4 - 5
+     * is one cell and so on
+     * but here, we can't calculate 2-4-8-6-2 cycle in the above diamond grid in Union Find
+     *
+     * 1. As we have /, \ => Divide Each Cell into 4 Regions:
      *  - Each cell is divided into 4 triangular regions:
      *      +---+
-     *      |\ /|
-     *      | 0 |
-     *      |/ \|
+     *      |\0/|
+     *      |3 1|
+     *      |/2\|
      *      +---+
      *      Regions:
      *      0: Top
@@ -119,6 +139,7 @@ public class RegionsCutBySlashes {
      * union((i,j,N), (i,j,E))
      * union((i,j,E), (i,j,S))
      * union((i,j,S), (i,j,W))
+     * union((i,j,W), (i,j,N)) // OPTIONAL
      *
      *
      * ----------
@@ -175,7 +196,7 @@ public class RegionsCutBySlashes {
                     union(new Pair(i, j, "N"), new Pair(i, j, "E"));
                     union(new Pair(i, j, "E"), new Pair(i, j, "S"));
                     union(new Pair(i, j, "S"), new Pair(i, j, "W"));
-                    union(new Pair(i, j, "W"), new Pair(i, j, "N"));
+                    union(new Pair(i, j, "W"), new Pair(i, j, "N")); // OPTIONAL
                 }
 
                 // Handle connections with neighboring cells
@@ -252,7 +273,7 @@ public class RegionsCutBySlashes {
                     union(i+","+j+"N", i+","+j+"E");
                     union(i+","+j+"E", i+","+j+"S");
                     union(i+","+j+"S", i+","+j+"W");
-                    union(i+","+j+"W", i+","+j+"N");
+                    union(i+","+j+"W", i+","+j+"N"); // OPTIONAL
                 }
 
                 // Handle connections with neighboring cells
@@ -319,15 +340,16 @@ public class RegionsCutBySlashes {
      * 1. Dividing Each Cell into 4 Regions:
      *  - Each cell is divided into 4 triangular regions:
      *      +---+
-     *      |\ /|
-     *      | 0 |
-     *      |/ \|
+     *      |\0/|
+     *      |1 2|
+     *      |/3\|
      *      +---+
      *      Regions:
      *      0: Top
-     *      1: Right
-     *      2: Bottom
-     *      3: Left
+     *      1: Left
+     *      2: Right
+     *      3: Down
+     *
      *  - This allows us to handle slashes (/ and \) and empty spaces ( ) within the cell.
      * 2. Union Operations for Internal Connections:
      *  - Union-Find is used to merge regions based on slashes and neighboring connections.
@@ -337,8 +359,164 @@ public class RegionsCutBySlashes {
      * 3. Union Operations for Neighboring Cells:
      *  - Connect the top of the current cell to the bottom of the cell above.
      *  - Connect the left of the current cell to the right of the cell to the left.
+     *
+     * EXPLANATION:
+     * ------------
+     *
+     * Consider a 3*3 grid
+     *
+     *      +---++---++----+
+     *      |\0/||\4/||\8 /|
+     *      |1 2||5 6||9 10|
+     *      |/3\||/7\||/11\|
+     *      +---++---++----+
+     *      |\12/||\16/||\20/|
+     *      |1314||1718||2122|
+     *      |/15\||/19\||/23\|
+     *      +----++----++----+
+     *      |\24/||\28/||\32/|
+     *      |2526||2930||3334|
+     *      |/27\||/31\||/35\|
+     *      +----++----++----+
+     *
+     * Here => 0,4,8 are cellIndex or base index or root index of the 1st, 2nd & 3rd cells
+     * Similarly 12,16,20,24,28,32 are other root indices in the grid
+     *
+     *
+     * Same like above N, S, E, W directions, her we have 0, 1, 2, 3 with 5 scenarios
+     *
+     * ----------
+     * SCENARIO 1: If we have a single slash "/" in any of the cell
+     * ----------
+     *
+     *      +---+
+     *      | 0/|
+     *      |1/2|
+     *      |/3 |
+     *      +---+
+     *
+     * union((i,j,0), (i,j,1))
+     * union((i,j,2), (i,j,3))
+     *
+     *
+     * ----------
+     * SCENARIO 2: If we have a single slash "\" in any of the cell
+     * ----------
+     *
+     *      +---+
+     *      |\0 |
+     *      |1\2|
+     *      | 3\|
+     *      +---+
+     *
+     * union((i,j,0), (i,j,2))
+     * union((i,j,1), (i,j,3))
+     *
+     *
+     * ----------
+     * SCENARIO 3: If we have a empty space in any of the cell
+     * ----------
+     *
+     *      +---+
+     *      | 0 |
+     *      |1 2|
+     *      | 3 |
+     *      +---+
+     *
+     * union((i,j,1), (i,j,1))
+     * union((i,j,1), (i,j,3))
+     * union((i,j,3), (i,j,2))
+     * union((i,j,2), (i,j,0)) // OPTIONAL
+     *
+     *
+     * ----------
+     * SCENARIO 4: Horizontally adjacent squares --> it can be "/" or "\" or ""
+     * ----------
+     *
+     *      +---++---+
+     *      |\0/  \4/|
+     *      |1.2  5.6|
+     *      |/3\  /7\|
+     *      +---++---+
+     *
+     * always 2 and 5 will always be connected
+     * union((i,j-1,2), (i,j,1)) ---> 5 means 1st index of 2nd cell i.e 1
+     *
+     *
+     * ----------
+     * SCENARIO 5: Vertically adjacent squares --> it can be "/" or "\" or ""
+     * ----------
+     *
+     *      +---+
+     *      |\0/|
+     *      |1.2|
+     *      |/3\|
+     *      |\8/|
+     *      |9.10|
+     *      |/11\|
+     *      +---+
+     *
+     * always 3 and 8 will always be connected
+     * union((i-1,j,3), (i,j,0)) ---> 8 means 0th index of 3rd cell i.e 0
      */
-    public static int regionsBySlashes(String[] grid) {
+    public static int regionsBySlashesUsingRootIndexes(String[] grid) {
+        int n = grid.length;
+        UnionFind uf = new UnionFind(n * n * 4); // Each cell is divided into 4 parts
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int cellIndex = (i * n + j) * 4; // Base index for the current cell
+
+                // Connect internal parts of the cell
+                if (grid[i].charAt(j) == '/') {
+                    // '/' divides top-left and bottom-right
+                    uf.union(cellIndex + 0, cellIndex + 1); // Top -> Left
+                    uf.union(cellIndex + 2, cellIndex + 3); // Right -> Bottom
+                } else if (grid[i].charAt(j) == '\\') {
+                    // '\' divides top-right and bottom-left
+                    uf.union(cellIndex + 0, cellIndex + 2); // Top -> Right
+                    uf.union(cellIndex + 1, cellIndex + 3); // Bottom -> Left
+                } else {
+                    // Empty space connects all 4 parts
+                    uf.union(cellIndex + 0, cellIndex + 1); // Top -> Right
+                    uf.union(cellIndex + 1, cellIndex + 2); // Right -> Bottom
+                    uf.union(cellIndex + 2, cellIndex + 3); // Bottom -> Left
+                    // uf.union(cellIndex + 3, cellIndex + 0); // Left -> Top
+                }
+
+                // Connect with neighboring cells
+                if (i > 0) {
+                    // Connect top of current cell to bottom of the cell above
+                    uf.union(cellIndex + 0, ((i - 1) * n + j) * 4 + 3);
+                }
+                if (j > 0) {
+                    // Connect left of current cell to right of the cell to the left
+                    uf.union(cellIndex + 1, (i * n + j - 1) * 4 + 2);
+                }
+            }
+        }
+        return uf.countGroups();
+    }
+    /**
+     * same like above regionsBySlashesUsingRootIndexes() but here
+     *
+     *      +---+
+     *      |\0/|
+     *      |3 1|
+     *      |/2\|
+     *      +---+
+     *      Regions:
+     *      0: Top
+     *      1: Right
+     *      2: Bottom
+     *      3: Left
+     *
+     * +---++---+
+     * | 0/  \0 |
+     * |3/1  3\1|
+     * |/2    2\|
+     * +---++---+
+     */
+    public static int regionsBySlashesUsingRootIndexes2(String[] grid) {
         int n = grid.length;
         UnionFind uf = new UnionFind(n * n * 4); // Each cell is divided into 4 parts
         for (int i = 0; i < n; i++) {
@@ -428,10 +606,114 @@ public class RegionsCutBySlashes {
 
 
 
+    /**
+     * Given 2*2 grid={"//", "//"}
+     *
+     *  +--+--+         +--+--+
+     *  | /| /|         |0/00/|
+     *  +--+--+    =>   |00/00| => 4 regions
+     *  |/ |/ |         |/00/0|
+     *  +--+--+         +--+--+
+     *
+     * So, instead of dividing one cell into 4 parts, we divide one cell into 9 parts
+     *
+     * if char is '/'
+     *  +--+--+--+
+     *  | 0| 0| 1|
+     *  +--+--+--+
+     *  | 0| 1| 0|
+     *  +--+--+--+
+     *  | 1| 0| 0|
+     *  +--+--+--+
+     *
+     * if char is '\'
+     *  +--+--+--+
+     *  | 1| 0| 0|
+     *  +--+--+--+
+     *  | 0| 1| 0|
+     *  +--+--+--+
+     *  | 0| 0| 1|
+     *  +--+--+--+
+     *
+     * and now you can see that row count will increase by 3 and col count will increase by 3
+     * so, 2*2 grid will become => (2*3)*(2*3) grid
+     * so the above grid {"//","//"}
+     *  +--+--+
+     *  | /| /|
+     *  +--+--+
+     *  |/ |/ |
+     *  +--+--+
+     * will become
+     *           .
+     *  +--+--+--+--+--+--+
+     *  | 0| 0| 1| 0| 0| 1|
+     *  +--+--+--+--+--+--+
+     *  | 0| 1| 0| 0| 1| 0|
+     *  +--+--+--+--+--+--+
+     *  | 1| 0| 0| 1| 0| 0|
+     *. +--+--+--+--+--+--+ .
+     *  | 0| 0| 1| 0| 0| 1|
+     *  +--+--+--+--+--+--+
+     *  | 0| 1| 0| 0| 1| 0|
+     *  +--+--+--+--+--+--+
+     *  | 1| 0| 0| 1| 0| 0|
+     *  +--+--+--+--+--+--+
+     *           .
+     * Now it looks like we can traverse this newGrid just like Number of island {@Link Algorithms.Graphs.NumberOfIslands#numIslandsMyApproach(char[][] grid)}
+     * and 0's will be the islands or regions
+     */
+    public int regionsBySlashesUsingDFS(String[] grid) {
+        int n = grid.length;
+        int[][] newGrid = new int[3*n][3*n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                char key = grid[i].charAt(j);
+                int row = 3 * i, col = 3 * j;
+
+                // mark 3 places in newGrid cells which is equal to marking 1 cell in original grid
+                if (key == '/') {
+                    newGrid[row][col + 2] = 1;
+                    newGrid[row + 1][col + 1] = 1;
+                    newGrid[row + 2][col] = 1;
+                } else if (key == '\\') {
+                    newGrid[row][col] = 1;
+                    newGrid[row + 1][col + 1] = 1;
+                    newGrid[row + 2][col + 2] = 1;
+                }
+            }
+        }
+
+        int count = 0;
+        for(int i=0; i<3*n; i++){
+            for(int j=0;j<3*n;j++){
+                if(newGrid[i][j] == 0){
+                    count++;
+                    dfs(newGrid, i, j);
+                }
+            }
+        }
+
+        return count;
+    }
+    public void dfs(int[][]  newGrid, int row, int col, int n){
+        if (row < 0 || row >= n || col < 0 || col >= n || newGrid[row][col] == 1) return;
+
+        newGrid[row][col] = 1; // mark the current 0 to 1 as we don't want to trav again in above for loop
+
+        dfs(newGrid, row+1, col, n); // down
+        dfs(newGrid, row-1, col, n); // up
+        dfs(newGrid, row, col+1, n); // right
+        dfs(newGrid, row, col-1, n); // left
+    }
+
+
+
+
+
 
     int[][] dim = {{-1,0},{0,-1},{1,0},{0,1}};
-
-    public int regionsBySlashesUsingDFS(String[] grid) {
+    public int regionsBySlashesUsingDFS2(String[] grid) {
 
         int n = grid.length;
         int[][] mat = new int[3*n][3*n];
@@ -470,7 +752,6 @@ public class RegionsCutBySlashes {
             if(x>=0 && x<n && y>=0 && y<n && mat[x][y] == 0)
                 dfs(mat, x, y);
         }
-
     }
 
 
