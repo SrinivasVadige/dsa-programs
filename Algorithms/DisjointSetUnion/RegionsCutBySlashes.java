@@ -231,7 +231,7 @@ public class RegionsCutBySlashes {
             map.put(key, key);
         }
 
-        while (key != map.get(key)) key = map.get(key);
+        while (!key.equals(map.get(key))) key = map.get(key);
         return key;
 
         // or
