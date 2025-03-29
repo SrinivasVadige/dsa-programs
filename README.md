@@ -109,6 +109,7 @@ Data Structures And Algorithm Programs
     * [Number of Operations to Make Network Connected](/Algorithms/DisjointSetUnion/NumberOfOperationsToMakeNetworkConnected.java)
     * [Regions Cut By Slashes](/Algorithms/DisjointSetUnion/RegionsCutBySlashes.java)
     * [Satisfiability of Equality Equations](/Algorithms/DisjointSetUnion/SatisfiabilityOfEqualityEquations.java)
+    * [Min Cost to Connect All Points](/Algorithms/DisjointSetUnion/MinCostToConnectAllPoints.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
