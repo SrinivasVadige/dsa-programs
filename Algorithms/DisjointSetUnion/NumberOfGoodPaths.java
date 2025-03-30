@@ -174,7 +174,7 @@ public class NumberOfGoodPaths {
 
 
     /**
-     * NOT WORKING
+     * WORKING FINE BUT TLE
      *
         PATTERNS:
         ---------
@@ -184,10 +184,22 @@ public class NumberOfGoodPaths {
         when childNum == parent ----> count++
         till childNum < parent
         3) Maintain a memo to see which nodes count doesn't change to improve performance
+
+
+        // trav from END NODE to START NODE
+
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] -- i
+        [0, 0, 1, 2, 3, 3, 5, 1, 4, 7] -- par
+        [2, 5, 5, 1, 5, 2, 3, 5, 1, 5] -- vals
+
+        Here, in these scenarios, we need to trav parent and as well parent's children as well ---> USE DFS
+        But note that don't trav same child in parent's children recursion
+
      */
     static List<Integer>[] adjList;
     static int c;
     static int[] valsArr;
+    static Set<String> set = new HashSet<>();
     @SuppressWarnings("unchecked")
     public static int numberOfGoodPathsMyApproach(int[] vals, int[][] edges) {
         int n = vals.length;
@@ -201,56 +213,64 @@ public class NumberOfGoodPaths {
             adjList[i]=new ArrayList<>();
         }
 
-        System.out.println("index:\n"+ Arrays.toString(par));
+        // System.out.println(Arrays.toString(vals));
+        // System.out.println(Arrays.toString(par));
         for(int[] e: edges) {
             union(Math.min(e[0], e[1]), Math.max(e[0],e[1]));
         }
-        System.out.println("par:\n"+ Arrays.toString(par));
-        System.out.println("vals:\n"+Arrays.toString(vals));
-        System.out.println( "adjList:\n"+Arrays.toString(adjList));
+        // System.out.println(Arrays.toString(par));
+        // System.out.println(Arrays.toString(adjList));
 
-        c=n;
-        Set<Integer> skip = new HashSet<>();
-        // trav from END NODE to START NODE
-        /**
-
-        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] -- i
-        [0, 0, 1, 2, 3, 3, 5, 1, 4, 7] -- par
-        [2, 5, 5, 1, 5, 2, 3, 5, 1, 5] -- vals
-
-        Here, in these scenarios, we need to trav parent and as well parent's children as well ---> USE DFS
-        But note that don't trav same child in parent's children recursion
-
-         */
-        for (int i=0; i<n-1; i++) {
-            if (i==par[i] || skip.contains(i)) continue;
-            dfs(i, vals[i], i);
-            System.out.printf("i:%s, c:%s%n", i, c);
+        Map<Integer, List<Integer>> map = new HashMap<>(); // TO TRAV ONLY ELIGIBLE NODES
+        for (int i=0; i<n; i++) map.computeIfAbsent(vals[i], _->new ArrayList<>()).add(i);
+        c=0;
+        for (int key: map.keySet()) {
+            List<Integer> val = map.get(key);
+            if(val.size()>1) {
+                for (int i:val) {
+                    if (i==par[i]) continue; // skip root
+                    dfs(i, vals[i], i, true);
+                    // System.out.printf("i:%s, c:%s%n", i, c);
+                }
+            }
         }
-        return c;
+        // for (int i=0; i<n; i++) {
+        //     if (i==par[i]) continue;
+        //     dfs(i, vals[i], i, true);
+            // System.out.printf("i:%s, c:%s%n", i, c);
+        // }
+        return c+n;
 
     }
 
-    private static void dfs (int endI, int endNum, int parChildI) {
-        System.out.printf("endI:%s, endNum:%s, parChildI:%s%n", endI, endNum, parChildI);
+    // trav only parents and siblings. DON'T TRAV CHILDREN
+    private static void dfs (int endI, int endNum, int parChildI, boolean isMain) {
+        // System.out.printf("endI:%s, endNum:%s, parChildI:%s%n", endI, endNum, parChildI);
         int pi = parChildI;
         while (pi != par[pi]) {
-            if (endI == parChildI)
+            if (isMain) // endI == parChildI
                 pi=par[pi];
 
             if (endNum < valsArr[pi]) break;
 
-            if (endNum == valsArr[pi]) c++;
-            if (adjList[pi].size() == 0) break;
+            if (endNum == valsArr[pi]) {
+                if (endI == pi) return; // AFTER RECURSION, IF THE PARENT CHOOSE SAME endI NODE
+                String key = Math.min(endI, pi) + "," +Math.max(endI, pi);
+                if (set.add(key)) c++;
+                else return; // IF ALREADY CALCULATED
+            }
+
             // parent children
+            if (adjList[pi].size() == 0) return;
             for (int child: adjList[pi]) {
                 if (child==parChildI || endNum < valsArr[child]) continue;
-                // if (endNum == valsArr[child]) c++;
-                dfs(endI, endNum, child);
+                dfs(endI, endNum, child, false);
             }
-            if (pi == parChildI || endI == parChildI) break;
+            // pi == parChildI means pi completed it's above child for loop
+            if (pi == parChildI) return;
         }
     }
+
 
 
     private static void union(int a, int b){
