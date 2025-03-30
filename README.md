@@ -110,6 +110,7 @@ Data Structures And Algorithm Programs
     * [Regions Cut By Slashes](/Algorithms/DisjointSetUnion/RegionsCutBySlashes.java)
     * [Satisfiability of Equality Equations](/Algorithms/DisjointSetUnion/SatisfiabilityOfEqualityEquations.java)
     * [Min Cost to Connect All Points](/Algorithms/DisjointSetUnion/MinCostToConnectAllPoints.java)
+    * [Number Of Good Paths](/Algorithms/DisjointSetUnion/NumberOfGoodPaths.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
@@ -170,6 +171,7 @@ Data Structures And Algorithm Programs
     * [Closest Equal Element Queries](Algorithms/IntegerArray/ClosestEqualElementQueries.java)
     * [Maximum Unique SubArray Sum After Deletion](Algorithms/IntegerArray/MaximumUniqueSubArraySumAfterDeletion.java)
     * [Count Beautiful Numbers](Algorithms/IntegerArray/CountBeautifulNumbers.java)
+    * [Minimum Cost to Reach Every Position](Algorithms/IntegerArray/MinimumCostToReachEveryPosition.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
