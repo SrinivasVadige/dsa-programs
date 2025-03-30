@@ -264,6 +264,7 @@ Data Structures And Algorithm Programs
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
     * [Longest Common Prefix](/Algorithms/Strings/LongestCommonPrefix.java)
+    * [Longest Palindrome After Substring Concatenation I](/Algorithms/Strings/LongestPalindromeAfterSubstringConcatenationI.java)
 
 23. #### [Tries / Prefix Tree](/Algorithms/Tries/)
 
