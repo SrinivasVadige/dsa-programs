@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
 There is a tree (i.e. a connected, undirected graph with no cycles) consisting of n nodes numbered from 0 to n - 1 and exactly n - 1 edges.
@@ -27,21 +28,30 @@ public class NumberOfGoodPaths {
         int[] vals = {1,1,2,2,3};
         int[][] edges = {{0,1},{1,2},{2,3},{2,4}};
         System.out.println("numberOfGoodPaths(vals, edges) => " + numberOfGoodPaths(vals, edges));
+        System.out.println("numberOfGoodPaths2(vals, edges) => " + numberOfGoodPaths2(vals, edges));
         System.out.println("numberOfGoodPathsMyApproach(vals, edges) => " + numberOfGoodPathsMyApproach(vals, edges));
     }
     static int[] parent, count; // count array to keep track of number of nodes in each set
     static int res;
     public static int numberOfGoodPaths(int[] vals, int[][] edges) {
-        // sort edges based on the maximum value of the nodes in the edge
+        // sort edges based on the maximum value in vals[] array
         Arrays.sort(edges, (o1, o2) -> Integer.compare(Math.max(vals[o1[0]], vals[o1[1]]), Math.max(vals[o2[0]], vals[o2[1]])));
+        /**
+         * this sort covers the 2nd good path condition --> All nodes between the starting node and the ending node have values less than or equal to the starting node (i.e. the starting node's value should be the maximum value along the path).
+         * So, this will make us to union small vals first
+         */
         int n = vals.length;
         res = n; // initialize number of good paths to be equal to number of nodes
         parent = new int[n];
         count = new int[n];
-
+        for(int i = 0; i < n; i++) parent[i] = i;
         Arrays.fill(count, 1); // initialize count of nodes in each set to be 1
+        // count array keeps track of the number of nodes in each connected component that share the same value.
+        // Initially, each node is self parent
+        // and let's say  val == vals[i] == 5;
+        // then number of 5's in vals[i] component is 1 i.e count[i] is 1 initially
 
-        for(int i = 0; i < n; i++) parent[i] = i; // initialize parent of each node to be itself
+
         for(int[] edge: edges) {
             union(edge[0], edge[1], vals);
         }
@@ -52,13 +62,26 @@ public class NumberOfGoodPaths {
         int px = find(x);
         int py = find(y);
         if(px == py) return;
-        if(vals[px] == vals[py]) {
+        int xParentVal = vals[px], yParentVal = vals[py];
+        // use vals[px] value instead of rank
+        if(xParentVal == yParentVal) {
             // if the values of the parents of x and y are equal, update number of good paths
+            /**
+             When two components are merged, any node in the first component can form a "good path"
+             with any node in the second component if the values of the two components are equal.
+             px and py are parents
+             vals[px] and vals[py] are xParentVal and yParentVal
+             pxVal == pyVal ---> we found a good path as we check vals[px] > vals[py] && vals[px] < vals[py]
+             count[px] and count[py] is number of vals[px] value nodes
+             let's say val=5; now increase num of 5's in parents
+             xParentCount = 2; yParentCount = 3; ---> number of 5's in parents
+             then we can trav 2*3=6 ways from xParentVal to yParentVal
+             */
             res += count[px]*count[py];
             count[px] += count[py];
             parent[py] = px;
         }
-        else if(vals[px] > vals[py]) {
+        else if(xParentVal > yParentVal) {
             parent[py] = px;
         } else {
             parent[px] = py;
@@ -80,10 +103,112 @@ public class NumberOfGoodPaths {
 
 
 
-
+    /**
+     * STEPS:
+     * ------
+     * 1) Prepare valueToNodes map i.e 5 value is present in which indices / nodes
+     * 2) Prepare adjacency list / graph of nodes
+     * 3) Initialize UnionFind variables
+     * 4) Trav each value from valueToNodes map & add them in UnionFind
+     */
     static int[] par, rank;
     @SuppressWarnings("unchecked")
     public static int numberOfGoodPaths2(int[] vals, int[][] edges) {
+        int n = vals.length;
+
+        // Group nodes by their values
+        Map<Integer, List<Integer>> valueToNodes = new TreeMap<>();
+        for (int i = 0; i < n; i++) {
+            valueToNodes.computeIfAbsent(vals[i], _ -> new ArrayList<>()).add(i);
+        }
+
+        // Build adjacency list
+        List<Integer>[] graph = new ArrayList[n];
+        for (int i = 0; i < n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        for (int[] edge : edges) {
+            int u = edge[0], v = edge[1];
+            graph[u].add(v);
+            graph[v].add(u);
+        }
+
+        // initialize UnionFind variables
+        par = new int[n];
+        rank = new int[n];
+        for (int i = 0; i < n; i++) par[i] = i;
+
+
+        // Trav each value from valueToNodes map & add them in UnionFind
+        // or Trav sorted vals i.e Process nodes in increasing order of their values
+        int goodPaths = 0;
+        for (int value : valueToNodes.keySet().stream().sorted().collect(Collectors.toList())) { // WHY SORT IS OPTIONAL
+            List<Integer> valueNodes = valueToNodes.get(value); // list of nodes with the same value
+            // Union nodes within the same connected component
+            for (int u : valueNodes) { // u or i or node
+                for (int uNei : graph[u]) { // uNei or v or uNeighborIndex
+                    if (vals[uNei] <= value) { // GOOD PATH 2ND CONDITION
+                        union2(u, uNei); // ONLY GOOD PATHS
+                    }
+                }
+            }
+
+            // Count good paths for the current value
+            Map<Integer, Integer> componentSize = new HashMap<>(); // COUNTER_MAP
+            for (int u : valueNodes) { // u or node
+                int rootI = find2(u);
+                componentSize.merge(rootI, 1, Integer::sum); // or componentSize.put(root, componentSize.getOrDefault(root, 0) + 1);
+                goodPaths += componentSize.get(rootI); // or (n*(n+1))/2 after this loop for each root
+            }
+            // when same node value i.e 5 is added one more time then it'll increase the good paths like this (n*(n+1))/2
+            // (n*(n+1))/2 ---> the sum of the first n natural numbers
+            // if 3 5Value is present then number of good paths will be 3*(3+1)/2 = 6
+            // a, b, c
+            // then a,b,c are good paths because self is also a good path
+            // a-b, a-c, b-c another 3 good paths
+        }
+
+        return goodPaths;
+    }
+
+    public static void union2(int i, int j) {
+        int rootI = find2(i);
+        int rootJ = find2(j);
+        if (rootI != rootJ) {
+            if (rank[rootI] > rank[rootJ]) {
+                par[rootJ] = rootI;
+            } else if (rank[rootI] < rank[rootJ]) {
+                par[rootI] = rootJ;
+            } else {
+                par[rootJ] = rootI;
+                rank[rootI]++;
+            }
+        }
+    }
+
+    public static int find2(int i) {
+        if (par[i] != i) {
+            par[i] = find2(par[i]); // Path compression
+        }
+        return par[i];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @SuppressWarnings("unchecked")
+    public static int numberOfGoodPaths3(int[] vals, int[][] edges) {
         int n = vals.length;
         par = new int[n];
         rank = new int[n];
@@ -124,12 +249,17 @@ public class NumberOfGoodPaths {
             }
 
             // Count good paths for the current value
-            Map<Integer, Integer> componentSize = new HashMap<>();
+            Map<Integer, Integer> componentSize = new HashMap<>(); // how many 5's present in this component
             for (int node : nodes) {
                 int root = find(node);
                 componentSize.put(root, componentSize.getOrDefault(root, 0) + 1);
             }
 
+            // (n*(n+1))/2 ---> the sum of the first n natural numbers
+            // if 3 5Value is present then number of good paths will be 3*(3+1)/2 = 6
+            // a, b, c
+            // then a,b,c are good paths because self is also a good path
+            // a-b, a-c, b-c another 3 good paths
             for (int size : componentSize.values()) {
                 goodPaths += size * (size + 1) / 2; // Add combinations of nodes in the same component
             }
@@ -137,34 +267,6 @@ public class NumberOfGoodPaths {
 
         return goodPaths;
     }
-
-    public static void union2(int i, int j) {
-        int rootI = find2(i);
-        int rootJ = find2(j);
-        if (rootI != rootJ) {
-            if (rank[rootI] > rank[rootJ]) {
-                par[rootJ] = rootI;
-            } else if (rank[rootI] < rank[rootJ]) {
-                par[rootI] = rootJ;
-            } else {
-                par[rootJ] = rootI;
-                rank[rootI]++;
-            }
-        }
-    }
-
-    public static int find2(int i) {
-        if (par[i] != i) {
-            par[i] = find2(par[i]); // Path compression
-        }
-        return par[i];
-    }
-
-
-
-
-
-
 
 
 
