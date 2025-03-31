@@ -111,6 +111,7 @@ Data Structures And Algorithm Programs
     * [Satisfiability of Equality Equations](/Algorithms/DisjointSetUnion/SatisfiabilityOfEqualityEquations.java)
     * [Min Cost to Connect All Points](/Algorithms/DisjointSetUnion/MinCostToConnectAllPoints.java)
     * [Number Of Good Paths](/Algorithms/DisjointSetUnion/NumberOfGoodPaths.java)
+    * [LongestConsecutiveSequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
@@ -155,7 +156,7 @@ Data Structures And Algorithm Programs
 
     * [GroupAnagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
-    * [LongestConsecutiveSequence](Algorithms/Hashing/LongestConsecutiveSequence.java)
+    * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/Hashing/SubArraySumEqualsK.java)
     * [2Sum](Algorithms/Hashing/TwoSum.java)
 
