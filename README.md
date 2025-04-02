@@ -111,7 +111,8 @@ Data Structures And Algorithm Programs
     * [Satisfiability of Equality Equations](/Algorithms/DisjointSetUnion/SatisfiabilityOfEqualityEquations.java)
     * [Min Cost to Connect All Points](/Algorithms/DisjointSetUnion/MinCostToConnectAllPoints.java)
     * [Number Of Good Paths](/Algorithms/DisjointSetUnion/NumberOfGoodPaths.java)
-    * [LongestConsecutiveSequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
+    * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
+    * [Path With Minimum Effort](Algorithms/DisjointSetUnion/PathWithMinimumEffort.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
