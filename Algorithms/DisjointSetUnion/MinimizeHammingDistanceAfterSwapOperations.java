@@ -18,7 +18,9 @@ public class MinimizeHammingDistanceAfterSwapOperations {
 
 
 
-
+    /**
+     * Use counter to avoid duplicate numbers edge case
+     */
     public static int minimumHammingDistance(int[] source, int[] target, int[][] allowedSwaps) {
         int n = source.length;
         UnionFind uf = new UnionFind(n);
@@ -35,7 +37,7 @@ public class MinimizeHammingDistanceAfterSwapOperations {
             componentMap.computeIfAbsent(root, _ -> new HashMap<>()).merge(source[i], 1, Integer::sum);
         }
 
-        // Step 3: Calculate the Hamming distance
+        // Step 3: Trav each index, find its root, check target[i] in root's source freqMap, Calculate the Hamming distance
         int hammingDistance = 0;
         for (int i = 0; i < n; i++) {
             int root = uf.find(i);
@@ -43,9 +45,7 @@ public class MinimizeHammingDistanceAfterSwapOperations {
 
             if (freqMap.getOrDefault(target[i], 0) > 0) {
                 freqMap.merge(target[i], -1, Integer::sum);
-                if (freqMap.get(target[i]) == 0) {
-                    freqMap.remove(target[i]);
-                }
+                if (freqMap.get(target[i]) == 0) freqMap.remove(target[i]); // OPTIONAL
             } else {
                 hammingDistance++;
             }
@@ -80,8 +80,8 @@ public class MinimizeHammingDistanceAfterSwapOperations {
 
         Map<Integer, Integer> sourceMap = new HashMap<>();
         for (int i=0; i<n; i++) sourceMap.put(source[i], i);
-        Map<Integer, Integer> targetCounter = new HashMap<>();
-        for (int t: target) targetCounter.merge(t, 1, Integer::sum);
+        Map<Integer, Integer> sourceCounter = new HashMap<>();
+        for (int s: source) sourceCounter.merge(s, 1, Integer::sum);
 
 
         System.out.println("comps: " + comps);
@@ -94,8 +94,8 @@ public class MinimizeHammingDistanceAfterSwapOperations {
             // System.out.printf("sourceNum: %s, targetNum: %s, targetNumIndexInSource:%s\n", sourceNum, targetNum, targetNumIndexInSource);
 
             if(sourceNum == targetNum) {
-                if (targetCounter.get(targetNum) > 0) {
-                    targetCounter.merge(targetNum, -1, Integer::sum);
+                if (sourceCounter.get(targetNum) > 0) {
+                    sourceCounter.merge(targetNum, -1, Integer::sum);
                 } else res++;
                 continue;
             }
@@ -106,8 +106,8 @@ public class MinimizeHammingDistanceAfterSwapOperations {
             }
 
             if (canTargetComeHere(comps, i, roots, targetNumIndexInSource)) {
-                if (targetCounter.get(targetNum) > 0) {
-                    targetCounter.merge(targetNum, -1, Integer::sum);
+                if (sourceCounter.get(targetNum) > 0) {
+                    sourceCounter.merge(targetNum, -1, Integer::sum);
                 } else res++;
             }
             else res++;
