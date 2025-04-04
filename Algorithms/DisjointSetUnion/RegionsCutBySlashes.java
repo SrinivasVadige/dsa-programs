@@ -659,7 +659,7 @@ public class RegionsCutBySlashes {
      *  | 1| 0| 0| 1| 0| 0|
      *  +--+--+--+--+--+--+
      *           .
-     * Now it looks like we can traverse this newGrid just like Number of island {@Link Algorithms.Graphs.NumberOfIslands#numIslandsMyApproach(char[][] grid)}
+     * Now it looks like we can traverse this newGrid just like Number of island {@link Algorithms.Graphs.NumberOfIslands#numIslandsMyApproach(char[][] grid)}
      * and 0's will be the islands or regions
      */
     public int regionsBySlashesUsingDFS(String[] grid) {
