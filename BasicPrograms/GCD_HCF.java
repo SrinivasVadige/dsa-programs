@@ -7,7 +7,7 @@ import java.util.List;
 /**
 * GCD = Greatest Common Divisor of any two integers is the largest number that divides both integers
 * HCF = Highest Common Factor (same as GCD)
-* in our schooling we used LCM to find the GCD or HCF
+* in our schooling we used LCM to find the GCD or HCF because a*b = HCF(a,b) * LCM(a,b)
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 21 Sept 2024
 */
@@ -30,7 +30,7 @@ public class GCD_HCF {
         for (int i = 1; i <= b; i++) {
             if( b%i == 0) bFactors.add(i);
         }
-        for(int i : aFactors){
+        for(int i : aFactors){ // or loop from n-1 to 0
             if(bFactors.contains(i) && gcd < i) {
                 gcd = i;
             }
@@ -41,7 +41,7 @@ public class GCD_HCF {
 
     static int gcdOfUsingMinNumLoopExtraVar(int a, int b) {
         int gcd = 1;
-        for (int i = 2; i <= Math.min(a, b); i++) {
+        for (int i = 2; i <= Math.min(a, b); i++) { // or loop from minN-1 to 0
             if (a%i==0 && b%i==0) gcd = i;
         }
         return gcd;
@@ -55,7 +55,7 @@ public class GCD_HCF {
     }
 
 
-/* 
+/*
     The Euclidean Algorithm is a method for finding the greatest common divisor of two numbers.
     It operates on the principle that the GCD of two numbers remains the same
     even if the smaller number is subtracted from the larger number.
@@ -76,12 +76,12 @@ public class GCD_HCF {
 
     Hence, return 5 as the gcd.
 
-    or 
+    or
     largestNum = smallNum*multiplier + remainder   // multiplier is quotient
-    => prevSmallNumOrNewLarge = prevRemainderOrNewSmall*newMultiplier + newRemainder  
+    => prevSmallNumOrNewLarge = prevRemainderOrNewSmall*newMultiplier + newRemainder
     => prevRemainder will become the new smallNum another approach
 
-    that means lNum % sNum = someQuorient, 
+    that means lNum % sNum = remainder
     so this Remainder be be our new sNum and previous sNum be will be new lNum
     now loop until, we get Remainder as 0
 
@@ -91,13 +91,22 @@ public class GCD_HCF {
     REMAINDERS
     a=30; b=25 => a=5; b=25; a=5; b=0... therefore GCF is 5
     a=20; b=30 => a=20; b=10; a=0; b=10... therefore GCF is 10
-  */   
+  */
     static int euclideanAlgorithmWhileLoop(int a, int b) {
         while (a>0 && b>0) {
             if(a>b) a = a%b; else b = b%a;
         }
-        
+
         if(a == 0) return b;
         return a;
+    }
+
+    static int euclideanAlgorithmRecursion(int a, int b) {
+        if (b == 0) return a;
+        return euclideanAlgorithmRecursion(b, a % b);
+    }
+
+    static int euclideanAlgorithmRecursion2(int a, int b) {
+        return b == 0 ? a : euclideanAlgorithmRecursion2(b, a % b);
     }
 }
