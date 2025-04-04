@@ -44,16 +44,13 @@ Data Structures And Algorithm Programs
   * [Palindrome Or ReverseNumber](BasicPrograms/PalindromeOrReverseNumber.java)
   * [Patterns and shapes](BasicPrograms/Patterns.java)
   * [PrimeNumber](BasicPrograms/PrimeNumber.java)
-
-* ### [LeetCode Basic Programs](LeetCodeBasic/)
-
-  * [Anagram](/LeetCodeBasic/Anagram.java)
-  * [RomanToInteger](LeetCodeBasic/RomanToInteger.java)
-  * [WordPattern](LeetCodeBasic/WordPattern.java)
-  * [Number of Steps to Reduce a Number to Zero](LeetCodeBasic/NumberOfStepsToReduceNumberToZero.java)
-  * [Fizz Buzz](LeetCodeBasic/FizzBuzz.java)
-  * [Richest Customer Wealth](LeetCodeBasic/RichestCustomerWealth.java)
-  * [Running Sum of 1D Array](LeetCodeBasic/RunningSumOf1DArray.java)
+  * [Anagram](/BasicPrograms/Anagram.java)
+  * [RomanToInteger](BasicPrograms/RomanToInteger.java)
+  * [WordPattern](BasicPrograms/WordPattern.java)
+  * [Number of Steps to Reduce a Number to Zero](BasicPrograms/NumberOfStepsToReduceNumberToZero.java)
+  * [Fizz Buzz](BasicPrograms/FizzBuzz.java)
+  * [Richest Customer Wealth](BasicPrograms/RichestCustomerWealth.java)
+  * [Running Sum of 1D Array](BasicPrograms/RunningSumOf1DArray.java)
 
 * ### [----  ALGORITHMS  ----](Algorithms/)
 
