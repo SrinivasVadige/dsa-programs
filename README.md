@@ -114,6 +114,7 @@ Data Structures And Algorithm Programs
     * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
     * [Path With Minimum Effort](Algorithms/DisjointSetUnion/PathWithMinimumEffort.java)
     * [Minimize Hamming Distance After Swap Operations](Algorithms/DisjointSetUnion/MinimizeHammingDistanceAfterSwapOperations.java)
+    * [Evaluate Division](Algorithms/DisjointSetUnion/EvaluateDivision.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
