@@ -1,4 +1,4 @@
-package LeetCodeBasic;
+package BasicPrograms;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
