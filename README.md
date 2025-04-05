@@ -173,6 +173,7 @@ Data Structures And Algorithm Programs
     * [Maximum Unique SubArray Sum After Deletion](Algorithms/IntegerArray/MaximumUniqueSubArraySumAfterDeletion.java)
     * [Count Beautiful Numbers](Algorithms/IntegerArray/CountBeautifulNumbers.java)
     * [Minimum Cost to Reach Every Position](Algorithms/IntegerArray/MinimumCostToReachEveryPosition.java)
+    * [Kids With the Greatest Number of Candies](Algorithms/IntegerArray/KidsWithTheGreatestNumberOfCandies.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
