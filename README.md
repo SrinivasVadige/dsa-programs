@@ -271,6 +271,7 @@ Data Structures And Algorithm Programs
     * [Merge Strings Alternately](/Algorithms/Strings/MergeStringsAlternately.java)
     * [Greatest Common Divisor of Strings](/Algorithms/Strings/GreatestCommonDivisorOfStrings.java)
     * [Reverse Vowels of a String](/Algorithms/Strings/ReverseVowelsOfString.java)
+    * [Reverse Words in a String](/Algorithms/Strings/ReverseWordsInString.java)
 
 23. #### [Tries / Prefix Tree](/Algorithms/Tries/)
 
