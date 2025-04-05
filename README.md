@@ -174,6 +174,7 @@ Data Structures And Algorithm Programs
     * [Count Beautiful Numbers](Algorithms/IntegerArray/CountBeautifulNumbers.java)
     * [Minimum Cost to Reach Every Position](Algorithms/IntegerArray/MinimumCostToReachEveryPosition.java)
     * [Kids With the Greatest Number of Candies](Algorithms/IntegerArray/KidsWithTheGreatestNumberOfCandies.java)
+    * [Can Place Flowers](Algorithms/IntegerArray/CanPlaceFlowers.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
