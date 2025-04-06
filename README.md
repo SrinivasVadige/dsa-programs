@@ -178,6 +178,7 @@ Data Structures And Algorithm Programs
     * [Minimum Pair Removal to Sort Array I](Algorithms/IntegerArray/MinimumPairRemovalToSortArrayI.java)
     * [Increasing Triplet Subsequence](Algorithms/IntegerArray/IncreasingTripletSubsequence.java)
     * [Count Special Quadruplets](Algorithms/IntegerArray/CountSpecialQuadruplets.java)
+    * [Count Good Triplets](Algorithms/IntegerArray/CountGoodTriplets.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
