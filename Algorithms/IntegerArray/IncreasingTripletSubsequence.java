@@ -1,6 +1,7 @@
 package Algorithms.IntegerArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -134,6 +135,37 @@ public class IncreasingTripletSubsequence {
         else if (nums[i] <= second) return dfs(i+1, nums, first, nums[i]); // replace second with nums[i]
         else return true; // found a number greater than both first and second
     }
+
+
+
+
+    /**
+     * same as {@link Algorithms.DynamicProgramming.LongestIncreasingSubsequence#lengthOfLIS(int[])}
+     *
+     * TLE
+     * @TimeComplexity O(n^2)
+     * @SpaceComplexity O(n)
+     */
+    public boolean increasingTripletUsingLIS(int[] nums) { // Longest Increasing Subsequence
+        int n = nums.length;
+        int[] LIS = new int[n]; // Longest Increasing Subsequence for each index
+        Arrays.fill(LIS, 1);
+
+        for (int i = n-1; i >= 0; i--) {
+            for (int j = i+1; j < n; j++) {
+                if (nums[i] < nums[j])
+                    LIS[i] = Math.max(LIS[i], 1+LIS[j]);
+                    // if (LIS[i] >= 3) return true;
+            }
+        }
+
+        return Arrays.stream(LIS).filter(c->c==3).count() > 0;
+    }
+
+
+
+
+
 
 
 
