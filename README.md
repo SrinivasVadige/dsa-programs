@@ -177,6 +177,7 @@ Data Structures And Algorithm Programs
     * [Can Place Flowers](Algorithms/IntegerArray/CanPlaceFlowers.java)
     * [Minimum Pair Removal to Sort Array I](Algorithms/IntegerArray/MinimumPairRemovalToSortArrayI.java)
     * [Increasing Triplet Subsequence](Algorithms/IntegerArray/IncreasingTripletSubsequence.java)
+    * [Count Special Quadruplets](Algorithms/IntegerArray/CountSpecialQuadruplets.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
