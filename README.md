@@ -176,6 +176,7 @@ Data Structures And Algorithm Programs
     * [Kids With the Greatest Number of Candies](Algorithms/IntegerArray/KidsWithTheGreatestNumberOfCandies.java)
     * [Can Place Flowers](Algorithms/IntegerArray/CanPlaceFlowers.java)
     * [Minimum Pair Removal to Sort Array I](Algorithms/IntegerArray/MinimumPairRemovalToSortArrayI.java)
+    * [Increasing Triplet Subsequence](Algorithms/IntegerArray/IncreasingTripletSubsequence.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
