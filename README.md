@@ -175,6 +175,7 @@ Data Structures And Algorithm Programs
     * [Minimum Cost to Reach Every Position](Algorithms/IntegerArray/MinimumCostToReachEveryPosition.java)
     * [Kids With the Greatest Number of Candies](Algorithms/IntegerArray/KidsWithTheGreatestNumberOfCandies.java)
     * [Can Place Flowers](Algorithms/IntegerArray/CanPlaceFlowers.java)
+    * [Minimum Pair Removal to Sort Array I](Algorithms/IntegerArray/MinimumPairRemovalToSortArrayI.java)
 
 12. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
