@@ -10,43 +10,51 @@ import java.util.stream.*;
 public class MoveZeroes {
     public static void main(String[] args) {
 
-        int[] nums = {0,1,0,3,12};
+        int[] nums = {0,
+            1,0,3,12};
         moveZeroes(nums);
         System.out.println(Arrays.toString(nums));
     }
 
-    // keep left pointer in 1st 0 num index
+    /**
+     * keep left pointer in 1st 0 num index
+     *
+     * Just move all non-zero elements to the left (or) move zeros to next non-zero element
+     */
     public static void moveZeroes(int[] nums) {
-        int left = 0;
+        int l = 0; // always keep "left" at zero number
 
-        for (int right = 0; right < nums.length; right++) {
-            if (nums[right] != 0) {
-                int temp = nums[right];
-                nums[right] = nums[left];
-                nums[left] = temp;
-                left++;
+        for (int r = 0; r < nums.length; r++) {
+            if (nums[r] != 0) {
+                swap(nums, l, r);
+                l++; // increment "left" if non-zero
             }
         }
-
+    }
+    private static void swap(int[] nums, int l, int r) {
+        if (l == r) return;
+        int temp = nums[l];
+        nums[l] = nums[r];
+        nums[r] = temp;
     }
 
-    // to avoid self swap untill we find 0 num index
+
+
     public static void moveZeroesEnhanced(int[] nums) {
-        int left = -1;
-        for (int i = 0; i < nums.length; i++) { // move 
+        int l = -1;
+        // trav until you find "0"
+        for (int i = 0; i < nums.length; i++) {
             if(nums[i] == 0) {
-                left = i;
+                l = i;
                 break;
             }
         }
-        if (left == -1) return;
-        
-        for (int right = left+1; right < nums.length; right++) {
-            if (nums[right] != 0) {
-                int temp = nums[right];
-                nums[right] = nums[left];
-                nums[left] = temp;
-                left++;
+        if (l == -1) return; // "0" not found
+
+        for (int r = l+1; r < nums.length; r++) {
+            if (nums[r] != 0) {
+                swap(nums, l, r);
+                l++;
             }
         }
 
@@ -62,6 +70,21 @@ public class MoveZeroes {
                 nums[nums.length - 1] = 0;
             }
         }
+    }
+    public void moveZeroesBruteForce2(int[] nums) {
+        int n = nums.length;
+        int nonZeroI = 0;
+        for(int i=0; i<n && nonZeroI<n; i++) {
+            nonZeroI=i;
+            if (nums[nonZeroI]==0) {
+                while(nonZeroI<n && nums[nonZeroI]==0) nonZeroI++;
+                if (nonZeroI<n && nonZeroI != i) move(nums, i, nonZeroI, n);
+            }
+        }
+    }
+    private void move(int[] nums, int zeroI, int nonZeroI, int n) {
+            nums[zeroI]=nums[nonZeroI];
+            nums[nonZeroI]=0;
     }
 
     // using list
