@@ -7,13 +7,23 @@ Notes:
 
 # dsa-programs
 
-Data Structures And Algorithm Programs
+Data Structures and Algorithm Programs
 
 * Language: Java
 
 </br>
 
-## CONTENTS
+## Table of Contents
+
+* [Data Structures & imp classes](#data-structures--important-classes)
+* [Basic Programs](#basic-programs)
+* [Algorithms](#algorithms)
+* [FAANG Companies hiring process](#companies-hiring-overview-faang--maang-process)
+* [Sources](#sources)
+
+</br>
+
+## Contents
 
 * ### [Data Structures & important classes](DataStructures/)
 
@@ -34,6 +44,8 @@ Data Structures And Algorithm Programs
   * [FunctionalInterface](DataStructures/FunctionalInterfaceExample.java)
   * [Record](DataStructures/RecordExample.java)
 
+</br>
+
 * ### [Basic Programs](BasicPrograms/)
 
   * [AllDivisors](/BasicPrograms/AllDivisors.java)
@@ -52,7 +64,9 @@ Data Structures And Algorithm Programs
   * [Richest Customer Wealth](BasicPrograms/RichestCustomerWealth.java)
   * [Running Sum of 1D Array](BasicPrograms/RunningSumOf1DArray.java)
 
-* ### [----  ALGORITHMS  ----](Algorithms/)
+</br>
+
+* ### [ALGORITHMS](Algorithms/)
 
 1. #### [BackTracking](Algorithms/BackTracking/)
 
