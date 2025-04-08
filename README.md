@@ -302,6 +302,7 @@ Data Structures and Algorithm Programs
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
     * [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
+    * [Is Subsequence](/Algorithms/TwoPointers/IsSubsequence.java)
 
 </br>
 </br>
