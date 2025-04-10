@@ -303,6 +303,7 @@ Data Structures and Algorithm Programs
     * [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
     * [Is Subsequence](/Algorithms/TwoPointers/IsSubsequence.java)
+    * [Max Number of K-Sum Pairs](/Algorithms/TwoPointers/MaxNumberOfKSumPairs.java)
 
 </br>
 </br>
