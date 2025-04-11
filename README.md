@@ -256,6 +256,7 @@ Data Structures and Algorithm Programs
     * [LengthOfLongestSubstring](/Algorithms/SlidingWindow/LengthOfLongestSubstring.java)
     * [Minimum Window Substring](Algorithms/SlidingWindow/MinimumWindowSubstring.java)
     * [Sliding Window Maximum](Algorithms/SlidingWindow/SlidingWindowMaximum.java)
+    * [Maximum Average SubArray I](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
 
 20. #### [Sorting](Algorithms/Sorting/)
 
