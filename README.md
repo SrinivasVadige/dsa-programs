@@ -171,8 +171,8 @@ Data Structures and Algorithm Programs
     * [GroupAnagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
     * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
-    * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/Hashing/SubArraySumEqualsK.java)
     * [2Sum](Algorithms/Hashing/TwoSum.java)
+    * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
 
 10. #### [Heap](/Algorithms/HeapAlgos/)
 
@@ -237,8 +237,9 @@ Data Structures and Algorithm Programs
 
 15. #### [PrefixSum](/Algorithms/PrefixSum/)
 
+    * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
-    * [SubArraySumEqualsK](Algorithms/Hashing/SubArraySumEqualsK.java)
+    * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
 
 16. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
 
