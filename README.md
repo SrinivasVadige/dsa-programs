@@ -176,6 +176,7 @@ Data Structures and Algorithm Programs
     * [Find the Difference of Two Arrays](Algorithms/Hashing/FindTheDifferenceOfTwoArrays.java)
     * [Unique Number of Occurrences](Algorithms/Hashing/UniqueNumberOfOccurrences.java)
     * [Determine if Two Strings Are Close](Algorithms/Hashing/DetermineIfTwoStringsAreClose.java)
+    * [Equal Row and Column Pairs](Algorithms/Hashing/EqualRowAndColumnPairs.java)
 
 10. #### [Heap](/Algorithms/HeapAlgos/)
 
