@@ -174,6 +174,7 @@ Data Structures and Algorithm Programs
     * [2Sum](Algorithms/Hashing/TwoSum.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [Find the Difference of Two Arrays](Algorithms/Hashing/FindTheDifferenceOfTwoArrays.java)
+    * [Unique Number of Occurrences](Algorithms/Hashing/UniqueNumberOfOccurrences.java)
 
 10. #### [Heap](/Algorithms/HeapAlgos/)
 
