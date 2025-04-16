@@ -166,13 +166,14 @@ Data Structures and Algorithm Programs
     * [BestTime To Buy And Sell Stock](/Algorithms/GreedyAlgorithms/BestTimeToBuyAndSellStock.java)
     * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
 
-9. #### [Hashing / HashMap](Algorithms/Hashing/)
+9. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing/)
 
     * [GroupAnagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
     * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
     * [2Sum](Algorithms/Hashing/TwoSum.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
+    * [Find the Difference of Two Arrays](Algorithms/Hashing/FindTheDifferenceOfTwoArrays.java)
 
 10. #### [Heap](/Algorithms/HeapAlgos/)
 
@@ -240,6 +241,7 @@ Data Structures and Algorithm Programs
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
+    * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
 
 16. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
 
