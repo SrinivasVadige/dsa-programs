@@ -289,6 +289,7 @@ Data Structures and Algorithm Programs
     * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
     * [Min Stack](Algorithms/StackAlgos/MinStackClass.java)
     * [Decode String](Algorithms/StackAlgos/DecodeString.java)
+    * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
 
 22. #### [Strings](/Algorithms/Strings/)
 
