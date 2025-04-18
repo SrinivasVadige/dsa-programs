@@ -290,6 +290,7 @@ Data Structures and Algorithm Programs
     * [Min Stack](Algorithms/StackAlgos/MinStackClass.java)
     * [Decode String](Algorithms/StackAlgos/DecodeString.java)
     * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
+    * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
 
 22. #### [Strings](/Algorithms/Strings/)
 
