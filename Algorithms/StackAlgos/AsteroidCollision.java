@@ -12,9 +12,42 @@ public class AsteroidCollision {
     public static void main(String[] args) {
         int[] asteroids = new int[]{5, 10, -5}; // => [5, 10]
         System.out.println("asteroidCollision: " + asteroidCollision(asteroids));
+        System.out.println("asteroidCollisionMyApproach: " + asteroidCollisionMyApproach(asteroids));
     }
 
     public static int[] asteroidCollision(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (int a : asteroids) {
+            // -a, +p
+            while (!stack.isEmpty() && a < 0 && stack.peek() > 0) {
+                int diff = a + stack.peek();
+                if (diff < 0) { // 'p' destroyed
+                    stack.pop();
+                } else if (diff > 0) { // Current asteroid 'a' is destroyed
+                    a=0; // or break;
+                } else {
+                    stack.pop(); // Both asteroids destroy each other
+                    a=0; // or break;
+                }
+            }
+
+            // +a or while loop scenario -> add the current asteroid if not destroyed
+            if (a != 0) stack.push(a);
+            // or
+            // if (stack.isEmpty() || a > 0) {
+            //     stack.push(a); // Add the current asteroid if not destroyed
+            // } else if (a < 0 && stack.peek() < 0) {
+            //     stack.push(a); // Add the current asteroid if it's negative and the top of the stack is also negative
+            // }
+        }
+
+        int[] result = new int[stack.size()];
+        for (int i = stack.size() - 1; i >= 0; i--) result[i] = stack.pop();
+        return result;
+    }
+
+    public static int[] asteroidCollision2(int[] asteroids) {
         Stack<Integer> stack = new Stack<>();
 
         for (int a : asteroids) {
@@ -49,7 +82,59 @@ public class AsteroidCollision {
 
 
 
-    public static int[] asteroidCollision2(int[] asteroids) {
+
+    /**
+     * PATTERNS:
+     * ---------
+     * 1) Finally, all the -ves in left and +ves in right. So, move -ves to left side
+     * 2)
+     */
+    public static int[] asteroidCollisionMyApproach(int[] asteroids) {
+        Stack<Integer> stack = new Stack<>();
+
+        for(int a: asteroids) {
+            if(a>0) stack.push(a); // +a
+            else { // -a
+                if(stack.isEmpty()) {
+                    stack.push(a);
+                } else {
+                    if(stack.peek() < 0) stack.push(a);
+                    else { // stack is +ve and -a. so, collide all left +ves with is -a
+                        while(!stack.isEmpty() && stack.peek()>0) {
+                            int p = stack.pop();
+                            if(a+p == 0) break; // -a == +p --> both destroyed
+                            else if (a+p > 0) { // +p big --> -a destroyed
+                                stack.push(p);
+                                break;
+                            }
+                            else { // +p small, -a big
+                                if(stack.isEmpty() || stack.peek()<0) { // empty/-ve stack
+                                    stack.push(a);
+                                    break;
+                                }
+                            }
+
+                            // or
+                        //     else if(stack.isEmpty() || stack.peek()<0) { // +p small, -a big. so, collide all left +ves with is -a && empty/-ve stack
+                        //        stack.push(a);
+                        //        break;
+                        //    }
+
+                        }
+                    }
+                }
+            }
+        }
+        int[] res = new int[stack.size()];
+        for(int i=res.length-1; i>=0; i--) res[i]=stack.pop();
+        return res;
+    }
+
+
+
+
+
+    public static int[] asteroidCollision3(int[] asteroids) {
         int[] stack = new int[asteroids.length];
         int top = 0;
 
@@ -77,6 +162,16 @@ public class AsteroidCollision {
         System.arraycopy(stack, 0, result, 0, top);
         return result;
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
 
