@@ -253,6 +253,7 @@ Data Structures and Algorithm Programs
 17. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
 
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
+    * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
 
 18. #### [Recursion](/Algorithms/Recursion/)
 
