@@ -1,4 +1,4 @@
-package Algorithms.MiscAlgos;
+package Algorithms.MergeIntervals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +12,7 @@ import java.util.Stack;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 18 March 2025
+ * @link https://leetcode.com/problems/merge-intervals/ (56. Merge Intervals)
  */
 public class MergeIntervals {
     public static void main(String[] args) {

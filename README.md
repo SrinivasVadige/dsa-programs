@@ -226,7 +226,11 @@ Data Structures and Algorithm Programs
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
     * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
 
-14. #### [Misc](/Algorithms/MiscAlgos/)
+14. #### [Merge Intervals](/Algorithms/MergeIntervals/)
+
+    * [Merge Intervals](Algorithms/MergeIntervals/MergeIntervals.java)
+
+15. #### [Misc](/Algorithms/MiscAlgos/)
 
     * [SingleNumber](Algorithms/MiscAlgos/SingleNumber.java)
     * [Majority Element](Algorithms/MiscAlgos/MajorityElement.java)
@@ -235,30 +239,29 @@ Data Structures and Algorithm Programs
     * [Product of Array Except Self](Algorithms/MiscAlgos/ProductOfArrayExceptSelf.java)
     * [Rotate Array by K times](Algorithms/MiscAlgos/RotateArray.java)
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
-    * [Merge Intervals](Algorithms/MiscAlgos/MergeIntervals.java)
     * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
 
-15. #### [PrefixSum](/Algorithms/PrefixSum/)
+16. #### [PrefixSum](/Algorithms/PrefixSum/)
 
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
 
-16. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
+17. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
 
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
 
-17. #### [Recursion](/Algorithms/Recursion/)
+18. #### [Recursion](/Algorithms/Recursion/)
 
-18. #### [Searching](Algorithms/Searching/)
+19. #### [Searching](Algorithms/Searching/)
 
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
 
-19. #### [Sliding Window](Algorithms/SlidingWindow/)
+20. #### [Sliding Window](Algorithms/SlidingWindow/)
 
     * [Find all the Anagrams in a String](/Algorithms/SlidingWindow/FindAllAnagramsInString.java)
     * [LengthOfLongestSubstring](/Algorithms/SlidingWindow/LengthOfLongestSubstring.java)
@@ -269,7 +272,7 @@ Data Structures and Algorithm Programs
     * [Max Consecutive Ones III](Algorithms/SlidingWindow/MaxConsecutiveOnesIII.java)
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
 
-20. #### [Sorting](Algorithms/Sorting/)
+21. #### [Sorting](Algorithms/Sorting/)
 
     * [SelectionSort](Algorithms/Sorting/SelectionSort.java)
     * [BubbleSort](Algorithms/Sorting/BubbleSort.java)
@@ -284,7 +287,7 @@ Data Structures and Algorithm Programs
     * [ShellSort](Algorithms/Sorting/ShellSort.java)
     * [TimSort](Algorithms/Sorting/TimSort.java)
 
-21. #### [Stack](/Algorithms/StackAlgos/)
+22. #### [Stack](/Algorithms/StackAlgos/)
 
     * [ValidParentheses](Algorithms/StackAlgos/ValidParentheses.java)
     * [DailyTemperatures](Algorithms/StackAlgos/DailyTemperatures.java)
@@ -294,7 +297,7 @@ Data Structures and Algorithm Programs
     * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
     * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
 
-22. #### [Strings](/Algorithms/Strings/)
+23. #### [Strings](/Algorithms/Strings/)
 
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
@@ -306,11 +309,11 @@ Data Structures and Algorithm Programs
     * [Reverse Words in a String](/Algorithms/Strings/ReverseWordsInString.java)
     * [String Compression](/Algorithms/Strings/StringCompression.java)
 
-23. #### [Tries / Prefix Tree](/Algorithms/Tries/)
+24. #### [Tries / Prefix Tree](/Algorithms/Tries/)
 
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
 
-24. #### [Two Pointers](/Algorithms/TwoPointers/)
+25. #### [Two Pointers](/Algorithms/TwoPointers/)
 
     * [ContainerWithMostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
