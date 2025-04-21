@@ -228,6 +228,7 @@ Data Structures and Algorithm Programs
 
 14. #### [Merge Intervals](/Algorithms/MergeIntervals/)
 
+    * [Teemo Attacking](Algorithms/MergeIntervals/TeemoAttacking.java)
     * [Merge Intervals](Algorithms/MergeIntervals/MergeIntervals.java)
 
 15. #### [Misc](/Algorithms/MiscAlgos/)
