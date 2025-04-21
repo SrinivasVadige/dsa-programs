@@ -248,6 +248,8 @@ Data Structures and Algorithm Programs
 
 16. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
 
+    * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
+
 17. #### [Recursion](/Algorithms/Recursion/)
 
 18. #### [Searching](Algorithms/Searching/)
