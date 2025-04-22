@@ -216,6 +216,7 @@ Data Structures and Algorithm Programs
     * [LRUCache](/Algorithms/LinkedListAlgos/LRUCache.java)
     * [IntersectionOfTwoLinkedLists](/Algorithms/LinkedListAlgos/IntersectionOfTwoLinkedLists.java)
     * [PalindromeLinkedList](/Algorithms/LinkedListAlgos/PalindromeLinkedList.java)
+    * [Delete the Middle Node of a Linked List](/Algorithms/LinkedListAlgos/DeleteTheMiddleNodeOfLinkedList.java)
 
 13. #### [Matrix](/Algorithms/Matrix/)
 
