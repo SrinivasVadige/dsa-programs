@@ -9,6 +9,10 @@ class ReverseLinkedList {
 
     public static void main(String[] args) {
         ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+        System.out.println("reverseListMyApproach: ");
+        for (ListNode trav = reverseListMyApproach(head); trav != null; trav = trav.next) System.out.print(trav.val + " ");
+
+        head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         System.out.println("reverseListUsing3Pointers: ");
         for (ListNode trav = reverseListUsing3Pointers(head); trav != null; trav = trav.next) System.out.print(trav.val + " ");
 
@@ -18,12 +22,45 @@ class ReverseLinkedList {
 
         System.out.println("\nreverseListUsingRecursion: ");
         head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-        for (ListNode trav = reverseListUsingRecursion(head, null); trav != null; trav = trav.next) System.out.print(trav.val + " ");
+        for (ListNode trav = reverseListUsingRecursion(head); trav != null; trav = trav.next) System.out.print(trav.val + " ");
 
         System.out.println("\nreverseList: ");
         head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
         for (ListNode trav = reverseList(head); trav != null; trav = trav.next) System.out.print(trav.val + " ");
     }
+
+    /**
+     *
+     *             1 -> 2 -> 3 -> 4 -> 5
+     *             5 -> 4 -> 3 -> 2 -> 1
+     *
+     *     null <- 1 -> 2 -> 3 -> 4 -> 5 -> null         -------- START
+     *             ↓    ↓
+     *            curr  next
+     *
+     *
+     *     null <- 1 <- 2 <- 3 <- 4 <- 5  -> null        -------- END
+     *                                 ↓      ↓
+     *                                curr   next
+     *
+     *
+     * So, we can return prev as head and return it     */
+    public static ListNode reverseListMyApproach(ListNode head) {
+        if(head==null) return head;
+        ListNode curr = head, next = curr.next;
+        curr.next = null;
+
+        while(next != null) {
+            ListNode temp = next.next; // temp hold the next sequence
+            next.next = curr; // from -> to <-
+            curr=next;
+            next = temp;
+        }
+        return curr;
+    }
+
+
+
 
     /**
      *
@@ -82,6 +119,9 @@ class ReverseLinkedList {
      * same as
      * @see #reverseListUsing2Pointers()
      */
+    public static ListNode reverseListUsingRecursion(ListNode head) {
+        return reverseListUsingRecursion(head, null);
+    }
     public static ListNode reverseListUsingRecursion(ListNode curr, ListNode prev) {
         if (curr == null) return prev;
         ListNode next = curr.next; // temp hold the next sequence
