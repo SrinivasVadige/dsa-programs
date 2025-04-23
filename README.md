@@ -218,6 +218,7 @@ Data Structures and Algorithm Programs
     * [Palindrome LinkedList](/Algorithms/LinkedListAlgos/PalindromeLinkedList.java)
     * [Delete the Middle Node of a Linked List](/Algorithms/LinkedListAlgos/DeleteTheMiddleNodeOfLinkedList.java)
     * [Odd Even Linked List](/Algorithms/LinkedListAlgos/OddEvenLinkedList.java)
+    * [Maximum Twin Sum of a Linked List](/Algorithms/LinkedListAlgos/MaximumTwinSumOfLinkedList.java)
 
 13. #### [Matrix](/Algorithms/Matrix/)
 
