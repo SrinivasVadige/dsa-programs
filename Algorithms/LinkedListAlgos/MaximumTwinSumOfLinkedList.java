@@ -88,27 +88,33 @@ public class MaximumTwinSumOfLinkedList {
 
 
     public static int pairSum(ListNode head) {
-        int ans = 0;
-        ListNode newList = null;
-        ListNode current = head;
-        ListNode currHalf = head;
+        ListNode prev = null;
+        ListNode s = head;
+        ListNode f = head;
 
-        while (currHalf != null && currHalf.next != null) {
-            currHalf = currHalf.next.next;
-            ListNode temp = current.next;
-            current.next = newList;
-            newList = current;
-            current = temp;
+        // combination of slow, fast pointer and reverse linked list
+        while (f != null && f.next != null) {
+            f = f.next.next;
+
+            ListNode next = s.next;
+            s.next = prev;
+            prev = s;
+            s = next;
         }
 
-        while (current != null) {
-            ans = Math.max(ans, current.val + newList.val);
-            current = current.next;
-            newList = newList.next;
+        int max = 0;
+        // now prev is in reverse order
+        while (s != null) {
+            max = Math.max(max, s.val + prev.val);
+            s = s.next;
+            prev = prev.next;
         }
 
-        return ans;
+        return max;
     }
+
+
+
 
 
     public static int pairSum2(ListNode head) {
@@ -129,7 +135,6 @@ public class MaximumTwinSumOfLinkedList {
         }
         return maxSum;
     }
-
     private static ListNode reverse(ListNode head){
         ListNode prev=null;
         ListNode curr = head;
@@ -141,6 +146,11 @@ public class MaximumTwinSumOfLinkedList {
         }
         return prev;
     }
+
+
+
+
+
 
     public static int pairSum3(ListNode head) {
         ListNode slow = head, fast = head;
@@ -163,6 +173,11 @@ public class MaximumTwinSumOfLinkedList {
         }
         return maxSum;
     }
+
+
+
+
+
 
     public int pairSum4(ListNode head) {
 
