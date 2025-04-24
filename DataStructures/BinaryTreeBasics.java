@@ -611,11 +611,12 @@ public class BinaryTreeBasics {
         }
     }
 
-
+    /**
+     * same as maxDepth
+     * @see {@link Algorithms.BinaryTrees.MaximumDepthOfBinaryTree}
+     */
     private static int getHeight(final TreeNode root) {
-        if(root == null)
-            return 0;
-
+        if(root == null) return 0;
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
