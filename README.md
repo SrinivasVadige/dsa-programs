@@ -107,6 +107,7 @@ Data Structures and Algorithm Programs
     * [LowestCommonAncestor LCA](/Algorithms/BinaryTrees/LowestCommonAncestor.java)
     * [PathSumIII](/Algorithms/BinaryTrees/PathSumIII.java)
     * [Diameter of BinaryTree](/Algorithms/BinaryTrees/DiameterOfBinaryTree.java)
+    * [Leaf Similar Trees](/Algorithms/BinaryTrees/LeafSimilarTrees.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation/)
 
