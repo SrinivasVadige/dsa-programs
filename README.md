@@ -108,6 +108,7 @@ Data Structures and Algorithm Programs
     * [PathSumIII](/Algorithms/BinaryTrees/PathSumIII.java)
     * [Diameter of BinaryTree](/Algorithms/BinaryTrees/DiameterOfBinaryTree.java)
     * [Leaf Similar Trees](/Algorithms/BinaryTrees/LeafSimilarTrees.java)
+    * [Count Good Nodes in Binary Tree](/Algorithms/BinaryTrees/CountGoodNodesInBinaryTree.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation/)
 
