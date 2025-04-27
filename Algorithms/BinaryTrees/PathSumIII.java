@@ -44,6 +44,67 @@ public class PathSumIII {
               7    2  5   1
 
             and targetSum = 22
+
+
+
+            when TreeNode = [10, 5, -3, 3, 2, null, 11, 3, null, -2, 1], targetSum = 8
+
+                                                    10
+                                                   /  \
+                                                  5    -3
+                                                 / \     \
+                                                3   2     11
+                                              /    / \
+                                             3    -2  1
+
+            Here, 5+3=8, 5+2+1=8, -3+11=8 are valid paths
+            and now the prefixSum looks like this:
+
+                                                     10
+                                                    /  \
+                                                   15   7
+                                                  / \     \
+                                                18   17   18
+                                               /    / \
+                                             21   15  18
+
+            In 3 position, the prefixSum / runningSum is 18
+            Check if there are any prefixSum that we calculated before ---> to subtract from 18
+            18 - targetSum = 18 - 8 = 10, so if we eliminate '10' previousSum from currSum we get target 8
+            Up to now, we understood that why we need save all the prefixSums
+
+            But why HashMap? not HashSet?
+            Because we have node values -10^9 <= Node.val <= 10^9
+
+                                                    10
+                                                   /  \
+                                                  0   -3
+                                                /       \
+                                               5         11
+                                              / \
+                                             3   2
+                                           /    / \
+                                          3    -2  1
+
+            Here, the prefixSum looks like this:
+
+                                                    10
+                                                   /  \
+                                                  10   7
+                                                /       \
+                                               15        18
+                                              / \
+                                            18   17
+                                           /    / \
+                                          21    15  18
+
+            Here, 5+3=8, 0+5+3=8, 5+2+1=8, 0+5+2+1=8 and -3+11=8 are valid paths
+            that's why we need to save count of prefixSum in HashMap (to handle -ves and 0s also)
+            Eg: -8+8+5+3=8 is also valid path
+
+            NOTE:
+            Pass this prefixSum / runningSum counterMap to children nodes only but not siblings
+            So, once the child recursion is done, we need to remove the curr prefixSum from the map
         */
 
         System.out.println("pathSum(root, 22): " + pathSum(root, 22));
@@ -63,8 +124,8 @@ public class PathSumIII {
      }
      public static int dfs(TreeNode node, long currSum, int target, Map<Long,Integer> map){
          if(node == null) return 0;
-         currSum += node.val;
-         int count = map.getOrDefault(currSum-target, 0); // neededSum = currSum - targetSum
+         currSum += node.val; // runningSum
+         int count = map.getOrDefault(currSum-target, 0); // prevSum=currSum-targetSum
          map.merge(currSum, 1, Integer::sum); // ++
          count += dfs(node.left, currSum, target, map);
          count += dfs(node.right, currSum, target, map);
