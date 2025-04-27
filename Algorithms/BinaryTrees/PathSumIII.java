@@ -46,13 +46,91 @@ public class PathSumIII {
             and targetSum = 22
         */
 
+        System.out.println("pathSum(root, 22): " + pathSum(root, 22));
         System.out.println("pathSumMyApproach(root, 22): " + pathSumMyApproach(root, 22));
         System.out.println("pathSumUsingPreOrderDfs(root, 22): " + pathSumUsingPreOrderDfs(root, 22));
         System.out.println("pathSumUsingHashMap(root, 22): " + pathSumUsingHashMap(root, 22));
     }
 
+    /**
+     * @TimeComplexity O(N)
+     * @SpaceComplexity O(N)
+     */
+    public static int pathSum(TreeNode root, int targetSum) {
+        Map<Long, Integer> prefixSumCount = new HashMap<>(); // <SUM, COUNT> i.e counterMap
+        prefixSumCount.put(0L,1); // initially, we have currSum as 0 and its count as 1.
+        return dfs(root,0, targetSum, prefixSumCount);
+     }
+     public static int dfs(TreeNode node, long currSum, int target, Map<Long,Integer> map){
+         if(node == null) return 0;
+         currSum += node.val;
+         int count = map.getOrDefault(currSum-target, 0); // neededSum = currSum - targetSum
+         map.merge(currSum, 1, Integer::sum); // ++
+         count += dfs(node.left, currSum, target, map);
+         count += dfs(node.right, currSum, target, map);
+         map.merge(currSum, -1, Integer::sum); // -- or if(map.get(currSum) == 1) map.remove(currSum); else map.merge(currSum, -1, Integer::sum);
+         return count;
+     }
 
+
+
+
+
+    /**
+     * @TImeComplexity O(N^2)
+     * @SpaceComplexity O(N)
+     */
+    static int count = 0;
     public static int pathSumMyApproach(TreeNode root, int targetSum) {
+        if (root == null) return 0;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        TreeNode trav = root;
+        while (!q.isEmpty()) {
+            trav = q.poll();
+            checkSum(trav, targetSum);
+            if (trav.left!=null) q.add(trav.left);
+            if (trav.right!=null) q.add(trav.right);
+        }
+        return count;
+    }
+    private static void checkSum(TreeNode node, long sum) {
+        if (node == null) return;
+        sum-=node.val;
+        if(sum==0) count++;
+        checkSum(node.left, sum);
+        checkSum(node.right, sum);
+    }
+
+
+
+
+    /**
+     * @TimeComplexity O(N^2)
+     * @SpaceComplexity O(1)
+     */
+    public int ans=0;
+    public int pathSumMyApproach2(TreeNode root, int targetSum) {
+        if(root==null) return 0;
+        dfs(root,targetSum);
+        pathSumMyApproach2(root.left,targetSum);
+        pathSumMyApproach2(root.right,targetSum);
+        return ans;
+    }
+    public void dfs2(TreeNode root, long sum){
+        if(root==null) return;
+        if(sum==root.val) ans++;
+        sum=sum-root.val;
+        dfs2(root.left, sum);
+        dfs2(root.right, sum);
+    }
+
+
+
+
+
+
+    public static int pathSumMyApproachOld(TreeNode root, int targetSum) {
         if (root == null) return 0;
         int[] count = new int[]{0}; // or instead of reference-variable use class-variable
         Queue<TreeNode> q = new LinkedList<>();
@@ -70,7 +148,6 @@ public class PathSumIII {
         }
         return count[0];
     }
-
     private static void checkSum(TreeNode node, int[] count, long sum, int targetSum) { // long sum cause we might sum-up more than Integer.MAX_VALUE
         if (node == null) return;
         sum+=node.val;
@@ -82,19 +159,28 @@ public class PathSumIII {
 
 
 
+
+
+
+
     public static int pathSumUsingPreOrderDfs(TreeNode root, int targetSum) {
         if(root == null) return 0;
-        return count(root,targetSum,0)+pathSumUsingPreOrderDfs(root.left, targetSum)+pathSumUsingPreOrderDfs(root.right, targetSum);
+        return dfs(root,targetSum,0)+pathSumUsingPreOrderDfs(root.left, targetSum)+pathSumUsingPreOrderDfs(root.right, targetSum);
     }
 
-    public static int count(TreeNode root, long targetSum,int c) {
+    public static int dfs(TreeNode root, long targetSum,int c) {
         if(root == null) return 0;
         targetSum -= root.val;
         if(targetSum == 0) c++;
-        c += count(root.left,targetSum,0);
-        c += count(root.right,targetSum,0);
+        c += dfs(root.left,targetSum,0);
+        c += dfs(root.right,targetSum,0);
         return c;
     }
+
+
+
+
+
 
 
 
@@ -118,13 +204,44 @@ public class PathSumIII {
         if(root == null) return;
         currSum += root.val;
         counter += map.getOrDefault(currSum-tSum, 0); // neededSum = currSum - targetSum
-        map.put(currSum, map.getOrDefault(currSum, 0)+1);
+        map.merge(currSum, 1, Integer::sum); // ++
         dfs(root.left, currSum);
         dfs(root.right, currSum);
         if (map.get(currSum) == 1) map.remove(currSum);
-        else map.put(currSum, map.get(currSum)-1);
-        // or instead of if-else map.put(currSum, map.getOrDefault(currSum, 0)-1);
+        else map.merge(currSum, -1, Integer::sum); // --
     }
 
 
+
+
+
+
+
+
+
+    int c = 0;
+    /**
+     * same as {@link #pathSum()}
+     */
+    public int pathSumNotWorking(TreeNode root, int targetSum) {
+        if(root==null) return 0;
+        dfsNW(root, targetSum, targetSum);
+        dfsNW(root, targetSum-root.val, targetSum);
+        return c;
+    }
+    private void dfsNW(TreeNode node, int need, int targetSum){
+        if(node == null) {
+            return;
+        }
+        System.out.printf("nodeVal:%s, need:%s\n", node.val, need);
+        if(need == 0) {
+            c++;
+            System.out.println(node.val);
+        }
+
+        dfsNW(node.left, need, targetSum);
+        dfsNW(node.left, need-node.val, targetSum);
+        dfsNW(node.right, need, targetSum);
+        dfsNW(node.right, need-node.val, targetSum);
+    }
 }
