@@ -33,10 +33,11 @@ public class BinaryTreeRightSideView {
 
         System.out.println("rightSideViewUsingLevelSize: " + rightSideViewUsingLevelSize(root)
         + "\nrightSideViewUsingQueueNull: " + rightSideViewUsingQueueNull(root)
-        + "\nrightSideViewUsingRecursion: " + rightSideViewUsingRecursion(root)
+        + "\nrightSideViewUsingDfs: " + rightSideViewUsingDfs(root)
         );
     }
 
+    // LEVEL TRAVERSAL
     public static List<Integer> rightSideViewUsingLevelSize(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
@@ -54,6 +55,7 @@ public class BinaryTreeRightSideView {
         return res;
     }
 
+    // LEVEL TRAVERSAL USING NULL AS SEPARATOR
     public static List<Integer> rightSideViewUsingQueueNull(TreeNode root) {
         List<Integer> lst = new ArrayList<>();
         if(root == null) return lst;
@@ -78,9 +80,80 @@ public class BinaryTreeRightSideView {
     }
 
 
+
+
+    // LEVEL TRAVERSAL USING RIGHT NODE VARIABLE
+    public static List<Integer> rightSideViewUsingRightNode(TreeNode root) {
+        List<Integer> lst = new ArrayList<>();
+        if(root == null) return lst;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            TreeNode rightNode = null; // rightmost node in the current level
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if (node != null) {
+                    rightNode = node; // update every time, at last, it will be the rightmost node
+                    if (node.left != null) q.add(node.left);
+                    if (node.right != null) q.add(node.right);
+                }
+            }
+            if (rightNode != null) lst.add(rightNode.val);
+        }
+        return lst;
+    }
+
+    // LEVEL TRAVERSAL USING RIGHT NODE VARIABLE, trav from right to left
+    public static List<Integer> rightSideViewUsingRightNode2(TreeNode root) {
+        List<Integer> lst = new ArrayList<>();
+        if(root == null) return lst;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            int size = q.size();
+            TreeNode rightNode = null; // rightmost node in the current level
+            for (int i = 0; i < size; i++) {
+                TreeNode node = q.poll();
+                if (node != null) {
+                    if (rightNode == null) rightNode = node; // update only once, at last, it will be the rightmost node
+                    if (node.right != null) q.add(node.right);
+                    if (node.left != null) q.add(node.left);
+                }
+            }
+            if (rightNode != null) lst.add(rightNode.val);
+        }
+        return lst;
+    }
+
+
+
+
+    // DFS TRAVERSAL - right first and then left children
+    public static List<Integer> rightSideViewUsingDfs(TreeNode root) {
+        List<Integer> lst = new ArrayList<>();
+        int depth = 0;
+        dfs(root, depth, lst);
+        return lst;
+    }
+
+    private static void dfs(TreeNode root, int depth, List<Integer> lst) {
+        if(root == null) return;
+        if(lst.size() == depth) {
+            lst.add(root.val);
+        }
+        dfs(root.right, depth+1, lst);
+        dfs(root.left, depth+1, lst);
+    }
+
+
+
+
+
+
     static int maxDepth=0;
-    public static List<Integer> rightSideViewUsingRecursion(TreeNode root) {
-        List<Integer>lst=new ArrayList<>();
+    public static List<Integer> rightSideViewUsingDfs2(TreeNode root) {
+        List<Integer> lst = new ArrayList<>();
         rightView(root, lst, 1);
         return lst;
     }
