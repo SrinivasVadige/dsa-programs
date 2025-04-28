@@ -104,7 +104,7 @@ Data Structures and Algorithm Programs
     * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
     * [BinaryTree RightSideView](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
     * [Kth Smallest Element in BST](/Algorithms/BinaryTrees/KthSmallestElementInBST.java)
-    * [LowestCommonAncestor LCA](/Algorithms/BinaryTrees/LowestCommonAncestor.java)
+    * [Lowest Common Ancestor of a Binary Tree / LCA of BT](/Algorithms/BinaryTrees/LowestCommonAncestorOfBinaryTree.java)
     * [PathSumIII](/Algorithms/BinaryTrees/PathSumIII.java)
     * [Diameter of BinaryTree](/Algorithms/BinaryTrees/DiameterOfBinaryTree.java)
     * [Leaf Similar Trees](/Algorithms/BinaryTrees/LeafSimilarTrees.java)
