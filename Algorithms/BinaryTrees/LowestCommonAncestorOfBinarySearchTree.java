@@ -38,7 +38,7 @@ public class LowestCommonAncestorOfBinarySearchTree {
             } else if (curr.val > p.val && curr.val > q.val) {
                 curr = curr.left; // both p and q are in the left subtree
             } else {
-                return curr; // found the split point, i.e., the LCA
+                return curr; // found the split point, i.e., the LCA -- p/q in left and q/p in right subtrees
             }
         }
         return null; // if p and q are not in the tree
