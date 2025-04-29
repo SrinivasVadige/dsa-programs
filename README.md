@@ -111,6 +111,7 @@ Data Structures and Algorithm Programs
     * [Leaf Similar Trees](/Algorithms/BinaryTrees/LeafSimilarTrees.java)
     * [Count Good Nodes in Binary Tree](/Algorithms/BinaryTrees/CountGoodNodesInBinaryTree.java)
     * [Longest ZigZag Path in a Binary Tree](/Algorithms/BinaryTrees/LongestZigZagPathInBinaryTree.java)
+    * [Maximum Level Sum of a Binary Tree](/Algorithms/BinaryTrees/MaxLevelSumOfBT.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation/)
 
