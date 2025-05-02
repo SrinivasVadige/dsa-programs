@@ -113,6 +113,7 @@ Data Structures and Algorithm Programs
     * [Longest ZigZag Path in a Binary Tree](/Algorithms/BinaryTrees/LongestZigZagPathInBinaryTree.java)
     * [Maximum Level Sum of a Binary Tree](/Algorithms/BinaryTrees/MaxLevelSumOfBT.java)
     * [Search in a Binary Search Tree](/Algorithms/BinaryTrees/SearchInBinarySearchTree.java)
+    * [Delete Node in a BST](/Algorithms/BinaryTrees/DeleteNodeInBST.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation/)
 
@@ -381,8 +382,9 @@ Data Structures and Algorithm Programs
 
 1. My "50 Days badge 2025" received on 12th March 2025
 2. My "Top 100 Liked" badge received on 20 March 2025
-3. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153/)
-4. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552/)
+3. My "100 Days badge 2025" received on 01 May 2025
+4. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153/)
+5. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552/)
 
 </br>
 </br>
