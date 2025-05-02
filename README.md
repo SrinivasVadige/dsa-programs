@@ -27,7 +27,7 @@ Data Structures and Algorithm Programs
 
 * ### [Data Structures & important classes](DataStructures/)
 
-  * [DynamicIntArray](/DataStructures/DynamicIntArray.java)
+  * [Dynamic int[] Array](/DataStructures/DynamicIntArray.java)
   * [Stream API](DataStructures/StreamApiExample.java)
   * [Collections Utility Class](DataStructures/CollectionsUtilityClass.java)
   * [List](/DataStructures/ListExample.java)
@@ -37,11 +37,12 @@ Data Structures and Algorithm Programs
   * [Stack](/DataStructures/StackExample.java)
   * [BinaryTreeNode sample / example class](DataStructures/BinaryTreeNode.java)
   * [BinaryTree Basics](DataStructures/BinaryTreeBasics.java)
-  * [BinarySearchTree](DataStructures/BinarySearchTree.java)
+  * [Binary Search Tree BST](DataStructures/BinarySearchTree.java)
+  * [Graphs](/DataStructures/Graphs.java)
   * [Disjoint Set Union DSU / Union Find](DataStructures/DisjointSetUnion.java)
-  * [AnnotationType](DataStructures/AnnotationTypeExample.java)
+  * [Annotation Type](DataStructures/AnnotationTypeExample.java)
   * [Enum Types & Conversions](DataStructures/EnumExample.java)
-  * [FunctionalInterface](DataStructures/FunctionalInterfaceExample.java)
+  * [Functional Interface](DataStructures/FunctionalInterfaceExample.java)
   * [Record](DataStructures/RecordExample.java)
 
 </br>
