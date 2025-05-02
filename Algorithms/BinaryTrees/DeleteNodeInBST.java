@@ -153,6 +153,43 @@ public class DeleteNodeInBST {
  *          20  40  70                20  40   70
  *             /  \                        \
  *             35  45                      45
+ *
+ *
+ * delNode = 4
+ *                          7
+ *                       /     \
+ *                     (4)      10
+ *                    /  \     /  \
+ *                   2    6   8    12
+ *                  / \   /    \   / \
+ *                 1   3 5      9 11 13
+ *
+ * Here, delNode.left's right-most node (3) is always smaller than
+ * delNode.right's 1st node (6)
+ *
+  *                         7
+ *                       /     \
+ *                      4       10
+ *                    /      /  \
+ *                   2      8    12
+ *                  / \      \   / \
+ *                 1   3      9 11 13
+ *                      \
+ *                       6
+ *                       /
+ *                      5
+ *
+ *
+ *                        7
+ *                    /        \
+ *                   2         10
+ *                  / \      /  \
+ *                 1   3    8    12
+ *                      \    \   / \
+ *                      6     9 11 13
+ *                      /
+ *                      5
+ *
  */
     public static TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) return null;
