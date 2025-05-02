@@ -142,8 +142,7 @@ public class Graphs {
         adjLstGraph.printGraph();
 
         System.out.println("\nDFS Traversal:");
-        boolean[] visited = new boolean[n];
-        adjLstGraph.dfs(0, visited, adjLstGraph.adjLst);
+        adjLstGraph.dfs(0, new boolean[n], adjLstGraph.adjLst);
 
         System.out.println("\nBFS Traversal:");
         adjLstGraph.bfs(0, adjLstGraph.adjLst);
