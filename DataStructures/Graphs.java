@@ -217,6 +217,13 @@ public class Graphs {
                 }
             }
         }
+        // same as above dfs() but it's very slightly slower
+        void dfs2(int node, boolean[] visited, List<Integer>[] adj) {
+            if(visited[node]) return;
+            visited[node] = true;
+            System.out.print(node + " ");
+            for (int neighbor : adj[node]) dfs2(neighbor, visited, adj);
+        }
 
 
         void bfs(int start, List<Integer>[] adj) {
