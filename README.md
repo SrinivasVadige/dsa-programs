@@ -165,6 +165,7 @@ Data Structures and Algorithm Programs
     * [Course Schedule](Algorithms/Graphs/CourseSchedule.java)
     * [Rotting Oranges](Algorithms/Graphs/RottingOranges.java)
     * [Keys and Rooms](Algorithms/Graphs/KeysAndRooms.java)
+    * [Number of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
 
 8. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms/)
 
