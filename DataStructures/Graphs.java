@@ -141,10 +141,10 @@ public class Graphs {
         System.out.println("Adjacency List:");
         adjLstGraph.printGraph();
 
-        System.out.println("\nDFS Traversal:");
+        System.out.println("\nDFS Traversal in Adjacency List:");
         adjLstGraph.dfs(0, new boolean[n], adjLstGraph.adjLst);
 
-        System.out.println("\nBFS Traversal:");
+        System.out.println("\nBFS Traversal in Adjacency List:");
         adjLstGraph.bfs(0, adjLstGraph.adjLst);
 
 
@@ -161,6 +161,10 @@ public class Graphs {
         adjMatrixGraph.addEdge(3, 4);
         System.out.println("\n\n\n\nAdjacency Matrix:");
         adjMatrixGraph.printGraph();
+        System.out.println("\nDFS Traversal in Adjacency Matrix:");
+        adjMatrixGraph.dfs(0, new boolean[n]);
+        System.out.println("\nBFS Traversal in Adjacency Matrix:");
+        adjMatrixGraph.bfs(0);
 
 
 
@@ -292,6 +296,44 @@ public class Graphs {
                     System.out.print(adjMatrix[i][j] + " ");
                 }
                 System.out.println();
+            }
+        }
+
+        public void dfs(int node, boolean[] visited) { // node == row index
+            visited[node] = true;
+            System.out.print(node + " ");
+
+            for (int nei = 0; nei < V; nei++) { // col
+                if (adjMatrix[node][nei] == 1 && !visited[nei]) {
+                    dfs(nei, visited);
+                }
+            }
+        }
+        public void dfs2(int[][] isConnected, boolean[] visited, int i) {
+            visited[i] = true;
+            for (int nei = 0; nei < isConnected.length; nei++) {
+                if (isConnected[i][nei] == 1 && !visited[nei]) {
+                    dfs2(isConnected, visited, nei);
+                }
+            }
+        }
+        public void bfs(int start) { // row index i.e entry point
+            boolean[] visited = new boolean[V];
+            Queue<Integer> queue = new LinkedList<>();
+
+            queue.add(start);
+            visited[start] = true;
+
+            while (!queue.isEmpty()) {
+                int node = queue.poll();
+                System.out.print(node + " ");
+
+                for (int col = 0; col < V; col++) { // each col for each node i.e row
+                    if (adjMatrix[node][col] == 1 && !visited[col]) {
+                        queue.add(col);
+                        visited[col] = true;
+                    }
+                }
             }
         }
     }
