@@ -16,7 +16,7 @@ public class NumberOfProvinces {
         };
         System.out.println("findCircleNum(isConnected) => " + findCircleNum(isConnected));
         System.out.println("findCircleNum2(isConnected) => " + findCircleNum2(isConnected));
-        System.out.println("findCircleNumDP(isConnected) => " + findCircleNumDP(isConnected));
+        System.out.println("findCircleNumUsingAdjacencyMatrix(isConnected) => " + findCircleNumUsingAdjacencyMatrix(isConnected));
 
     }
 
@@ -90,7 +90,7 @@ public class NumberOfProvinces {
 
 
 
-    public static int findCircleNumDP(int[][] isConnected) {
+    public static int findCircleNumUsingAdjacencyMatrix(int[][] isConnected) {
         int n = isConnected.length;
         boolean[] visited = new boolean[n];
         int count = 0;
