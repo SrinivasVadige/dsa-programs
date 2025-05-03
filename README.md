@@ -166,6 +166,7 @@ Data Structures and Algorithm Programs
     * [Rotting Oranges](Algorithms/Graphs/RottingOranges.java)
     * [Keys and Rooms](Algorithms/Graphs/KeysAndRooms.java)
     * [Number of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
+    * [Reorder Routes to Make All Paths Lead to the City Zero](Algorithms/Graphs/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java)
 
 8. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms/)
 
