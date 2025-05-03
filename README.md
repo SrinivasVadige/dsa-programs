@@ -133,7 +133,7 @@ Data Structures and Algorithm Programs
     * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
     * [Path With Minimum Effort](Algorithms/DisjointSetUnion/PathWithMinimumEffort.java)
     * [Minimize Hamming Distance After Swap Operations](Algorithms/DisjointSetUnion/MinimizeHammingDistanceAfterSwapOperations.java)
-    * [Evaluate Division](Algorithms/DisjointSetUnion/EvaluateDivision.java)
+    * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
@@ -167,6 +167,7 @@ Data Structures and Algorithm Programs
     * [Keys and Rooms](Algorithms/Graphs/KeysAndRooms.java)
     * [Number of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
     * [Reorder Routes to Make All Paths Lead to the City Zero](Algorithms/Graphs/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java)
+    * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
 
 8. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms/)
 
