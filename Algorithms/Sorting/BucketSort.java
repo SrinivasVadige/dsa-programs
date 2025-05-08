@@ -20,15 +20,19 @@ public class BucketSort {
     public static void main(String[] args) {
         int[] nums = {2, 0, 2, 1, 1, 0};
         bucketSortForNonNegativesWithRange(nums);
-        System.out.println("nums => " + Arrays.toString(nums));
+        System.out.println("bucketSortForNonNegativesWithRange => " + Arrays.toString(nums));
 
-        nums= new int[]{2, 0, 2, 1, 1, 0, -1, -500};
+        nums = new int[]{2, 0, 2, 1, 1, 0, -1, -500};
+        findKthLargestUsingMinMaxRangeBucketSort(nums);
+        System.out.println("findKthLargestUsingMinMaxRangeBucketSort => " + Arrays.toString(nums));
+
+        nums = new int[]{2, 0, 2, 1, 1, 0, -1, -500};
         bucketSort(nums);
-        System.out.println("nums => " + Arrays.toString(nums));
+        System.out.println("bucketSort => " + Arrays.toString(nums));
 
-        nums= new int[]{2, 0, 2, 1, 1, 0, -1, -500};
+        nums = new int[]{2, 0, 2, 1, 1, 0, -1, -500};
         bucketSort2(nums);
-        System.out.println("nums => " + Arrays.toString(nums));
+        System.out.println("bucketSort2 => " + Arrays.toString(nums));
     }
 
     public static void bucketSortForNonNegativesWithRange(int[] nums) {
@@ -43,6 +47,51 @@ public class BucketSort {
             }
         }
     }
+
+
+
+
+    /**
+     * @TimeComplexity O(n+r) -> n = nums.length, r = range of nums == max-min+1 == Bucket size
+     * @SpaceComplexity O(r)
+     *
+     * How's the Bucket Sort work with negative numbers?
+     * cause "num - minValue" will never be negative, it will always be >= 0
+     * So, we can use it as an index in the count array.
+     *
+     * NOTE:
+     * Java int range: Integer.MIN_VALUE to Integer.MAX_VALUE
+     * Minimum: -2³¹ = -2,147,483,648 ≈ −2 × 10⁹
+     * Maximum: 2³¹ − 1 = 2,147,483,647 ≈ 2 × 10⁹
+     *
+     * So, this bucketSort works when  -10⁹ <= nums[i] <= 10⁹. Because if the range is more than that int[] will not be able to hold the values
+    */
+    public static void findKthLargestUsingMinMaxRangeBucketSort(int[] nums) {
+        int minValue = Arrays.stream(nums).min().getAsInt();
+        int maxValue = Arrays.stream(nums).max().getAsInt();
+
+        int[] bucket = new int[maxValue - minValue + 1]; // bucket size
+
+        // bucket sort with dupes
+        for (int num : nums) {
+            bucket[num - minValue]++; // if num==-500 then num-minValue will be 0 and if num==2 then num-minValue will be 502
+        }
+
+        int i = nums.length - 1; // fill the nums[] in reverse order
+        for(int bucketIndex = bucket.length - 1; bucketIndex >= 0; bucketIndex--) { // descending order loop --- i.e num=bucketIndex+minValue is the largest number
+            if (bucket[bucketIndex] == 0) continue; // skip empty buckets
+            int num = bucketIndex + minValue;
+            int numCount = bucket[bucketIndex];
+            while (numCount-- > 0) {
+                nums[i--] = num; // fill the nums[] with sorted order
+            }
+        }
+    }
+
+
+
+
+
 
     public static void bucketSortForNegativesWithRange(int[] nums) {
         int[] buckets = new int[nums.length]; //
