@@ -168,6 +168,7 @@ Data Structures and Algorithm Programs
     * [Number of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
     * [Reorder Routes to Make All Paths Lead to the City Zero](Algorithms/Graphs/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java)
     * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
+    * [Nearest Exit from Entrance in Maze](Algorithms/Graphs/NearestExitFromEntranceInMaze.java)
 
 8. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms/)
 
@@ -355,6 +356,8 @@ Data Structures and Algorithm Programs
 7. [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
 8. [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
 9. [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
+10. Find median for k elements in n array. Return new int[]{maxMedian, minMedian}
+11. 1 to m-1 cities and n warehouses, cityStart=[1,2,1], cityEnd=[2,5,9]. cityStart.length == cityEnd.length == n of warehouses. Multiple warehouse connect to same city. Find cityWarehouseCounter <city, num of warehouses>
 
 ## GOOGLE
 
