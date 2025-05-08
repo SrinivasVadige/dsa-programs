@@ -191,7 +191,7 @@ Data Structures and Algorithm Programs
     * [Determine if Two Strings Are Close](Algorithms/Hashing/DetermineIfTwoStringsAreClose.java)
     * [Equal Row and Column Pairs](Algorithms/Hashing/EqualRowAndColumnPairs.java)
 
-10. #### [Heap](/Algorithms/HeapAlgos/)
+10. #### [Heap / PriorityQueue](/Algorithms/HeapAlgos/)
 
     * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
     * [Top K Frequent Elements](Algorithms/HeapAlgos/TopKFrequentElements.java)
@@ -266,7 +266,7 @@ Data Structures and Algorithm Programs
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
 
-17. #### [Queue, Deque & PriorityQueue](/Algorithms/QueueAlgos/)
+17. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos/)
 
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
     * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
