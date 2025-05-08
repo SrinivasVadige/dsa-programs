@@ -15,25 +15,140 @@ public class KthLargestElementInArray {
     public static void main(String[] args) {
         int[] nums = new int[]{3,2,1,5,6,4};
         int k = 2;
-        System.out.println("findKthLargestUsingQuickSort(nums, k) => " + findKthLargestUsingQuickSort(nums, k));
+        System.out.println("findKthLargestUsingInBuiltSortMethod => " + findKthLargestUsingInBuiltSortMethod(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingQuickSort2(nums, k) => " + findKthLargestUsingQuickSort2(nums, k));
+        System.out.println("findKthLargest Using PriorityQueue with n size => " + findKthLargestUsingPqWithNSize(nums, k));
+        System.out.println("findKthLargest Using PriorityQueue with k size 🔥 => " + findKthLargestUsingPqWithKSize(nums, k));
+        System.out.println("findKthLargest Using Min Max Range BucketSort => " + findKthLargestUsingMinMaxRangeBucketSort(nums, k));
+
+        System.out.println("findKthLargestUsingQuickSort => " + findKthLargestUsingQuickSort(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingMinHeap(nums, k) => " + findKthLargestUsingMinHeap(nums, k));
+        System.out.println("findKthLargestUsingQuickSort2 => " + findKthLargestUsingQuickSort2(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingMaxHeap(nums, k) => " + findKthLargestUsingMaxHeap(nums, k));
+        System.out.println("findKthLargestUsingMinHeap => " + findKthLargestUsingMinHeap(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingRange(nums, k) => " + findKthLargestUsingRange(nums, k));
-        nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingInBuiltSortMethod(nums, k) => " + findKthLargestUsingInBuiltSortMethod(nums, k));
-        nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingPriorityQueue(nums, k) => " + findKthLargestUsingPq(nums, k));
+        System.out.println("findKthLargestUsingMaxHeap => " + findKthLargestUsingMaxHeap(nums, k));
+    }
+
+    /**
+     * @TimeComplexity O(nlogn)
+     * @SpaceComplexity O(1)
+    */
+    public static int findKthLargestUsingInBuiltSortMethod(int[] nums, int k) {
+        int kthLarge = Integer.MIN_VALUE;
+        Arrays.sort(nums);
+        kthLarge = nums[nums.length - k];
+
+        kthLarge = Arrays.stream(nums).sorted().toArray()[nums.length - k]; // Arrays.sort(nums); nums[nums.length - k];
+
+        // or
+        kthLarge = Arrays.stream(nums).sorted().skip(nums.length - k).findFirst().getAsInt();
+
+        // or
+        kthLarge = Arrays.stream(nums).boxed().sorted(Comparator.reverseOrder()).skip(k - 1).findFirst().get();
+
+        // or
+        kthLarge = Arrays.stream(nums).boxed().sorted(Comparator.reverseOrder()).limit(k).findFirst().get();
+
+        // or
+        kthLarge = Arrays.stream(nums).boxed().sorted(Comparator.reverseOrder()).mapToInt(i -> i).toArray()[k - 1];
+
+        return kthLarge;
     }
 
 
+
+
+
+
     /**
-     * @TimeComplexity: O(n) in average and O(n^2) in worst, but slower than #findKthLargestUsingQuickSort2()
-     * @SpaceComplexity: O(1)
+     * @TimeComplexity O(nlogn)
+     * @SpaceComplexity O(n)
+     */
+    public static int findKthLargestUsingPqWithNSize(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+        for(int x: nums) pq.offer(x);
+        int res = 0;
+        while(k-- > 0) res = pq.poll();
+        return res;
+    }
+    public static int findKthLargestUsingPqWithNSize2(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+        for(int x: nums) pq.offer(x);
+        while(--k > 0) pq.poll();
+        return pq.poll();
+    }
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(nlogk)
+     * @SpaceComplexity O(k)
+     *
+     * Here, the pq.offer() methods sum is not nlogn, it's nlogk
+     * Cause if your heap only holds O(k) Elements i.e size==k, then heap operations only cost u O(log k) TimeComplexity, not O(log n)
+     * --> for n elements it's nlogk
+     */
+    public static int findKthLargestUsingPqWithKSize(int[] nums, int k) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for (int num : nums) {
+            pq.offer(num);
+            if (pq.size() > k) { // maintain k size
+                pq.poll(); // removes the smallest element
+            }
+        }
+        return pq.peek(); // or pq.poll(); pq contains only k largest elements & the head will be the kth largest of the array
+    }
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n+r) -> n = nums.length, r = range of nums == max-min+1 == Bucket size
+     * @SpaceComplexity O(r)
+     *
+     * How's the Bucket Sort work with negative numbers?
+     * cause "num - minValue" will never be negative, it will always be >= 0
+     * So, we can use it as an index in the count array.
+    */
+    public static int findKthLargestUsingMinMaxRangeBucketSort(int[] nums, int k) {
+        int minValue = Arrays.stream(nums).min().getAsInt();
+        int maxValue = Arrays.stream(nums).max().getAsInt();
+
+        int[] count = new int[maxValue - minValue + 1]; // bucket size
+
+        // bucket sort with dupes
+        for (int num : nums) {
+            count[num - minValue]++;
+        }
+
+        int remaining = k;
+        for (int i = count.length - 1; i >= 0; i--) {
+            remaining -= count[i];
+
+            if (remaining <= 0) {
+                return i + minValue;
+            }
+        }
+
+        return -1; // This line should not be reached
+    }
+
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n) in average and O(n^2) in worst, but slower than #findKthLargestUsingQuickSort2()
+     * @SpaceComplexity O(n)
     */
     public static int findKthLargestUsingQuickSort(int[] nums, int k) {
         List<Integer> list = new ArrayList<>();
@@ -44,57 +159,117 @@ public class KthLargestElementInArray {
         return quickSelect(list, k);
     }
 
-    public static int quickSelect(List<Integer> nums, int k) {
+    private static int quickSelect(List<Integer> nums, int k) {
         int pivotIndex = new Random().nextInt(nums.size());
         int pivot = nums.get(pivotIndex);
 
-        List<Integer> left = new ArrayList<>(); // greater than pivot
-        List<Integer> mid = new ArrayList<>(); // equal to pivot
-        List<Integer> right = new ArrayList<>(); // less than pivot
+        List<Integer> less = new ArrayList<>(); // less than pivot -- LEFT side
+        List<Integer> equal = new ArrayList<>(); // equal to pivot -- MIDDLE side
+        List<Integer> greater = new ArrayList<>(); // greater than pivot -- RIGHT side
 
+        // 1. Partitioning the given list into three parts -----
         for (int num: nums) {
             if (num > pivot) {
-                left.add(num);
+                greater.add(num);
             } else if (num < pivot) {
-                right.add(num);
+                less.add(num);
             } else {
-                mid.add(num);
+                equal.add(num);
             }
         }
 
-        // left
-        if (k <= left.size()) {
-            return quickSelect(left, k);
-        }
+        // 2. Choose the partition to search in -----
 
-        // right
-        if (left.size() + mid.size() < k) {
-            return quickSelect(right, k - left.size() - mid.size());
+        // isInside greater?
+        if (k <= greater.size()) {
+            return quickSelect(greater, k);
         }
+        // isInside less?
+        else if (greater.size() + equal.size() < k) {
+            return quickSelect(less, k - greater.size() - equal.size());
+        }
+        // so definitely inside equal
+        else
+            return pivot; // same as (greater.size() < k) && (greater.size() + equal.size() >= k)
 
-        return pivot;
+
+        // or just use if statements like below
+        // if (k <= greater.size()) {
+        //     return quickSelect(greater, k);
+        // }
+
+        // if (greater.size() + equal.size() < k) {
+        //     return quickSelect(less, k - greater.size() - equal.size());
+        // }
+
+        // return pivot; // or return (greater.size() + equal.size() >= k)? equal.get(0) : -1;
     }
+
+
 
 
 
 
 
     /**
-     * @TimeComplexity: O(n) in average and O(n^2) in worst
-     * @SpaceComplexity: O(1)
+     * TLE for very large arrays
+     * @TimeComplexity O(n) in average and O(n^2) in worst
+     * @SpaceComplexity O(1)
      */
     public static int findKthLargestUsingQuickSort2(int[] nums, int k) {
+        k = nums.length - k; // new k in ascendingOrder & it's index
+        return quickSelect(nums, 0, nums.length - 1, k);
+    }
+    private static int quickSelect(int[] nums, int l, int r, int k) {
+        // if (l == r) {
+        //     return nums[l];
+        // }
+
+        int pivot = nums[r]; // always select first element as pivot
+        int p = l;
+
+        for (int i = l; i < r; i++) {
+            if (nums[i] <= pivot) {
+                int temp = nums[p];
+                nums[p] = nums[i];
+                nums[i] = temp;
+                p++;
+            }
+        }
+
+        int temp = nums[p];
+        nums[p] = nums[r];
+        nums[r] = temp;
+
+        if (p > k) {
+            return quickSelect(nums, l, p-1, k);
+        } else if (p < k) {
+            return quickSelect(nums, p+1, r, k);
+        } else {
+            return nums[p];
+        }
+    }
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n) in average and O(n^2) in worst
+     * @SpaceComplexity O(1)
+     */
+    public static int findKthLargestUsingQuickSort3(int[] nums, int k) {
         int targetIdx = nums.length - k; // targetIndex in asc sorted nums arr or new k in ascendingOrder i.e it's index after sort
-        return quickSelect2(nums, 0, nums.length - 1, targetIdx);
+        return quickSelect3(nums, 0, nums.length - 1, targetIdx);
     }
     // quick sort
-    private static int quickSelect2(int[] nums, int left, int right, int targetIdx) {
+    private static int quickSelect3(int[] nums, int left, int right, int targetIdx) {
         if (left == right) {
             return nums[left];
         }
 
-        int pivot = nums[new Random().nextInt(right-left+1)+left]; // something in window
-        // or int pivot = nums[left]; // we can also choose first window element as pivot
+        int pivot = nums[new Random().nextInt(right-left+1)+left]; // or nums[right] or nums[left] - it can be anything in the window
         int low = left;
         int high = right;
 
@@ -118,9 +293,9 @@ public class KthLargestElementInArray {
         }
 
         if (targetIdx <= high) {
-            return quickSelect2(nums, left, high, targetIdx);
+            return quickSelect3(nums, left, high, targetIdx);
         } else if (targetIdx >= low) {
-            return quickSelect2(nums, low, right, targetIdx);
+            return quickSelect3(nums, low, right, targetIdx);
         } else {
             return nums[targetIdx];
         }
@@ -132,8 +307,8 @@ public class KthLargestElementInArray {
 
 
     /**
-     * @TimeComplexity: O(n) in average and O(n^2) in worst
-     * @SpaceComplexity: O(1)
+     * @TimeComplexity O(n) in average and O(n^2) in worst
+     * @SpaceComplexity O(1)
      *
      * Down-Heapify (Percolate Down) ---> minHeap
      */
@@ -182,8 +357,8 @@ public class KthLargestElementInArray {
 
 
     /**
-     * @TimeComplexity: O(n) in average and O(n^2) in worst
-     * @SpaceComplexity: O(1)
+     * @TimeComplexity O(n) in average and O(n^2) in worst
+     * @SpaceComplexity O(1)
      *
      * Up-Heapify (Percolate Up) ---> maxHeap
      */
@@ -221,52 +396,6 @@ public class KthLargestElementInArray {
 
 
 
-
-
-
-
-    /**
-     * TLE
-     * @TimeComplexity: O(n) in average and O(n^2) in worst
-     * @SpaceComplexity: O(1)
-     */
-    public static int findKthLargestUsingQuickSort3(int[] nums, int k) {
-        k = nums.length - k; // new k in ascendingOrder & it's index
-        return quickSelect3(nums, 0, nums.length - 1, k);
-    }
-    // quick sort
-    private static int quickSelect3(int[] nums, int l, int r, int k) {
-        // if (l == r) {
-        //     return nums[l];
-        // }
-
-        int pivot = nums[r]; // always select first element as pivot
-        int p = l;
-
-        for (int i = l; i < r; i++) {
-            if (nums[i] <= pivot) {
-                int temp = nums[p];
-                nums[p] = nums[i];
-                nums[i] = temp;
-                p++;
-            }
-        }
-
-        int temp = nums[p];
-        nums[p] = nums[r];
-        nums[r] = temp;
-
-        if (p > k) {
-            return quickSelect3(nums, l, p-1, k);
-        } else if (p < k) {
-            return quickSelect3(nums, p+1, r, k);
-        } else {
-            return nums[p];
-        }
-    }
-
-
-
     public static int findKthLargest2(int[] nums, int k) {
         int[] n = new int[20001];
 
@@ -280,86 +409,6 @@ public class KthLargestElementInArray {
         }
 
         return -1;
-    }
-
-
-
-
-
-    /**
-     * @TimeComplexity: O(n+r) -> n = nums.length, r = range of nums
-     * @SpaceComplexity: O(r)
-    */
-    public static int findKthLargestUsingRange(int[] nums, int k) {
-        int minValue = Arrays.stream(nums).min().getAsInt();
-        int maxValue = Arrays.stream(nums).max().getAsInt();
-
-        int[] count = new int[maxValue - minValue + 1];
-
-        for (int num : nums) {
-            count[num - minValue]++;
-        }
-
-        int remaining = k;
-        for (int i = count.length - 1; i >= 0; i--) {
-            remaining -= count[i];
-
-            if (remaining <= 0) {
-                return i + minValue;
-            }
-        }
-
-        return -1; // This line should not be reached
-    }
-
-
-
-
-
-    /**
-     * @TimeComplexity: O(nlogn)
-     * @SpaceComplexity: O(1)
-    */
-    public static int findKthLargestUsingInBuiltSortMethod(int[] nums, int k) {
-        int kthLarge = Integer.MIN_VALUE;
-        Arrays.sort(nums);
-        kthLarge = nums[nums.length - k];
-
-        kthLarge = Arrays.stream(nums).sorted().toArray()[nums.length - k]; // Arrays.sort(nums); nums[nums.length - k];
-
-        // or
-        kthLarge = Arrays.stream(nums).sorted().skip(nums.length - k).findFirst().getAsInt();
-
-        // or
-        kthLarge = Arrays.stream(nums).boxed().sorted(Comparator.reverseOrder()).skip(k - 1).findFirst().get();
-
-        // or
-        kthLarge = Arrays.stream(nums).boxed().sorted(Comparator.reverseOrder()).limit(k).findFirst().get();
-
-        // or
-        kthLarge = Arrays.stream(nums).boxed().sorted(Comparator.reverseOrder()).mapToInt(i -> i).toArray()[k - 1];
-
-        return kthLarge;
-    }
-
-
-
-
-    /**
-     * @TimeComplexity: O(nlogk)
-     * @SpaceComplexity: O(k)
-     */
-    public static int findKthLargestUsingPq(int[] nums, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-
-        for (int num : nums) {
-            pq.add(num);
-            if (pq.size() > k) { // maintain k size
-                pq.poll(); // removes the smallest element
-            }
-        }
-
-        return pq.peek(); // pq contains only k largest elements & the head will be the kth largest of the array
     }
 }
 
