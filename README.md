@@ -196,6 +196,7 @@ Data Structures and Algorithm Programs
     * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
     * [Top K Frequent Elements](Algorithms/HeapAlgos/TopKFrequentElements.java)
     * [Find Median from Data Stream](Algorithms/HeapAlgos/FindMedianFromDataStream.java)
+    * [Smallest Number in Infinite Set](/Algorithms/HeapAlgos/SmallestNumberInInfiniteSet.java)
 
 11. #### [IntegerArray](/Algorithms/IntegerArray/)
 
