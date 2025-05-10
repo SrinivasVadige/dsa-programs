@@ -93,6 +93,7 @@ Data Structures and Algorithm Programs
     * [BinaryTree MaximumPathSum](/Algorithms/BinarySearch/BinaryTreeMaximumPathSum.java)
     * [Find Min in RotatedSortedArray](/Algorithms/BinarySearch/FindMinInRotatedSortedArray.java)
     * [Guess Number Higher or Lower](/Algorithms/BinarySearch/GuessNumberHigherOrLower.java)
+    * [Successful Pairs of Spells and Potions](/Algorithms/BinarySearch/SuccessfulPairsOfSpellsAndPotions.java)
 
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
