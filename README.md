@@ -35,6 +35,7 @@ Data Structures and Algorithm Programs
   * [HashMap](/DataStructures/HashMapExample.java)
   * [Queue, Dequeue & PriorityQueue](/DataStructures/QueueDequeuePriorityQueue.java)
   * [Stack](/DataStructures/StackExample.java)
+  * [Binary Search](/DataStructures/BinarySearch.java)
   * [BinaryTreeNode sample / example class](DataStructures/BinaryTreeNode.java)
   * [BinaryTree Basics](DataStructures/BinaryTreeBasics.java)
   * [Binary Search Tree BST](DataStructures/BinarySearchTree.java)

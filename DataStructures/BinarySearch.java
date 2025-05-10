@@ -96,4 +96,39 @@ public class BinarySearch {
          */
     }
 
+
+
+
+    /**
+     * @TimeComplexity O(log n)
+     * @SpaceComplexity O(1)
+     *
+     * Focus on "Strictly monotonically increasing" or "Strictly monotonically decreasing"
+     *
+     *                                         *                    *
+     *                                     *      -∞     or     -∞      *
+     *                                 *                                     *
+     *                             *                                            *
+     *                         -∞                                                   -∞
+     *
+     * "-∞" is for nums[-1] and nums[n]
+     *
+     * If there is a "Strictly monotonically increasing" then we might face a smaller number on the right i.e a peak or the nums ends with -∞ i.e a peak
+     * Similarly if there is a "Strictly monotonically decreasing", then we know that nums[-1] is -∞ and nums[0] is peak
+     *
+     * Note that we need any peak, not necessarily the max peak
+     *
+    */
+    public static int findPeakElement(int[] nums) {
+        int n=nums.length, l=0, r=n-1, mid;
+        while (l<=r) {
+            mid = l + (r-l)/2;
+            // which neighbor is bigger?
+            if (mid > 0 && nums[mid] < nums[mid-1]) r=mid-1; // leftNeighbor is bigger
+            else if( mid < n-1 && nums[mid] < nums[mid+1]) l=mid+1; // rightNeighbor is bigger
+            else return mid; // so, no neighbor is bigger
+        }
+        return -1;
+    }
+
 }
