@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
- * @since 10 May 2023
+ * @since 10 May 2025
  */
 public class SuccessfulPairsOfSpellsAndPotions {
     public static void main(String[] args) {

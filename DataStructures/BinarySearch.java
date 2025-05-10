@@ -2,7 +2,7 @@ package DataStructures;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
- * @since 10 May 2023
+ * @since 10 May 2025
  *
  * Binary Search has a time complexity of O(log n) but only works on sorted arrays
  *
