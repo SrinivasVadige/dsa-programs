@@ -91,7 +91,8 @@ Data Structures and Algorithm Programs
     * [Search Insert Position](/Algorithms/BinarySearch/SearchInsertPosition.java)
     * [Search in 2D Sorted Matrix](/Algorithms/BinarySearch/Search2DSortedMatrix.java)
     * [BinaryTree MaximumPathSum](/Algorithms/BinarySearch/BinaryTreeMaximumPathSum.java)
-    * [FindMinInRotatedSortedArray](/Algorithms/BinarySearch/FindMinInRotatedSortedArray.java)
+    * [Find Min in RotatedSortedArray](/Algorithms/BinarySearch/FindMinInRotatedSortedArray.java)
+    * [Guess Number Higher or Lower](/Algorithms/BinarySearch/GuessNumberHigherOrLower.java)
 
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
