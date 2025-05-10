@@ -198,6 +198,7 @@ Data Structures and Algorithm Programs
     * [Find Median from Data Stream](Algorithms/HeapAlgos/FindMedianFromDataStream.java)
     * [Smallest Number in Infinite Set](/Algorithms/HeapAlgos/SmallestNumberInInfiniteSet.java)
     * [Maximum Subsequence Score](/Algorithms/HeapAlgos/MaximumSubsequenceScore.java)
+    * [Total Cost to Hire K Workers](/Algorithms/HeapAlgos/TotalCostToHireKWorkers.java)
 
 11. #### [IntegerArray](/Algorithms/IntegerArray/)
 
