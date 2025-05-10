@@ -191,12 +191,13 @@ Data Structures and Algorithm Programs
     * [Determine if Two Strings Are Close](Algorithms/Hashing/DetermineIfTwoStringsAreClose.java)
     * [Equal Row and Column Pairs](Algorithms/Hashing/EqualRowAndColumnPairs.java)
 
-10. #### [Heap / PriorityQueue](/Algorithms/HeapAlgos/)
+10. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos/)
 
     * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
     * [Top K Frequent Elements](Algorithms/HeapAlgos/TopKFrequentElements.java)
     * [Find Median from Data Stream](Algorithms/HeapAlgos/FindMedianFromDataStream.java)
     * [Smallest Number in Infinite Set](/Algorithms/HeapAlgos/SmallestNumberInInfiniteSet.java)
+    * [Maximum Subsequence Score](/Algorithms/HeapAlgos/MaximumSubsequenceScore.java)
 
 11. #### [IntegerArray](/Algorithms/IntegerArray/)
 
