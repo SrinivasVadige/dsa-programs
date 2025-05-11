@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -229,6 +230,31 @@ public class HashMapExample {
         Map<Integer, String> mapOf = Map.of(1, "foo", 2, "bar");
         Map<Integer, String> mapOfEntries = Map.ofEntries(Map.entry(1, "foo"), Map.entry(2, "bar"));
 
+
+
+
+
+
+
+        /**
+         * NOTE:
+         * Set<Map<Integer, Integer> set.contains(map1) has time complexity O(n) not O(1)
+         * So, use this below custom MapWrapper custom class -- it checks both map.equals() and map.hashCode()
+         */
+
+        Set<MapWrapper> setMapWrapper = new HashSet<>();
+
+        Map<Integer, Integer> m1 = new HashMap<>();
+        m1.put(1, 2);
+        m1.put(3, 4);
+
+        Map<Integer, Integer> m2 = new HashMap<>();
+        m2.put(3, 4);
+        m2.put(1, 2);
+
+        setMapWrapper.add(new MapWrapper(m1));
+        System.out.println(setMapWrapper.contains(new MapWrapper(m2))); // true
+
     }
 
     public class Department {}
@@ -239,5 +265,38 @@ public class HashMapExample {
         Department getDepartment(){return department;}
         int getSalary() {return salary;}
         double getGrade(){return grade;}
+    }
+
+
+    public static class MapWrapper {
+        private final Map<Integer, Integer> map;
+        private final int hash;
+
+        public MapWrapper(Map<Integer, Integer> map) {
+            this.map = new HashMap<>(map); // Make defensive copy
+            this.hash = computeHash(map);
+        }
+
+        private int computeHash(Map<Integer, Integer> map) {
+            // Any consistent, order-independent hashing
+            return map.hashCode(); // Still O(n), but done ONCE ----- note that this hashCode() may give false positives
+        }
+
+        @Override
+        public int hashCode() {
+            return hash; // O(1)
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (!(obj instanceof MapWrapper)) return false;
+            MapWrapper other = (MapWrapper) obj;
+            return this.map.equals(other.map); // Still O(n)
+        }
+
+        public Map<Integer, Integer> getMap() {
+            return map;
+        }
     }
 }
