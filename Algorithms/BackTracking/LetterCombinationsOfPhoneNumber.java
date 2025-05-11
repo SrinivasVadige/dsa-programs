@@ -19,29 +19,60 @@ and digits = "234" ---> ["adg", "adh", "adi", "aeg", "aeh", "aei", "afg", "afh",
 this means digits.length == List.get(i).length
 
 
-    2 = "abc"
-    3 = "def"
-    4 = "ghi"
+
+    EXAMPLE 1:
+    -----------
+    digits = "234"
+    n = digits.length = "234".length() = 3
+
+    2 : "abc" -- length = 3
+    3 : "def" -- length = 3
+    4 : "ghi" -- length = 3
+
+    Here in this problem with any example, we calculate 3^n not 2^n like we usually do in backtracking
+    Here 3^n cause 3 is length of digits -- so new 3 possibilities in each iteration
+
+                                                                   ""
+                                                                   |
+                                                                   2
+                         __________________________________________|__________________________________________
+                         |                                         |                                         |
+                         a                                         b                                         c
+                         |                                         |                                         |
+                         3                                         3                                         3
+             ____________|_____________                ____________|_____________                ____________|_____________
+             |           |            |                |           |            |                |           |            |
+             ad          ae           af               bd          be           bf               cd          ce           cf
+             |           |            |                |           |            |                |           |            |
+             4           4            4                4           4            4                4           4            4
+         ____|____   ____|____    ____|____        ____|____   ____|____    ____|____        ____|____   ____|____    ____|____
+         |   |    |  |   |   |    |   |    |       |   |    |  |   |   |    |   |    |       |   |    |  |   |   |    |   |    |
+       adg  adh  adi aeg aeh aei  afg afh  afi   bdg  bdh  bdi beg beh bei  bfg bfh  bfi   cdg  cdh  cdi ceg ceh cei  cfg cfh  cfi
 
 
-                                                                     ""
-                                                _____________________|_____________________
-                                                |                     |                     |
-                                                2                     3                     4
-                                    ____________|____________     ____|____             ____|____
-                                    |           |            |    |   |   |             |   |   |
-                                    a           b            c    d   e   f             g   h   i
-                        __________|___   _____|_____  _____|_____
-                        |             |   |          | |         |
-                        3             4   3          4 3         4
-            ____________|____________    |||          |||
-            |            |            |
-            ad            ae           af
-            |            |            |
-            4            4            4
-        ____|____    ____|____    ____|____
-        |   |    |   |   |   |    |   |    |
-    adg  adh  adi aeg aeh aei  afg afh  afi
+    Here the total number of combinations is 3^n = 3^3 = 27
+
+
+
+    EXAMPLE 2:
+    -----------
+    digits = "23"
+    n = digits.length = "23".length() = 2
+
+    2 : "abc" -- length = 3
+    3 : "def" -- length = 3
+
+    Total number of combinations = 3^n = 3^2 = 9
+
+
+
+    NOTE:
+    -----
+    when we have 9 : "wxyz" -- length = 4
+    then the time complexity will be 4^n not 3^n --- worst case time complexity
+    So, overall time complexity will be O(4^n)
+
+
 
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 16 Feb 2025
@@ -50,8 +81,52 @@ this means digits.length == List.get(i).length
 public class LetterCombinationsOfPhoneNumber {
     public static void main(String[] args) {
         String digits = "234";
+        System.out.println("letterCombinationsMyApproach(digits) => " + letterCombinationsMyApproach(digits));
         System.out.println("letterCombinations(digits) => " + letterCombinations(digits));
     }
+
+
+    public static List<String> letterCombinationsMyApproach(String digits) {
+        List<String> lst = new ArrayList<>();
+        int n = digits.length();
+        String[] keypad = new String[]{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        if(n>0) dfs(digits, n, 0, keypad, lst, new String());
+        return lst;
+    }
+    public static void dfs(String digits, int n, int i, String[] keypad, List<String> lst, String currStr) {
+        if(i==n) { // or currStr.length() == n
+            lst.add(currStr);
+            return;
+        }
+        char digit = digits.charAt(i);
+        String str = keypad[digit-'2'];
+        for(String s: str.split("")) {
+            dfs(digits, n, i+1, keypad, lst, currStr+s);
+        }
+    }
+
+
+
+
+    public static List<String> letterCombinationsMyApproach2(String digits) {
+        List<String> lst = new ArrayList<>();
+        int n = digits.length();
+        if(n==0) return lst;
+        String[] keypad = new String[]{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        dfs2(digits, n, 0, keypad, lst, new String());
+        return lst;
+    }
+    public static void dfs2(String digits, int n, int i, String[] keypad, List<String> lst, String prevStr) {
+        char digit = digits.charAt(i++);
+        String str = keypad[digit-'2'];
+        for(String s: str.split("")) {
+            if(i==n) lst.add(prevStr+s);
+            else dfs2(digits, n, i, keypad, lst, prevStr+s);
+        }
+    }
+
+
+
 
     public static List<String> letterCombinations(String digits) {
         if (digits.isEmpty()) return new ArrayList<>();
@@ -60,7 +135,7 @@ public class LetterCombinationsOfPhoneNumber {
     }
 
     public static List<String> backtrack(String digits, int digitsIndex, String[] map, StringBuilder sb) {
-        if (digitsIndex == digits.length()) return List.of(sb.toString());
+        if (digitsIndex == digits.length()) return List.of(sb.toString()); // or new ArrayList<>(Arrays.asList(sb.toString().split("")));
 
         List<String> lst = new ArrayList<>();
         String letters = map[digits.charAt(digitsIndex) - '0']; // or Integer.parseInt(digits.charAt(index) + "");
@@ -139,8 +214,10 @@ public class LetterCombinationsOfPhoneNumber {
 
 
 
+
+
     // Need to research more
-    public List<String> letterCombinationsMyApproach(String digits) {
+    public List<String> letterCombinationsMyApproachOld(String digits) {
         if (digits.isEmpty()) return new ArrayList<>();
 
         Map<String, String> keyboard = new HashMap<>();
