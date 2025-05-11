@@ -72,9 +72,10 @@ Data Structures and Algorithm Programs
 
 1. #### [BackTracking](Algorithms/BackTracking/)
 
-    * [Combination Sum & Backtracking Intro](/Algorithms/BackTracking/CombinationSum.java)
-    * [LetterCombinations of a PhoneNumber](/Algorithms/BackTracking/LetterCombinationsOfPhoneNumber.java)
+    * [Combination Sum I & Backtracking Intro](/Algorithms/BackTracking/CombinationSum.java)
     * [Combination Sum II](/Algorithms/BackTracking/CombinationSumII.java)
+    * [Combination Sum III](/Algorithms/BackTracking/CombinationSumIII.java)
+    * [LetterCombinations of a PhoneNumber](/Algorithms/BackTracking/LetterCombinationsOfPhoneNumber.java)
     * [NonContiguousSubArraySum](/Algorithms/BackTracking/NonContiguousSubArraySum.java)
     * [GenerateParentheses](/Algorithms/BackTracking/GenerateParentheses.java)
     * [Permutations](/Algorithms/BackTracking/Permutations.java)
