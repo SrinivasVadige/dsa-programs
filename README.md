@@ -96,6 +96,7 @@ Data Structures and Algorithm Programs
     * [Guess Number Higher or Lower](/Algorithms/BinarySearch/GuessNumberHigherOrLower.java)
     * [Successful Pairs of Spells and Potions](/Algorithms/BinarySearch/SuccessfulPairsOfSpellsAndPotions.java)
     * [Find Peak Element](/Algorithms/BinarySearch/FindPeakElement.java)
+    * [Koko Eating Bananas](/Algorithms/BinarySearch/KokoEatingBananas.java)
 
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees/)
 
