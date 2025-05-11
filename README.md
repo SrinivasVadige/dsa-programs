@@ -72,10 +72,10 @@ Data Structures and Algorithm Programs
 
 1. #### [BackTracking](Algorithms/BackTracking/)
 
-    * [NonContiguousSubArraySum](/Algorithms/BackTracking/NonContiguousSubArraySum.java)
+    * [Combination Sum & Backtracking Intro](/Algorithms/BackTracking/CombinationSum.java)
     * [LetterCombinations of a PhoneNumber](/Algorithms/BackTracking/LetterCombinationsOfPhoneNumber.java)
+    * [NonContiguousSubArraySum](/Algorithms/BackTracking/NonContiguousSubArraySum.java)
     * [GenerateParentheses](/Algorithms/BackTracking/GenerateParentheses.java)
-    * [CombinationSum](/Algorithms/BackTracking/CombinationSum.java)
     * [Permutations](/Algorithms/BackTracking/Permutations.java)
     * [N-Queens](/Algorithms/BackTracking/NQueens.java)
     * [Subsets](/Algorithms/BackTracking/Subsets.java)
@@ -142,10 +142,10 @@ Data Structures and Algorithm Programs
 
 6. #### [DynamicProgramming](Algorithms/DynamicProgramming/)
 
-    * [Fibonacci_DP_Recursive_Backtracking](Algorithms/DynamicProgramming/Fibonacci_DP_Recursive_Backtracking.java)
-    * [Fibonacci_DP_TopDown_Memoization](Algorithms/DynamicProgramming/Fibonacci_DP_TopDown_Memoization.java)
-    * [Fibonacci_DP_BottomUp_Tabulation](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_Tabulation.java)
-    * [Fibonacci_DP_BottomUp_NoMemory](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_NoMemory.java)
+    * [Fibonacci_DP_Recursive_Backtracking & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_Recursive_Backtracking.java)
+    * [Fibonacci_DP_TopDown_Memoization & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_TopDown_Memoization.java)
+    * [Fibonacci_DP_BottomUp_Tabulation & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_Tabulation.java)
+    * [Fibonacci_DP_BottomUp_NoMemory & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_NoMemory.java)
     * [LongestPalindromicSubstring](/Algorithms/DynamicProgramming/LongestPalindromicSubstring.java)
     * [LongestValidParenthesis](/Algorithms/DynamicProgramming/LongestValidParenthesis.java)
     * [UniquePaths](/Algorithms/DynamicProgramming/UniquePaths.java)
@@ -165,6 +165,7 @@ Data Structures and Algorithm Programs
 
 7. #### [Graphs](/Algorithms/Graphs/)
 
+    * [Graphs Intro](/DataStructures/Graphs.java)
     * [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
     * [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
     * [Course Schedule](Algorithms/Graphs/CourseSchedule.java)
