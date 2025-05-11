@@ -69,7 +69,7 @@ public class KokoEatingBananas {
         while (low < high) {
             int mid = low + (high - low) / 2; // k
             if (canEatAllBananas(piles, mid, h)) {
-                high = mid; // not mid-1, cause we need this valid high value
+                high = mid; // not mid-1, cause in while loop it's while(low<high), we usually have while(l<=r). And we need this valid high value
             } else {
                 low = mid + 1;
             }
