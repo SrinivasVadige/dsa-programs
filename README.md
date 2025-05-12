@@ -165,6 +165,7 @@ Data Structures and Algorithm Programs
     * [LongestCommonSubsequence](/Algorithms/DynamicProgramming/LongestCommonSubsequence.java)
     * [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
     * [N-th Tribonacci Number](/Algorithms/DynamicProgramming/NthTribonacciNumber.java)
+    * [Min Cost Climbing Stairs](/Algorithms/DynamicProgramming/MinCostClimbingStairs.java)
 
 7. #### [Graphs](/Algorithms/Graphs/)
 
