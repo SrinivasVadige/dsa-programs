@@ -24,6 +24,20 @@ public class HouseRobber {
         System.out.println("robTopDownMemo: " + robTopDownMemo(nums));
     }
 
+    public static int robBottomUpNoMemory(int[] nums) {
+        int rob1=0, rob2=0; // dummy houses
+        // [rob1, rob2, nums[i], nums[i+1], nums[i+2] ......]
+        for(int i=0; i<nums.length; i++) {
+            // [rob1, rob2, temp]
+            int temp = Math.max(rob1 + nums[i], rob2); // till now how much money we can rob
+            rob1 = rob2;
+            rob2 = temp;
+        }
+        return rob2;
+    }
+
+
+
     /**
      * <pre>
      *
@@ -47,7 +61,7 @@ public class HouseRobber {
      * </pre>
      * @see https://youtu.be/73r3KWiEvyk?si=3RWYu64W2GSjlXtq
      */
-    public static int robBottomUpNoMemory(int[] nums) {
+    public static int robBottomUpNoMemory2(int[] nums) {
         int prev = 0;
         int curr = 0; // dummy houses money
         for (int n : nums) {
@@ -58,6 +72,11 @@ public class HouseRobber {
         }
         return curr;
     }
+
+
+
+
+
 
     /**
      * <pre>
@@ -81,6 +100,30 @@ public class HouseRobber {
         }
         return dp[nums.length - 1];
     }
+
+
+    /**
+        [2, 7, 9, 3, 1]
+     */
+    public static int robBottomUpTabulation2(int[] nums) {
+        int n=nums.length;
+        if(n==1) return nums[0];
+        else if(n==2) return Math.max(nums[0], nums[1]);
+        // [9, 3, 1][0] -- [0] is robbed[n] which is dummy house in robbed array -> robbed[robbed.length-1]
+        int[] dp = new int[n+1];
+        dp[n-1]=nums[n-1];
+        dp[n-2]=nums[n-2];
+        for(int i=n-3; i>=0; i--) {
+            dp[i] = nums[i] + Math.max(dp[i+2], dp[i+3]);
+        }
+        return Math.max(dp[0], dp[1]);
+    }
+
+
+
+
+
+
 
     /**
      * Unlike Bottom Up approach, here we don't store max money in nth house
