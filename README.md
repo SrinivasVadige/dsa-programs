@@ -179,6 +179,7 @@ Data Structures and Algorithm Programs
     * [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
     * [N-th Tribonacci Number](/Algorithms/DynamicProgramming/NthTribonacciNumber.java)
     * [Min Cost Climbing Stairs](/Algorithms/DynamicProgramming/MinCostClimbingStairs.java)
+    * [Domino and Tromino Tiling](/Algorithms/DynamicProgramming/DominoAndTrominoTiling.java)
 
 8. #### [Graphs](/Algorithms/Graphs/)
 
