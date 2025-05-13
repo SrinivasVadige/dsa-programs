@@ -10,6 +10,8 @@ import java.util.Random;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 05 March 2025
+ *
+ * Here the QuickSelect or QuickSort is "Divide and Conquer" Algorithm
  */
 public class KthLargestElementInArray {
     public static void main(String[] args) {
