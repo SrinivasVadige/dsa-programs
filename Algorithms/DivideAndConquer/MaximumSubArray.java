@@ -1,4 +1,4 @@
-package Algorithms.MiscAlgos;
+package Algorithms.DivideAndConquer;
 
 import java.util.Arrays;
 
@@ -8,6 +8,11 @@ import java.util.Arrays;
  *
  * PATTERNS:
  * --------
+ * Maximum SubArray can be solved using
+ *      1. Divide and Conquer approach
+ *      2. Kadane’s Algorithm, which is a Dynamic Programming (DP) technique
+ *      3. Prefix Sum
+ *
  * Kadane's Algorithm
  * It's not related to sort and duplicates as {-2,1,-3,4,-1,2,1,-5,4} return 6 because of {4,-1,2,1} even though we have {4,4,2,1,1} in sorted array
  * So, we have to calculate the sum of sub-array without sorting
@@ -20,9 +25,9 @@ import java.util.Arrays;
 public class MaximumSubArray {
     public static void main(String[] args) {
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println("maxSubArrayUsingPrefixSum => " + maxSubArrayUsingPrefixSum(nums));
-        System.out.println("maxSubArray => " + maxSubArray(nums));
         System.out.println("maxSubArrayUsingDivideAndConquer => " + maxSubArrayUsingDivideAndConquer(nums));
+        System.out.println("maxSubArrayUsingPrefixSum => " + maxSubArrayUsingPrefixSum(nums));
+        System.out.println("maxSubArray Using Kadane's Algorithm => " + maxSubArrayUsingKadanesAlgorithm(nums));
     }
 
     /**
@@ -60,6 +65,66 @@ public class MaximumSubArray {
             }
         return max;
     }
+
+
+
+
+
+
+
+
+
+    /**
+        Explanation:
+        ------------
+        - The array is split recursively.
+
+        - For each split:
+
+            - Calculate:
+
+                - Maximum sum in left half
+
+                - Maximum sum in right half
+
+                - Maximum sum that crosses the midpoint
+
+        - Return the maximum of these three.
+     */
+    public static int maxSubArrayUsingDivideAndConquer(int[] nums) {
+        return maxSubArrayHelper(nums, 0, nums.length-1);
+    }
+
+    public static int maxSubArrayHelper(int[] nums, int start, int end) {
+        if (start == end) return nums[start];
+        int mid = (start + end) / 2;
+        int leftSum = maxSubArrayHelper(nums, start, mid);
+        int rightSum = maxSubArrayHelper(nums, mid + 1, end);
+        int crossSum = maxCrossingSum(nums, start, mid, end);
+        return Math.max(Math.max(leftSum, rightSum), crossSum);
+    }
+
+    public static int maxCrossingSum(int[] nums, int start, int mid, int end) {
+        int leftSum = Integer.MIN_VALUE, sum = 0;
+        for (int i = mid; i >= start; i--) {
+            sum += nums[i];
+            leftSum = Math.max(leftSum, sum);
+        }
+        sum = 0;
+        int rightSum = Integer.MIN_VALUE;
+        for (int i = mid + 1; i <= end; i++) {
+            sum += nums[i];
+            rightSum = Math.max(rightSum, sum);
+        }
+        return leftSum + rightSum;
+    }
+
+
+
+
+
+
+
 
     /**
      * @TimeComplexity: O(n)
@@ -102,7 +167,7 @@ public class MaximumSubArray {
      * 1) If the sum is -ve, start adding the sum until you find a +ve num
      * 2) Then you can forgot the currSum and start freshly from this +ve num as we no longer need -ve sum
      */
-    public static int maxSubArray(int[] nums) {
+    public static int maxSubArrayUsingKadanesAlgorithm(int[] nums) {
         int max = nums[0];
         int currSum = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -113,7 +178,7 @@ public class MaximumSubArray {
         return max;
     }
 
-    public static int maxSubArray2(int[] nums) {
+    public static int maxSubArrayUsingKadanesAlgorithm2(int[] nums) {
         int maxSum = nums[0];
         int currSum = nums[0];
         for (int i = 1; i < nums.length; i++) {
@@ -124,7 +189,7 @@ public class MaximumSubArray {
     }
 
 
-    public static int maxSubArray3(int[] nums) {
+    public static int maxSubArrayUsingKadanesAlgorithm3(int[] nums) {
         int max = Integer.MIN_VALUE;
         int sum=0;
         if(nums.length == 1) return nums[0];
@@ -137,7 +202,7 @@ public class MaximumSubArray {
     }
 
 
-    public int maxSubArray4(int[] nums) {
+    public int maxSubArrayUsingKadanesAlgorithm4(int[] nums) {
         int max = nums[0];
         int sum =0;
 
@@ -149,36 +214,6 @@ public class MaximumSubArray {
         return max ;
     }
 
-
-
-
-    public static int maxSubArrayUsingDivideAndConquer(int[] nums) {
-        return maxSubArrayHelper(nums, 0, nums.length-1);
-    }
-
-    public static int maxSubArrayHelper(int[] nums, int start, int end) {
-        if (start == end) return nums[start];
-        int mid = (start + end) / 2;
-        int leftSum = maxSubArrayHelper(nums, start, mid);
-        int rightSum = maxSubArrayHelper(nums, mid + 1, end);
-        int crossSum = maxCrossingSum(nums, start, mid, end);
-        return Math.max(Math.max(leftSum, rightSum), crossSum);
-    }
-
-    public static int maxCrossingSum(int[] nums, int start, int mid, int end) {
-        int leftSum = Integer.MIN_VALUE, sum = 0;
-        for (int i = mid; i >= start; i--) {
-            sum += nums[i];
-            leftSum = Math.max(leftSum, sum);
-        }
-        sum = 0;
-        int rightSum = Integer.MIN_VALUE;
-        for (int i = mid + 1; i <= end; i++) {
-            sum += nums[i];
-            rightSum = Math.max(rightSum, sum);
-        }
-        return leftSum + rightSum;
-    }
 
 
 
