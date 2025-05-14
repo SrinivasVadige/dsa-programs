@@ -69,6 +69,54 @@ public class DominoAndTrominoTiling {
         System.out.println("numTilingsTopDownMemoDp =>" + numTilingsTopDownMemoDp(n));
     }
 
+
+
+    /**
+     *      0    1    2          n-3  n-2  n-1   n
+     *     [  ] [  ] [  ]        [  ] [  ] [  ] [  ]
+     *     [  ] [  ] [  ] ...... [  ] [  ] [  ] [  ]
+     *
+     *  Here we have 2*n gird -- 2 rows and n cols
+     *
+     * to calculate 2*n grid, we have to calculate 2*(n-1) grid. And to calculate 2*(n-1) grid, we have to calculate 2*(n-2) grid .... so on
+     *
+     *
+     * Here calculate the number of ways for for n=0, 1, 2, 3, 4 & 5
+     *
+     * n=0 then ways = 1
+     * n=1 then ways = 1
+     * n=2 then ways = 2
+     * n=3 then ways = 5
+     * n=4 then ways = 11
+     * n=5 then ways = 24
+     *
+     * now if you find some pattern you will get
+     *
+     * dp[3] = 2*2 + 1 = 5 ----> 2 * dp[2] + dp[0]
+     * dp[4] = 2*5 + 1 = 11 ----> 2 * dp[3] + dp[1]
+     * dp[5] = 2*11 + 1 = 24 ----> 2 * dp[4] + dp[2]
+     *
+     * so, finally we will get
+     * dp[n] = 2*dp[n-1] + dp[n-3]
+     * or
+     * dp[n] = dp[n-1] + dp[n-2] + 2 * sum(dp[0 to n-3])
+     *
+     * THIS TYPE OF CREATING PATTERN FROM DATA IS CALLED "RECURRENCE RELATION" 🔥🔥🔥
+     *
+     * In interview, if you get this type of problem, ask interviewer like this
+     * "I'd like to compute the first few values manually to try to find a pattern.
+     * I already have:
+     * dp[0] = 1,
+     * dp[1] = 1,
+     * dp[2] = 2,
+     * dp[3] = 5
+     * It might help me to see dp[4] or dp[5] — would it be okay if we computed those together?"
+     * Possibly ask you to compute dp[4] yourself manually — and that's fair.
+     *
+     * i.e Important: Don’t treat it like “asking for the answer.”
+     * Instead, frame it like: "I'd like to build an intuition for the recurrence by calculating the values for small n. I think that will help me generalize the approach"
+     * This shows maturity and problem-solving.
+     */
     public static int numTilingsBottomUpTabulationDp(int n) {
         int MOD = 1_000_000_007;
         if (n <= 1) return 1;
@@ -83,6 +131,25 @@ public class DominoAndTrominoTiling {
         }
 
         return (int) dp[n];
+    }
+
+
+
+    public static int numTilingsBottomUpNoMemoryDp(int n) {
+        int MOD = 1_000_000_007;
+        int a = 1;
+        int b = 1;
+        int c = 2;
+        if (n <= 1) return 1;
+        if (n == 2) return 2;
+        if (n == 3) return 5;
+        for (int i = 3; i <= n; i++) {
+            int d = (2 * c % MOD + a) % MOD;
+            a = b;
+            b = c;
+            c = d;
+        }
+        return c;
     }
 
 
@@ -128,22 +195,8 @@ public class DominoAndTrominoTiling {
 
 
     static final int mod = 1_000_000_007;
+
     public static int numTilingsTopDownMemoDp(int n) {
-        return (int)dominoes(0, n, false);
-    }
-    private static long dominoes(int i, int n, boolean possible) {
-        if (i == n) return possible ? 0 : 1;
-        if (i > n) return 0;
-
-        if (possible) return (dominoes(i + 1, n, false) + dominoes(i + 1, n, true)) % mod;
-
-        return (dominoes(i + 1, n, false) + dominoes(i + 2, n, false) + 2 * dominoes(i + 2, n, true)) % mod;
-    }
-
-
-
-
-    public static int numTilingsTopDownMemoDp2(int n) {
         int[][] dp = new int[n + 1][4]; // 4 states: 0, 1, 2, 3
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j < 4; j++) {
@@ -178,10 +231,42 @@ public class DominoAndTrominoTiling {
 
         return dp[i][state] = count;
     }
+    /**
+        t1 (top) | t2 (bottom) | State | Interpretation
+        -------- | ----------- | ----- | ----------------
+        false    | false       | 0     | Both filled  [X]
+                                                      [X]
+
+        true     | false       | 1     | Top empty    [ ]
+                                                      [X]
+
+        false    | true        | 2     | Bottom empty [X]
+                                                     '[ ]
+
+        true     | true        | 3     | Both empty   [ ]
+                                                     '[ ]
+     */
     private static int makeState(boolean t1, boolean t2) {
         if (!t1 && !t2) return 0;
         if (t1 && !t2) return 1;
         if (!t1 && t2) return 2;
         return 3;
+    }
+
+
+
+
+
+
+    public static int numTilingsTopDownMemoDp2(int n) {
+        return (int)dominoes(0, n, false);
+    }
+    private static long dominoes(int i, int n, boolean possible) {
+        if (i == n) return possible ? 0 : 1;
+        if (i > n) return 0;
+
+        if (possible) return (dominoes(i + 1, n, false) + dominoes(i + 1, n, true)) % mod;
+
+        return (dominoes(i + 1, n, false) + dominoes(i + 2, n, false) + 2 * dominoes(i + 2, n, true)) % mod;
     }
 }
