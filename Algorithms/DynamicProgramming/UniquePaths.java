@@ -1,5 +1,7 @@
 package Algorithms.DynamicProgramming;
 
+import java.math.BigInteger;
+
 /**
 <pre>
 
@@ -72,6 +74,28 @@ public class UniquePaths {
         rec(m, n-1, dp);
     }
 
+
+
+    int c=0;
+    public int uniquePathsUsingRecurseBacktracking2(int m, int n) {
+        c=0;
+        dfs(0, 0, m, n);
+        return c;
+    }
+    void dfs(int i, int j, int m, int n){
+        if(i==m-1 && j==n-1){
+            c++;
+            return;
+        }
+        if(i >= m || j >= n) return; // bc
+        dfs(i+1, j, m, n);
+        dfs(i, j+1, m, n);
+    }
+
+
+
+
+
     /**
      * Top Down Memo DP
      * @Time Complexity: O(m*n)
@@ -96,6 +120,10 @@ public class UniquePaths {
     }
 
 
+
+
+
+
     /**
      * Bottom Up Tabulation DP
      * @Time Complexity: O(m*n)
@@ -117,4 +145,18 @@ public class UniquePaths {
         return dp[m - 1][n - 1];
     }
 
+
+
+
+
+    public int uniquePaths2(int m, int n) {
+        return fact(m+n-2).divide(fact(n-1).multiply(fact(m-1))).intValue();
+    }
+    public BigInteger fact(int n){
+        BigInteger res=BigInteger.ONE;
+        for(int i=2;i<=n;i++){
+            res=res.multiply(BigInteger.valueOf(i));
+        }
+        return res;
+    }
 }
