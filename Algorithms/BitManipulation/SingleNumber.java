@@ -1,4 +1,4 @@
-package Algorithms.MiscAlgos;
+package Algorithms.BitManipulation;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,6 +46,11 @@ public class SingleNumber {
             result ^= num;
         }
         return result;
+    }
+
+    public static int singleNumberUsingStreamReduce(int[] nums) {
+        return Arrays.stream(nums).reduce(0, (a, b) -> a ^ b);
+        // or Arrays.stream(nums).reduce((a,b)->a^b).getAsInt();
     }
 
     public static int singleNumberUsingRecursion(int[] nums) {

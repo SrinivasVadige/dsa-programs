@@ -125,6 +125,8 @@ Data Structures and Algorithm Programs
 
 4. #### [BitManipulation](Algorithms/BitManipulation/)
 
+    * [SingleNumber](Algorithms/BitManipulation/SingleNumber.java)
+
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion/)
 
     * [Number of Connected Components in an Undirected Graph](/Algorithms/DisjointSetUnion/NumberOfConnectedComponents.java)
@@ -279,7 +281,6 @@ Data Structures and Algorithm Programs
 
 16. #### [Misc](/Algorithms/MiscAlgos/)
 
-    * [SingleNumber](Algorithms/MiscAlgos/SingleNumber.java)
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
     * [Maximum SubArray](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
