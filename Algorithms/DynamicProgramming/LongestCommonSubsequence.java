@@ -68,7 +68,7 @@ public class LongestCommonSubsequence {
      *  012345678901234
      *
      *                ""    y    l   q    p    e    j    q    b    a    l    a    h    w    r
-     *        ________|____|____|____|____|____|____|____|____|____|____|____|____|____|____|
+     *            _______|____|____|____|____|____|____|____|____|____|____|____|____|____|____|
      *            ""|  0 | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  | 0  |
      *            y |  0 | ↖1 | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  |
      *            r |  0 | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | 1  | ↖2 |
@@ -97,7 +97,7 @@ public class LongestCommonSubsequence {
                 else if (text1.charAt(i - 1) == text2.charAt(j - 1)) // --- characters matched
                     dp[i][j] = 1 + dp[i - 1][j - 1]; // ↖ + 1
                 else
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]); // Max(←,↑) RECURRENCE EQUATION
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]); // Max(←,↑) RECURRENCE RELATION
             }
         }
         return dp[text1.length()][text2.length()];
