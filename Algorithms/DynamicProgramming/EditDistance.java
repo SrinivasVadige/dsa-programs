@@ -36,12 +36,12 @@ import java.util.Map;
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 22 Oct 2024
  */
-public class LevenshteinDistanceAlgorithmEditDistance {
+public class EditDistance {
 
     public static void main(String[] args) {
 
-        String word1 = "plasma";
-        String word2 = "altruism";
+        String word1 = "plasma"; // or "horse"
+        String word2 = "altruism"; // or "ros"
 
         levenshteinDistance(word1, word2);
         System.out.println("minDistanceBottomUpTabulation: " + minDistanceBottomUpTabulation(word1, word2));
@@ -49,49 +49,9 @@ public class LevenshteinDistanceAlgorithmEditDistance {
         System.out.println("minDistanceMyApproach: " + minDistanceMyApproach(word1, word2));
     }
 
-    public static int minDistanceBottomUpTabulation(String word1, String word2) {
-        int[][] dp = new int[word1.length() + 1][word2.length() + 1];
-        for (int i = 0; i <= word1.length(); i++) {
-            for (int j = 0; j <= word2.length(); j++) {
-                if (i == 0) {
-                    dp[i][j] = j;
-                } else if (j == 0) {
-                    dp[i][j] = i;
-                } else if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1];
-                } else {
-                    dp[i][j] = 1 + Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1]));
-                }
-            }
-        }
-        return dp[word1.length()][word2.length()];
-    }
-
     /**
-     * @TimeComplexity: O(nm)
-     * @SpaceComplexity: O(nm)
-     */
-    public static int minDistanceTopDownMemoDp(String word1, String word2) {
-        int n=word1.length();
-        int m=word2.length();
-        int[][] dp=new int[n][m];
-        for(int[] r:dp)
-            Arrays.fill(r,-1);
-        return rec(word1,word2,n-1,m-1,dp);
-    }
-    public static int rec(String word1,String word2,int i,int j,int[][] dp) {
-        if(i<0) return j+1;
-        if(j<0) return i+1;
-        if(dp[i][j]!=-1)
-            return dp[i][j];
-        if(word1.charAt(i)==word2.charAt(j))
-            return dp[i][j]=rec(word1,word2,i-1,j-1,dp);
-        else
-            return dp[i][j]=1+Math.min( rec(word1,word2,i-1,j-1,dp),Math.min(rec(word1,word2,i-1,j,dp),rec(word1,word2,i,j-1,dp)) );
-    }
-
-
-    /**
+     * this recurrence equation is same like "Longest common subsequence" {@link Algorithms.DynamicProgramming.LongestCommonSubsequence#longestCommonSubsequenceBottomUpTabulationDp}
+     *
      * <pre>
      * "Levenshtein Distance Algorithm" is the foundation of many search algorithms - also known as Edit Distance
      * In many APIs it is referred as Fuzziness(n)
@@ -100,7 +60,7 @@ public class LevenshteinDistanceAlgorithmEditDistance {
      * It is a widely used algorithm in natural language processing, spell checking, and data compression.
      * Example:
      * Distance between "Felipe" -> "Felipe" = 0
-     * Distance between "Felipe" -> "Felix" = 1
+     * Distance between "Felipe" -> "Felixe" = 1
      * Distance between "Felipe" -> "Felixi" = 2
      *
      *
@@ -162,6 +122,51 @@ public class LevenshteinDistanceAlgorithmEditDistance {
      * @TimeComplexity: O(mn)
      * @SpaceComplexity: O(mn)
      */
+    public static int minDistanceBottomUpTabulation(String word1, String word2) {
+        int[][] dp = new int[word1.length() + 1][word2.length() + 1];
+        for (int i = 0; i <= word1.length(); i++) {
+            for (int j = 0; j <= word2.length(); j++) {
+                if (i == 0) {
+                    dp[i][j] = j;
+                } else if (j == 0) {
+                    dp[i][j] = i;
+                } else if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = 1 + Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])); // RECURRENCE RELATION for insert, delete, replace
+                }
+            }
+        }
+        return dp[word1.length()][word2.length()];
+    }
+
+    /**
+     * @TimeComplexity: O(nm)
+     * @SpaceComplexity: O(nm)
+     */
+    public static int minDistanceTopDownMemoDp(String word1, String word2) {
+        int n=word1.length();
+        int m=word2.length();
+        int[][] dp=new int[n][m];
+        for(int[] r:dp)
+            Arrays.fill(r,-1);
+        return rec(word1,word2,n-1,m-1,dp);
+    }
+    public static int rec(String word1,String word2,int i,int j,int[][] dp) {
+        if(i<0) return j+1;
+        if(j<0) return i+1;
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        if(word1.charAt(i)==word2.charAt(j))
+            return dp[i][j]=rec(word1,word2,i-1,j-1,dp);
+        else
+            return dp[i][j]=1+Math.min( rec(word1,word2,i-1,j-1,dp),Math.min(rec(word1,word2,i-1,j,dp),rec(word1,word2,i,j-1,dp)) );
+    }
+
+
+
+
+
     public static void levenshteinDistance(String s1, String s2) {
         int m = s1.length();
         int n = s2.length();
@@ -220,6 +225,7 @@ public class LevenshteinDistanceAlgorithmEditDistance {
             // System.out.println(word1);
             char c1 = i<word1.length()? word1.charAt(i):'\0';
             char c2 = j<word2.length()? word2.charAt(j):'\0';
+            // IS CURR CHAR SAME?
             if (c1 == c2) {
                 // System.out.println(word1 + ", " + word2 +  ", i:" + i
                 // + ", c1:" + c1 + ",  j:" + j + ", c2:" + c2
@@ -227,6 +233,8 @@ public class LevenshteinDistanceAlgorithmEditDistance {
                 j++;
                 continue;
             }
+
+            // IS NEXT CHAR SAME in word1? then REPLACE
             // maintain length as per i and word2
             String midChar = "";
             if(c2!='\u0000' && i + 1 < word1.length() && c2!=word1.charAt(i+1)
@@ -235,6 +243,8 @@ public class LevenshteinDistanceAlgorithmEditDistance {
             ){
                 midChar=c2+"";
             }
+
+            // IS NEXT CHAR SAME in word2? then ADD c2 in word1
             if(c2!='\u0000' && j + 1 < word2.length() && (c1==word2.charAt(j+1)) ){
                 midChar=c2+""+c1;
             }
