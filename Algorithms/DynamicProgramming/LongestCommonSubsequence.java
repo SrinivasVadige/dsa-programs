@@ -97,7 +97,7 @@ public class LongestCommonSubsequence {
                 else if (text1.charAt(i - 1) == text2.charAt(j - 1)) // --- characters matched
                     dp[i][j] = 1 + dp[i - 1][j - 1]; // ↖ + 1
                 else
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]); // Max(←,↑)
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]); // Max(←,↑) RECURRENCE EQUATION
             }
         }
         return dp[text1.length()][text2.length()];
