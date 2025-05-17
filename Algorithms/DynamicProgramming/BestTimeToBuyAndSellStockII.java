@@ -47,13 +47,88 @@ public class BestTimeToBuyAndSellStockII {
     }
 
 
-
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     *
+     *
+     * EFFECTIVE BUY PRICE:
+     * --------------------
+     * EFFECTIVE BUY PRICE = Amount we invested from our pocket to buy stocks
+     *
+     * EXAMPLE:
+     * Buys and sell stocks in coins.
+     *
+     * Initially, we have lots of coins [c][c][c][c][c][c][c]......  in our pocket
+     *
+     * Eg: The stock market looks like [2, 5, 4, 6]
+     *
+     * Now buy 1st stock i.e price 2 == coins 2
+     *
+     * EXPLANATION 1:
+     *
+     * BUY #1
+     * [c][c]       ---> here we invested two coins from our pocket, the effective buy price is 2
+     *
+     * SELL #1
+     * [c][c][P1][P1][P1]      ---> here we made profit of 3 coins
+     *
+     * PROFIT #1 = [P1][P1][P1]
+     *
+     * BUY #2
+     * [P1][P1][P1][C]         ---> we only invested one coin from our pocket --> the effective by price is 1, cause we invested the profit of 3 coins
+     *
+     * SELL #2
+     * [P1][P1][P1][C][P2][P2]  ---> we made profit of 2 coins
+     *
+     * PROFIT #2 = [P2][P2]
+     *
+     * TOTAL PROFIT = PROFIT #1 + PROFIT #2 = [P1][P1][P1][P2][P2] = 5
+     *
+     *
+     * EXPLANATION 2:
+     *
+     * [2, 5, 4, 6]
+     *
+     * BUY #1
+     * [c][c]                   ---> B1=2 or EBP=2
+     *
+     * SELL #1
+     * [c][c][P1][P1][P1]       ---> S1=B1+P1=5
+     *
+     * PROFIT #1 = [P1][P1][P1] ---> P1=3
+     *
+     * TOTAL PROFIT = P = S1-B1 = S1-EBP ✅
+     *
+     *
+     *
+     *
+     * BUY #2
+     * [P1][P1][P1][C]          ---> B2=4, B2=P1(3)+EBP(1) ---> EBP = B2-P1
+     *
+     * SELL #2
+     * [P1][P1][P1][C][P2][P2]  ---> S2=B2+P2=6
+     *
+     * PROFIT #2 = [P2][P2]     ---> P2=2
+     *
+     * TOTAL PROFIT = P = S2-(EBP) or S2-(B2-P1) ✅
+     *
+     *
+     * BUY #3
+     *
+     * Now, the total profit is P, EBP=B3-P -- i.e use TOTAL P ✅
+     * So, EBP can be -ve sometimes, which is also valid
+     *
+     * In below example maintain min & max to check whether we need to buy or sell stocks at i
+     *
+     * Here EBP and i are 2 pointers
+     */
     public static int maxProfitUsingTwoPointers2(int[] prices) {
         int n = prices.length;
         int profit = 0, effectiveBuyPrice = prices[0];
         for (int i = 1; i < n; i++) {
-            profit = Math.max(profit, prices[i] - effectiveBuyPrice);
-            effectiveBuyPrice = Math.min(effectiveBuyPrice, prices[i] - profit);
+            profit = Math.max(profit, prices[i] - effectiveBuyPrice); // if sold, then TOTAL PROFIT = P = S2-(EBP) = S2-(B2-P1)
+            effectiveBuyPrice = Math.min(effectiveBuyPrice, prices[i] - profit); // if bought, EBP = B2-P
         }
         return profit;
     }
