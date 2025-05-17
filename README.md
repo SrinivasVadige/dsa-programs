@@ -180,6 +180,9 @@ Data Structures and Algorithm Programs
     * [N-th Tribonacci Number](/Algorithms/DynamicProgramming/NthTribonacciNumber.java)
     * [Min Cost Climbing Stairs](/Algorithms/DynamicProgramming/MinCostClimbingStairs.java)
     * [Domino and Tromino Tiling](/Algorithms/DynamicProgramming/DominoAndTrominoTiling.java)
+    * [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
+    * [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockII.java)
+    * [Best Time to Buy and Sell Stock with Transaction Fee](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithTransactionFee.java)
 
 8. #### [Graphs](/Algorithms/Graphs/)
 
@@ -200,7 +203,7 @@ Data Structures and Algorithm Programs
     * [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
     * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
     * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
-    * [BestTime To Buy And Sell Stock](/Algorithms/GreedyAlgorithms/BestTimeToBuyAndSellStock.java)
+    * [BestTime To Buy And Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
     * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
 
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing/)
