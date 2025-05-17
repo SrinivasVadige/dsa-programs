@@ -181,7 +181,7 @@ Data Structures and Algorithm Programs
     * [Min Cost Climbing Stairs](/Algorithms/DynamicProgramming/MinCostClimbingStairs.java)
     * [Domino and Tromino Tiling](/Algorithms/DynamicProgramming/DominoAndTrominoTiling.java)
     * [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
-    * [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockII.java)
+    * [Best Time to Buy and Sell Stock II](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockII.java)
     * [Best Time to Buy and Sell Stock with Transaction Fee](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithTransactionFee.java)
 
 8. #### [Graphs](/Algorithms/Graphs/)
