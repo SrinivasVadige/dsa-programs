@@ -74,6 +74,31 @@ public class BestTimeToBuyAndSellStock {
 
 
 
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(n)
+     *
+     * Same as {@link #maxProfitUsingTwoPointers(int[])} but use two arrays minBuys & maxSells instead of l & r
+     */
+    public static int maxProfitUsingTwoPointers2(int[] prices) { // [7, 1, 5, 3, 6, 4]
+        int n = prices.length;
+        int[] minBuys = new int[n];
+        minBuys[0] = prices[0];
+        int[] maxSells = new int[n];
+        maxSells[n-1] = prices[n-1];
+        for(int i=0; i<n; i++) minBuys[i] = Math.min(minBuys[i-1], prices[i]); // [7, 1, 1, 1, 1, 1]
+        for(int i=n-2; i>=0; i--) maxSells[i] = Math.max(maxSells[i+1], prices[i]); // [7, 6, 6, 6, 6, 4]
+        int maxProfit = 0;
+        for(int i=0; i<n; i++) maxProfit = Math.max(maxProfit, maxSells[i]-minBuys[i]);
+        return maxProfit;
+    }
+
+
+
+
+
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
@@ -128,7 +153,7 @@ public class BestTimeToBuyAndSellStock {
         3) or maintain the currMax
         3) Or use dp[] to maintain the max num
      */
-    public int maxProfitMyApproach(int[] prices) {
+    public int maxProfitMyApproachOld(int[] prices) {
 
         Map<Integer, List<Integer>> map = new HashMap<>();
         for (int i=0; i<prices.length; i++) {
