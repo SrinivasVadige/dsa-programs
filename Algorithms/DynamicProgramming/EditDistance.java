@@ -101,6 +101,10 @@ public class EditDistance {
      * | e | 5 | 5 | 4 | 3 | 2 | 2 | 3 | 4 |
      * | n | 6 | 6 | 5 | 4 | 3 | 3 | 2 |(3)|
      *
+     * w1 in rows & w2 in columns & extra rol and col for "" i.e dummy or no char
+     * dp[i][j] = min number of operations to convert word1[0 to i-1] → word2[0 to j-1]
+     * dp[2][3] = 2 --> dp[2 chars in w1][3 chars in w2] --> dp["ki"]["sit"] ---> this means, the number of operations needed to convert "ki" to "sit"
+     *
      * PATTERNS:
      * 1. If you see the 1st whole row & the 1st whole column, it's just the increasing sequence of numbers which are independent of any kind of string
      * 2. Now, we see a square box pattern with 4 sub-boxes one on each corner and all boxes are already filled except for the bottom-right box. So we have to fill the bottom-right cell of the matrix in the current operation
@@ -116,6 +120,23 @@ public class EditDistance {
      *
      * So, finally the minimum distance between the two strings is 3, which is stored in the bottom-right cell of the matrix.
      * This implementation uses dynamic programming to fill in the matrix and calculate the minimum distance between the two input strings.
+     *
+     *
+     * HOW TO COME UP WITH THIS RECURSION EQUATION?
+     * --------------------------------------------
+     *
+     *                            i
+     *                   0    1   2   3
+     *         w1=>      ''   a   b   d
+     *         w2=>      ''   a   c   d
+     *                   0    1   2   3
+     *                            j
+     *
+     * Case 1: Last characters are equal ---> dp[i][j] = dp[i-1][j-1]
+     * Case 2: Last characters are not equal
+     *         - Insertion: dp[i][j] = dp[i][j-1] + 1 -----> when i=j=2, if we insert "c" in 1 "abd" i,e 1 operation. Total operations = 1 + num of prev operations to convert w1 "a" to w2 "a"
+     *         - Deletion:  dp[i][j] = dp[i-1][j] + 1
+     *         - Replace:   dp[i][j] = dp[i-1][j-1] + 1
      *
      * </pre>
      *
