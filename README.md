@@ -125,7 +125,8 @@ Data Structures and Algorithm Programs
 
 4. #### [BitManipulation](Algorithms/BitManipulation/)
 
-    * [SingleNumber](Algorithms/BitManipulation/SingleNumber.java)
+    * [Single Number](Algorithms/BitManipulation/SingleNumber.java)
+    * [Counting Bits](Algorithms/BitManipulation/CountingBits.java)
 
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion/)
 
