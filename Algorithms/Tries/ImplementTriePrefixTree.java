@@ -3,6 +3,8 @@ package Algorithms.Tries;
 import java.util.ArrayList;
 import java.util.List;
 
+import Algorithms.Tries.ImplementTriePrefixTree.Trie;
+
 /**
  * <pre>
  *
@@ -41,6 +43,9 @@ public class ImplementTriePrefixTree {
         System.out.println("trie.startsWith(\"app\") => " + trie.startsWith("app"));
         trie.insert("app");
         System.out.println("trie.search(\"app\") => " + trie.search("app"));
+
+
+
 
         System.out.println("\nImplement Trie Prefix Tree --- MyApproach");
         TrieMyApproach trieMyApproach = new TrieMyApproach();
@@ -98,7 +103,63 @@ public class ImplementTriePrefixTree {
 
 
 
+
+
+
+
+
+
+
+
     static class TrieMyApproach {
+        TrieMyApproach[] arr = new TrieMyApproach[26];
+        char c ='\0'; // optional
+        boolean isEnd = false;
+
+        public void insert(String word) {
+            TrieMyApproach trav = this;
+            for(char ch: word.toCharArray()) {
+                if(trav.arr[ch-'a'] == null) trav.arr[ch-'a'] = new TrieMyApproach();
+                trav = trav.arr[ch-'a'];
+                trav.c=ch; // optional
+            }
+            trav.isEnd=true;
+        }
+
+        public boolean search(String word) {
+            TrieMyApproach trav = this;
+            for(char ch: word.toCharArray()) {
+                trav = trav.arr[ch-'a'];
+                if(trav==null) return false;
+                trav.c=ch; // optional
+            }
+            return trav.isEnd;
+        }
+
+        public boolean startsWith(String prefix) {
+            TrieMyApproach trav = this;
+            for(char ch: prefix.toCharArray()) {
+                trav = trav.arr[ch-'a'];
+                if(trav==null) return false;
+                trav.c=ch; // optional
+            }
+            return true;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static class TrieMyApproach2 {
         class Tree {
             char c;
             boolean isEnd;
