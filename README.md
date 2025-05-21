@@ -364,6 +364,7 @@ Data Structures and Algorithm Programs
 25. #### [Tries / Prefix Tree](/Algorithms/Tries/)
 
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
+    * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
 
 26. #### [Two Pointers](/Algorithms/TwoPointers/)
 
