@@ -1,4 +1,4 @@
-package Algorithms.MergeIntervals;
+package Algorithms.Intervals;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com

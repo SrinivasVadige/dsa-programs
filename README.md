@@ -246,7 +246,12 @@ Data Structures and Algorithm Programs
     * [Count Special Quadruplets](Algorithms/IntegerArray/CountSpecialQuadruplets.java)
     * [Count Good Triplets](Algorithms/IntegerArray/CountGoodTriplets.java)
 
-13. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
+13. #### [Intervals](/Algorithms/Intervals/)
+
+    * [Teemo Attacking](Algorithms/Intervals/TeemoAttacking.java)
+    * [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
+
+14. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
     * [MiddleOfTheLinkedList](/Algorithms/LinkedListAlgos/MiddleOfTheLinkedList.java)
     * [Reverse LinkedList](/Algorithms/LinkedListAlgos/ReverseLinkedList.java)
@@ -268,7 +273,7 @@ Data Structures and Algorithm Programs
     * [Odd Even Linked List](/Algorithms/LinkedListAlgos/OddEvenLinkedList.java)
     * [Maximum Twin Sum of a Linked List](/Algorithms/LinkedListAlgos/MaximumTwinSumOfLinkedList.java)
 
-14. #### [Matrix](/Algorithms/Matrix/)
+15. #### [Matrix](/Algorithms/Matrix/)
 
     * [Gifting Groups](/Algorithms/Matrix/GiftingGroups.java)
     * [Rotate Image](/Algorithms/Matrix/RotateImage.java)
@@ -276,11 +281,6 @@ Data Structures and Algorithm Programs
     * [Set Matrix Zeroes](/Algorithms/Matrix/SetMatrixZeroes.java)
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
     * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
-
-15. #### [Merge Intervals](/Algorithms/MergeIntervals/)
-
-    * [Teemo Attacking](Algorithms/MergeIntervals/TeemoAttacking.java)
-    * [Merge Intervals](Algorithms/MergeIntervals/MergeIntervals.java)
 
 16. #### [Misc](/Algorithms/MiscAlgos/)
 
