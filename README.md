@@ -380,34 +380,42 @@ Data Structures and Algorithm Programs
 
 # COMPANIES Hiring Overview [(FAANG / MAANG PROCESS)](https://interviewing.io/guides/hiring-process)
 
+## NOTES
+
+1. [GitHub - xizhang20181005/Leetcode_company_frequency](https://github.com/xizhang20181005/Leetcode_company_frequency)
+
 ## AMAZON
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/amazon)
 2. Check out my "Amazon Interview Process" personal Google Keep notes
 3. [LeetCode Amazon top questions](https://leetcode.com/problem-list/xyknlrg2/)
-4. [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
-5. [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
-6. [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
-7. [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
-8. [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
-9. [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
-10. Find median for k elements in n array. Return new int[]{maxMedian, minMedian}
-11. 1 to m-1 cities and n warehouses, cityStart=[1,2,1], cityEnd=[2,5,9]. cityStart.length == cityEnd.length == n of warehouses. Multiple warehouse connect to same city. Find cityWarehouseCounter <city, num of warehouses>
+4. [GitHub - xizhang20181005/Leetcode_company_frequency #amazon](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#amazon)
+5. [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
+6. [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
+7. [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
+8. [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
+9. [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
+10. [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
+11. Find median for k elements in n array. Return new int[]{maxMedian, minMedian}
+12. 1 to m-1 cities and n warehouses, cityStart=[1,2,1], cityEnd=[2,5,9]. cityStart.length == cityEnd.length == n of warehouses. Multiple warehouse connect to same city. Find cityWarehouseCounter <city, num of warehouses>
 
 ## GOOGLE
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/google)
 2. [LeetCode Google top questions](https://leetcode.com/problem-list/7p55wqm/)
+3. [GitHub - xizhang20181005/Leetcode_company_frequency #Google](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#google)
 
 ## MICROSOFT
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/microsoft)
 2. [LeetCode Microsoft top questions](https://leetcode.com/problem-list/55vr69d7/)
+3. [GitHub - xizhang20181005/Leetcode_company_frequency #Microsoft](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#microsoft)
 
 ## META
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/meta-facebook#meta)
 2. [LeetCode Meta / Facebook top questions](https://leetcode.com/problem-list/7p59281/)
+3. [GitHub - xizhang20181005/Leetcode_company_frequency #Facebook](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#facebook)
 
 ## APPLE
 
@@ -417,6 +425,18 @@ Data Structures and Algorithm Programs
 ## NETFLIX
 
 1. [Hiring Process](https://interviewing.io/guides/hiring-process/netflix)
+
+## UBER
+
+1. [GitHub - xizhang20181005/Leetcode_company_frequency #Uber](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#uber)
+
+## BLOOMBERG
+
+1. [GitHub - xizhang20181005/Leetcode_company_frequency #Bloomberg](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#bloomberg)
+
+## LINKEDIN
+
+1. [GitHub - xizhang20181005/Leetcode_company_frequency #LinkedIn](https://github.com/xizhang20181005/Leetcode_company_frequency?tab=readme-ov-file#linkedin)
 
 </br>
 </br>
