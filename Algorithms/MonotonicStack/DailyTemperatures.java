@@ -1,4 +1,4 @@
-package Algorithms.StackAlgos;
+package Algorithms.MonotonicStack;
 
 import java.util.Stack;
 

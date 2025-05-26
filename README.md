@@ -295,27 +295,31 @@ Data Structures and Algorithm Programs
     * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
 
-17. #### [PrefixSum](/Algorithms/PrefixSum/)
+17. #### [Monotonic Stack](/Algorithms/MonotonicStack/)
+
+    * [Daily Temperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
+
+18. #### [PrefixSum](/Algorithms/PrefixSum/)
 
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
 
-18. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos/)
+19. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos/)
 
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
     * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
 
-19. #### [Recursion](/Algorithms/Recursion/)
+20. #### [Recursion](/Algorithms/Recursion/)
 
-20. #### [Searching](Algorithms/Searching/)
+21. #### [Searching](Algorithms/Searching/)
 
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
 
-21. #### [Sliding Window](Algorithms/SlidingWindow/)
+22. #### [Sliding Window](Algorithms/SlidingWindow/)
 
     * [Find all the Anagrams in a String](/Algorithms/SlidingWindow/FindAllAnagramsInString.java)
     * [LengthOfLongestSubstring](/Algorithms/SlidingWindow/LengthOfLongestSubstring.java)
@@ -326,7 +330,7 @@ Data Structures and Algorithm Programs
     * [Max Consecutive Ones III](Algorithms/SlidingWindow/MaxConsecutiveOnesIII.java)
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
 
-22. #### [Sorting](Algorithms/Sorting/)
+23. #### [Sorting](Algorithms/Sorting/)
 
     * [SelectionSort](Algorithms/Sorting/SelectionSort.java)
     * [BubbleSort](Algorithms/Sorting/BubbleSort.java)
@@ -341,17 +345,17 @@ Data Structures and Algorithm Programs
     * [ShellSort](Algorithms/Sorting/ShellSort.java)
     * [TimSort](Algorithms/Sorting/TimSort.java)
 
-23. #### [Stack](/Algorithms/StackAlgos/)
+24. #### [Stack](/Algorithms/StackAlgos/)
 
     * [ValidParentheses](Algorithms/StackAlgos/ValidParentheses.java)
-    * [DailyTemperatures](Algorithms/StackAlgos/DailyTemperatures.java)
+    * [DailyTemperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
     * [Min Stack](Algorithms/StackAlgos/MinStackClass.java)
     * [Decode String](Algorithms/StackAlgos/DecodeString.java)
     * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
     * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
 
-24. #### [Strings](/Algorithms/Strings/)
+25. #### [Strings](/Algorithms/Strings/)
 
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
@@ -363,12 +367,12 @@ Data Structures and Algorithm Programs
     * [Reverse Words in a String](/Algorithms/Strings/ReverseWordsInString.java)
     * [String Compression](/Algorithms/Strings/StringCompression.java)
 
-25. #### [Tries / Prefix Tree](/Algorithms/Tries/)
+26. #### [Tries / Prefix Tree](/Algorithms/Tries/)
 
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
     * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
 
-26. #### [Two Pointers](/Algorithms/TwoPointers/)
+27. #### [Two Pointers](/Algorithms/TwoPointers/)
 
     * [ContainerWithMostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
