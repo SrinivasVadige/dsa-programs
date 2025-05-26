@@ -297,7 +297,7 @@ Data Structures and Algorithm Programs
 
 17. #### [Monotonic Stack](/Algorithms/MonotonicStack/)
 
-    * [Daily Temperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
+    * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
 
 18. #### [PrefixSum](/Algorithms/PrefixSum/)
 
