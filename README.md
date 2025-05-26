@@ -250,6 +250,7 @@ Data Structures and Algorithm Programs
 
     * [Teemo Attacking](Algorithms/Intervals/TeemoAttacking.java)
     * [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
+    * [Non-overlapping Intervals](Algorithms/Intervals/NonOverlappingIntervals.java)
 
 14. #### [LinkedList Algos](/Algorithms/LinkedListAlgos/)
 
