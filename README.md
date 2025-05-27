@@ -386,7 +386,7 @@ Data Structures and Algorithm Programs
 </br>
 </br>
 
-# COMPANIES Hiring Overview [(FAANG / MAANG PROCESS)](https://interviewing.io/guides/hiring-process)
+## COMPANIES Hiring Overview [(FAANG / MAANG PROCESS)](https://interviewing.io/guides/hiring-process)
 
 ## NOTES
 
