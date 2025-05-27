@@ -119,12 +119,15 @@ public class PartitionEqualSubsetSum {
         dp[0] = true;
         for (int num : nums) {
             for(int i=sum; i>0 && num<=i; i--){
-                if(!dp[i])
-                    dp[i]=dp[i-num];
+                if(!dp[i]) dp[i]=dp[i-num];
             }
         }
         return dp[sum];
     }
+
+
+
+
 
     // Working but TLE. So, use below HashMap memo approach
     public static boolean canPartitionTopDown2(int[] nums) {
@@ -140,6 +143,10 @@ public class PartitionEqualSubsetSum {
         return rec2(nums, index + 1, sum+nums[index], total) // left child
                 || rec2(nums, index + 1, sum, total); // right child
     }
+
+
+
+
 
 
     public static boolean canPartitionTopDownHashMap(int[] nums) {
@@ -162,6 +169,11 @@ public class PartitionEqualSubsetSum {
         return memo.get(current);
     }
 
+
+
+
+
+
     // same like above approach, instead of using the sum just decrease the target value and use dp[][]
     public static boolean canPartitionTopDown(int[] nums) {
         int target = Arrays.stream(nums).sum();
@@ -180,36 +192,40 @@ public class PartitionEqualSubsetSum {
     }
 
 
+
+
+
+
+    /**
+     * 🔥
+     */
     public static boolean canPartition01KnapsackSolution(int[] nums) {
         int sum=0;
-        for(int i=0;i<nums.length;i++)
-            sum=sum+nums[i];
+        for(int i=0;i<nums.length;i++) sum=sum+nums[i];
+        if(sum%2!=0) return false;
 
-        if(sum%2!=0)
-            return false;
-        else {
-            int n=nums.length;
-            int k=sum/2;
-            boolean t[][]=new boolean[n+1][k+1];
-            for(int i=0;i<n+1;i++) {
-                for(int j=0;j<k+1;j++) {
-                    if(i==0)
-                        t[i][j]=false;
-                    else if(j==0)
-                        t[i][j]=true;
-                }
+        int n=nums.length;
+        int k=sum/2;
+        boolean dp[][]=new boolean[n+1][k+1];
+        for (int i=0; i<n+1; i++) {
+            for (int j=0; j<k+1; j++) {
+                if (i==0) dp[i][j]=false;
+                else if (j==0) dp[i][j]=true;
             }
-            for(int i=1;i<n+1;i++) {
-                for(int j=1;j<k+1;j++) {
-                    if(nums[i-1]<=j)
-                        t[i][j]=t[i-1][j-nums[i-1]]||t[i-1][j];
-                    else
-                        t[i][j]=t[i-1][j];
-                }
-            }
-            return t[n][k];
         }
+        for (int i=1; i<n+1; i++) {
+            for (int j=1; j<k+1; j++) {
+                if (nums[i-1]<=j) dp[i][j]=dp[i-1][j-nums[i-1]] || dp[i-1][j];
+                else dp[i][j]=dp[i-1][j];
+            }
+        }
+        return dp[n][k];
     }
+
+
+
+
+
 
     public static boolean canPartitionDivideAndConquer(int[] nums) {
         int sum = Arrays.stream(nums).sum();
@@ -267,6 +283,15 @@ public class PartitionEqualSubsetSum {
         return backtrack(nums, sum, 0, 0, new boolean[nums.length]);
     }
 
+    /**
+     * This backtracking approach is TLE because it explores all possible subsets recursively,
+     * and the boolean[] "memo" does not actually memoize (index, sum) pairs, so it repeats sub-problems.
+     * Time complexity is O(2^n).
+     *
+     * In contrast, canPartitionDpUsingSet() uses a Set to store all possible subset sums,
+     * building up solutions iteratively and avoiding redundant calculations.
+     * This reduces the time complexity to O(n*sum/2) and is much faster.
+     */
     private static boolean backtrack(int[] nums, int sum, int index, int currentSum, boolean[] memo) {
         if(currentSum == sum) return true;
         if(index >= nums.length || currentSum > sum) return false;
