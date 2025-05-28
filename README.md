@@ -451,11 +451,12 @@ Data Structures and Algorithm Programs
 
 ## My LeetCode Notes
 
-1. My "50 Days badge 2025" received on 12th March 2025
+1. My "50 Days badge 2025" received on 12 March 2025
 2. My "Top 100 Liked" badge received on 20 March 2025
 3. My "100 Days badge 2025" received on 01 May 2025
-4. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153/)
-5. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552/)
+4. My "LeetCode 75" badge received on 26 May 2025
+5. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153/)
+6. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552/)
 
 </br>
 </br>
