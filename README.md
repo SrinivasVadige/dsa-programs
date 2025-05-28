@@ -246,6 +246,7 @@ Data Structures and Algorithm Programs
     * [Increasing Triplet Subsequence](Algorithms/IntegerArray/IncreasingTripletSubsequence.java)
     * [Count Special Quadruplets](Algorithms/IntegerArray/CountSpecialQuadruplets.java)
     * [Count Good Triplets](Algorithms/IntegerArray/CountGoodTriplets.java)
+    * [Merge Sorted Array](Algorithms/IntegerArray/MergeSortedArray.java)
 
 13. #### [Intervals](/Algorithms/Intervals/)
 
