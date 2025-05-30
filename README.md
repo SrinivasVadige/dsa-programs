@@ -247,6 +247,7 @@ Data Structures and Algorithm Programs
     * [Count Special Quadruplets](Algorithms/IntegerArray/CountSpecialQuadruplets.java)
     * [Count Good Triplets](Algorithms/IntegerArray/CountGoodTriplets.java)
     * [Merge Sorted Array](Algorithms/IntegerArray/MergeSortedArray.java)
+    * [Remove Element](Algorithms/IntegerArray/RemoveElement.java)
 
 13. #### [Intervals](/Algorithms/Intervals/)
 
