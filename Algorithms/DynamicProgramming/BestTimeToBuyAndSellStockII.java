@@ -123,7 +123,7 @@ public class BestTimeToBuyAndSellStockII {
      *
      * Here EBP and i are 2 pointers
      */
-    public static int maxProfitUsingTwoPointers2(int[] prices) {
+    public static int maxProfitUsingTwoPointersEffectiveBuyPrice(int[] prices) {
         int n = prices.length;
         int profit = 0, effectiveBuyPrice = prices[0];
         for (int i = 1; i < n; i++) {
