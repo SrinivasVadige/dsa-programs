@@ -7,7 +7,8 @@ import java.util.Arrays;
  * @since 08 June 2025
  * @link 80. Remove Duplicates from Sorted Array II https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
  * @topics Array, Two Pointers
- * @description Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length
+ * @description Given a sorted array nums, remove the duplicates in-place such that duplicates appeared at most twice and return the new length - maintain at most two occurrences of each element.
+ * @see Algorithms.IntegerArray.RemoveDuplicatesFromSortedArray - maintain only one occurrence of each element
  */
 public class RemoveDuplicatesFromSortedArrayII {
     public static void main(String[] args) {
@@ -20,6 +21,32 @@ public class RemoveDuplicatesFromSortedArrayII {
         System.out.println("Array before removeDuplicates() " + Arrays.toString(nums));
         newLen = removeDuplicatesMyApproach(nums);
         System.out.println("Array after removeDuplicatesMyApproach() with newLen = " + newLen + " => " + Arrays.toString(nums));
+    }
+
+    /**
+     * count = the number of occurrences of same element
+     * 2 pointers l and r
+     *
+     * even after count while-loop, we need 'r' to be in that sameNum
+     */
+    public static int removeDuplicates(int[] nums) {
+        int n = nums.length, l=0, r=0, count=1;
+        if(n<=2) return n;
+
+        while(r<n) {
+            // count the sameNum occurrences
+            while(r+1<n && nums[r]==nums[r+1]) { // nums[currR] == nums[nextR]
+                count++;
+                r++; // increment r, only if(nums[currR] == nums[nextR])
+            }
+
+            for(int i=0; i<Math.min(2,count) && l<n && r<n; i++, l++) { // i<Math.min(2,count), cause we need max of 2 occurrences
+                nums[l] = nums[r]; // we can skip if(nums[l] == nums[r]) -> optional
+            }
+            r++;
+            count=1;
+        }
+        return l;
     }
 
     /**
@@ -64,7 +91,7 @@ public class RemoveDuplicatesFromSortedArrayII {
                      k
                           i
     */
-    public static int removeDuplicates(int[] nums) {
+    public static int removeDuplicates2(int[] nums) {
         int k = 2; // Start placing elements at the third position
         if (nums.length <= k) return nums.length;
 
