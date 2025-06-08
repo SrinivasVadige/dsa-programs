@@ -249,6 +249,7 @@ Data Structures and Algorithm Programs
     * [Merge Sorted Array](Algorithms/IntegerArray/MergeSortedArray.java)
     * [Remove Element](Algorithms/IntegerArray/RemoveElement.java)
     * [Remove duplicates from Sorted Array](Algorithms/IntegerArray/RemoveDuplicatesFromSortedArray.java)
+    * [Remove duplicates from Sorted Array II](Algorithms/IntegerArray/RemoveDuplicatesFromSortedArrayII.java)
 
 13. #### [Intervals](/Algorithms/Intervals/)
 

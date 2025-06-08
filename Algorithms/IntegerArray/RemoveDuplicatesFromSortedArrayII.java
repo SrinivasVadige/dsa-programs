@@ -148,11 +148,13 @@ public class RemoveDuplicatesFromSortedArrayII {
         while(l<n && r<n) {
 
             while(l<n && !(nums[l-2] == nums[l] || nums[l-1] > nums[l])) l++;
-            // or
-            // while(l<n) {
-            //     if(nums[l-2]==nums[l] || nums[l-1]>nums[l]) break;
-            //     l++;
-            // }
+            /**
+            or
+            while(l<n) {
+                if(nums[l-2]==nums[l] || nums[l-1]>nums[l]) break;
+                l++;
+            }
+            */
 
             if(l>r) r=l+1;
             while(r<n && (nums[l]==nums[r] || nums[l-2]==nums[r]) ) r++;
