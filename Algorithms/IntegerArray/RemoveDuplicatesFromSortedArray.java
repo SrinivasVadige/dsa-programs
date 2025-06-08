@@ -6,7 +6,8 @@ import java.util.Arrays;
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 30 May 2025
  * @link 26. Remove Duplicates from Sorted Array https://leetcode.com/problems/remove-duplicates-from-sorted-array/
- * @topic Array, Two Pointers
+ * @topics Array, Two Pointers
+ * @description Remove duplicates from a sorted array in-place and return the new length
  *
  * Given an integer array nums sorted in non-decreasing order
  */
@@ -53,18 +54,80 @@ public class RemoveDuplicatesFromSortedArray {
         [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
                         l              r
 
+        NOTE:
+        1. In situations like [1,2,3], then l==r and we just self swap the value - OPTIONAL. So, we skipped this is optional step in {@link #removeDuplicates2}
      */
     public static int removeDuplicates(int[] nums) {
         if (nums.length == 0) return 0;
 
-        int l = 1;
-        for (int r = 1; r < nums.length; r++) {
-            if (nums[r-1] != nums[r]) { // prev != curr
+        int l = 1; // we don't need to check the 0th element
+        for (int r = 1; r < nums.length; r++) { // or r=2; but l value will return 1 if n=3 [1,2,3] which is wrong
+            if (nums[r-1] != nums[r]) { // prevR != currR
+                nums[l++] = nums[r];
+            }
+            /*
+            NOTE: so behind this current for loop => if(nums[r-1]==nums[r]) r++; i.e prevR == currR.
+
+            or
+            if (nums[r-1] == nums[r]) continue;
+            nums[l++] = nums[r];
+
+            Check below {@link #removeDuplicates2} for easy understanding
+
+            */
+        }
+        return l;
+    }
+
+    /**
+     * same as above {@link #removeDuplicates} but using while loop
+     *
+     * Above removeDuplicates() is generally faster than this removeDuplicates2() method, because it uses a single for-loop
+     * with minimal pointer movement and fewer conditional checks per iteration.
+     * removeDuplicates2() uses nested while-loops, which can introduce more overhead due to repeated checks,
+     * especially when there are few duplicates.
+     *
+     * 🔥Both are O(n), but the for-loop version is more cache-friendly and branch-predictor-friendly, so it is faster in practice
+     */
+    public static int removeDuplicates2(int[] nums) {
+        int n = nums.length, l=1, r=1;
+        while(r<n) {
+            if(nums[r-1]==nums[r]) r++;
+            else nums[l++] = nums[r++];
+        }
+        return l;
+    }
+
+
+    public static int removeDuplicates3(int[] nums) {
+        int n = nums.length, l=1, r=1;
+        while(r<n) {
+            if(nums[r-1]!=nums[r]) nums[l++] = nums[r];
+            r++;
+        }
+        return l;
+    }
+
+
+    /**
+     * NOTE:
+     * Same as {@link #removeDuplicates} but using two pointers
+     * And this {@link #removeDuplicates4} is slightly slower than {@link #removeDuplicates}, because
+     * Declaring the loop variable (r) inside the for header enables tighter scoping, better register allocation,
+     * and more aggressive JIT/compiler optimization—making it slightly faster in hot loops
+     */
+    public static int removeDuplicates4(int[] nums) {
+        if (nums.length == 0) return 0;
+
+        int l = 1, r = 1;
+        for (; r < nums.length; r++) {
+            if (nums[r-1] != nums[r]) {
                 nums[l++] = nums[r];
             }
         }
         return l;
     }
+
 
 
 
@@ -175,7 +238,7 @@ public class RemoveDuplicatesFromSortedArray {
         int n=nums.length, i=1, j=1;
         while(j<n) {
             while(i<n && nums[i-1]!=nums[i]) i++;
-            if(i==n) break;
+            if(i==n) break; // or if(j<i) j=i+1;
             while(j<n && nums[i]>=nums[j]) j++;
             if(j==n) break;
 
