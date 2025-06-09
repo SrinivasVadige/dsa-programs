@@ -111,6 +111,15 @@ public class RotateArray {
 
 
 
+
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     *
+     * same like {@link #rotateMyApproachNew(int[], int)} and {@link #rotate2(int[], int)}, but here use recursion instead of do-while to track the circular loop and count
+     */
     public void rotate3(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
@@ -132,9 +141,6 @@ public class RotateArray {
         nums[nextI] = exitNum;
         count++;
 
-        System.out.printf("exitI:%s, nextI:%s, count:%s\n", exitI, nextI, count);
-        System.out.println(Arrays.toString(nums));
-
         if (nextI == startI) {
             // cycle completed
             return count;
@@ -142,10 +148,6 @@ public class RotateArray {
 
         return placeExitNum(nums, k, nextNum, nextI, startI, count);
     }
-
-
-
-
 
 
 
@@ -166,6 +168,10 @@ public class RotateArray {
         }
     }
 
+
+
+
+
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
@@ -183,6 +189,10 @@ public class RotateArray {
             nums[i] = rotated[i];
         }
     }
+
+
+
+
 
 
     /**
