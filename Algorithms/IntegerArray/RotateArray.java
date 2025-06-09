@@ -104,7 +104,22 @@ public class RotateArray {
                 currNum = nextNum;
                 currI = nextI;
                 count++;
-            } while (startI != currI); // one cycle done and if(start==currI) then we see a circular loop, then stop this do-while and proceed with next startI till count==n
+            } while (startI != currI); // one cycle done and if(start==currI) then we see a circular loop, then stop this do-while and proceed with next startI till count==
+
+
+            /**
+            // or use this while loop to simulate the do-while behavior
+            while (true) {
+                int nextI = (currI + k) % n;
+                int nextNum = nums[nextI];
+                nums[nextI] = currNum;
+                currNum = nextNum;
+                currI = nextI;
+                count++;
+
+                if (currI == startI) break; // cycle complete
+            }
+            */
         }
     }
 
