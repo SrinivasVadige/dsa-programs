@@ -9,6 +9,7 @@ public class BestTimeToBuyAndSellStockII {
         int[] prices = {7, 1, 5, 3, 6, 4};
         System.out.println("maxProfitUsingTwoPointersMyApproach => " + maxProfitUsingTwoPointersMyApproach(prices));
         System.out.println("maxProfitUsingBottomUpTabulationDp => " + maxProfitUsingBottomUpTabulationDp(prices));
+        System.out.println("maxProfitUsingTwoPointersEffectiveBuyPrice2 => " + maxProfitUsingTwoPointersEffectiveBuyPrice2(prices));
     }
 
 
@@ -56,6 +57,11 @@ public class BestTimeToBuyAndSellStockII {
      * --------------------
      * EFFECTIVE BUY PRICE = Amount we invested from our pocket to buy stocks
      *
+     * 🔥 To calculate profit while using EBP approach
+     * we just do TotalProfit = (CurrSellAmount-EBP) ✅
+     * This TotalProfit is profit till now.
+     * So, no need to sum up profit in every sell, like we usually do i.e totalProfit+=profit ❌
+     *
      * EXAMPLE:
      * Buys and sell stocks in coins.
      *
@@ -65,54 +71,73 @@ public class BestTimeToBuyAndSellStockII {
      *
      * Now buy 1st stock i.e price 2 == coins 2
      *
-     * EXPLANATION 1:
+     * EXAMPLE WITH EXPLANATION 1
+     * [2, 5, 4, 6]
+     * ---------- "At Starting point, BUY == EFFECTIVE BUY PRICE" ----------
      *
+     * EBP = 🟠🟠
      * BUY #1
      * [c][c]       ---> here we invested two coins from our pocket, the effective buy price is 2
+     * 🟠🟠
      *
      * SELL #1
      * [c][c][P1][P1][P1]      ---> here we made profit of 3 coins
+     * 🟠🟠 🟢  🟢  🟢
      *
      * PROFIT #1 = [P1][P1][P1]
+     *              🟢🟢🟢
      *
+     *
+     *
+     * EBP = 🟠
      * BUY #2
      * [P1][P1][P1][C]         ---> we only invested one coin from our pocket --> the effective by price is 1, cause we invested the profit of 3 coins
+     * 🟢  🟢  🟢 🟠
      *
      * SELL #2
      * [P1][P1][P1][C][P2][P2]  ---> we made profit of 2 coins
+     * 🟢  🟢  🟢 🟠 🟢 🟢
      *
      * PROFIT #2 = [P2][P2]
      *
      * TOTAL PROFIT = PROFIT #1 + PROFIT #2 = [P1][P1][P1][P2][P2] = 5
+     *                                        🟢  🟢  🟢 🟢  🟢
      *
      *
-     * EXPLANATION 2:
      *
+     * SAME EXAMPLE WITH DIFFERENT EXPLANATION :
      * [2, 5, 4, 6]
+     * ---------- "At Starting point, BUY == EFFECTIVE BUY PRICE" ----------
      *
+     * EBP = 🟠🟠
      * BUY #1
      * [c][c]                   ---> B1=2 or EBP=2
+     * 🟠 🟠
      *
      * SELL #1
      * [c][c][P1][P1][P1]       ---> S1=B1+P1=5
+     * 🟠 🟠 🟢 🟢 🟢
      *
      * PROFIT #1 = [P1][P1][P1] ---> P1=3
      *
-     * TOTAL PROFIT = P = S1-B1 = S1-EBP ✅
+     * TOTAL PROFIT = P = [P1][P1][P1] = S1-B1 = S1-EBP ✅
+     *                     🟢 🟢 🟢
      *
      *
      *
-     *
+     * EBP = 🟠
      * BUY #2
      * [P1][P1][P1][C]          ---> B2=4, B2=P1(3)+EBP(1) ---> EBP = B2-P1
+     *  🟢 🟢 🟢  🟠
      *
      * SELL #2
      * [P1][P1][P1][C][P2][P2]  ---> S2=B2+P2=6
+     * 🟢  🟢  🟢 🟠 🟢 🟢
      *
      * PROFIT #2 = [P2][P2]     ---> P2=2
      *
-     * TOTAL PROFIT = P = S2-(EBP) or S2-(B2-P1) ✅
-     *
+     * TOTAL PROFIT = P = [P1][P1][P1][P2][P2] = S2-(EBP) or S2-(B2-P1) ✅
+     *                     🟢 🟢 🟢 🟢  🟢
      *
      * BUY #3
      *
@@ -122,17 +147,51 @@ public class BestTimeToBuyAndSellStockII {
      * In below example maintain min & max to check whether we need to buy or sell stocks at i
      *
      * Here EBP and i are 2 pointers
+     *
+     * [2, 5, 4, 6]
      */
     public static int maxProfitUsingTwoPointersEffectiveBuyPrice(int[] prices) {
         int n = prices.length;
         int profit = 0, effectiveBuyPrice = prices[0];
         for (int i = 1; i < n; i++) {
-            profit = Math.max(profit, prices[i] - effectiveBuyPrice); // if sold, then TOTAL PROFIT = P = S2-(EBP) = S2-(B2-P1)
-            effectiveBuyPrice = Math.min(effectiveBuyPrice, prices[i] - profit); // if bought, EBP = B2-P
+             // if sold curr stock, then "TotalProfit = currSellAmount-EBP"
+             // TP = S2-(EBP) or S2-(B2-P1)
+            profit = Math.max(profit, prices[i] - effectiveBuyPrice);
+            // if bought curr stock, then "EBP = currBuyPrice - TotalProfit"
+            // EBP = B2-P
+            effectiveBuyPrice = Math.min(effectiveBuyPrice, prices[i] - profit);
         }
         return profit;
     }
 
+
+    /**
+     * While calculating EBP, price-TP --> what if price is smaller, we get -ve EBP right ?
+     * Yes, sometimes EBP can be -ve
+     * that means, TP is bigger & we didn't spend money from our pocket to buy that stock
+     *
+     * [7, 1, 5, 3, 6, 4]
+     *           i
+     * here initially,
+     * price = 3,
+     * TP = 4,
+     * EBP = 1;
+     *
+     * Now, if we calculate
+     * EBP = price-TP = 3-4 = -1
+     * TP = price-EBP = 3-(-1) = 4
+     *
+     * So, finally this -ve EBP will balance back the TP
+     */
+    public static int maxProfitUsingTwoPointersEffectiveBuyPrice2(int[] prices) {
+        int TP=0; // TotalProfit
+        int EBP=prices[0]; // EffectiveBuyPrice
+        for(int price: prices) {
+            TP = Math.max(TP, price-EBP);
+            EBP = Math.min(EBP, price-TP);
+        }
+        return TP;
+    }
 
 
 
