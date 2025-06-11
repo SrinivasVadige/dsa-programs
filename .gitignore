@@ -23,5 +23,10 @@
 hs_err_pid*
 replay_pid*
 
-# IDE 
+# IDE
 .vscode
+.idea
+dsa-programs.iml
+
+# Production out
+out
