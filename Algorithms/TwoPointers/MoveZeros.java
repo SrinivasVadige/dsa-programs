@@ -7,7 +7,7 @@ import java.util.stream.*;
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 03 Sept 2024
  */
-public class MoveZeroes {
+public class MoveZeros {
     public static void main(String[] args) {
 
         int[] nums = {0,
