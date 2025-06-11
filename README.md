@@ -1,8 +1,8 @@
 <!--
-Notes:
-1. Invoke-Expression (&starship init PowerShell) -- starship
-2.
-
+/* *
+* Notes:
+* 1. Invoke-Expression (&starship init PowerShell) -- starship
+* */
 -->
 
 # dsa-programs
