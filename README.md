@@ -189,6 +189,8 @@ Data Structures and Algorithm Programs
     * [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
     * [Best Time to Buy and Sell Stock II](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockII.java)
     * [Best Time to Buy and Sell Stock with Transaction Fee](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithTransactionFee.java)
+   * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
+   * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
 
 8. #### [Graphs](/Algorithms/Graphs)
 
