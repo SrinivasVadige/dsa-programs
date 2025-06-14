@@ -99,6 +99,7 @@ Data Structures and Algorithm Programs
     * [Successful Pairs of Spells and Potions](/Algorithms/BinarySearch/SuccessfulPairsOfSpellsAndPotions.java)
     * [Find Peak Element](/Algorithms/BinarySearch/FindPeakElement.java)
     * [Koko Eating Bananas](/Algorithms/BinarySearch/KokoEatingBananas.java)
+    * [H-Index](Algorithms/IntegerArray/HIndex.java)
 
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees)
 
@@ -213,6 +214,7 @@ Data Structures and Algorithm Programs
     * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
     * [BestTime To Buy And Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
     * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
+    * [H-Index](Algorithms/IntegerArray/HIndex.java)
 
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
 
@@ -253,6 +255,7 @@ Data Structures and Algorithm Programs
     * [Remove duplicates from Sorted Array](Algorithms/IntegerArray/RemoveDuplicatesFromSortedArray.java)
     * [Remove duplicates from Sorted Array II](Algorithms/IntegerArray/RemoveDuplicatesFromSortedArrayII.java)
     * [Rotate Array by K times](Algorithms/IntegerArray/RotateArray.java)
+    * [H-Index](Algorithms/IntegerArray/HIndex.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
