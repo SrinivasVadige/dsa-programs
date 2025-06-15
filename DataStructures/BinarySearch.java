@@ -3,35 +3,46 @@ package DataStructures;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 10 May 2025
- *
- * Binary Search has a time complexity of O(log n) but only works on sorted arrays
- *
- * But Binary Search has 2 aspects:
- * 1. A sorted array
- * 2. Splitting the array into two equal halves
- *
- * So, if we don't have a sorted array, then try to split the array into two equal halves if we have some patterns like num[i-1] < num[i] < num[i+1]
- *
- * 1. A sorted array
- * -----------------
- * If you have a sorted array, then you can use Binary Search to find an element in O(log n) time
- *
- * 2. Splitting the array into two equal halves
- * ---------------------------------------------
- * Observe some patterns like num[i-1] < num[i] < num[i+1]
- * You can split the array into two equal halves like
- * A1 = l1{2, 4} r1{9, 12}
- * Then
+
+  Binary Search has a time complexity of O(log n) but only works on sorted arrays
+
+  But Binary Search has 2 aspects:
+  1. A sorted array
+  2. Splitting the array into two equal halves
+
+  So, if we don't have a sorted array, then try to split the array into two equal halves if we have some patterns like num[i-1] < num[i] < num[i+1]
+
+  1. A sorted array
+  -----------------
+  If you have a sorted array, then you can use Binary Search to find an element in O(log n) time
+
+  2. Splitting the array into two equal halves
+  ---------------------------------------------
+  Observe some patterns like num[i-1] < num[i] < num[i+1]
+  You can split the array into two equal halves like
+  A1 = l1{2, 4} r1{9, 12}
+  Then
  */
 public class BinarySearch {
     public static void main(String[] args) {
         int[] nums = {1, 3, 5, 6};
         int target = 7;
         System.out.println("binarySearch(nums, target) => " + binarySearch(nums, target));
+        System.out.println("binarySearchWithDuplicates => " + binarySearchWithDuplicates(nums, target));
     }
 
 
+    /**
+         [1, 3, 5, 6] & target = 7
+         if target>all nums eles and not found then it'll return nums.length i.e "n" as 'r' is initialized to 'n-1' and after l & r completion in while(l<=r) it'll be r+1
+         and 'r' will return 'n-1' as it is initialized to 'n-1'
 
+         [1, 3, 5, 6] & target = -1
+         similarly if target<all nums eles and not found then 'l' return 0 not -1, so 'l' is initialized to 0
+         and 'r' will return -1
+
+         so, check and return -1; instead of l
+     */
     public static int binarySearch(int[] nums, int target) {
         int l = 0, r = nums.length - 1, mid;
         while (l <= r) {
@@ -41,22 +52,42 @@ public class BinarySearch {
             else r = mid - 1;
         }
         return l; // or return -1; -- return the index where it would be if it were inserted in order
-        /**
-         * [1, 3, 5, 6] & target = 7
-         * if target>all nums eles and not found then it'll return nums.length i.e "n" as 'r' is initialized to 'n-1' and after l & r completion in while(l<=r) it'll be r+1
-         * and 'r' will return 'n-1' as it is initialized to 'n-1'
-         *
-         * [1, 3, 5, 6] & target = -1
-         * similarly if target<all nums eles and not found then 'l' return 0 not -1, so 'l' is initialized to 0
-         * and 'r' will return -1
-         *
-         * so, check and return -1; instead of l
-         */
+
+    }
+
+
+    /**
+     * 🔥
+     * Works for both duplicates, non-duplicates nums and also when target is not present
+     * 🔥
+     * Here if target not found then it'll return the next biggest number.
+     * same as above binarySearch() explanation
+
+         [1, 3, 3, 5, 6] & target = 3
+         l      m     r
+
+         [1, 3, 3, 5, 6] & target = 3
+         l   r
+
+         [1, 3, 3, 5, 6] & target = 3
+            lr
+     */
+    public static int binarySearchWithDuplicates(int[] nums, int target) {
+        int l = 0, r = nums.length - 1, mid;
+        while (l<=r) {
+            mid = l+(r-l)/2;
+            if (nums[mid] >= target) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
     }
 
 
 
-    public int binarySearchWithDuplicates(int[] nums, int target) {
+    public int binarySearchWithDuplicatesOldWay(int[] nums, int target) {
         int l = 0, r = nums.length - 1, mid;
         while (l <= r) {
             mid = l + (r - l) / 2; // to avoid overflow or use (start + end) / 2
@@ -71,53 +102,28 @@ public class BinarySearch {
     }
 
 
-    public int binarySearchWithDuplicates2(int[] nums, int target) {
-        int l = 0, r = nums.length - 1, mid;
-        while (l<=r) {
-            mid = l+(r-l)/2;
-            if (nums[mid] >= target) {
-                r = mid - 1;
-            } else {
-                l = mid + 1;
-            }
-        }
-        return l;
-        /**
-         * same as above binarySearch() explanation
-         *
-         * [1, 3, 3, 5, 6] & target = 3
-         *  l     m     r
-         *
-         * [1, 3, 3, 5, 6] & target = 3
-         *  l  r
-         *
-         * [1, 3, 3, 5, 6] & target = 3
-         * lr
-         */
-    }
-
 
 
 
     /**
      * @TimeComplexity O(log n)
      * @SpaceComplexity O(1)
-     *
-     * Focus on "Strictly monotonically increasing" or "Strictly monotonically decreasing"
-     *
-     *                                         *                    *
-     *                                     *      -∞     or     -∞      *
-     *                                 *                                     *
-     *                             *                                            *
-     *                         -∞                                                   -∞
-     *
-     * "-∞" is for nums[-1] and nums[n]
-     *
-     * If there is a "Strictly monotonically increasing" then we might face a smaller number on the right i.e a peak or the nums ends with -∞ i.e a peak
-     * Similarly if there is a "Strictly monotonically decreasing", then we know that nums[-1] is -∞ and nums[0] is peak
-     *
-     * Note that we need any peak, not necessarily the max peak
-     *
+
+        Focus on "Strictly monotonically increasing" or "Strictly monotonically decreasing"
+
+                                                *                    *
+                                            *      -∞     or     -∞      *
+                                        *                                     *
+                                    *                                            *
+                                -∞                                                   -∞
+
+        "-∞" is for nums[-1] and nums[n]
+
+        If there is a "Strictly monotonically increasing" then we might face a smaller number on the right i.e a peak or the nums ends with -∞ i.e a peak
+        Similarly if there is a "Strictly monotonically decreasing", then we know that nums[-1] is -∞ and nums[0] is peak
+
+        Note that we need any peak, not necessarily the max peak
+
     */
     public static int findPeakElement(int[] nums) {
         int n=nums.length, l=0, r=n-1, mid;
