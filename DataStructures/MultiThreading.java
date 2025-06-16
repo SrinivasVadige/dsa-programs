@@ -2,10 +2,20 @@ package DataStructures;
 
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.function.Supplier;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 15 June 2025
+
+We can create multiple asynchronous threads in Java using:
+1. Thread class
+2. Runnable interface
+3. ExecutorService class
+4. CompletableFuture
+5. ThreadPoolExecutor
+6. ScheduledExecutorService
+7. Fork/Join framework -- Java 21
 
 NOTE:
 1. In Runnable Functional Interface and Thread constructor, we override run() method but we can execute it using start() or run().
@@ -153,23 +163,85 @@ EXECUTOR SERVICE CLASS METHODS:
          futureResult.get(); ----> will wait for the thread to complete, just like join() in Thread class 🔥
 
 
+
+
+ COMPLETABLE FUTURE CLASS:
+    Java 8 introduced CompletableFuture class, which is used to handle asynchronous operations in a non-blocking way.
+
+COMPLETABLE FUTURE CLASS METHODS:
+    1. supplyAsync() -- to supply the thread
+    2. runAsync() -- to run the thread
+    3. thenApply() -- to then apply the thread
+    4. thenAccept() -- to then accept the thread
+    5. thenRun() -- to then run the thread
+    6. thenCompose() -- to then compose the thread
+    7. thenAcceptEither() -- to then accept the thread
+    8. thenRunEither() -- to then run the thread
+    9. thenAcceptBoth() -- to then accept the thread
+    10. thenRunBoth() -- to then run the thread
+    11. exceptionally() -- to handle the exception
  */
 public class MultiThreading {
     public static void main(String[] args) {
 
-        // Initialize 3 threads using Thread class
+        // Thread class
         java.lang.Thread t1 = new Thread(() -> System.out.println("Thread 1"));
         Thread t2 = new Thread(() -> System.out.println("Thread 2"));
         Thread t3 = new Thread(() -> System.out.println("Thread 3"));
 
-        // Initialize 3 threads using Runnable interface
+
+        // Runnable interface
         Runnable r1 = () -> System.out.println("Runnable 1");
         Runnable r2 = () -> System.out.println("Runnable 2");
         Runnable r3 = () -> System.out.println("Runnable 3");
 
-        // Initialize 3 threads using ExecutorService class
+
+         /*
+         ExecutorService class
+         .submit() and .invokeAll() will execute the thread
+         */
         java.util.concurrent.ExecutorService executorService = java.util.concurrent.Executors.newFixedThreadPool(3);
-        // .submit() and .invokeAll() will execute the thread
+
+
+
+        /*
+        CompletableFuture
+        No need of .start() or .run() here
+        future.join(); // blocks and waits
+
+        supplyAsync() to run a something asynchronously --- Supplier<>
+        runAsync to run something asynchronously --- Runnable
+         */
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {return "Hello, Java!"; });
+        Supplier<String> supplier = () -> "Hello, Java!";
+        CompletableFuture<String> future1a = CompletableFuture.supplyAsync(supplier);
+        CompletableFuture<Void> future2 = CompletableFuture.supplyAsync(() -> {System.out.println("Hello, Java!"); return null; });
+        CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "Hello, Java!", executorService);
+        String str = CompletableFuture.supplyAsync(() -> 5)
+                .thenApply(n -> n * 2) // Chaining Futures
+                .thenApply(n -> "Result: " + n).join();
+        CompletableFuture<String> future4 = CompletableFuture.supplyAsync(() -> "https://example.com")
+                .thenCompose(url -> CompletableFuture.supplyAsync(() -> "Fetched: " + url));
+
+        CompletableFuture<Void> future5 = CompletableFuture.runAsync(() -> System.out.println("Hello, Java!"));
+        Runnable runnable = () -> System.out.println("Hello, Java!");
+        CompletableFuture<Void> future5a = CompletableFuture.runAsync(runnable);
+        CompletableFuture<Void> future6 = CompletableFuture.runAsync(() -> System.out.println("Hello, Java!"), executorService);
+        var userFuture = CompletableFuture.supplyAsync(() -> "Ravi");
+        var emailFuture = CompletableFuture.supplyAsync(() -> "ravi@example.com");
+        var result = userFuture.thenCombine(emailFuture, (name, email) -> name + " - " + email); // COMBINE TWO FUTURES
+        System.out.println(result.join());
+
+
+        // ThreadPoolExecutor
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(3, 3, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
+        threadPoolExecutor.submit(() -> System.out.println("Thread 1"));
+        threadPoolExecutor.submit(() -> System.out.println("Thread 2"));
+        threadPoolExecutor.submit(() -> System.out.println("Thread 3"));
+
+
+
+
 
 
 
