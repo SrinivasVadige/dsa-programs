@@ -140,6 +140,11 @@ DIFFERENT .SUBMIT() METHODS IN EXECUTOR SERVICE CLASS:
     <T> Future<T> submit(Callable<T> task);
     Future<?> submit(Runnable task
     <T> Future<T> submit(Runnable task, T result);
+    public void execute(Runnable command){}
+
+    .submit(Runnable task) — Fire and Track
+    .execute(Runnable command) — Fire and Forget
+
 
 EXECUTOR SERVICE CLASS METHODS:
      1. submit() -- to submit the thread
@@ -238,6 +243,9 @@ public class MultiThreading {
         threadPoolExecutor.submit(() -> System.out.println("Thread 1"));
         threadPoolExecutor.submit(() -> System.out.println("Thread 2"));
         threadPoolExecutor.submit(() -> System.out.println("Thread 3"));
+        threadPoolExecutor.execute(() -> System.out.println("Thread 4"));
+        threadPoolExecutor.execute(() -> System.out.println("Thread 5"));
+        threadPoolExecutor.execute(() -> System.out.println("Thread 6"));
 
 
 
