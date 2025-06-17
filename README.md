@@ -257,6 +257,7 @@ Data Structures and Algorithm Programs
     * [Remove duplicates from Sorted Array II](Algorithms/IntegerArray/RemoveDuplicatesFromSortedArrayII.java)
     * [Rotate Array by K times](Algorithms/IntegerArray/RotateArray.java)
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
+    * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
