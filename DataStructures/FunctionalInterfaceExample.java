@@ -26,6 +26,19 @@ import java.util.function.Predicate;
 	1) All java lambda methods and method references use this functional interface principle
     2) We can override multiple methods in Anonymous inner class but only one method in Lambda expression and method reference
     3) We can also create inner interfaces just like inner classes
+ 	4) If built-in Functional interfaces abstract methods don't have throws Exception, then we can't throw Exception in lambda expression and method reference
+		Function<String, String> func = (input) -> {
+			throw new IOException("fail"); // ❌ Compiler error: unhandled exception
+		};
+       So, wrap it in try-catch block
+ 		Function<String, String> func = (input) -> {
+            try {
+                throw new Exception("fail"); // ✅ works
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        };
+
 
 
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
@@ -59,6 +72,8 @@ public class FunctionalInterfaceExample {
 			2) Lambda expression -------------------
 
 			defining the single method interface with lambda
+
+			Lambda expressions cannot throw checked exceptions unless declared
 		 */
 		SampleInterface i_lambda = () -> "lambda"; // or ()->{return "lambda"}
 		System.out.println(i_lambda.display());
@@ -86,6 +101,18 @@ public class FunctionalInterfaceExample {
 		// Function Functional Interface examples
 		Function<Integer, Integer> f1 = (i) -> i * i;
 		Function<Object, String> f2 = Object::toString;
+
+
+//		Function<String, String> func = (input) -> {
+//			throw new Exception("fail"); // ❌ Compiler error: unhandled exception
+//		};
+		Function<String, String> func = (input) -> {
+            try {
+                throw new Exception("fail"); // ✅ works
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        };
 	}
 
 
@@ -178,7 +205,7 @@ public class FunctionalInterfaceExample {
 	3) ActionListener –> This interface only contains the actionPerformed() method.
 	4) Callable –> This interface only contains the call() method.
 
-	Java SE 8 included four main kinds of functional interfaces which can be applied in multiple situations as mentioned bel
+	Java SE 8 included four main kinds of functional interfaces which can be applied in multiple situations as mentioned below
 	1) Function (java.util.function.Function)
 	2) Predicate (java.util.function.Predicate)
 	3) UnaryOperator
