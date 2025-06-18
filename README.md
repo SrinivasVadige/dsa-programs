@@ -258,6 +258,7 @@ Data Structures and Algorithm Programs
     * [Rotate Array by K times](Algorithms/IntegerArray/RotateArray.java)
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
+    * [Product of Array Except Self](Algorithms/IntegerArray/ProductOfArrayExceptSelf.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
@@ -302,7 +303,6 @@ Data Structures and Algorithm Programs
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
     * [Maximum SubArray](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
-    * [Product of Array Except Self](Algorithms/MiscAlgos/ProductOfArrayExceptSelf.java)
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
     * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)

@@ -1,13 +1,24 @@
-package Algorithms.MiscAlgos;
+package Algorithms.IntegerArray;
+
+import java.util.Arrays;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 15 March 2025
+ * @link 238. Product of Array Except Self <a href="https://leetcode.com/problems/product-of-array-except-self/">LeetCode link</a>
+ * @topics Array, Prefix Sum
+ *
+ * Note: In problem description, it asked us not to use division operator, but we can still use multiplication operator
  */
 public class ProductOfArrayExceptSelf {
     public static void main(String[] args) {
         int[] nums = {1,2,3,4};
-        System.out.println("productExceptSelf(nums) => " + productExceptSelf(nums));
+        System.out.printf("productExceptSelf => %s\n", Arrays.toString(productExceptSelf(nums)));
+        System.out.printf("productExceptSelf using prefix[] and suffix[] => %s\n", Arrays.toString(productExceptSelfUsingPrefixAndSuffixArrays(nums)));
+        System.out.printf("productExceptSelf using suffix[] and prevPrefixNum => %s\n", Arrays.toString(productExceptSelfUsingSuffixArrayAndPrevPrefixNum(nums)));
+
+
+
     }
 
     public int[] productExceptSelfBruteForce(int[] nums) {
@@ -49,6 +60,56 @@ public class ProductOfArrayExceptSelf {
 
 
 
+        /**
+     [1, 1, 2, 6, 24]   ---> prefix
+        [1, 2, 3, 4]
+        [24,24,12,4, 1] ---> suffix
+
+        Extra Spaces => prefix[], suffix[]
+     */
+    public static int[] productExceptSelfUsingPrefixAndSuffixArrays(int[] nums) {
+        int n = nums.length;
+        int[] prefix = new int[n+1];
+        int[] suffix = new int[n+1];
+        prefix[0] = suffix[n] = 1;
+
+        for(int i=0; i<n; i++) prefix[i+1] = prefix[i]*nums[i];
+        for(int i=n-1; i>=0; i--) suffix[i] = suffix[i+1]*nums[i];
+
+        int[] answer = new int[n];
+        for(int i=0; i<n; i++) answer[i] = prefix[i]*suffix[i+1];
+
+        return answer;
+    }
+
+
+
+
+    /**
+         1, 2, 6, 24   ---> prevPrefixNum
+        [1, 2, 3, 4]
+        [24,24,12,4, 1] ---> suffix
+
+        Extra Spaces => suffix[]
+     */
+    public static int[] productExceptSelfUsingSuffixArrayAndPrevPrefixNum(int[] nums) {
+        int n = nums.length;
+        int[] answer = new int[n];
+        int[] suffix = new int[n+1];
+        suffix[n] = 1;
+
+        for(int i=n-1; i>=0; i--) suffix[i] = suffix[i+1]*nums[i];
+
+        int prevPrefixNum = 1;
+        for(int i=0; i<n; i++) {
+            answer[i] = prevPrefixNum*suffix[i+1];
+            prevPrefixNum *= nums[i];
+        }
+        return answer;
+    }
+
+
+
     /**
         Input:  [2,3,4,5]
 
@@ -69,7 +130,7 @@ public class ProductOfArrayExceptSelf {
         1) if "i" is out of bound then use 1
         2) No need to handle the 0's separately
      */
-    public int[] productExceptSelfUsingPrefixAndSuffixArrs(int[] nums) {
+    public static int[] productExceptSelfUsingPrefixAndSuffixArrays2(int[] nums) {
         int n=nums.length;
         int[] prefix = new int[n];
         int[] suffix = new int[n];
@@ -90,13 +151,30 @@ public class ProductOfArrayExceptSelf {
             res[i]=p*s;
         }
         return res;
-
     }
 
 
 
-    // same as above productExceptSelfUsingPrefixAndSuffixArrs
+
+
     public static int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] suffix = new int[n];
+
+        for(int i=n-1; i>=0; i--) suffix[i] = (i==n-1? 1 : suffix[i+1])*nums[i];
+
+        int prevPrefixNum = 1;
+        for(int i=0; i<n; i++) {
+            suffix[i] = prevPrefixNum*(i==n-1? 1 : suffix[i+1]);
+            prevPrefixNum *= nums[i];
+        }
+        return suffix;
+    }
+
+
+
+    // same as above productExceptSelfUsingPrefixAndSuffixArrays
+    public static int[] productExceptSelf2(int[] nums) {
         int n=nums.length;
         int[] prefix = new int[n];
         prefix[0]=nums[0];
@@ -113,7 +191,9 @@ public class ProductOfArrayExceptSelf {
         return prefix;
     }
 
-    public static int[] productExceptSelf2(int[] nums) {
+
+
+    public static int[] productExceptSelf3(int[] nums) {
         int[] result = new int[nums.length];
         result[0] = 1;
         for (int i = 1; i < nums.length; i++) {
