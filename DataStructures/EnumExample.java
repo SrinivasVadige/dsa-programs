@@ -181,6 +181,11 @@ enum WeekDay {
     public String toString() {
         return name().charAt(0) + name().substring(1).toLowerCase();
     }
+
+    // print all enum values
+    public static void printAll() {
+        Arrays.stream(values()).forEach(System.out::println); // 🔥 we can use WeekDay.values() or just use values() directly
+    }
 }
 
 // Constructor Enum with 1 non-final parameter
@@ -229,19 +234,66 @@ enum Frequency {
         this.code = code;
     }
 
-    // is item present in the enum -----
+    /*
+    * @TimeComplexity O(1)
+        is item present in the enum -----
+     */
     public static boolean isFrequency(String frequency) {
         try {
-            Frequency.valueOf(frequency);
+            Frequency.valueOf(frequency); // or Frequency.valueOf(frequency.toUpperCase());
         } catch (IllegalArgumentException e) {
             return false;
         }
         return true;
     }
 
+
+    /*
+    * @TimeComplexity O(1)
+    *
+     */
     public static boolean isFrequency2(String frequency) {
-        return Stream.of(WeekDay.values()).anyMatch(lifeFrequency -> lifeFrequency.name().equalsIgnoreCase(frequency));
+        try {
+            Enum.valueOf(Frequency.class, frequency); // or Enum.valueOf(Frequency.class, frequency.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
     }
+
+
+
+    /*
+    * @TimeComplexity O(n)
+    *
+    * WeekDay.values() is same as values()
+    */
+    public static boolean isFrequency3(String frequency) {
+         return Stream.of(values()).anyMatch(lifeFrequency -> lifeFrequency.name().equalsIgnoreCase(frequency));
+//        return Stream.of(WeekDay.values()).anyMatch(lifeFrequency -> lifeFrequency.name().equalsIgnoreCase(frequency));
+    }
+
+
+
+
+    /*
+        NOTE:
+        -----
+        If you know for sure, your enum constants are uppercase (like MONDAY, ACTIVE), then:
+        Frequency.valueOf(frequency.toUpperCase()); ---------
+        is clean, fast, and preferred.
+
+        If you aren’t sure whether enum constants use uppercase, camel case (Monday), or mixed case, then:
+        Arrays.stream(Frequency.values())
+              .anyMatch(f -> f.name().equalsIgnoreCase(frequency)); ---------
+        or a similar .equalsIgnoreCase() approach
+        is safer and more flexible, though slower (O(n)).
+     */
+
+
+
+
+
 
     // EnumDescriptor ---- used to provide metadata about an enum class
     // public static boolean isFrequency3(String frequency) {
