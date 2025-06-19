@@ -127,4 +127,18 @@ public class DateTIme {
         java.time.Period period = Period.ofDays(2);
         System.out.println(period);
     }
+
+
+
+
+    public static final DateTimeFormatter ISO = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+    public static final DateTimeFormatter DISPLAY = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
+
+    public static String nowIso() {
+        return OffsetDateTime.now().format(ISO);
+    }
+
+    public static String format(LocalDateTime time) {
+        return time.format(DISPLAY);
+    }
 }
