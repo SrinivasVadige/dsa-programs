@@ -381,6 +381,7 @@ Data Structures and Algorithm Programs
     * [Reverse Vowels of a String](/Algorithms/Strings/ReverseVowelsOfString.java)
     * [Reverse Words in a String](/Algorithms/Strings/ReverseWordsInString.java)
     * [String Compression](/Algorithms/Strings/StringCompression.java)
+    * [Zigzag Conversion](/Algorithms/Strings/ZigzagConversion.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
