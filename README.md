@@ -218,6 +218,7 @@ Data Structures and Algorithm Programs
     * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Gas Station](/Algorithms/GreedyAlgorithms/GasStation.java)
+    * [Candy](/Algorithms/GreedyAlgorithms/Candy.java)
 
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
 
