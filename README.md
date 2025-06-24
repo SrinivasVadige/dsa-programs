@@ -61,7 +61,6 @@ Data Structures and Algorithm Programs
   * [Patterns and shapes](BasicPrograms/Patterns.java)
   * [PrimeNumber](BasicPrograms/PrimeNumber.java)
   * [Anagram](/BasicPrograms/Anagram.java)
-  * [RomanToInteger](BasicPrograms/RomanToInteger.java)
   * [WordPattern](BasicPrograms/WordPattern.java)
   * [Number of Steps to Reduce the Number to Zero](BasicPrograms/NumberOfStepsToReduceNumberToZero.java)
   * [Fizz Buzz](BasicPrograms/FizzBuzz.java)
@@ -383,6 +382,7 @@ Data Structures and Algorithm Programs
     * [Reverse Words in a String](/Algorithms/Strings/ReverseWordsInString.java)
     * [String Compression](/Algorithms/Strings/StringCompression.java)
     * [Zigzag Conversion](/Algorithms/Strings/ZigzagConversion.java)
+    * [RomanToInteger](/Algorithms/Strings/RomanToInteger.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
