@@ -382,7 +382,8 @@ Data Structures and Algorithm Programs
     * [Reverse Words in a String](/Algorithms/Strings/ReverseWordsInString.java)
     * [String Compression](/Algorithms/Strings/StringCompression.java)
     * [Zigzag Conversion](/Algorithms/Strings/ZigzagConversion.java)
-    * [RomanToInteger](/Algorithms/Strings/RomanToInteger.java)
+    * [Roman to Integer](/Algorithms/Strings/RomanToInteger.java)
+    * [Integer to Roman](/Algorithms/Strings/IntegerToRoman.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
