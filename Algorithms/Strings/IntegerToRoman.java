@@ -58,6 +58,11 @@ public class IntegerToRoman {
         }
         return sb.toString();
     }
+
+
+
+
+
     public static String intToRoman3(int num) {
         Map<Integer, String> map = new LinkedHashMap<>(){
             {
@@ -118,7 +123,6 @@ public class IntegerToRoman {
     public String intToRomanMyApproach(int num) {
         StringBuilder roman = new StringBuilder();
         StringBuilder sb = new StringBuilder(""+num);
-        System.out.println(sb.toString());
 
         while(!sb.isEmpty()) {
             int i = sb.charAt(0) - '0';
@@ -157,7 +161,7 @@ public class IntegerToRoman {
             }
             return s.repeat(i);
         } else if (i == 4) {
-            return getRoman(1, zeros) + getRoman(5, zeros);
+            return getRoman2(1, zeros) + getRoman2(5, zeros);
         } else if (i == 5) {
             if(zeros == 0) {
                 s = "V";
@@ -168,9 +172,9 @@ public class IntegerToRoman {
             }
             return s;
         } else if (i <= 8) {
-            return getRoman(5, zeros) + getRoman(i-5, zeros);
+            return getRoman2(5, zeros) + getRoman2(i-5, zeros);
         } else if (i == 9) {
-            return getRoman(1, zeros) + getRoman(1, zeros+1);
+            return getRoman2(1, zeros) + getRoman2(1, zeros+1);
         }
         return s;
     }
