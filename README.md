@@ -384,6 +384,7 @@ Data Structures and Algorithm Programs
     * [Zigzag Conversion](/Algorithms/Strings/ZigzagConversion.java)
     * [Roman to Integer](/Algorithms/Strings/RomanToInteger.java)
     * [Integer to Roman](/Algorithms/Strings/IntegerToRoman.java)
+    * [Length of Last Word](/Algorithms/Strings/LengthOfLastWord.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
