@@ -180,4 +180,113 @@ public class IntegerToRoman {
     }
 
 
+
+
+
+
+
+    public String intToRomanMyApproachOld(int num) {
+
+        String roman = "";
+        int subNum = num;
+
+        if(subNum >= 1000 && subNum < 4000){
+            roman += "M".repeat(subNum/1000);
+            if(subNum % 1000 == 0)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 900 && subNum < 1000){
+            roman += "CM";
+            if(subNum == 900)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 500 && subNum < 900){
+            roman += "D";
+            if(subNum >= 600)
+                roman += "C".repeat(subNum/100-5);
+            if(subNum % 100 == 0)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 400 && subNum < 500){
+            roman += "CD";
+            if(subNum == 400)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 100 && subNum < 400){
+            roman += "C".repeat(subNum/100);
+            if(subNum % 100 == 0)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 90 && subNum < 100){
+            roman += "XC";
+            if(subNum == 90)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 50 && subNum < 90){
+            roman += "L";
+            if(subNum >= 60)
+                roman += "X".repeat(subNum/10-5);
+            if(subNum % 10 == 0)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 40 && subNum < 50){
+            roman += "XL";
+            if(subNum == 40)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 10 && subNum < 40){
+            roman += "X".repeat(subNum/10);
+            if(subNum % 10 == 0)
+                return roman;
+            subNum = removeLeftDigit(subNum);
+        }
+
+        if(subNum >= 9 && subNum < 10){
+            roman += "IX";
+            if(subNum == 9)
+                return roman;
+        }
+
+        if(subNum >= 5 && subNum < 9){
+            roman += "V";
+            if(subNum >= 6)
+                roman += "I".repeat(subNum-5);
+        }
+
+        if(subNum >= 4 && subNum < 5){
+            roman += "IV";
+            if(subNum == 4)
+                return roman;
+        }
+
+        if(subNum >= 1 && subNum < 4){
+            roman += "I".repeat(subNum);
+        }
+
+
+        return roman;
+
+    }
+
+    public int removeLeftDigit(int subNum){
+        return Integer.parseInt(Integer.toString(subNum).substring(1));
+    }
+
+
 }
