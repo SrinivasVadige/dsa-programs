@@ -25,7 +25,21 @@ package Algorithms.Strings;
 
     NOTE: "a_b c".split("\\W") => String[2]{"a_b", "c"} --> cause _ is a word character. so, a_b is a word
 
-    REGEX METACHARACTERS:
+    JAVA REGEX META CHARACTERS:
+    ----------------------------
+    1. Characters with Special Meaning:
+    . (Dot) Matches Any Character
+    \ (Backslash) Escape Character
+    ^	Start of line/input
+    $	End of line/input
+    *	0 or more repetitions
+    +	1 or more repetitions
+    ?	0 or 1 repetition, or makes quantifier lazy
+    []	Character class
+    ()	Capturing group
+    {}	Quantifier: exact, min, or min,max
+
+    2. Predefined Character Classes:
     \s -> whitespace [\t\n\x0B\f\r]
     \S -> non-whitespace
     \w -> word character
@@ -34,18 +48,7 @@ package Algorithms.Strings;
     \D -> non-digit character [^0-9]
     \b -> word boundary
     \B -> non-word boundary
-    \t -> tab
-    \n -> new line
-    \r -> carriage return
-    \f -> form feed
-    \v -> vertical tab
-    \e -> escape
-    \cX -> control character X
-    \A -> beginning of line
-    \Z -> end of line
-    \Q -> start of a quoted string
-    \E -> end of a quoted string
-    \G -> current position in the input
+
  */
 public class LengthOfLastWord {
     public static void main(String[] args) {
