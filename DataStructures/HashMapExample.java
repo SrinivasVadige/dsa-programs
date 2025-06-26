@@ -1,17 +1,8 @@
 package DataStructures;
 
-import java.util.AbstractMap;
+import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.AbstractMap.SimpleImmutableEntry;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -232,6 +223,26 @@ public class HashMapExample {
 
 
 
+        /* DOUBLE BRACES INITIALIZATION
+         * Double braces initialization creates subclasses and Breaks Serializable, Equals, and HashCode
+         */
+
+        Map<String, Integer> doubleBracesMap = new LinkedHashMap<>(){{
+            put("M", 1000);
+            put("CM", 900);
+            put("D", 500);
+            put("CD", 400);
+            put("C", 100);
+            put("XC", 90);
+            put("L", 50);
+            put("XL", 40);
+            put("X", 10);
+            put("IX", 9);
+            put("V", 5);
+            put("IV", 4);
+            put("I", 1);
+        }};
+
 
 
 
@@ -242,7 +253,7 @@ public class HashMapExample {
          * So, use this below custom MapWrapper custom class -- it checks both map.equals() and map.hashCode()
          */
 
-        Set<MapWrapper> setMapWrapper = new HashSet<>();
+        Set<MapWrapper> mapWrapperSet = new HashSet<>(); // set of maps with O(1) TimeComplexity
 
         Map<Integer, Integer> m1 = new HashMap<>();
         m1.put(1, 2);
@@ -252,8 +263,8 @@ public class HashMapExample {
         m2.put(3, 4);
         m2.put(1, 2);
 
-        setMapWrapper.add(new MapWrapper(m1));
-        System.out.println(setMapWrapper.contains(new MapWrapper(m2))); // true
+        mapWrapperSet.add(new MapWrapper(m1));
+        System.out.println(mapWrapperSet.contains(new MapWrapper(m2))); // true
 
     }
 
