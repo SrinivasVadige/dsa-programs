@@ -16,22 +16,50 @@ public class IntegerToRoman {
         System.out.println(intToRoman(num));
     }
 
+    /**
+        Here 3 = 3 * 1
+        and  8 = 5 + 3
+        So, just take care of 1, 4, 5, and 9
+     */
     public static String intToRoman(int num) {
         String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         int[] value = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        // or Object[][] = { {"M", 1000}, {"CM", 900}...} or Map<String, Integer>
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < value.length; i++) {
-            while (num >= value[i]) {
-                sb.append(roman[i]);
-                num -= value[i];
+            int val = value[i];
+            String sym = roman[i]; // Symbol
+
+            while (num >= val) {
+                sb.append(sym);
+                num -= val; // 8 = 5 + 3 --> so, 8 - 5 = 3 is the new num and if 3 we do 3-1 = 2 and then 2-1 = 1 and then 1-1 = 0
             }
         }
         return sb.toString();
     }
 
 
+    /**
+     * Same like above {@link #intToRoman} but we decrease the num itself like 8000 = 5000 + 3000 then the new num is 3000
+     */
     public static String intToRoman2(int num) {
-        Map<String, Integer> map = new LinkedHashMap<>(){{
+        String[] roman = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        int[] value = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < roman.length; i++) {
+            String sym = roman[i]; // Symbol
+            int val = value[i];
+            if (num >= val) {
+                int count = num / val;
+                sb.append(sym.repeat(count));
+                num %= val; // 8 % 5 = 3
+            }
+        }
+        return sb.toString();
+
+        /*
+        instead of String[] romans and int[] values, we can use HashMap like this --- NOTE: it has has to be in order that's why LinkedHashMap
+        Map<String, Integer> map = new LinkedHashMap<>(){{ // Double braces initialization creates subclasses and Breaks Serializable, Equals, and HashCode
             put("M", 1000);
             put("CM", 900);
             put("D", 500);
@@ -46,55 +74,8 @@ public class IntegerToRoman {
             put("IV", 4);
             put("I", 1);
         }};
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            String sym = entry.getKey();
-            int val = entry.getValue();
-            if (num >= val) {
-                int count = num / val;
-                sb.append(sym.repeat(count));
-                num %= val;
-            }
-        }
-        return sb.toString();
+         */
     }
-
-
-
-
-
-    public static String intToRoman3(int num) {
-        Map<Integer, String> map = new LinkedHashMap<>(){
-            {
-                put(1000, "M");
-                put(900, "CM");
-                put(500, "D");
-                put(400, "CD");
-                put(100, "C");
-                put(90, "XC");
-                put(50, "L");
-                put(40, "XL");
-                put(10, "X");
-                put(9, "IX");
-                put(5, "V");
-                put(4, "IV");
-                put(1, "I");
-            }
-        };
-        StringBuilder sb = new StringBuilder();
-        for (Map.Entry<Integer, String> entry : map.entrySet()) {
-            int sym = entry.getKey();
-            int val = entry.getValue().length();
-            while (num >= sym) {
-                sb.append(val);
-                num -= sym;
-            }
-        }
-        return sb.toString();
-    }
-
-
-
 
 
 
@@ -108,7 +89,7 @@ public class IntegerToRoman {
         500     -> D
         1000    -> M
 
-        dp --> use some method to retireve the Roman Char
+        dp --> use some method to retrieve the Roman Char
 
         StringBuilder(num)
 
@@ -133,18 +114,31 @@ public class IntegerToRoman {
         return roman.toString();
     }
 
+    public String intToRomanMyApproach2(int num) {
+        StringBuilder roman = new StringBuilder();
 
-    private String getRoman(int i, int zeros) {
+        while(num>0) {
+            int zeros = (int) Math.log10(num);
+            int tenPowerZeros = (int) Math.pow(10, zeros);
+            int digit = num/tenPowerZeros; // return the left most digit
+            roman.append(getRoman(digit, zeros));
+            num -= digit * tenPowerZeros; // remove the left most digit
+        }
+        return roman.toString();
+    }
+
+
+    private String getRoman(int digit, int zeros) {
 
         String[][] roman = {
-            {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},    // ones
-            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},    // tens
-            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},    // hundreds
-            {"", "M", "MM", "MMM"}                                           // thousands
+            {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},    // ones --> zeros = 0
+            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},    // tens --> zeros = 1
+            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},    // hundreds --> zeros = 2
+            {"", "M", "MM", "MMM"}                                           // thousands --> zeros = 3
         };
         if (zeros >= roman.length) return "";
-        if (i >= roman[zeros].length) return "";
-        return roman[zeros][i];
+        if (digit >= roman[zeros].length) return "";
+        return roman[zeros][digit];
     }
 
     private String getRoman2(int i, int zeros) {
