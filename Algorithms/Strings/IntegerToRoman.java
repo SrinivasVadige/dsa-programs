@@ -49,11 +49,21 @@ public class IntegerToRoman {
         for (int i = 0; i < roman.length; i++) {
             String sym = roman[i]; // Symbol
             int val = value[i];
+
+            int count = num / val;
+            if (count > 0) {
+                sb.append(sym.repeat(count));  // Efficient Roman symbol repetition
+                num = num % val;               // 8 % 5 = 3 remainder -- Reduce the number
+            }
+
+            /*
+            or
             if (num >= val) {
                 int count = num / val;
                 sb.append(sym.repeat(count));
                 num %= val; // 8 % 5 = 3
             }
+            */
         }
         return sb.toString();
 
