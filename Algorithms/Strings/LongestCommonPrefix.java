@@ -1,13 +1,17 @@
 package Algorithms.Strings;
 
+import java.util.Arrays;
+
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 15 March 2025
+ * @link 14. Longest Common Prefix <a href="https://leetcode.com/problems/longest-common-prefix/">LeetCode link</a>
+ * @topics String, Trie
  */
 public class LongestCommonPrefix {
     public static void main(String[] args) {
         String[] strs = {"flower","flow","flight"};
-        System.out.println(longestCommonPrefix(strs));
+        System.out.printf("longestCommonPrefix => %s\n", longestCommonPrefix(strs));
     }
 
     // Approach: Horizontal scanning 1
@@ -20,6 +24,23 @@ public class LongestCommonPrefix {
             }
         }
         return prefix;
+    }
+
+
+
+    public String longestCommonPrefixMyApproach(String[] strs) {
+        int prefix = 0;
+        int smallStrLen = Arrays.stream(strs).mapToInt(String::length).min().orElse(0);
+        for(int i=0; i<smallStrLen; i++) {
+            final int idx = i;
+            final char c = strs[0].charAt(i);
+            if(Arrays.stream(strs).allMatch(s-> s.charAt(idx)==c)) {
+                prefix++;
+            } else {
+                break;
+            }
+        }
+        return strs[0].substring(0, prefix);
     }
 
 
@@ -115,8 +136,22 @@ public class LongestCommonPrefix {
 
 
 
+    public String longestCommonPrefixUsingTrie(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+        if (strs.length == 1) return strs[0];
+        Trie trie = new Trie();
+        // Insert all strings except the first into the Trie
+        for (int i = 1; i < strs.length; i++) {
+            trie.insert(strs[i]);
+        }
+        // Search for the longest prefix using the first string
+        return trie.searchLongestPrefix(strs[0]);
+    }
+
+
+
     // Using Trie
-    public String longestCommonPrefix(String q, String[] strs) {
+    public String longestCommonPrefixUsingTrie2(String q, String[] strs) {
         if (strs == null || strs.length == 0) return "";
         if (strs.length == 1) return strs[0];
         Trie trie = new Trie();
@@ -127,48 +162,10 @@ public class LongestCommonPrefix {
     }
 }
 
-class TrieNode {
-    // R links to node children
-    private TrieNode[] links;
 
-    private final int R = 26;
 
-    private boolean isEnd;
 
-    // number of children non null links
-    private int size;
 
-    public void put(char ch, TrieNode node) {
-        links[ch - 'a'] = node;
-        size++;
-    }
-
-    public int getLinks() {
-        return size;
-    }
-
-    // assume methods containsKey, isEnd, get, put are implemented as it is described
-    // in  https://leetcode.com/articles/implement-trie-prefix-tree/)
-    public TrieNode() {
-        links = new TrieNode[R];
-    }
-
-    public boolean containsKey(char ch) {
-        return links[ch - 'a'] != null;
-    }
-
-    public TrieNode get(char ch) {
-        return links[ch - 'a'];
-    }
-
-    public void setEnd() {
-        isEnd = true;
-    }
-
-    public boolean isEnd() {
-        return isEnd;
-    }
-}
 
 class Trie {
     private TrieNode root;
@@ -207,5 +204,51 @@ class Trie {
             node = node.get(currentChar);
         }
         node.setEnd();
+    }
+
+
+
+
+    static class TrieNode {
+        // R links to node children
+        private TrieNode[] links;
+
+        private final int R = 26;
+
+        private boolean isEnd;
+
+        // number of children non null links
+        private int size;
+
+        public void put(char ch, TrieNode node) {
+            links[ch - 'a'] = node;
+            size++;
+        }
+
+        public int getLinks() {
+            return size;
+        }
+
+        // assume methods containsKey, isEnd, get, put are implemented as it is described
+        // in  https://leetcode.com/articles/implement-trie-prefix-tree/)
+        public TrieNode() {
+            links = new TrieNode[R];
+        }
+
+        public boolean containsKey(char ch) {
+            return links[ch - 'a'] != null;
+        }
+
+        public TrieNode get(char ch) {
+            return links[ch - 'a'];
+        }
+
+        public void setEnd() {
+            isEnd = true;
+        }
+
+        public boolean isEnd() {
+            return isEnd;
+        }
     }
 }
