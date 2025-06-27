@@ -1,6 +1,7 @@
 package Algorithms.Strings;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
@@ -26,22 +27,40 @@ public class LongestCommonPrefix {
         return prefix;
     }
 
+    // Approach: Horizontal scanning 2
+    public static String longestCommonPrefix2(String[] strs) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0; i<strs[0].length(); i++) { // each index / each char
+            char c = strs[0].charAt(i);
+            for (String str: strs) { // checking each i's char in all strings
+                if (i==str.length() || str.charAt(i) != c) {
+                    return sb.toString();
+                }
+            }
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+
 
 
     public String longestCommonPrefixMyApproach(String[] strs) {
-        int prefix = 0;
+        int prefixLen = 0;
         int smallStrLen = Arrays.stream(strs).mapToInt(String::length).min().orElse(0);
         for(int i=0; i<smallStrLen; i++) {
             final int idx = i;
             final char c = strs[0].charAt(i);
-            if(Arrays.stream(strs).allMatch(s-> s.charAt(idx)==c)) {
-                prefix++;
+            if(Arrays.stream(strs).skip(1).allMatch(s-> s.charAt(idx)==c)) { // we skip first string cause we get the 'c' from the first string
+                prefixLen++;
             } else {
                 break;
             }
         }
-        return strs[0].substring(0, prefix);
+        return strs[0].substring(0, prefixLen);
     }
+
 
 
 
@@ -63,27 +82,8 @@ public class LongestCommonPrefix {
 
 
 
-    // Approach: Binary search
-    public static String longestCommonPrefix2(String[] strs) {
-        int minLen = Integer.MAX_VALUE;
-        for (String str : strs) minLen = Math.min(minLen, str.length());
-        int low = 1;
-        int high = minLen;
-        while (low <= high) {
-            int middle = (low + high) / 2;
-            if (isCommonPrefix(strs, middle)) low = middle + 1;
-            else high = middle - 1;
-        }
-        return strs[0].substring(0, (low + high) / 2);
-    }
-    private static boolean isCommonPrefix(String[] strs, int len) {
-        String str1 = strs[0].substring(0, len);
-        for (int i = 1; i < strs.length; i++) if (!strs[i].startsWith(str1)) return false;
-        return true;
-    }
 
-
-    // Approach: Horizontal scanning 2
+    // Approach: Horizontal scanning 3
     public String longestCommonPrefix3(String[] strs) {
         if (strs.length == 0) return "";
         String prefix = strs[0];
@@ -110,8 +110,30 @@ public class LongestCommonPrefix {
     }
 
 
+
+
+    // Approach: Binary search
+    public static String longestCommonPrefixUsingBinarySearch(String[] strs) {
+        int minLen = Integer.MAX_VALUE;
+        for (String str : strs) minLen = Math.min(minLen, str.length());
+        int low = 1;
+        int high = minLen;
+        while (low <= high) {
+            int middle = (low + high) / 2;
+            if (isCommonPrefix(strs, middle)) low = middle + 1;
+            else high = middle - 1;
+        }
+        return strs[0].substring(0, (low + high) / 2);
+    }
+    private static boolean isCommonPrefix(String[] strs, int len) {
+        String str1 = strs[0].substring(0, len);
+        for (int i = 1; i < strs.length; i++) if (!strs[i].startsWith(str1)) return false;
+        return true;
+    }
+
+
     // Divide and conquer
-    public String longestCommonPrefix5(String[] strs) {
+    public String longestCommonPrefixUsingDivideAndConquer(String[] strs) {
         if (strs == null || strs.length == 0) return "";
         return longestCommonPrefix(strs, 0, strs.length - 1);
     }
@@ -133,6 +155,75 @@ public class LongestCommonPrefix {
         }
         return left.substring(0, min);
     }
+
+
+
+
+
+    public String longestCommonPrefixUsingStream2(String[] strs) {
+        StringBuilder sb = new StringBuilder();
+        int smallStrLen = Arrays.stream(strs).mapToInt(String::length).min().orElse(0);
+
+        try {
+            IntStream.range(0, smallStrLen).forEach(i ->{
+                final char c = strs[0].charAt(i);
+                if(Arrays.stream(strs).skip(1).allMatch(s-> s.charAt(i)==c)) {
+                    sb.append(c); // can't use prefix++ because prefix is a reference variable
+                } else {
+                    throw new RuntimeException();
+                    /*
+                       can't break the Stream forEach loop ---
+                       So use
+                       1) RuntimeException
+                       2) .takeWhile() Java 9+ before forEach() in longestCommonPrefixMyApproach3()
+                       3) AtomicBoolean
+
+                     */
+                }
+            });
+        } catch (RuntimeException _) {}
+        return sb.toString();
+    }
+
+
+
+
+
+
+    public String longestCommonPrefixUsingStream3(String[] strs) {
+        StringBuilder sb = new StringBuilder();
+        int smallStrLen = Arrays.stream(strs).mapToInt(String::length).min().orElse(0);
+
+        IntStream.range(0, smallStrLen)
+                 .takeWhile(i -> {
+                     char c = strs[0].charAt(i);
+                     return Arrays.stream(strs).skip(1).allMatch(s -> s.charAt(i) == c);
+                 })
+                 .forEach(i -> sb.append(strs[0].charAt(i)));
+
+        return sb.toString();
+    }
+
+
+    public String longestCommonPrefixUsingStream4(String[] strs) {
+        int strLen = 0;
+        int smallStrLen = Arrays.stream(strs).mapToInt(String::length).min().orElse(0);
+
+        for(int i: IntStream.range(0, smallStrLen).toArray()) {
+            final char c = strs[0].charAt(i);
+            if(Arrays.stream(strs).skip(1).allMatch(s-> s.charAt(i)==c)) {
+                strLen++;
+            } else {
+                break;
+            }
+        }
+        return strs[0].substring(0, strLen);
+    }
+
+
+
+
+
 
 
 
@@ -160,95 +251,91 @@ public class LongestCommonPrefix {
         }
         return trie.searchLongestPrefix(q);
     }
-}
 
 
+    static class Trie {
+        private final TrieNode root;
 
-
-
-
-class Trie {
-    private TrieNode root;
-
-    public Trie() {
-        root = new TrieNode();
-    }
-
-    // assume methods insert, search, searchPrefix are implemented as it is described
-    // in  https://leetcode.com/articles/implement-trie-prefix-tree/)
-    public String searchLongestPrefix(String word) {
-        TrieNode node = root;
-        StringBuilder prefix = new StringBuilder();
-        for (int i = 0; i < word.length(); i++) {
-            char curLetter = word.charAt(i);
-            if (
-                node.containsKey(curLetter) &&
-                node.getLinks() == 1 &&
-                !node.isEnd()
-            ) {
-                prefix.append(curLetter);
-                node = node.get(curLetter);
-            } else return prefix.toString();
-        }
-        return prefix.toString();
-    }
-
-    // Inserts a word into the trie.
-    public void insert(String word) {
-        TrieNode node = root;
-        for (int i = 0; i < word.length(); i++) {
-            char currentChar = word.charAt(i);
-            if (!node.containsKey(currentChar)) {
-                node.put(currentChar, new TrieNode());
-            }
-            node = node.get(currentChar);
-        }
-        node.setEnd();
-    }
-
-
-
-
-    static class TrieNode {
-        // R links to node children
-        private TrieNode[] links;
-
-        private final int R = 26;
-
-        private boolean isEnd;
-
-        // number of children non null links
-        private int size;
-
-        public void put(char ch, TrieNode node) {
-            links[ch - 'a'] = node;
-            size++;
+        public Trie() {
+            root = new TrieNode();
         }
 
-        public int getLinks() {
-            return size;
-        }
-
-        // assume methods containsKey, isEnd, get, put are implemented as it is described
+        // assume methods insert, search, searchPrefix are implemented as it is described
         // in  https://leetcode.com/articles/implement-trie-prefix-tree/)
-        public TrieNode() {
-            links = new TrieNode[R];
+        public String searchLongestPrefix(String word) {
+            TrieNode node = root;
+            StringBuilder prefix = new StringBuilder();
+            for (int i = 0; i < word.length(); i++) {
+                char curLetter = word.charAt(i);
+                if (
+                        node.containsKey(curLetter) &&
+                                node.getLinks() == 1 &&
+                                !node.isEnd()
+                ) {
+                    prefix.append(curLetter);
+                    node = node.get(curLetter);
+                } else return prefix.toString();
+            }
+            return prefix.toString();
         }
 
-        public boolean containsKey(char ch) {
-            return links[ch - 'a'] != null;
+        // Inserts a word into the trie.
+        public void insert(String word) {
+            TrieNode node = root;
+            for (int i = 0; i < word.length(); i++) {
+                char currentChar = word.charAt(i);
+                if (!node.containsKey(currentChar)) {
+                    node.put(currentChar, new TrieNode());
+                }
+                node = node.get(currentChar);
+            }
+            node.setEnd();
         }
 
-        public TrieNode get(char ch) {
-            return links[ch - 'a'];
-        }
 
-        public void setEnd() {
-            isEnd = true;
-        }
 
-        public boolean isEnd() {
-            return isEnd;
+
+        static class TrieNode {
+            // R links to node children
+            private TrieNode[] links;
+
+            private final int R = 26;
+
+            private boolean isEnd;
+
+            // number of children non null links
+            private int size;
+
+            public void put(char ch, TrieNode node) {
+                links[ch - 'a'] = node;
+                size++;
+            }
+
+            public int getLinks() {
+                return size;
+            }
+
+            // assume methods containsKey, isEnd, get, put are implemented as it is described
+            // in  https://leetcode.com/articles/implement-trie-prefix-tree/)
+            public TrieNode() {
+                links = new TrieNode[R];
+            }
+
+            public boolean containsKey(char ch) {
+                return links[ch - 'a'] != null;
+            }
+
+            public TrieNode get(char ch) {
+                return links[ch - 'a'];
+            }
+
+            public void setEnd() {
+                isEnd = true;
+            }
+
+            public boolean isEnd() {
+                return isEnd;
+            }
         }
     }
 }
