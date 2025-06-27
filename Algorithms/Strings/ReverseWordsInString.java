@@ -1,8 +1,15 @@
 package Algorithms.Strings;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 05 April 2025
+ * @link 151. Reverse Words in a String <a href="https://leetcode.com/problems/reverse-words-in-a-string/">LeetCode link</a>
+ * @topics String, Two Pointers
  */
 public class ReverseWordsInString {
     public static void main(String[] args) {
@@ -13,6 +20,10 @@ public class ReverseWordsInString {
 
     }
 
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(n)
+     */
     public static String reverseWords(String s) {
         s = s.trim();
         String[] words = s.split("\\s+");
@@ -24,10 +35,48 @@ public class ReverseWordsInString {
         return reversed.toString();
     }
 
+
+
+    public static String reverseWordsMyApproach(String s) {
+        String[] arr = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for(int i=arr.length-1; i>=0; i--) {
+            if(!arr[i].isBlank()) sb.append(arr[i]).append(" ");
+        }
+        return sb.toString().trim();
+    }
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(w), where is maxWordLength
+     */
     public static String reverseWords2(String s) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder temp = new StringBuilder(); // or use new int[2]{start, end} and just use sb.append(s.substring(start, end))
+        s=s.trim();
+        for(int i=0; i<s.length(); i++) { // or for(char c: s.toCharArray()){
+            char c = s.charAt(i);
+            if(c != ' ') {
+                temp.append(c);
+            } else if(!temp.isEmpty()) {
+                sb.insert(0, " "+ temp);
+                temp.setLength(0);
+            }
+        }
+        return sb.insert(0, temp).toString(); // for the last word we don't see ' ' cause we did s = s.trim();
+    }
+
+
+
+
+    public static String reverseWordsUsingTwoPointers(String s) {
         char[] ca = s.toCharArray();
         int n = ca.length;
-        char result[] = new char[n];
+        char[] result = new char[n];
         int result_index = 0;
         int end = n - 1;
 
@@ -46,14 +95,46 @@ public class ReverseWordsInString {
 
 
 
-    public static String reverseWordsMyApproach(String s) {
-        String[] arr = s.split(" ");
-        StringBuilder sb = new StringBuilder();
-        for(int i=arr.length-1; i>=0; i--) {
-            if(!arr[i].isBlank()) sb.append(arr[i] + " ");
-        }
-        return sb.toString().trim();
+
+    public String reverseWordsUsingList(String s) {
+        List<String> list = Arrays.asList(s.trim().split("\\s+"));
+        Collections.reverse(list);
+        return String.join(" ", list); // String.join works for char[], String[], List<String> and individual strings
     }
+
+
+    public String reverseWordsUsingStream1(String s) {
+        List<String> list = Arrays.stream(s.trim().split("\\s+")).collect(Collectors.toList());
+        Collections.reverse(list);
+        return list.stream().collect(Collectors.joining(" ")); // or return String.join(" ", list);
+    }
+
+
+
+    public String reverseWordsUsingStream2(String s) {
+        return String.join(" ", Arrays.stream(s.trim().split("\\s+"))
+        .collect(Collectors.collectingAndThen(
+            Collectors.toList(),
+            (List<String> list) -> { // use "(list) -> {" -- will throw error: reference to join is ambiguous. So use "(List<String> list) -> {"
+                Collections.reverse(list);
+                return list;
+            }
+        )));
+    }
+
+
+
+    public String reverseWordsUsingStream3(String s) {
+        return Arrays.stream(s.trim().split("\\s+")).collect(Collectors.collectingAndThen(
+            Collectors.toList(),
+            (list) -> {
+                Collections.reverse(list);
+                return list;
+            }
+        )).stream().collect(Collectors.joining(" "));
+    }
+
+
 
 
 
