@@ -385,6 +385,7 @@ Data Structures and Algorithm Programs
     * [Roman to Integer](/Algorithms/Strings/RomanToInteger.java)
     * [Integer to Roman](/Algorithms/Strings/IntegerToRoman.java)
     * [Length of Last Word](/Algorithms/Strings/LengthOfLastWord.java)
+    * [Text Justification](/Algorithms/Strings/TextJustification.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
