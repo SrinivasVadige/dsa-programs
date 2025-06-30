@@ -3,6 +3,8 @@ package Algorithms.TwoPointers;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 08 April 2025
+ * @link 392. Is Subsequence <a href="https://leetcode.com/problems/is-subsequence/">LeetCode link</a>
+ * @topics String, Two Pointers
  */
 public class IsSubsequence {
 
@@ -12,7 +14,7 @@ public class IsSubsequence {
         System.out.println("isSubsequence: " + isSubsequence(s, t));
         System.out.println("isSubsequence2: " + isSubsequence2(s, t));
         System.out.println("isSubsequence3: " + isSubsequence3(s, t));
-        System.out.println("isSubsequenceMyApproach: " + isSubsequenceMyApproach(s, t));
+        System.out.println("isSubsequenceMyApproach: " + isSubsequenceMyApproachOld(s, t));
     }
 
 
@@ -32,7 +34,9 @@ public class IsSubsequence {
     public static boolean isSubsequence2(String s, String t) {
         int i = 0, j = 0;
         while (i < s.length() && j < t.length()) {
-            if (s.charAt(i) == t.charAt(j)){ i++;}
+            if (s.charAt(i) == t.charAt(j)){
+                i++;
+            }
             j++;
         }
         return i == s.length();
@@ -55,7 +59,7 @@ public class IsSubsequence {
 
 
 
-    public static boolean isSubsequenceMyApproach(String s, String t) {
+    public static boolean isSubsequenceMyApproachOld(String s, String t) {
         // prepare tStringBuilder
         int[] sArr = new int[26]; // or use set.add(c-'a');
         for(char c: s.toCharArray()) sArr[c-'a']++;
@@ -98,8 +102,8 @@ public class IsSubsequence {
 
 
 
-    /** same as {@link #isSubsequenceMyApproach(String, String)} */
-    public boolean isSubsequenceMyApproachOld(String s, String t) {
+    /** same as {@link #isSubsequenceMyApproachOld(String, String)} */
+    public boolean isSubsequenceMyApproachOld2(String s, String t) {
         int[] sArr = new int[26]; // or use set.add(c-'a');
         for(char c: s.toCharArray()) sArr[c-'a']++;
         StringBuilder tsb = new StringBuilder(t);
