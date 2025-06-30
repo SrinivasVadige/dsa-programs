@@ -25,15 +25,34 @@ import java.lang.constant.ClassDesc;;
  * Use standard enums when you need a simple enumeration of constants.
  * Use constructor enums when you need to associate additional data or behavior with each constant.
  *
- * * So, enum can be converted to other types like below:
- * * to Arrays using EnumClass.values() or Arrays.asList(EnumClass.class.getEnumConstants()),
- * * to List using Arrays.asList(EnumClass.values()) or Arrays.asList(EnumClass.class.getEnumConstants()) or new ArrayList<>(EnumClass.values()) or Stream.of(WeekDay.values()).collect(Collectors.toList()),
- * * to EnumSet using EnumSet.allOf(EnumClass.class),
- * * to EnumMap using new EnumMap<>(EnumClass.class),
- * * to Stream using Arrays.stream(EnumClass.values()) or Stream.of(EnumClass.values()) or Arrays.stream(EnumClass.class.getEnumConstants())
- * * and later on we can convert them to traditional Map, List, Set and so on
- * *
- * *
+ * So, enum can be converted to other types like below:
+ * to Arrays using EnumClass.values() or Arrays.asList(EnumClass.class.getEnumConstants()),
+ * to List using Arrays.asList(EnumClass.values()) or Arrays.asList(EnumClass.class.getEnumConstants()) or new ArrayList<>(EnumClass.values()) or Stream.of(WeekDay.values()).collect(Collectors.toList()),
+ * to EnumSet using EnumSet.allOf(EnumClass.class),
+ * to EnumMap using new EnumMap<>(EnumClass.class),
+ * to Stream using Arrays.stream(EnumClass.values()) or Stream.of(EnumClass.values()) or Arrays.stream(EnumClass.class.getEnumConstants())
+ * and later on we can convert them to traditional Map, List, Set and so on
+ *
+ * see {@link DataStructures.SingletonEnum} 🔥
+ * SINGLETON ENUMS:
+ * -----------------
+ * 1) Enums are Singletons, and so there is only one instance of each enum constant ---> use them like a Singleton bean
+ * 2) Enums are sealed and final, and so we cannot extend them
+ * 3) We can have constructor, variables, methods, etc.
+ * 4) They are not thread-safe so use variables in a synchronized block or concurrent collections like AtomicInteger
+ * 5) So, if we change the variable value in enum in classA, it will be changed globally and we get the new value in classB
+ *
+ * {@link DataStructures.EnumMethods} 🔥
+ * ENUM static, non-static and abstract methods:
+ * -------------------------------------------
+ * 1) If non-static method then we have to get the method from the enum constant like WeekDay.MONDAY.print()
+ * 2) If static method then we have to get the method from the enum like WeekDay.print(), no need to get the method from the enum constant
+ * 3) Declare the abstract method in enum and override it in the enum constant like CONSTANT { @Override public void print() } --> all constants must override the method
+ *
+ * ENUM static and non-static variables:
+ * ------------------------------------
+ * 1) Same like static and non-static methods, we access static by WeekDay.getStaticValue() and non-static by WeekDay.MONDAY.getNonStaticValue()
+ *
  * </pre>
  *
  * @see {@linkplain java.lang.Enum java.lang.Enum} - since JDK 1.5 2004
@@ -170,8 +189,96 @@ public class EnumExample {
         System.out.println(freqEnum.getCode());
         System.out.println(freqEnum.name());
         System.out.println(freqEnum.ordinal());
+
+
+
+
+        // SINGLETON ENUM
+        System.out.println("\n\nSingleton Enum ----------------");
+        SingletonEnum.INSTANCE.print();
+        SingletonEnum.INSTANCE.setValue(10);
+        System.out.printf("We set the SingletonEnum.INSTANCE value to %s, but we didn't changed the other constants%n", SingletonEnum.INSTANCE.getValue());
+        System.out.printf("SingletonEnum.ONE.getValue() -> %s%n", SingletonEnum.ONE.getValue());
+        System.out.printf("SingletonEnum.INSTANCE.getValue() -> %s%n", SingletonEnum.INSTANCE.getValue());
+        System.out.printf("SingletonEnum.getStaticValue() -> %s%n", SingletonEnum.getStaticValue());
+
+
+
+
+
+
+
+        // STATIC, NON-STATIC AND ABSTRACT METHODS IN ENUM
+        System.out.println("\n\nStatic, Non-Static and Abstract Methods in enum ----------------");
+        System.out.printf("ABSTRACT METHOD ---> Operation.ADD.apply(1,2) = %s\n", EnumMethods.ADD.apply(1,2));
+        EnumMethods.ADD.print();
+        EnumMethods.printAll(); // ---> HERE IN STATIC METHOD, NO NEED TO CALL ENUM CONSTANT LIKE Operation.ADD.printAll();
+
     }
 }
+
+
+enum SingletonEnum {
+    INSTANCE, ONE, TWO, THREE;
+
+    private int value = 0;
+    private static int staticValue = 0;
+
+    public void print() {
+        System.out.printf("Singleton Enum was called by %s constant\n", this.name()); // this.name() is the constant that we used to invoke this method
+    }
+
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+    public int getValue() {
+        return value;
+    }
+
+    public static void setStaticValue(int value) {
+        staticValue = value;
+    }
+    public static int getStaticValue() {
+        return staticValue;
+    }
+}
+
+
+
+
+
+enum EnumMethods {
+    ADD {
+        @Override // annotation is optional
+        public int apply(int a, int b) { return a + b; }
+    },
+    SUBTRACT {
+        @Override // annotation is optional
+        public int apply(int a, int b) { return a - b; }
+    };
+
+    public abstract int apply(int a, int b); // we can implement this abstract method inside the enum constants like ADD and SUBTRACT
+
+    public void print() {
+        System.out.printf("Operation enum non-static method print() is called by %s =\n", this.name());
+    }
+
+    public static void printAll() {
+        System.out.println("Operation enum static method printAll() is called");
+        Arrays.stream(values()).forEach(EnumMethods::print); // 🔥 we can use Operation.values() or just use values() directly
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 // Standard Enum
 enum WeekDay {
