@@ -386,6 +386,7 @@ Data Structures and Algorithm Programs
     * [Integer to Roman](/Algorithms/Strings/IntegerToRoman.java)
     * [Length of Last Word](/Algorithms/Strings/LengthOfLastWord.java)
     * [Text Justification](/Algorithms/Strings/TextJustification.java)
+    * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
