@@ -33,25 +33,25 @@ import java.lang.constant.ClassDesc;;
  * to Stream using Arrays.stream(EnumClass.values()) or Stream.of(EnumClass.values()) or Arrays.stream(EnumClass.class.getEnumConstants())
  * and later on we can convert them to traditional Map, List, Set and so on
  *
- * see {@link DataStructures.SingletonEnum} 🔥
- * SINGLETON ENUMS:
- * -----------------
+ * see {@link DataStructures.WeekDay} for standard enum -> no constructor
+ * see {@link DataStructures.Roman} for single parameter constructor
+ * see {@link DataStructures.Frequency} for multi parameter constructor
+ *
+ * see {@link DataStructures.SingletonEnum} for SINGLETON ENUMS -> ENUM static and non-static variables 🔥
+ * --------------------------------------------------------------
  * 1) Enums are Singletons, and so there is only one instance of each enum constant ---> use them like a Singleton bean
  * 2) Enums are sealed and final, and so we cannot extend them
  * 3) We can have constructor, variables, methods, etc.
  * 4) They are not thread-safe so use variables in a synchronized block or concurrent collections like AtomicInteger
  * 5) So, if we change the variable value in enum in classA, it will be changed globally and we get the new value in classB
+ * 6) Same like static and non-static methods, we access static by WeekDay.getStaticValue() and non-static by WeekDay.MONDAY.getNonStaticValue()
  *
- * {@link DataStructures.EnumMethods} 🔥
- * ENUM static, non-static and abstract methods:
- * -------------------------------------------
+ * {@link DataStructures.EnumMethods} ENUM with static, non-static and abstract methods 🔥
+ * --------------------------------------------------------------------------------------
  * 1) If non-static method then we have to get the method from the enum constant like WeekDay.MONDAY.print()
  * 2) If static method then we have to get the method from the enum like WeekDay.print(), no need to get the method from the enum constant
  * 3) Declare the abstract method in enum and override it in the enum constant like CONSTANT { @Override public void print() } --> all constants must override the method
  *
- * ENUM static and non-static variables:
- * ------------------------------------
- * 1) Same like static and non-static methods, we access static by WeekDay.getStaticValue() and non-static by WeekDay.MONDAY.getNonStaticValue()
  *
  * </pre>
  *
@@ -218,11 +218,14 @@ public class EnumExample {
 }
 
 
+
+
+// for static and non-static variables
 enum SingletonEnum {
     INSTANCE, ONE, TWO, THREE;
 
-    private int value = 0;
-    private static int staticValue = 0;
+    private int value = 0; // can only be accessed by SingletonEnum.CONSTANT.getValue()
+    private static int staticValue = 0; // can only be accessed by SingletonEnum.getStaticValue() // no need of SingletonEnum.CONSTANT
 
     public void print() {
         System.out.printf("Singleton Enum was called by %s constant\n", this.name()); // this.name() is the constant that we used to invoke this method
@@ -248,6 +251,8 @@ enum SingletonEnum {
 
 
 
+
+// for  static, non-static and abstract methods
 enum EnumMethods {
     ADD {
         @Override // annotation is optional
@@ -276,11 +281,7 @@ enum EnumMethods {
 
 
 
-
-
-
-
-// Standard Enum
+// Standard Enum --> no constructor
 enum WeekDay {
     SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
 
@@ -295,20 +296,32 @@ enum WeekDay {
     }
 }
 
+
+
+
+
+
 // Constructor Enum with 1 non-final parameter
 enum Roman {
     I(1), V(5), X(10), L(50), C(100), D(500), M(1000);
 
-    private int value; // Must be non-static and private is optional & final is optional and if private then param can only be accessed by getter i.e getValue()
+    int value; // Must be "non-static" and "private" & "final" is optional and if private then param can only be accessed by getter i.e getValue()
+    int foo; // extra variable --> just for testing purpose
 
-    Roman(int value) {
+    Roman(int value) { // constructor is private by default
         this.value = value;
     }
 
-    public int getValue() {
+    public int getValue() { // optional for non-private value variable
         return value;
     }
 }
+
+
+
+
+
+
 
 // Constructor Enum with 2 final parameters and public static methods
 enum Frequency {
@@ -323,8 +336,8 @@ enum Frequency {
     SEMI_ANNUALLY("Semi-Annually", "8"),
     ANNUALLY("Annually", "9");
 
-    final String displayName; // final because it is initialized in the constructor and cannot be changed
-    final String code;
+    private final String displayName; // final because it is initialized in the constructor and cannot be changed
+    private final String code;
 
     public String getDisplayName() {
         return displayName;
