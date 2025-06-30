@@ -400,6 +400,7 @@ Data Structures and Algorithm Programs
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
     * [Is Subsequence](/Algorithms/TwoPointers/IsSubsequence.java)
     * [Max Number of K-Sum Pairs](/Algorithms/TwoPointers/MaxNumberOfKSumPairs.java)
+    * [Valid Palindrome](/Algorithms/TwoPointers/ValidPalindrome.java)
 
 <br></br>
 <br></br>
