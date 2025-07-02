@@ -1,8 +1,20 @@
 package DataStructures;
 
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 10 May 2025
+ * NOTE: we can use java in-built binary search functions 🔥
+ * {@link java.util.Arrays#binarySearch(int[], int)}
+ * {@link java.util.Arrays#binarySearch(int[], int, int, int)} --> startInclusive, endExclusive, target
+ * {@link java.util.Arrays#binarySearch(Object[], Object)}
+ * {@link java.util.Arrays#binarySearch(Object[], Object, Comparator)}
+ * {@link java.util.Arrays#binarySearch(Object[], int, int, Object, Comparator)}
+ * and
+ * {@link java.util.Collections#binarySearch(List, Object)}
+ * {@link java.util.Collections#binarySearch(List, Object, Comparator)}
 
   Binary Search has a time complexity of O(log n) but only works on sorted arrays
 
@@ -24,11 +36,14 @@ package DataStructures;
   Then
  */
 public class BinarySearch {
+    private static String[] args;
+
     public static void main(String[] args) {
+        BinarySearch.args = args;
         int[] nums = {1, 3, 5, 6};
         int target = 7;
-        System.out.println("binarySearch(nums, target) => " + binarySearch(nums, target));
-        System.out.println("binarySearchWithDuplicates => " + binarySearchWithDuplicates(nums, target));
+        System.out.printf("binarySearch => %s \n", binarySearch(nums, target));
+        System.out.printf("binarySearchWithDuplicates => %s \n", binarySearchWithDuplicates(nums, target));
     }
 
 
@@ -81,6 +96,14 @@ public class BinarySearch {
             } else {
                 l = mid + 1;
             }
+/*
+            //or
+            if (nums[mid] < target) { //---> if nums[mid] < target --> it's just "<" but not "<="
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+*/
         }
         return l;
     }
