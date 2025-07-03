@@ -10,6 +10,8 @@ package Algorithms.TwoPointers;
 
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 30 Sept 2024
+ * @link 11. Container With Most Water <a href="https://leetcode.com/problems/container-with-most-water/">LeetCode link</a>
+ * @topics Array, Two Pointers
  */
 public class ContainerWithMostWater {
     public static void main(String[] args) {
