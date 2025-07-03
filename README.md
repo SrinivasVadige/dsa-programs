@@ -402,6 +402,7 @@ Data Structures and Algorithm Programs
     * [Is Subsequence](/Algorithms/TwoPointers/IsSubsequence.java)
     * [Max Number of K-Sum Pairs](/Algorithms/TwoPointers/MaxNumberOfKSumPairs.java)
     * [Valid Palindrome](/Algorithms/TwoPointers/ValidPalindrome.java)
+    * [Two Sum II - Input Array Is Sorted](/Algorithms/TwoPointers/TwoSum2InputArrayIsSorted.java)
 
 <br></br>
 <br></br>
