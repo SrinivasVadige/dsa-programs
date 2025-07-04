@@ -11,12 +11,148 @@ import java.util.stream.Stream;
 /**
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 21 Sept 2024
+
+ HOW HASHMAP WORKS --> Single Linked List 🔥
+ ------------------
+ class HashMap<k, v> extends AbstractMap<k, v> implements Map<K,V>, Cloneable, Serializable {}
+ class HashSet<k> extends AbstractSet<k> implements Set<K>, Cloneable, Serializable {} --> internally extends HashMap
+
+ new HashMap<>() == new HashMap<>(16, 0.75f);
+ new HashSet<>() == new HashSet<>(16, 0.75f);
+
+ int capacity = 16; ---> default initial capacity
+ float loadFactor = 0.75f; ---> default load factor
+ NOTE:
+ capacity is always a power of 2 ---> if we give capacity as 5, then the HashMap will allocate 8 buckets --> which is the next power of 2
+ loadFactor is always a float value between 0 to 1
+
+ HashMap is a hash table --> array of nodes - of length capacity
+ Node<k, v>[] table = new Node<k, v>[capacity]
+
+ HashMap node looks like this
+ public class Node<K, V> {
+     K key;
+     V value;
+     Node<K, V> next; ---> for collision chaining
+ }
+
+ bucket index == i
+ bucket == table[i]
+
+ but note that bucket holds the entry data --> Node reference
+ bucket != entry data --> bucket holds the entry data
+
+
+
+ int keyHashCode = key.hashCode();
+ bucketIndex = keyHashCode & (capacity - 1);
+ bucket = table[bucketIndex]
+
+ Different keys with unique hashCodes might have same bucketIndex --> because bucketIndex = hashcode & (capacity - 1)
+ Example:
+ "A" -> hashCode = 65 -> bucketIndex = 65 & (16 - 1) = 0
+ "B" -> hashCode = 66 -> bucketIndex = 66 & (16 - 1) = 0
+ "C" -> hashCode = 67 -> bucketIndex = 67 & (16 - 1) = 0
+
+ So, here even though we have 2 different keys with unique hashCodes, they might have same bucketIndex
+ this is called collision
+
+ collision is handled by collision chaining using linked list
+ so, Node.next will contains the duplicate bucketIndex nodes like
+
+ Node<k, v>[] table = new Node<k, v>[capacity];
+ table[0] = new Node("A", 1);
+ table[0].next = new Node("B", 2);
+ table[0].next.next = new Node("C", 3);
+
+ Node(A) -> Node(B) -> Node(C)
+
+ And lets say we have 0.75f loadFactor
+ then
+ resize happens when the new size is less threshold
+ threshold = capacity * loadFactor
+ threshold = 16 * 0.75f = 12
+
+ if ((size+1) > threshold) {  // ---> "size+1" because we calculate this isResize() before adding a new entry to HashMap
+     capacity *= 2;
+     Node<k, v>[] newTable = new Node[k, v][capacity];
+     for (Node<k, v> node : table) { // ---> iterate current table and distribute to new table with their unique bucketIndex
+         while (node != null) {
+             Node<k, v> next = node.next;
+             int bucketIndex = node.key.hashCode() & (capacity - 1);
+             node.next = newTable[bucketIndex];
+             newTable[bucketIndex] = node;
+             node = next;
+         }
+     }
+     table = newTable;
+ }
+
+ so, all the nodes again distributed to new table with their unique bucketIndex with O(n) time complexity
+ Node(A) -> Node(B) -> Node(C) will be distributed to it's new bucketIndex in new buckets
+ that is how HashMap works as O(1) even the capacity is increased
+
+
+ NOTE:
+ 1) All the operations are O(1) "amortized"
+-> this means even we do O(n) in resize, when compared to millions of get() and put() with O(1) --> avg = O(1)
+ that is why HashMap loop don't maintain the exact order of insertion or sorting
+
+
+
+
+
+
+
+  HOW LINKED HASHMAP WORKS --> Doubly Linked List 🔥
+ -------------------------
+ Same as hashmap
+
+ class LinkedHashMap<k,v> extends HashMap<k,v> {}
+
+ new LinkedHashMap<>() == new LinkedHashMap<>(16, 0.75f, false);
+ int capacity = 16; ---> default initial capacity
+ float loadFactor = 0.75f; ---> default load factor
+ boolean accessOrder = false; ---> default accessOrder = false --> insertion order
+ accessOrder = true --> maintain the order or access
+
+ LinkedHashMap node looks like this
+ public class Node<k, v> extends HashMap.Node<k, v> { // ---> along with HashMap.Node properties, we have before & after
+     Node<k, v> before;
+     Node<k, v> after;
+ }
+
+ Node<k,v> head;
+ Node<k,v> tail;
+
+ So, if we loop through LinkedHashMap --> we loop head node node table indices
+ that is why we can maintain the exact order of insertion or access order
+
+ if inserted new item in bucketIndex and set the next of currentTail to the new item and make this new item as the tail
+ then we have the exact order of insertion or access order
+
+ in accessOrder = true, we change the
+ prev of currentNode,
+ next of currentNode,
+ next of (currentNode-1) node
+ prev of (currentNode+1) node
+ and make the currentNode as the new tail
+
+ this is how LinkedHashMap works ---> same as "Least Recently Used" (LRU) cache algorithm, session management
+ just @Override removeEldestEntry() for LRU and 🔥
+ but we don't have method to remove "Most Recently Used" (MRU) entry --> to remove friendSuggestion after "not interested"
+
+        Map<Integer, Integer> linkedHashMap5 = new LinkedHashMap<>(16, 0.75f, true); // same as above>
+
+ NOTE:
+ 1) We can achieve accessOrder inside insertion ordered LinkedHashMap
+    ---> just by removing the node from the middle and adding the recent key at tail or end
+
 */
 @SuppressWarnings("unused")
 public class HashMapExample {
 
     public static void main(String[] args) {
-
 
         // USING GROUPING_BY: get the all characters occurrences in a string
         String str = "srinivasrepo";
@@ -265,6 +401,23 @@ public class HashMapExample {
 
         mapWrapperSet.add(new MapWrapper(m1));
         System.out.println(mapWrapperSet.contains(new MapWrapper(m2))); // true
+
+
+        /*
+         * LINKED HASH MAP
+         */
+        Map<Integer, Integer> linkedHashMap = new LinkedHashMap<>(16, 0.75f, true);
+        linkedHashMap.put(1, 2);
+        linkedHashMap.put(3, 4);
+        linkedHashMap.get(1);
+        System.out.println(linkedHashMap);
+
+        // all these are same --> LinkedHashMap with insertion order
+        Map<Integer, Integer> linkedHashMap2 = new LinkedHashMap<>(16, 0.75f, false);
+        Map<Integer, Integer> linkedHashMap3 = new LinkedHashMap<>(16, 0.75f);
+        Map<Integer, Integer> linkedHashMap4 = new LinkedHashMap<>(16);
+        Map<Integer, Integer> linkedHashMap5 = new LinkedHashMap<>();
+
 
     }
 
