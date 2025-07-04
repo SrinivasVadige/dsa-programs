@@ -20,17 +20,23 @@ import java.util.stream.Stream;
  new HashMap<>() == new HashMap<>(16, 0.75f);
  new HashSet<>() == new HashSet<>(16, 0.75f);
 
+ default values -> capacity, loadFactor
+ ---------------
  int capacity = 16; ---> default initial capacity
  float loadFactor = 0.75f; ---> default load factor
  NOTE:
  capacity is always a power of 2 ---> if we give capacity as 5, then the HashMap will allocate 8 buckets --> which is the next power of 2
  loadFactor is always a float value between 0 to 1
 
+
+ hash table -> bucketIndex, bucket, entry
+ ----------
  HashMap is a hash table --> array of nodes - of length capacity
  Node<k, v>[] table = new Node<k, v>[capacity]
 
  HashMap node looks like this
  public class Node<K, V> {
+     int hash;
      K key;
      V value;
      Node<K, V> next; ---> for collision chaining
@@ -42,12 +48,13 @@ import java.util.stream.Stream;
  but note that bucket holds the entry data --> Node reference
  bucket != entry data --> bucket holds the entry data
 
-
-
  int keyHashCode = key.hashCode();
  bucketIndex = keyHashCode & (capacity - 1);
  bucket = table[bucketIndex]
 
+
+ collision
+ ----------
  Different keys with unique hashCodes might have same bucketIndex --> because bucketIndex = hashcode & (capacity - 1)
  Example:
  "A" -> hashCode = 65 -> bucketIndex = 65 & (16 - 1) = 0
@@ -57,7 +64,7 @@ import java.util.stream.Stream;
  So, here even though we have 2 different keys with unique hashCodes, they might have same bucketIndex
  this is called collision
 
- collision is handled by collision chaining using linked list
+ It is handled by collision chaining using linked list
  so, Node.next will contains the duplicate bucketIndex nodes like
 
  Node<k, v>[] table = new Node<k, v>[capacity];
@@ -67,6 +74,14 @@ import java.util.stream.Stream;
 
  Node(A) -> Node(B) -> Node(C)
 
+ NOTE:
+ 1) key1.equals(key2) is true not collision
+ map.put("A", 1);
+ map.put("A", 2); // Overwrites, not a collision
+ 2) It's about bucketIndex, not key1.equals(key2)
+
+ resize
+ ------
  And lets say we have 0.75f loadFactor
  then
  resize happens when the new size is less threshold
@@ -93,18 +108,25 @@ import java.util.stream.Stream;
  that is how HashMap works as O(1) even the capacity is increased
 
 
- NOTE:
+ amortized
+ ---------
  1) All the operations are O(1) "amortized"
 -> this means even we do O(n) in resize, when compared to millions of get() and put() with O(1) --> avg = O(1)
  that is why HashMap loop don't maintain the exact order of insertion or sorting
 
 
+ storage locations
+ -----------------
+ transient Node<K,V>[] table;
+ table[5] ──► bucket ──► Node@0xabc (hash=123, key=A, value=1, next ──► Node@0xdef ...)
+ Everything (table, keys, values, nodes) lives in the heap
+ Bucket holds a reference, not the actual Node object.
+ Buckets are just array slots pointing to nodes.
+ Nodes are linked together via .next if collisions occur.
 
 
 
-
-
-  HOW LINKED HASHMAP WORKS --> Doubly Linked List 🔥
+ HOW LINKED HASHMAP WORKS --> Doubly Linked List 🔥
  -------------------------
  Same as hashmap
 
