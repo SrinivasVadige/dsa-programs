@@ -230,6 +230,7 @@ Data Structures and Algorithm Programs
     * [Unique Number of Occurrences](Algorithms/Hashing/UniqueNumberOfOccurrences.java)
     * [Determine if Two Strings Are Close](Algorithms/Hashing/DetermineIfTwoStringsAreClose.java)
     * [Equal Row and Column Pairs](Algorithms/Hashing/EqualRowAndColumnPairs.java)
+    * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
 
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 
@@ -429,6 +430,7 @@ Data Structures and Algorithm Programs
 12. 1 to m-1 cities and n warehouses, cityStart=[1,2,1], cityEnd=[2,5,9]. cityStart.length == cityEnd.length == n of warehouses. Multiple warehouse connect to same city. Find cityWarehouseCounter <city, num of warehouses>
 13. [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
 14. [Two Sum](Algorithms/Hashing/TwoSum.java)
+15. [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
 
 ## GOOGLE
 
