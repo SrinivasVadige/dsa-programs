@@ -8,8 +8,9 @@ import java.util.Map;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 27 Feb 2025
- * @link 121. Best Time to Buy and Sell Stock https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+ * @link 121. Best Time to Buy and Sell Stock <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">LeetCode link</a>
  * @topics Two Pointers, Dynamic Programming, Array
+ * @companies amazon, facebook, google, apple, bloomberg, microsoft, agoda, oracle, tiktok, zoho, uber, visa, zoox, ibm, atlassian, infosys, tcs, adobe, goldman, tesla, morgan, accenture, jpmorgan, yahoo, nvidia, bolt, walmart, yandex, paypal, samsung
  */
 public class BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
@@ -19,6 +20,21 @@ public class BestTimeToBuyAndSellStock {
         System.out.println("maxProfit using two pointers (effectiveBuyPrice, maxProfit) => " + maxProfitUsingTwoPointersEffectiveBuyPrice(prices));
         System.out.println("maxProfit using bottom up tabulation dp => " + maxProfitUsingBottomUpTabulationDp(prices));
         System.out.println("maxProfit using brute force => " + maxProfitUsingBruteForce(prices));
+    }
+
+    public static int maxProfitMyApproach(int[] prices) {
+        int profit = 0;
+        int buy = prices[0];
+
+        for(int price: prices) {
+            if(buy < price) {
+                int currProfit = price - buy;
+                profit = Math.max(profit, currProfit);
+            } else {
+                buy = price;
+            }
+        }
+        return profit;
     }
 
     /**
@@ -122,7 +138,7 @@ public class BestTimeToBuyAndSellStock {
         minNum=Math.min(minNum,p[i])=(1,4)=1
         curSum=max(currSum,p[i]-minNum)=(5,4-1)=5
      */
-    public int maxProfitUsingTwoPointerMyApproach(int[] prices) {
+    public int maxProfitUsingTwoPointerMyApproachOld(int[] prices) {
         int minNum = Integer.MAX_VALUE; // pointer 1
         int currSum = 0;
         for(int price: prices) { // pointer 2
@@ -141,10 +157,9 @@ public class BestTimeToBuyAndSellStock {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(1)
      *
-     * This approach is same as {@link #maxProfitUsingTwoPointers2} and {@link #maxProfitUsingTwoPointerMyApproach(int[])}
+     * This approach is same as {@link #maxProfitUsingTwoPointers2} and {@link #maxProfitUsingTwoPointerMyApproachOld(int[])}
      * but instead of minPrice, it uses effectiveBuyPrice
-     *
-     * @see {@link Algorithms.DynamicProgramming.BestTimeToBuyAndSellStockII#maxProfitUsingTwoPointersEffectiveBuyPrice} for easier understanding
+     * see {@link Algorithms.DynamicProgramming.BestTimeToBuyAndSellStockII#maxProfitUsingTwoPointersEffectiveBuyPrice} for easier understanding
      */
     public static int maxProfitUsingTwoPointersEffectiveBuyPrice(int[] prices) {
         int maxProfit = 0, effectiveBuyPrice = Integer.MAX_VALUE;

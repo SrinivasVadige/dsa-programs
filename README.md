@@ -213,7 +213,7 @@ Data Structures and Algorithm Programs
     * [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
     * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
     * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
-    * [BestTime To Buy And Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
+    * [Best Time To Buy And Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
     * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Gas Station](/Algorithms/GreedyAlgorithms/GasStation.java)
@@ -425,6 +425,7 @@ Data Structures and Algorithm Programs
 8. [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
 9. [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
 10. [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
+11. [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
 11. Find median for k elements in n array. Return new int[]{maxMedian, minMedian}
 12. 1 to m-1 cities and n warehouses, cityStart=[1,2,1], cityEnd=[2,5,9]. cityStart.length == cityEnd.length == n of warehouses. Multiple warehouse connect to same city. Find cityWarehouseCounter <city, num of warehouses>
 
