@@ -224,7 +224,7 @@ Data Structures and Algorithm Programs
     * [GroupAnagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
     * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
-    * [2Sum](Algorithms/Hashing/TwoSum.java)
+    * [Two Sum](Algorithms/Hashing/TwoSum.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [Find the Difference of Two Arrays](Algorithms/Hashing/FindTheDifferenceOfTwoArrays.java)
     * [Unique Number of Occurrences](Algorithms/Hashing/UniqueNumberOfOccurrences.java)
@@ -425,9 +425,10 @@ Data Structures and Algorithm Programs
 8. [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
 9. [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
 10. [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
-11. [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
 11. Find median for k elements in n array. Return new int[]{maxMedian, minMedian}
 12. 1 to m-1 cities and n warehouses, cityStart=[1,2,1], cityEnd=[2,5,9]. cityStart.length == cityEnd.length == n of warehouses. Multiple warehouse connect to same city. Find cityWarehouseCounter <city, num of warehouses>
+13. [Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
+14. [Two Sum](Algorithms/Hashing/TwoSum.java)
 
 ## GOOGLE
 
