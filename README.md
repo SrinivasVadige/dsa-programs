@@ -136,6 +136,7 @@ Data Structures and Algorithm Programs
 
     * [Number of Connected Components in an Undirected Graph](/Algorithms/DisjointSetUnion/NumberOfConnectedComponents.java)
     * [Number Of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
+    * [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
     * [Find the Index of the First Occurrence in a String](/Algorithms/DisjointSetUnion/FindIndexOfFirstOccurrenceInString.java)
     * [Redundant Connection](/Algorithms/DisjointSetUnion/RedundantConnection.java)
     * [Accounts Merge](/Algorithms/DisjointSetUnion/AccountsMerge.java)
@@ -435,6 +436,7 @@ Data Structures and Algorithm Programs
 16. [LongestPalindromicSubstring](/Algorithms/DynamicProgramming/LongestPalindromicSubstring.java)
 17. [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
 18. [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
+19. [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
 
 ## GOOGLE
 
