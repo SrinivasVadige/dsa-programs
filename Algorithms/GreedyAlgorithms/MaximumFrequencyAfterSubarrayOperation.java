@@ -1,6 +1,8 @@
 package Algorithms.GreedyAlgorithms;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -149,8 +151,18 @@ public class MaximumFrequencyAfterSubarrayOperation {
     }
 
 
-
-
+    /**
+     * same like above {@link #maxFrequency2(int[], int)} but use HashMap instead of array
+     */
+    public static int maxFrequency3(int[] nums, int k) {
+        Map<Integer, Integer> count = new HashMap<>();
+        int maxFreq = 0; // max frequency of num i.e., not including k
+        for (int num : nums) {
+            count.put(num, Math.max(count.getOrDefault(num, 0), count.getOrDefault(k, 0)) + 1); // +1 for current num
+            maxFreq = Math.max(maxFreq, count.getOrDefault(num, 0) - count.getOrDefault(k, 0));
+        }
+        return count.getOrDefault(k, 0) + maxFreq;
+    }
 
 
 
