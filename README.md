@@ -151,7 +151,7 @@ Data Structures and Algorithm Programs
 
 6. #### [Divide and Conquer](Algorithms/DivideAndConquer)
 
-    * [Maximum SubArray](Algorithms/DivideAndConquer/MaximumSubArray.java)
+    * [Maximum SubArray - Kadane's Algorithm and DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
     * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
@@ -304,7 +304,6 @@ Data Structures and Algorithm Programs
 16. #### [Misc](/Algorithms/MiscAlgos)
 
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
-    * [Maximum SubArray](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
     * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
@@ -432,6 +431,7 @@ Data Structures and Algorithm Programs
 14. [Two Sum](Algorithms/Hashing/TwoSum.java)
 15. [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
 16. [LongestPalindromicSubstring](/Algorithms/DynamicProgramming/LongestPalindromicSubstring.java)
+17. [Maximum SubArray - Kadane's Algorithm](Algorithms/DivideAndConquer/MaximumSubArray.java)
 
 ## GOOGLE
 
