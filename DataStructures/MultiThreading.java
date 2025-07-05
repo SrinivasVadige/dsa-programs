@@ -409,14 +409,14 @@ public class MultiThreading {
 
 
         // or from java 21 and it is a preview API and may be removed in a future release
-        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
-            StructuredTaskScope.Subtask subtask1 = scope.fork(() -> { r1.run(); return null; });
-            StructuredTaskScope.Subtask subtask2 = scope.fork(() -> { r2.run(); return null; });
-            StructuredTaskScope.Subtask subtask3 = scope.fork(() -> { r3.run(); return null; });
-
-            scope.join(); // blocks like join()
-            scope.throwIfFailed();
-        } catch (ExecutionException | InterruptedException e) {e.printStackTrace();}
-        System.out.println("All async threads finished in ExecutorService using ---- try (var scope = new StructuredTaskScope.ShutdownOnFailure()) + fork() + join()");
+//        try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+//            StructuredTaskScope.Subtask subtask1 = scope.fork(() -> { r1.run(); return null; });
+//            StructuredTaskScope.Subtask subtask2 = scope.fork(() -> { r2.run(); return null; });
+//            StructuredTaskScope.Subtask subtask3 = scope.fork(() -> { r3.run(); return null; });
+//
+//            scope.join(); // blocks like join()
+//            scope.throwIfFailed();
+//        } catch (ExecutionException | InterruptedException e) {e.printStackTrace();}
+//        System.out.println("All async threads finished in ExecutorService using ---- try (var scope = new StructuredTaskScope.ShutdownOnFailure()) + fork() + join()");
     }
 }
