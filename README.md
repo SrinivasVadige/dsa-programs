@@ -222,6 +222,7 @@ Data Structures and Algorithm Programs
     * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
     * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
+    * [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
 
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
 
@@ -441,6 +442,7 @@ Data Structures and Algorithm Programs
 19. [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
 20. [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
 21. [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
+22. [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
 
 ## GOOGLE
 
