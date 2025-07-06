@@ -5,9 +5,10 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
-* @author Srinvas Vadige, srinivas.vadige@gmail.com
-* @since 21 Sept 2024
-*/
+ * @author Srinvas Vadige, srinivas.vadige@gmail.com
+ * @since 21 Sept 2024
+ * check {@link DataStructures.BinarySearch} 🔥
+ */
 public class BinarySearch {
 
     public static void main(String[] args) {
