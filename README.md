@@ -440,6 +440,7 @@ Data Structures and Algorithm Programs
 18. [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
 19. [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
 20. [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
+21. [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
 
 ## GOOGLE
 
