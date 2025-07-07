@@ -82,7 +82,7 @@ Data Structures and Algorithm Programs
     * [Permutations](/Algorithms/BackTracking/Permutations.java)
     * [N-Queens](/Algorithms/BackTracking/NQueens.java)
     * [Subsets](/Algorithms/BackTracking/Subsets.java)
-    * [WordSearch](/Algorithms/BackTracking/WordSearch.java)
+    * [Word Search](/Algorithms/BackTracking/WordSearch.java)
     * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
     * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
     * [Find Unique BinaryString](/Algorithms/BackTracking/FindUniqueBinaryString.java)
@@ -446,6 +446,7 @@ Data Structures and Algorithm Programs
 22. [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
 23. [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
 24. [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
+25. [Word Search](/Algorithms/BackTracking/WordSearch.java)
 
 ## GOOGLE
 
