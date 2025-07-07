@@ -226,7 +226,7 @@ Data Structures and Algorithm Programs
 
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
 
-    * [GroupAnagrams](Algorithms/Hashing/GroupAnagrams.java)
+    * [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
     * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
     * [Two Sum](Algorithms/Hashing/TwoSum.java)
@@ -445,6 +445,7 @@ Data Structures and Algorithm Programs
 21. [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
 22. [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
 23. [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
+24. [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
 
 ## GOOGLE
 
