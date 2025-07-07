@@ -237,6 +237,7 @@ Data Structures and Algorithm Programs
     * [Equal Row and Column Pairs](Algorithms/Hashing/EqualRowAndColumnPairs.java)
     * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
     * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
+    * [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
 
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 
@@ -443,6 +444,7 @@ Data Structures and Algorithm Programs
 20. [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
 21. [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
 22. [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
+23. [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
 
 ## GOOGLE
 
