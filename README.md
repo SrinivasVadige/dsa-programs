@@ -282,7 +282,7 @@ Data Structures and Algorithm Programs
     * [MiddleOfTheLinkedList](/Algorithms/LinkedListAlgos/MiddleOfTheLinkedList.java)
     * [Reverse LinkedList](/Algorithms/LinkedListAlgos/ReverseLinkedList.java)
     * [Zipper LinkedLists](/Algorithms/LinkedListAlgos/ZipperLinkedLists.java)
-    * [AddTwoNumbers](/Algorithms/LinkedListAlgos/AddTwoNumbers.java)
+    * [Add Two Numbers](/Algorithms/LinkedListAlgos/AddTwoNumbers.java)
     * [Remove Nth Node From End of List](/Algorithms/LinkedListAlgos/RemoveNthNodeFromEndOfList.java)
     * [Merge Two Sorted Lists](/Algorithms/LinkedListAlgos/MergeTwoSortedLists.java)
     * [Merge k Sorted Lists](/Algorithms/LinkedListAlgos/MergeKSortedLists.java)
@@ -447,6 +447,7 @@ Data Structures and Algorithm Programs
 23. [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
 24. [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
 25. [Word Search](/Algorithms/BackTracking/WordSearch.java)
+26. [Add Two Numbers](/Algorithms/LinkedListAlgos/AddTwoNumbers.java)
 
 ## GOOGLE
 
