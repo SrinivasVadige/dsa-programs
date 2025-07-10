@@ -43,7 +43,7 @@ import java.util.Set;
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 05 Nov 2024
  */
-public class PartitionEqualSubsetSum {
+public class Knapsack_01_DP_PartitionEqualSubsetSum {
 
     public static void main(String[] args) {
         int[] nums = {1, 5, 11, 5};

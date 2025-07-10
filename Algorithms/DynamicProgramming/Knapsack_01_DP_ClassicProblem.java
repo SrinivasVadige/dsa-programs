@@ -3,11 +3,11 @@ package Algorithms.DynamicProgramming;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 27 May 2025
- * @link https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1
- * @link https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
+ * @link <a href="https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1">GeeksForGeeks problem link</a>
+ * @link <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/">GeeksForGeeks article link</a>
  *
  */
-public class Classic01KnapsackProblem {
+public class Knapsack_01_DP_ClassicProblem {
     public static void main(String[] args) {
         int[] weights = {1, 2, 3, 2};
         int[] values = {10, 15, 40, 30};
