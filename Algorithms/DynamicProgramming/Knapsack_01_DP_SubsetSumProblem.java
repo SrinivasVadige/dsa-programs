@@ -26,6 +26,7 @@ public class Knapsack_01_DP_SubsetSumProblem {
         int sum = 11;
         System.out.println("isSubsetSum Using Backtracking => " + isSubsetSumUsingBacktracking(arr, sum));
         System.out.println("isSubsetSum Using BottomUp DP => " + isSubsetSumUsingBottomUpDP(arr, sum));
+        System.out.println("isSubsetSum Using BottomUp DP Optimized Space 🔥 => " + isSubsetSumUsingBottomUpDPOptimizedSpace(arr, sum));
         System.out.println("isSubsetSum Using TopDown Memo DP => " + isSubsetSumUsingTopDownMemoDP(arr, sum));
     }
 
@@ -74,6 +75,14 @@ public class Knapsack_01_DP_SubsetSumProblem {
         Maintain a 2D boolean grid of size (n+1)*(sum+1)
         if arr = {2, 3, 7, 8, 10}, sum = 11
 
+                            exclude             ||         include
+        dp[i][j] =         dp[i-1][j]           ||   dp[i-1][j - arr[i-1]]
+                     dp[top_row][current_sum]   ||   dp[top_row][current_sum - numberInCurrentRow]
+                        {top_cell nums}              {top_cell nums + current_num}
+
+        when curr_num=7, curr_sum=9
+        dp[3,9] =        dp[2,9]                ||   dp[2,2]
+                           {2,3}                     {2,3} + {7} = {2,3,7}
 
                           sum / j →
                         _________________________________________________________________________
@@ -116,25 +125,34 @@ public class Knapsack_01_DP_SubsetSumProblem {
 
 
 
-        Example:
+        Example for why it's "top_row" and not the current_row: --------
         while calculating dp[3,9] i.e current_sum=9 and current_row=3 and numberInCurrentRow=7 i.e {2,3,7} subset
         in dp[i-1][j - arr[i-1]] we need top row value dp[2][2] even though we copy the top value dp[2][2] in current dp[3,2] as current_sum=9 is < sum=2
-        cause the given array is not necessarily sorted so, it's better to dp[2,2] instead of dp[3,2]
-        ❌ Common Misunderstanding:
-        Some people think:
-        "Oh, I've already calculated dp[3][2], let me reuse that."
-        But that’s wrong — because dp[3][2] includes the decision of element 7 (the current one), and in 0/1 Knapsack each element can be used at most once.
+        for more understanding this situation try this arr=[6, 6, 6, 3, 8]; sum=16;
 
-         dp[5][11] = dp[4][11]          // exclude 10
-             || dp[4][11 - 10]          // include 10 → check dp[4][1]
-             = true || false = true
-        ✔ dp[4][11] was already true → from using 3 + 8
-        ✔ So dp[5][11] is just a copy of top cell (exclude 10)
-        ❌ And No, sorting does not allow you to safely use dp[i][...] in place of dp[i-1][...] in 0/1 Knapsack (Subset Sum).
-        Why i-1 in both cases i.e in dp[i-1][j] || dp[i-1][j - arr[i-1]]?
-        Because:
-        In 0/1 knapsack, each item can be used at most once
-        So:
+        arr=[6, 6, 6, 3, 8]; sum=16;
+
+        dp[i][j] = dp[i-1][j] || dp[i-1][j - arr[i-1]]    ❔
+        dp[i][j] =   dp[top_row][current_sum]   ||   dp[top_row][current_sum - numberInCurrentRow]
+                          top_cell
+
+                          sum / j →
+                        _____________________________________________________________________________________________
+                        |     |   0    1    2    3    4     5    6    7    8     9   10    11   12  13  14  15   16 |
+                    i ↓ |_____|_____________________________________________________________________________________|
+        {}           0  |  -  |  ✅   ❌   ❌   ❌   ❌   ❌   ❌   ❌   ❌   ❌   ❌   ❌   ❌  ❌  ❌  ❌  ❌ |
+        {6}          1  |  6  |  ✅   ❌   ❌   ❌   ❌   ❌   ✅   ❌   ❌   ❌   ❌   ❌   ❌  ❌  ❌  ❌  ❌ |
+        {6,6}        2  |  6  |  ✅   ❌   ❌   ❌   ❌   ❌   ✅   ❌   ❌   ❌   ❌   ❌   ✅  ❌  ❌  ❌  ❌ |
+        {6,6,6}      3  |  6  |  ✅   ❌   ❌   ❌   ❌   ❌   ✅   ❌   ❌   ❌   ❌   ❌   ✅  ❌  ❌  ❌  ❌ |
+        {6,6,6,3}    4  |  3  |  ✅   ❌   ❌   ✅   ❌   ❌   ✅   ❌   ❌   ✅   ❌   ❌   ✅  ❌  ❌  ✅  ❌ |
+        {6,6,6,3,8}  5  |  8  |  ✅   ❌   ❌   ✅   ❌   ❌   ✅   ❌   ✅   ✅   ❌   ✅   ✅  ❌  ✅  ✅  ❌ |
+                        |___________________________________________________________________________________________|
+
+        now see this dp[5,16] = dp[4,16] || dp[4,8] = F||F = F
+        ---> if we use current_row instead of top_row then dp[5,16] = dp[4,16] || dp[5,8] = F||T = T ---> wrong
+        so, we use current_row it'll count the same number again
+       ---> this condition dp[top_row][current_sum - numberInCurrentRow] means we already included the numberInCurrentRow. So, don't include it again
+
         ❌ You can't look into the same row (i.e., dp[i][...]) when including an element
                 --> You’ll count the same item multiple times
                 --> You're violating the "0 or 1 usage" constraint
@@ -164,6 +182,93 @@ public class Knapsack_01_DP_SubsetSumProblem {
         }
         return dp[n][sum];
     }
+
+
+
+
+
+
+
+    /**
+     * Approach: BottomUp DP Optimized Space 🔥
+     * @TimeComplexity O(n*sum)
+     * @SpaceComplexity O(sum)
+
+        Maintain a 1D boolean dp of size (sum+1) instead of a 2D boolean dp of size (n+1)*(sum+1) --> optimized space
+        if arr = {2, 3, 7, 8, 10}, sum = 11
+        Here for each number
+            1) we add the number to the existing set of numbers
+            2) loop over all the sums and check if the current sum is possible by adding the current number
+
+        dp[j] = dp[j] || dp[j - num];
+              exclude || include
+
+
+        INITIAL STATE - {}
+               0     1     2     3     4     5     6     7     8     9    10     11    sum / j --→
+            _________________________________________________________________________
+            |  T  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |
+            |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+               ✅
+
+        after num = 2 loop - {2}
+               0     1     2     3     4     5     6     7     8     9    10     11
+            _________________________________________________________________________
+            |  T  |  F  |  T  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |  F  |
+            |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+               ✅         ✅
+
+        after num = 3 loop - {2, 3}
+               0     1     2     3     4     5     6     7     8     9    10     11
+            _________________________________________________________________________
+            |  T  |  F  |  T  |  T  |  F  |  T  |  F  |  F  |  F  |  F  |  F  |  F  |
+            |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+               ✅         ✅    ✅          ✅
+
+        after num = 7 loop - {2, 3, 7}
+               0     1     2     3     4     5     6     7     8     9    10     11
+            _________________________________________________________________________
+            |  T  |  F  |  T  |  T  |  F  |  T  |  F  |  F  |  T  |  T  |  T  |  F  |
+            |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+               ✅         ✅    ✅          ✅                ✅    ✅   ✅
+
+        after num = 8 loop - {2, 3, 7, 8}
+               0     1     2     3     4     5     6     7     8     9    10     11
+            _________________________________________________________________________
+            |  T  |  F  |  T  |  T  |  F  |  T  |  F  |  F  |  T  |  T  |  T  |  T  |
+            |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+               ✅         ✅    ✅          ✅                ✅    ✅   ✅    ✅
+
+        after num = 10 loop - {2, 3, 7, 8, 10}
+               0     1     2     3     4     5     6     7     8     9    10     11
+            _________________________________________________________________________
+            |  T  |  F  |  T  |  T  |  F  |  T  |  F  |  F  |  T  |  T  |  T  |  T  |
+            |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+               ✅         ✅    ✅          ✅                ✅    ✅   ✅    ✅
+     */
+    public static boolean isSubsetSumUsingBottomUpDPOptimizedSpace(int[] arr, int targetSum) {
+        boolean[] dp = new boolean[targetSum + 1];
+        dp[0] = true;
+
+        for (int num : arr) {
+            for (int sum = targetSum; sum >= num; sum--) {
+                dp[sum] = dp[sum] || dp[sum - num];
+                /*
+                // or
+                if (dp[sum] || !dp[sum - num]) {
+                    continue;
+                } else {
+                    dp[sum] = true;
+                }
+                */
+            }
+        }
+
+        return dp[targetSum];
+    }
+
+
+
 
 
     /**
