@@ -172,7 +172,7 @@ Data Structures and Algorithm Programs
     * [Knapsack_01_DP_SubsetSumProblem & Knapsack 0-1 Intro 🔥](/Algorithms/DynamicProgramming/Knapsack_01_DP_SubsetSumProblem.java)
     * [Knapsack_Bounded_DP_BoundedSubsetSumProblem & Knapsack Bounded Intro](/Algorithms/DynamicProgramming/Knapsack_Bounded_DP_BoundedSubsetSumProblem.java)
     * [Knapsack_Unbounded_DP_CoinChange & Knapsack Unbounded Intro](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_CoinChange.java)
-    * [Knapsack_Fractional_DP_FractionalKnapsackProblem (Weights, Values, Capacity)](/Algorithms/DynamicProgramming/Knapsack_Fractional_DP_FractionalKnapsackProblem.java)
+    * [Knapsack_Fractional_DP_FractionalKnapsackProblem(Weights[], Values[], Capacity) & Fractional Knapsack Problem Intro](/Algorithms/DynamicProgramming/Knapsack_Fractional_DP_FractionalKnapsackProblem.java)
     * [Knapsack_01_DP Partition Equal Subset Sum](/Algorithms/DynamicProgramming/Knapsack_01_DP_PartitionEqualSubsetSum.java)
     * [LongestCommonSubsequence](/Algorithms/DynamicProgramming/LongestCommonSubsequence.java)
     * [LongestPalindromicSubstring](/Algorithms/DynamicProgramming/LongestPalindromicSubstring.java)
