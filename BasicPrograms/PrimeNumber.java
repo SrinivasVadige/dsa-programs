@@ -8,11 +8,12 @@ public class PrimeNumber {
     public static void main(String[] args) {
         int n = 49;
         System.out.println("Brute force => isPrime: " + (isPrimeUsingBruteForce(n) ? "yes" : "no"));
-        System.out.println("Sqrt Approach with NumOfFactors => isPrime: " + (isPrimeUsingSqrtLoopWithNumOfFactors(n) ? "yes" : "no"));
         System.out.println("Sqrt Approach => isPrime: " + (isPrimeUsingSqrtLoop(n) ? "yes" : "no"));
+        System.out.println("Optimized Trial Division => isPrime: " + (isPrimeUsingOptimizedTrialDivision(n)? "yes" : "no"));
+        System.out.println("Sqrt Approach with NumOfFactors => isPrime: " + (isPrimeUsingSqrtLoopWithNumOfFactors(n) ? "yes" : "no"));
     }
 
-    static boolean isPrimeUsingBruteForce(int num) {
+    public static boolean isPrimeUsingBruteForce(int num) {
         if (num <= 1) return false; // Corner case as 1 is not prime and 0 & negatives are also not prime
         for (int i = 2; i < num; i++) // or i <= num/2
             if (num % i == 0)
@@ -20,28 +21,55 @@ public class PrimeNumber {
         return true;
     }
 
-    /*
-     *
-     * or loop until=l i <= (int) Math.sqrt(num); or i <= num/2 with
-     * Add the counterpart divisor if it's different from i
-     * => if (i != num / i) divisors.add(num / i);
-     *
-     * cause
-     * the divisors of 36 number are [1, 2, 3, 4, 6, 9, 12, 18, 36]
-     * 1*36
-     * 2*18
-     * 3*12
-     * 4*9
-     * 6*6
-     * 9*4
-     * 12*3
-     * 18*2
-     * 36*1
-     *
-     * this is repeating after 6*6 in reverse order
-     */
 
-    static boolean isPrimeUsingSqrtLoopWithNumOfFactors(int n) {
+    /**
+         Use i<Math.sqrt(num) instead of i<=num or i<=num/2
+         ---> because the divisors of 36 number are [1, 2, 3, 4, 6, 9, 12, 18, 36]
+
+         1*36
+         2*18
+         3*12
+         4*9
+         6*6
+         9*4
+         12*3
+         18*2
+         36*1
+
+        this is repeated after 6*6 in reverse order
+
+        Add the counterpart divisor if it's different from i
+        => if (i != num / i) divisors.add(num / i);
+     */
+    public static boolean isPrimeUsingSqrtLoop(int n) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if(n%i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    /**
+     * Optimized Trial Division using square root and skipping evens
+     * NOTE: i*i<=num means i<=Math.sqrt(num)
+     */
+    public static boolean isPrimeUsingOptimizedTrialDivision(int num) {
+        if (num < 2) return false;
+        if (num == 2) return true;
+        if (num % 2 == 0) return false; // --> This will validate all even numbers of "num". All even numbers (except 2) are not prime
+        for (int i = 3; i*i<=num; i += 2) { // check if num is divisible by odd numbers of i
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+
+
+
+
+    public static boolean isPrimeUsingSqrtLoopWithNumOfFactors(int n) {
         if (n <= 1) return false; // Corner case as 1 is not prime and 0 & negatives are also not prime
         int numOfFactors = 0;
         for (int i = 1; i <= Math.sqrt(n); i++) {
@@ -51,12 +79,6 @@ public class PrimeNumber {
             }
         }
         return numOfFactors == 2; // i.e number of factors is exactly 2
-    }
-
-    static boolean isPrimeUsingSqrtLoop(int n) {
-        for (int i = 2; i <= Math.sqrt(n); i++)
-            if(n%i == 0) return false;
-        return true;
     }
 
 }
