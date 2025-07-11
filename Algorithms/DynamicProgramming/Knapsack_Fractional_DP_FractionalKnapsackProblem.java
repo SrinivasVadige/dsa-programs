@@ -7,7 +7,7 @@ package Algorithms.DynamicProgramming;
  * @link <a href="https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/">GeeksForGeeks article link</a>
  *
  */
-public class Knapsack_01_DP_ClassicProblem {
+public class Knapsack_Fractional_DP_FractionalKnapsackProblem {
     public static void main(String[] args) {
         int[] weights = {1, 2, 3, 2};
         int[] values = {10, 15, 40, 30};

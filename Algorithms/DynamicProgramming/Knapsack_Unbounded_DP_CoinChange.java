@@ -61,7 +61,7 @@ import java.util.Map;
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 04 Nov 2024
  */
-public class Knapsack_Unbound_DP_CoinChange {
+public class Knapsack_Unbounded_DP_CoinChange {
 
     public static void main(String[] args) {
         int[] coins = {10, 1, 2};
