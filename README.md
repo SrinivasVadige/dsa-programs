@@ -174,6 +174,7 @@ Data Structures and Algorithm Programs
     * [Knapsack_Unbounded_DP_CoinChange & Knapsack Unbounded Intro](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_CoinChange.java)
     * [Knapsack_Fractional_DP_FractionalKnapsackProblem(Weights[], Values[], Capacity) & Fractional Knapsack Problem Intro](/Algorithms/DynamicProgramming/Knapsack_Fractional_DP_FractionalKnapsackProblem.java)
     * [Knapsack_01_DP Partition Equal Subset Sum](/Algorithms/DynamicProgramming/Knapsack_01_DP_PartitionEqualSubsetSum.java)
+    * [Knapsack_Unbounded_DP Minimum Number of Primes to Sum to Target](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_MinimumNumberOfPrimesToSumToTarget.java)
     * [LongestCommonSubsequence](/Algorithms/DynamicProgramming/LongestCommonSubsequence.java)
     * [LongestPalindromicSubstring](/Algorithms/DynamicProgramming/LongestPalindromicSubstring.java)
     * [LongestValidParenthesis](/Algorithms/DynamicProgramming/LongestValidParenthesis.java)
@@ -453,6 +454,7 @@ Data Structures and Algorithm Programs
 25. [Word Search](/Algorithms/BackTracking/WordSearch.java)
 26. [Add Two Numbers](/Algorithms/LinkedListAlgos/AddTwoNumbers.java)
 27. [Meeting Rooms II](Algorithms/Intervals/MeetingRooms2.java)
+28. [Knapsack_Unbounded_DP Minimum Number of Primes to Sum to Target](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_MinimumNumberOfPrimesToSumToTarget.java)
 
 ## GOOGLE
 
