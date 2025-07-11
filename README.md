@@ -327,7 +327,7 @@ Data Structures and Algorithm Programs
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
 
 18. #### [PrefixSum](/Algorithms/PrefixSum)
-
+    * [Range Sum Query - Immutable & PrefixSum intro](Algorithms/PrefixSum/RangeSumQueryImmutable.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
