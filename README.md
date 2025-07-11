@@ -170,6 +170,7 @@ Data Structures and Algorithm Programs
     * [Fibonacci_DP_BottomUp_Tabulation & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_Tabulation.java)
     * [Fibonacci_DP_BottomUp_NoMemory & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_NoMemory.java)
     * [Knapsack_01_DP_SubsetSumProblem & Knapsack 0-1 Intro 🔥](/Algorithms/DynamicProgramming/Knapsack_01_DP_SubsetSumProblem.java)
+    * [Knapsack_Bounded_DP_BoundedSubsetSumProblem & Knapsack Bounded Intro](/Algorithms/DynamicProgramming/Knapsack_Bounded_DP_BoundedSubsetSumProblem.java)
     * [Knapsack_Unbounded_DP_CoinChange & Knapsack Unbounded Intro](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_CoinChange.java)
     * [Knapsack_Fractional_DP_FractionalKnapsackProblem (Weights, Values, Capacity)](/Algorithms/DynamicProgramming/Knapsack_Fractional_DP_FractionalKnapsackProblem.java)
     * [Knapsack_01_DP Partition Equal Subset Sum](/Algorithms/DynamicProgramming/Knapsack_01_DP_PartitionEqualSubsetSum.java)
