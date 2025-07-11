@@ -70,6 +70,36 @@ public class Knapsack_Unbounded_DP_CoinChange {
         System.out.println("coinChange2: " + coinChange2(coins, amount));
     }
 
+
+    /**
+     * @TimeComplexity O(n^2)
+     * @SpaceComplexity O(1)
+
+
+        coins = [1,2,5], amount = 11
+                 j
+
+     */
+    public static int coinChangesUsingBacktracking(int[] coins, int amount) {
+        return backtrack(coins, 0, amount);
+    }
+    private static int backtrack(int[] coins, int i, int amount) {
+        if (amount == 0) return 0;
+        if (i == coins.length) return -1;
+        int minCoins = Integer.MAX_VALUE;
+        for (int j = 0; j * coins[i] <= amount; j++) { // j is the number of coins
+            int currCoins = backtrack(coins, i + 1, amount - j * coins[i]);
+            if (currCoins != -1) {
+                minCoins = Math.min(minCoins, j + currCoins);
+            }
+        }
+        return minCoins == Integer.MAX_VALUE ? -1 : minCoins;
+    }
+
+
+
+
+
     /**
      * check needs/target amount from 0 to given amount sum --> reverse order in above graph i.e how many coins needed to reach each need amount
      * think like graph is already prepared and we check the target amounts from leaves to root.
@@ -81,14 +111,16 @@ public class Knapsack_Unbounded_DP_CoinChange {
         dp[0] = 0; // when target sum is 0 & assume that given sum is also 0, i.e. when need is 0 then 0 subArrays sums up to amount 0
         for (int target = 1; target <= amount; target++) { // Here we're not comparing coins[i] with coins[j] ... n^n like above graph, but instead compare each target amount (from 0, 1, 2, 3... to given amount) to all available coins
             for (int coin: coins) {
-                int need = target - coin; // int need = currentAmount - targetAmount;
-                // (target - coin) is diff and (coin - target) -------- so that it'll also skip to check dp[more than target] -- eg: if target = 3 i.e dp[3] then only check dp[0], dp[1] and dp[2] as we avoid -ve needs
-                if(need>=0)
+                int need = target - coin; // int need = currentAmount - targetAmount; ---> (target - coin) is diff and (coin - target) -------- so that it'll also skip to check dp[more than target] -- eg: if target = 3 i.e dp[3] then only check dp[0], dp[1] and dp[2] as we avoid -ve needs
+                if(need>=0) {
                     dp[target] = Math.min(dp[target], 1 + dp[need]);
-                    // if "need" is not already calculated, then we are skipping that "need" using .min() & "1+need" and we don't update dp[need]
-                    // And if "need" is already calculated, then we will use that and increase count(or subArray len) by 1 --- we still use min() to compare with dp[toReach]
-                    // Note that we don't get perfect min subArray len for each amount.
-                    // So, it is either "amount+1" (for amount not found in coins i.e 1 is not in coins[]) or perfect min subArray len. But dp[0] is always '0'
+                }
+                /*
+                if "need" is not already calculated, then we are skipping that "need" using .min() & "1+need" and we don't update dp[need]
+                And if "need" is already calculated, then we will use that and increase count(or subArray len) by 1 --- we still use min() to compare with dp[toReach]
+                Note that we don't get perfect min subArray len for each amount.
+                So, it is either "amount+1" (for amount not found in coins i.e 1 is not in coins[]) or perfect min subArray len. But dp[0] is always '0'
+                */
             }
         }
         return dp[amount] == amount + 1 ? -1 : dp[amount];
