@@ -270,6 +270,8 @@ public class Knapsack_01_DP_SubsetSumProblem {
 
     /**
      * It's very simple to convert the 0-1 knapsack to unbounded knapsack problem. Just flip the sum traversal
+     * It's because, if you move from left to right by updating the dp array.. then in the right side if you use "dp[sum - num];" will include the extra element - unbounded
+     * check {@link Algorithms.DynamicProgramming.Knapsack_Unbounded_DP_CoinChange#coinChangeUsingBottomUpTabulationDpOptimizedSpace} for easy understanding
      */
     public static boolean isUnboundedSubsetSum(int[] arr, int targetSum) {
         boolean[] dp = new boolean[targetSum + 1];
@@ -285,6 +287,62 @@ public class Knapsack_01_DP_SubsetSumProblem {
     }
 
 
+    /**
+     * Same as above {@link #isUnboundedSubsetSum}
+     * instead of "for(int sum = num; sum <= targetSum; sum++)" we can do
+     * for (sum loop...) {
+     *     for (num loop...)
+     * }
+     */
+    public static boolean isUnboundedSubsetSum2(int[] arr, int targetSum) {
+        boolean[] dp = new boolean[targetSum + 1];
+        dp[0] = true; // base case: sum 0 is always achievable
+
+        for (int sum = 1; sum <= targetSum; sum++) {
+            for (int num : arr) {
+                if (sum >= num && dp[sum - num]) {
+                    dp[sum] = true;
+                    break; // we found a valid way to reach this sum
+                }
+            }
+        }
+
+        return dp[targetSum];
+    }
+
+
+
+
+
+
+
+
+
+
+    public static boolean isSubsetSumUsingBottomUpDPOptimizedSpace2(int[] arr, int targetSum) {
+        boolean[] prev = new boolean[targetSum + 1];
+        boolean[] curr = new boolean[targetSum + 1];
+        prev[0] = true;
+
+        for (int num : arr) {
+            for (int sum = 0; sum <= targetSum; sum++) {
+                // Exclude
+                curr[sum] = prev[sum];
+                // Include (only if valid)
+                if (sum >= num) {
+                    curr[sum] = curr[sum] || prev[sum - num];
+                }
+            }
+
+            // Move current to previous for next item
+            prev = curr.clone(); // or System.arraycopy
+        }
+
+        return prev[targetSum];
+    }
+
+
+
 
 
 
@@ -292,7 +350,7 @@ public class Knapsack_01_DP_SubsetSumProblem {
      * @TimeComplexity O(n*sum)
      * @SpaceComplexity O(sum)
      */
-    public static boolean isSubsetSumUsingBottomUpDP2(int[] arr, int sum) {
+    public static boolean isSubsetSumUsingBottomUpDPOptimizedSpace3(int[] arr, int sum) {
         int n = arr.length;
         boolean[] prev = new boolean[sum + 1];
         boolean[] curr = new boolean[sum + 1];
@@ -317,6 +375,8 @@ public class Knapsack_01_DP_SubsetSumProblem {
         }
         return prev[sum];
     }
+
+
 
 
 
