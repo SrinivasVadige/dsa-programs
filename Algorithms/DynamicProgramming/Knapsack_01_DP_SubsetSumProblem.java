@@ -268,6 +268,23 @@ public class Knapsack_01_DP_SubsetSumProblem {
     }
 
 
+    /**
+     * It's very simple to convert the 0-1 knapsack to unbounded knapsack problem. Just flip the sum traversal
+     */
+    public static boolean isUnboundedSubsetSum(int[] arr, int targetSum) {
+        boolean[] dp = new boolean[targetSum + 1];
+        dp[0] = true;
+
+        for (int num : arr) {
+            for (int sum = num; sum <= targetSum; sum++) { // instead of "for(int sum = targetSum; sum >= num; sum--)"
+                dp[sum] = dp[sum] || dp[sum - num];
+            }
+        }
+
+        return dp[targetSum];
+    }
+
+
 
 
 
