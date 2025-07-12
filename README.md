@@ -455,6 +455,7 @@ Data Structures and Algorithm Programs
 26. [Add Two Numbers](/Algorithms/LinkedListAlgos/AddTwoNumbers.java)
 27. [Meeting Rooms II](Algorithms/Intervals/MeetingRooms2.java)
 28. [Knapsack_Unbounded_DP Minimum Number of Primes to Sum to Target](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_MinimumNumberOfPrimesToSumToTarget.java)
+29. [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
 
 ## GOOGLE
 
