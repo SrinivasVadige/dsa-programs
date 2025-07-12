@@ -51,6 +51,9 @@ public class RangeSumQueryImmutable {
         /**
          * @TimeComplexity O(1)
          * To get the sum of range from left to right --> sum(1,5) = sum(5) - sum(0); 🔥
+         * sum(i to j) = prefixSum[j] - prefixSum[i - 1]
+         * so, prefixSum[i-1] = prefixSum[j] - sum(i to j)
+         * int subtract = prefixSum[i-1]
          */
         public int sumRange(int left, int right) {
             if(left == 0) {
