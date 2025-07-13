@@ -1,6 +1,8 @@
 package DataStructures;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
@@ -11,6 +13,15 @@ import java.util.*;
         1) java.util.Iterator / ListIterator interface
         2) Custom toRemove collection like "List<T> toRemove = new ArrayList<>();" and do toRemove.add(ele or index) and loop this toRemove to remove the original list/set/map elements
         3) java.util.concurrent.CopyOnWriteArrayList - a thread-safe implementation of ArrayList
+
+
+    🧠 What actually causes ConcurrentModificationException?
+    When you're iterating using an Iterator or enhanced for-each loop, Java internally tracks a field called expectedModCount.
+    The collection (like ArrayList) has a field modCount, which is incremented on every structural change (add/remove).
+    When the Iterator is created, it stores this value in expectedModCount.
+    On every next() or hasNext(), it checks:
+    if (modCount != expectedModCount) → throw ConcurrentModificationException
+    So if you modify the collection directly (not using iterator.remove()), the internal mod count changes, and the next iterator.next() throws.
 
 
     Use java.util.Iterator,
@@ -37,6 +48,13 @@ import java.util.*;
     5) Other Concurrent Iterators like CopyOnWriteArrayList, ConcurrentHashMap
 
 
+    NOTE:
+    1) Java 8 enhanced for-each loop internally uses an Iterator -- for collections
+    2) But where as, for arrays — that’s just a disguised index loop 🔥
+    3) javac rewrites enhanced for / for-each loops into Iterator hasNext loops — for anything that implements Iterable (like List, Set, etc.) and for-i lop in arrays
+    4) list.forEach() and stream.forEach() also uses Iterator internally
+
+
 
 
 
@@ -47,6 +65,7 @@ import java.util.*;
     -> For a Stack (like java.util.Stack), iterator() iterates from bottom to top (FIFO order), not LIFO. So popping manually gives a different order than iterating.
     -> For a Queue (LinkedList, PriorityQueue, etc.), the iterator() goes from head to tail, respecting insertion order (unless it’s a priority-based structure).
     -> For PriorityQueue, iteration order ≠ poll order — it's not sorted in iteration.
+    -> Arrays don't have iterators, as we can't add or remove elements from them -- it's not needed
 
 
     .iterator() vs .iterator(int index):
@@ -103,13 +122,17 @@ public class IteratorExample {
 
 
         // HANDLE ConcurrentModificationException CME in LinkedHashSet / HashSet
-        String s = "pwwkew";
+        String str = "pwwkew";
         Set<Character> set = new LinkedHashSet<>();
-        for(char c : s.toCharArray()) {
+        set.add(str.charAt(0));
+        set.add(str.charAt(1));
+        set.add(str.charAt(2));
+        for(char c : str.toCharArray()) {
             if(!set.add(c)) {
                 Iterator<Character> it = set.iterator();
                 while(it.hasNext() && it.next() != c) {
-                    it.remove();
+                    it.remove(); // ✅
+                    // set.remove(...); // will throw ConcurrentModificationException ❌
                 }
                 set.remove(c);
                 set.add(c);
@@ -126,7 +149,8 @@ public class IteratorExample {
             char c = it.next();
             map.merge(c, -1, Integer::sum);
             if(map.get(c) == 0) {
-                it.remove();  // safe removal via iterator. map.remove(c); will throw ConcurrentModificationException
+                it.remove();  // safe removal via iterator ✅
+                // map.remove(c); // will throw ConcurrentModificationException ❌
             }
         }
 
@@ -164,5 +188,82 @@ public class IteratorExample {
         }
         Iterator<String> enumerationIterator = enumeration2.asIterator();
         // enumeration.remove(); ❌ ----> Enumeration does not have a remove() method.
+
+
+
+
+
+
+
+
+        // ConcurrentModificationException CME in list
+        List<String> strList = new ArrayList<>(List.of("A", "B", "C", "D"));
+        for(int i=0; i<strList.size(); i++) {
+            strList.remove(strList.get(i)); // this will not throw ConcurrentModificationException ✅
+            i--; // optional: to recheck shifted elements -- Otherwise, you may skip elements
+        }
+
+        strList = new ArrayList<>(List.of("A", "B", "C", "D"));
+        for (int i=0; i<strList.size(); i++) {
+            strList.remove(i); // this will not throw ConcurrentModificationException ✅
+            i--; // optional: to recheck shifted elements -- Otherwise, you may skip elements
+        }
+
+        strList = new ArrayList<>(List.of("A", "B", "C", "D"));
+		for (String s : strList) {
+            // strList.remove(s); // ---> this will throw ConcurrentModificationException ❌
+		}
+
+        // NOTE: In a for-i (index-based) loop, you do NOT get ConcurrentModificationException, even if you modify the list during iteration.
+        // so use for-i loop or Iterator to avoid CME in list ----> for-each uses an Iterator, for-i does not
+
+        strList = new ArrayList<>(List.of("A", "B", "C", "D"));
+        Iterator<String> strIterator = strList.iterator();
+        while (strIterator.hasNext()) {
+            String s = strIterator.next();
+//            strList.remove(s); // ---> this will throw ConcurrentModificationException ❌
+            strIterator.remove(); // this will not throw ConcurrentModificationException ✅
+        }
+        strList.forEach(System.out::println);
+
+
+
+
+
+
+
+
+        // ConcurrentModificationException CME in CopyOnWriteArrayList
+        List<String> copyOnWriteArrayList = new CopyOnWriteArrayList<>(List.of("A", "B", "C", "D"));
+        for (String s : copyOnWriteArrayList) {
+            copyOnWriteArrayList.remove(s); // this will not throw ConcurrentModificationException ✅
+        }
+
+        copyOnWriteArrayList = new CopyOnWriteArrayList<>(List.of("A", "B", "C", "D"));
+        Iterator<String> it2 = copyOnWriteArrayList.iterator();
+        while (it2.hasNext()) {
+            String s = it2.next();
+            // it2.remove(); // CopyOnWriteArrayList allows structural modifications during iteration, but❗️Its Iterator.remove() is unsupported — it always throws UnsupportedOperationException.
+            copyOnWriteArrayList.remove(s); // this will not throw ConcurrentModificationException ✅
+        }
+
+
+
+
+
+
+        // ConcurrentModificationException CME in ConcurrentHashSet
+        Set<String> concurrentHashSet = new ConcurrentSkipListSet<>(List.of("A", "B", "C", "D"));
+        for (String s : concurrentHashSet) {
+            concurrentHashSet.remove(s); // this will not throw ConcurrentModificationException ✅
+        }
+
+        concurrentHashSet = new ConcurrentSkipListSet<>(List.of("A", "B", "C", "D"));
+        Iterator<String> it3 = concurrentHashSet.iterator();
+        while (it3.hasNext()) {
+            String s = it3.next();
+            it3.remove(); // this will not throw ConcurrentModificationException ✅
+            concurrentHashSet.remove(s);
+        }
     }
 }
