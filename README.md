@@ -82,6 +82,7 @@ Data Structures and Algorithm Programs
    * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
    * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
    * [Find Unique BinaryString](/Algorithms/BackTracking/FindUniqueBinaryString.java)
+
 2. #### [Binary Search](Algorithms/BinarySearch)
 
    * [Median of Two Sorted Arrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
@@ -96,6 +97,7 @@ Data Structures and Algorithm Programs
    * [Find Peak Element](/Algorithms/BinarySearch/FindPeakElement.java)
    * [Koko Eating Bananas](/Algorithms/BinarySearch/KokoEatingBananas.java)
    * [H-Index](Algorithms/IntegerArray/HIndex.java)
+
 3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees)
 
    * [InvertBinaryTree](/Algorithms/BinaryTrees/InvertBinaryTree.java)
@@ -118,12 +120,14 @@ Data Structures and Algorithm Programs
    * [Maximum Level Sum of a Binary Tree](/Algorithms/BinaryTrees/MaxLevelSumOfBT.java)
    * [Search in a Binary Search Tree](/Algorithms/BinaryTrees/SearchInBinarySearchTree.java)
    * [Delete Node in a BST](/Algorithms/BinaryTrees/DeleteNodeInBST.java)
+
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
    * [Single Number](Algorithms/BitManipulation/SingleNumber.java)
    * [Counting Bits](Algorithms/BitManipulation/CountingBits.java)
    * [Minimum Bit Flips to Convert Number](Algorithms/BitManipulation/MinimumBitFlipsToConvertNumber.java)
    * [Minimum Flips to Make a OR b Equal to c](Algorithms/BitManipulation/MinimumFlipsToMakeAorBisEqualToC.java)
+
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion)
 
    * [Number of Connected Components in an Undirected Graph](/Algorithms/DisjointSetUnion/NumberOfConnectedComponents.java)
@@ -141,6 +145,7 @@ Data Structures and Algorithm Programs
    * [Path With Minimum Effort](Algorithms/DisjointSetUnion/PathWithMinimumEffort.java)
    * [Minimize Hamming Distance After Swap Operations](Algorithms/DisjointSetUnion/MinimizeHammingDistanceAfterSwapOperations.java)
    * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
+   
 6. #### [Divide and Conquer](Algorithms/DivideAndConquer)
 
    * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
@@ -153,6 +158,7 @@ Data Structures and Algorithm Programs
    * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
    * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
    * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
+
 7. #### [DynamicProgramming](Algorithms/DynamicProgramming)
 
    * [Fibonacci_DP_Recursive_Backtracking & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_Recursive_Backtracking.java)
@@ -187,6 +193,7 @@ Data Structures and Algorithm Programs
    * [Best Time to Buy and Sell Stock with Transaction Fee](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithTransactionFee.java)
    * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
    * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
+
 8. #### [Graphs](/Algorithms/Graphs)
 
    * [Graphs Intro](/DataStructures/Graphs.java)
@@ -199,6 +206,7 @@ Data Structures and Algorithm Programs
    * [Reorder Routes to Make All Paths Lead to the City Zero](Algorithms/Graphs/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java)
    * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
    * [Nearest Exit from Entrance in Maze](Algorithms/Graphs/NearestExitFromEntranceInMaze.java)
+
 9. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms)
 
    * [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
@@ -214,6 +222,7 @@ Data Structures and Algorithm Programs
    * [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
    * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
    * [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
+
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
 
     * [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
@@ -228,6 +237,7 @@ Data Structures and Algorithm Programs
     * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
     * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
     * [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
+
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 
     * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
@@ -236,6 +246,7 @@ Data Structures and Algorithm Programs
     * [Smallest Number in Infinite Set](/Algorithms/HeapAlgos/SmallestNumberInInfiniteSet.java)
     * [Maximum Subsequence Score](/Algorithms/HeapAlgos/MaximumSubsequenceScore.java)
     * [Total Cost to Hire K Workers](/Algorithms/HeapAlgos/TotalCostToHireKWorkers.java)
+
 12. #### [IntegerArray](/Algorithms/IntegerArray)
 
     * [MaximumRepeatingNumber](Algorithms/IntegerArray/MaximumRepeatingNumber.java)
@@ -257,6 +268,7 @@ Data Structures and Algorithm Programs
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
     * [Product of Array Except Self](Algorithms/IntegerArray/ProductOfArrayExceptSelf.java)
+
 13. #### [Intervals](/Algorithms/Intervals)
 
     * [Teemo Attacking](Algorithms/Intervals/TeemoAttacking.java)
@@ -265,6 +277,7 @@ Data Structures and Algorithm Programs
     * [Meeting Rooms II](Algorithms/Intervals/MeetingRooms2.java)
     * [Non-overlapping Intervals](Algorithms/Intervals/NonOverlappingIntervals.java)
     * [Minimum Number of Arrows to Burst Balloons](Algorithms/Intervals/MinimumNumberOfArrowsToBurstBalloons.java)
+
 14. #### [LinkedList Algos](/Algorithms/LinkedListAlgos)
 
     * [MiddleOfTheLinkedList](/Algorithms/LinkedListAlgos/MiddleOfTheLinkedList.java)
@@ -286,6 +299,7 @@ Data Structures and Algorithm Programs
     * [Delete the Middle Node of a Linked List](/Algorithms/LinkedListAlgos/DeleteTheMiddleNodeOfLinkedList.java)
     * [Odd Even Linked List](/Algorithms/LinkedListAlgos/OddEvenLinkedList.java)
     * [Maximum Twin Sum of a Linked List](/Algorithms/LinkedListAlgos/MaximumTwinSumOfLinkedList.java)
+
 15. #### [Matrix](/Algorithms/Matrix)
 
     * [Gifting Groups](/Algorithms/Matrix/GiftingGroups.java)
@@ -294,6 +308,7 @@ Data Structures and Algorithm Programs
     * [Set Matrix Zeroes](/Algorithms/Matrix/SetMatrixZeroes.java)
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
     * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
+
 16. #### [Misc](/Algorithms/MiscAlgos)
 
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
@@ -301,10 +316,12 @@ Data Structures and Algorithm Programs
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
     * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
+
 17. #### [Monotonic Stack](/Algorithms/MonotonicStack)
 
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
+
 18. #### [PrefixSum](/Algorithms/PrefixSum)
 
     * [Range Sum Query - Immutable & PrefixSum intro](Algorithms/PrefixSum/RangeSumQueryImmutable.java)
@@ -312,16 +329,19 @@ Data Structures and Algorithm Programs
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
+
 19. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
 
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
     * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
+
 20. #### [Recursion](/Algorithms/Recursion)
 21. #### [Searching](Algorithms/Searching)
 
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
+
 22. #### [Sliding Window](Algorithms/SlidingWindow)
 
     * [Find all the Anagrams in a String](/Algorithms/SlidingWindow/FindAllAnagramsInString.java)
@@ -332,6 +352,7 @@ Data Structures and Algorithm Programs
     * [Maximum Number of Vowels in a Substring of Given Length](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Max Consecutive Ones III](Algorithms/SlidingWindow/MaxConsecutiveOnesIII.java)
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
+
 23. #### [Sorting](Algorithms/Sorting)
 
     * [SelectionSort](Algorithms/Sorting/SelectionSort.java)
@@ -346,6 +367,7 @@ Data Structures and Algorithm Programs
     * [RadixSort](Algorithms/Sorting/RadixSort.java)
     * [ShellSort](Algorithms/Sorting/ShellSort.java)
     * [TimSort](Algorithms/Sorting/TimSort.java)
+
 24. #### [Stack](/Algorithms/StackAlgos)
 
     * [ValidParentheses](Algorithms/StackAlgos/ValidParentheses.java)
@@ -355,6 +377,7 @@ Data Structures and Algorithm Programs
     * [Decode String](Algorithms/StackAlgos/DecodeString.java)
     * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
     * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
+
 25. #### [Strings](/Algorithms/Strings)
 
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
@@ -372,10 +395,12 @@ Data Structures and Algorithm Programs
     * [Length of Last Word](/Algorithms/Strings/LengthOfLastWord.java)
     * [Text Justification](/Algorithms/Strings/TextJustification.java)
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
+
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
     * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
+
 27. #### [Two Pointers](/Algorithms/TwoPointers)
 
     * [ContainerWithMostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
@@ -427,6 +452,7 @@ Data Structures and Algorithm Programs
 27. [Meeting Rooms II](Algorithms/Intervals/MeetingRooms2.java)
 28. [Knapsack_Unbounded_DP Minimum Number of Primes to Sum to Target](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_MinimumNumberOfPrimesToSumToTarget.java)
 29. [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
+30. [Longest Substring Without Repeating Characters](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
 
 ## GOOGLE
 
