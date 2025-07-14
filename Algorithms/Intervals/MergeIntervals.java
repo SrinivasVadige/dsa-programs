@@ -12,7 +12,7 @@ import java.util.Stack;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 18 March 2025
- * @link https://leetcode.com/problems/merge-intervals/ (56. Merge Intervals)
+ * @link 56. Merge Intervals <a href="https://leetcode.com/problems/merge-intervals/">LeetCode Link</a>
  */
 public class MergeIntervals {
     public static void main(String[] args) {
