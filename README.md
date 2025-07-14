@@ -321,6 +321,7 @@ Data Structures and Algorithm Programs
 
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
+    * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
 
 18. #### [PrefixSum](/Algorithms/PrefixSum)
 
@@ -453,6 +454,7 @@ Data Structures and Algorithm Programs
 28. [Knapsack_Unbounded_DP Minimum Number of Primes to Sum to Target](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_MinimumNumberOfPrimesToSumToTarget.java)
 29. [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
 30. [Longest Substring Without Repeating Characters](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
+31. [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
 
 ## GOOGLE
 
