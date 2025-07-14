@@ -34,14 +34,29 @@ q.remove(); —> removes the 1st ele and returns it and if queue is empty then t
 Note that Queue interface don’t have removeLast() method, only the LinkedList class does.
 
 
+
+
 —————————————
 —————————————
 DEQUE (deck)
 —————————————
 —————————————
 Double-ended queue = Mix of stack and queue
-Deque<Integer> deque = new ArrayDeque<>()
-It has index like Stack.
+ Deque<Integer> dq = new ArrayDeque<>();
+ or
+ Deque<Integer> dq = new LinkedList<>();
+ or
+ ArrayDeque<Integer> dq = new ArrayDeque<>();
+ or
+ LinkedList<Integer> dq = new LinkedList<>(); ----> LinkedList is by default doubly linked list --> it's a Deque by default
+
+ It has index like Stack -- only for LinkedList<Integer> dq = new LinkedList<>();
+
+ ArrayDeque is circular buffer --> Buffer ring
+ LinkedList is non-circular buffer.
+
+ 🔥
+ Even though Deque extends Queue, it behaves like two stacks connected back-to-back — one growing from the front, the other from the back.
 
 ADDING
 dq.push(ele)
@@ -77,12 +92,13 @@ descendingIterator()
 
 
 
-——————————————
+
+
 ——————————————
 PRIORITY QUEUE
 ——————————————
-——————————————
 It’s an Abstract Data Structure
+PriorityQueue uses heap internally.
 Arranges the push() values in asc order and poll() the smallest number accordingly as per the priority.
 PriorityQueue<Integer> pq = new PriorityQueue<>();
 pq.add(5);
@@ -91,18 +107,17 @@ pq.add(7);
 pq.poll(); —> removes 1
 pq.isEmpty();
 
-
 Create a PriorityQueue with the custom comparator
 PriorityQueue<Person> pq = new PriorityQueue<>(byAgeComparatorFuncInterfaceMethod);
 
 This next smallest that gets pulled in the PQ is maintained by Heap.
 
 PQ is used in
-Dijkstra’s Shortest Path Algorithm,
-Dynamically fetch ‘next best’ or ‘next worst’ ele
-Huffman Coding (lossless data compression)
-A* DFS algo to grab next most promising node
-Minimum Spanning Tree MST algo
+    Dijkstra’s Shortest Path Algorithm,
+    Dynamically fetch ‘next best’ or ‘next worst’ ele
+    Huffman Coding (lossless data compression)
+    A* DFS algo to grab next most promising node
+    Minimum Spanning Tree MST algo
 
 Construction - O(n)
 Polling - O(logn)
@@ -114,6 +129,7 @@ Contains - O(n)
 Contains with HashTable - O(1)
 
 As heap have min & max heap, we have min & max PQ. By default the PQ is min PQ i.e returns smallest number. We can convert min PQ to max PQ by negating the numbers so that bigger numbers will be the smallest number.
+
 </pre>
  *
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
@@ -158,27 +174,29 @@ public class QueueDequeuePriorityQueue {
 
 
         System.out.println("Dequeue interface with LinkedList & ArrayDeque implementation  ----------");
-        Deque<Integer> deque = new LinkedList<>();
-        Deque<Integer> arrayDeque = new ArrayDeque<>();
-        deque.add(1);
-        deque.addAll(list);
-        deque.remove();
-        deque.remove(1);
-        deque.removeAll(arrList);
-        deque.retainAll(arrList);
-        deque.poll(); // remove the first element and returns it i. same as queue.remove()
-        deque.offer(4); // add the element at the end i.e same as queue.add(4)
-        deque.element(); // returns the first element
-        deque.peek();
-        deque.size();
-        deque.clear();
-        deque.contains(1);
-        deque.containsAll(arrList);
-        deque.isEmpty();
-        deque.forEach(System.out::println);
-        deque.iterator();
-        deque.toArray();
-        deque.toString();
+        Deque<Integer> dq = new LinkedList<>();
+        Deque<Integer> dq2 = new ArrayDeque<>();
+        ArrayDeque<Integer> arrayDeque = new ArrayDeque<>();
+        LinkedList<Integer> linkedListDeque = new LinkedList<>(); // Doubly linked list by default
+        dq.add(1);
+        dq.addAll(list);
+        dq.remove();
+        dq.remove(1);
+        dq.removeAll(arrList);
+        dq.retainAll(arrList);
+        dq.poll(); // remove the first element and returns it i. same as queue.remove()
+        dq.offer(4); // add the element at the end i.e same as queue.add(4)
+        dq.element(); // returns the first element
+        dq.peek();
+        dq.size();
+        dq.clear();
+        dq.contains(1);
+        dq.containsAll(arrList);
+        dq.isEmpty();
+        dq.forEach(System.out::println);
+        dq.iterator();
+        dq.toArray();
+        dq.toString();
 
 
         System.out.println("PriorityQueue class ----------");
