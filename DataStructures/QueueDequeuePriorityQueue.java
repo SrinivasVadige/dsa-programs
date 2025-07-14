@@ -1,12 +1,6 @@
 package DataStructures;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -163,6 +157,12 @@ public class QueueDequeuePriorityQueue {
         queue.iterator();
         queue.toArray();
         queue.toString();
+
+        queue.addAll(Arrays.asList(1, 2, 3, 4, 5, 6));
+        // just like stack, we can traverse the queue, but it doesn't have an index like stack
+        for(int q : queue) {
+            System.out.println(q);
+        }
 
         Queue<Integer> priorityQueueWithQueueInterface = new PriorityQueue<>();
         Queue<Integer> arrayDequeWithQueueInterface = new ArrayDeque<>();
