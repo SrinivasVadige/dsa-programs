@@ -1,6 +1,6 @@
 package DataStructures;
 
-import java.util.Stack;
+import java.util.*;
 
 /**
 <pre>
@@ -24,7 +24,7 @@ search(Object o) —> Searches for an element in the stack and returns its 1-bas
 
 .size()
 
-.clear()
+.clear() --> O(n), so use stack = new Stack<>(); instead
 
 .contains(ele) —> true if the element is found, false otherwise
 
@@ -44,11 +44,14 @@ public class StackExample {
     public static void main(String[] args) {
 
         Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack2 = new ArrayDeque<>(); // just like two stacks connected back-to-back
+        LinkedList<Integer> stack3 = new LinkedList<>(); // Java LinkedList is a Doubly Linked List
         stack.push(1);
         stack.push(2);
         stack.push(3);
         stack.push(4);
         stack.push(5);
+        stack.addAll(Arrays.asList(6, 7, 8, 9, 10));
 
         System.out.println(stack.peek());
 
