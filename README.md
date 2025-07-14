@@ -396,6 +396,7 @@ Data Structures and Algorithm Programs
     * [Length of Last Word](/Algorithms/Strings/LengthOfLastWord.java)
     * [Text Justification](/Algorithms/Strings/TextJustification.java)
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
+    * [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
 
 26. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
@@ -455,6 +456,7 @@ Data Structures and Algorithm Programs
 29. [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
 30. [Longest Substring Without Repeating Characters](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
 31. [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
+32. [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
 
 ## GOOGLE
 
