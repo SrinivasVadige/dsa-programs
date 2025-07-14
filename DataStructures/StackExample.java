@@ -9,6 +9,9 @@ STACK
 LIFO (Last In, First Out)
 We have Stack class & support indices.
 Stack<TreeNode> stack = new Stack<>();
+ In java Stack is a Generic class which extends java.util.Vector 🔥
+ Vector methods are synchronized (thread-safe) ---> Therefore, all Stack methods are synchronized and thread-safe by inheritance.
+ Similarly, LinkedList, Queue(based on implementation), PriorityQueue and Deque are not thread-safe
 
 stack.push(ele) —> Adds an element to the top / last of the stack.
 
