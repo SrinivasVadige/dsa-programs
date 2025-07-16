@@ -6,7 +6,7 @@ import java.util.*;
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 26 Sept 2024
  * @link 3. Longest Substring Without Repeating Characters <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/">LeetCode link</a>
- * @topics String, Hash Table, Sliding Window
+ * @topics String, Hash Table, Sliding Window / Dynamic Sliding Window
  * @companies Amazon, Google, Microsoft, Bloomberg, Meta, TikTok, Visa, Oracle, Yandex, Walmart Labs, Goldman Sachs, Turing, Apple, Zoho, Cisco, Infosys, Netflix, EPAM, Nvidia, HCL, Adobe, Yahoo, Tinkoff, Tesla, IBM, Uber, Flipkart, Accenture, Agoda, Salesforce
 */
 public class LongestSubstringWithoutRepeatingCharacters {

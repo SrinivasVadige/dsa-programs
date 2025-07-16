@@ -345,11 +345,11 @@ Data Structures and Algorithm Programs
 
 22. #### [Sliding Window](Algorithms/SlidingWindow)
 
-    * [Longest Substring Without Repeating Characters & Sliding Window Intro](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
+    * [Maximum Average SubArray I & Fixed Sliding Window Intro](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
+    * [Longest Substring Without Repeating Characters & Dynamic Sliding Window Intro](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
     * [Find all the Anagrams in a String](/Algorithms/SlidingWindow/FindAllAnagramsInString.java)
     * [Minimum Window Substring](Algorithms/SlidingWindow/MinimumWindowSubstring.java)
     * [Sliding Window Maximum](Algorithms/SlidingWindow/SlidingWindowMaximum.java)
-    * [Maximum Average SubArray I](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Maximum Number of Vowels in a Substring of Given Length](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Max Consecutive Ones III](Algorithms/SlidingWindow/MaxConsecutiveOnesIII.java)
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
