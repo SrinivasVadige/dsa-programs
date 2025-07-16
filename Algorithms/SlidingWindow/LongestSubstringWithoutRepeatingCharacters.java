@@ -13,38 +13,12 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
     public static void main(String[] args) {
         String s = "dvdfd";
-        System.out.println("lengthOfLongestSubstring using LinkedHashSet: "  + lengthOfLongestSubstringUsingLinkedHashSet(s));
         System.out.println("lengthOfLongestSubstring using TwoPointers & HashSet: "  + lengthOfLongestSubstringUsingTwoPointersAndHashSet(s));
+        System.out.println("lengthOfLongestSubstring using LinkedHashSet: "  + lengthOfLongestSubstringUsingLinkedHashSet(s));
         System.out.println("lengthOfLongestSubstring using HashMap: "  + lengthOfLongestSubstringUsingHashMap(s));
         System.out.println("lengthOfLongestSubstring using HashMap Optimized: " + lengthOfLongestSubstringUsingHashMapOptimized(s));
         System.out.println("lengthOfLongestSubstring using BruteForce: " + lengthOfLongestSubstringUsingBruteForce(s));
     }
-
-
-    /**
-     * @TimeComplexity O(n)
-     * @SpaceComplexity O(n)
-     */
-    public static int lengthOfLongestSubstringUsingLinkedHashSet(String s) {
-        Set<Character> set = new LinkedHashSet<>();
-        int maxLen = 0;
-
-        for(char c : s.toCharArray()) {
-            if(!set.add(c)) {
-                Iterator<Character> it = set.iterator();
-                while(it.hasNext() && it.next() != c) {
-                    it.remove();
-                }
-                set.remove(c);
-                set.add(c);
-            }
-            maxLen = Math.max(maxLen, set.size());
-        }
-        return maxLen;
-    }
-
-
-
 
 
     /**
@@ -72,6 +46,31 @@ public class LongestSubstringWithoutRepeatingCharacters {
         return maxLen;
     }
 
+
+
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(n)
+     */
+    public static int lengthOfLongestSubstringUsingLinkedHashSet(String s) {
+        Set<Character> set = new LinkedHashSet<>();
+        int maxLen = 0;
+
+        for(char c : s.toCharArray()) {
+            if(!set.add(c)) {
+                Iterator<Character> it = set.iterator();
+                while(it.hasNext() && it.next() != c) {
+                    it.remove();
+                }
+                set.remove(c);
+                set.add(c);
+            }
+            maxLen = Math.max(maxLen, set.size());
+        }
+        return maxLen;
+    }
 
 
 
