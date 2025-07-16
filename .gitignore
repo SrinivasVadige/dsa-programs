@@ -26,7 +26,6 @@ replay_pid*
 # IDE
 .vscode
 .idea
-dsa-programs.iml
 
 # Production out
 out
