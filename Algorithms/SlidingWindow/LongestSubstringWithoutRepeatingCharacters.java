@@ -24,6 +24,40 @@ public class LongestSubstringWithoutRepeatingCharacters {
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
+
+        Example 1:
+        Input: s = "abcabcbb"
+        Output: 3
+        Explanation: The answer is "abc" or "bca" or "cba", with the length of 3.
+
+        move r till no duplicates
+
+        a b c a b c
+        lr
+
+        a b c a b c
+        l r
+
+        a b c a b c
+        l   r
+
+        a b c a b c ---> found duplicate, now move l
+        l     r
+
+        a b c a b c ---> no duplicate, now move r
+          l   r
+
+        a b c a b c ---> found duplicate, now move l
+          l     r
+
+        a b c a b c ---> no duplicate, now move r
+            l   r
+
+        a b c a b c ---> found duplicate, now move l
+            l     r
+
+        a b c a b c
+              l   r
      */
     public static int lengthOfLongestSubstringUsingTwoPointersAndHashSet(String s) {
         int l=0;
