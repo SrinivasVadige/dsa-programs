@@ -43,9 +43,9 @@ public class BinarySearch {
         int[] nums = {1, 3, 5, 6};
         int target = 7;
         System.out.printf("binarySearch => %s \n", binarySearch(nums, target));
+        System.out.printf("findFirstUsingBinarySearch in duplicates => %s \n", findFirstUsingBinarySearch(nums, target));
+        System.out.printf("findLastUsingBinarySearch in duplicates => %s \n", findLastUsingBinarySearch(nums, target));
         System.out.printf("binarySearchWithDuplicates => %s \n", binarySearchWithDuplicates(nums, target));
-        System.out.printf("findFirstUsingBinarySearch => %s \n", findFirstUsingBinarySearch(nums, target));
-        System.out.printf("findLastUsingBinarySearch => %s \n", findLastUsingBinarySearch(nums, target));
 
     }
 
@@ -80,48 +80,6 @@ public class BinarySearch {
 
     }
 
-
-    /**
-     * 🔥
-     * Works for both duplicates, non-duplicates nums and also when target is not present
-     * 🔥
-     * Here if target not found then it'll return the next biggest number.
-     * same as above binarySearch() explanation
-
-         [1, 3, 3, 5, 6] & target = 3
-         l      m     r
-
-         [1, 3, 3, 5, 6] & target = 3
-         l   r
-
-         [1, 3, 3, 5, 6] & target = 3
-            lr
-
-     NOTE: 🔥
-        if target is found then it'll return the starting index of target
-        if target not found, then it'll return the index where it would be if it were inserted in order
-        so, check and as per your requirement to return l or -1 -- when target not found
-     */
-    public static int binarySearchWithDuplicates(int[] nums, int target) {
-        int l = 0, r = nums.length - 1, mid;
-        while (l<=r) {
-            mid = l+(r-l)/2;
-            if (nums[mid] < target) { //---> if nums[mid] < target --> it's just "<" but not "<="
-                l = mid + 1;
-            } else {
-                r = mid - 1;
-            }
-            /*
-            //or
-            if (nums[mid] >= target) {
-                r = mid - 1;
-            } else {
-                l = mid + 1;
-            }
-            */
-        }
-        return l;
-    }
 
 
     /**
@@ -170,6 +128,12 @@ public class BinarySearch {
     }
 
 
+
+
+
+
+
+
     /**
      * It's the combination of {@link #findFirstUsingBinarySearch} and {@link #findLastUsingBinarySearch}
      */
@@ -192,6 +156,57 @@ public class BinarySearch {
         }
         return res;
     }
+
+
+
+
+
+    /**
+     * 🔥
+     * Works for both duplicates, non-duplicates nums and also when target is not present
+     * 🔥
+     * Here if target not found then it'll return the next biggest number.
+     * same as above binarySearch() explanation
+
+         [1, 3, 3, 5, 6] & target = 3
+         l      m     r
+
+         [1, 3, 3, 5, 6] & target = 3
+         l   r
+
+         [1, 3, 3, 5, 6] & target = 3
+            lr
+
+     NOTE: 🔥
+        if target is found then it'll return the starting index of target
+        if target not found, then it'll return the index where it would be if it were inserted in order
+        so, check and as per your requirement to return l or -1 -- when target not found
+     */
+    public static int binarySearchWithDuplicates(int[] nums, int target) {
+        int l = 0, r = nums.length - 1, mid;
+        while (l<=r) {
+            mid = l+(r-l)/2;
+            if (nums[mid] < target) { //---> if nums[mid] < target --> it's just "<" but not "<="
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+            /*
+            //or
+            if (nums[mid] >= target) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+            */
+        }
+        return l;
+    }
+
+
+
+
+
 
 
 
