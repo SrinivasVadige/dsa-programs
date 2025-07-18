@@ -405,7 +405,7 @@ Data Structures and Algorithm Programs
 
 27. #### [Two Pointers](/Algorithms/TwoPointers)
 
-    * [ContainerWithMostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
+    * [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
     * [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
@@ -459,6 +459,7 @@ Data Structures and Algorithm Programs
 32. [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
 33. [Minimum Window Substring](Algorithms/SlidingWindow/MinimumWindowSubstring.java)
 34. [Longest Common Prefix](/Algorithms/Strings/LongestCommonPrefix.java)
+35. [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
 
 ## GOOGLE
 
