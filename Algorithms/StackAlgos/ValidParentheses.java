@@ -5,6 +5,9 @@ import java.util.Stack;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 09 Jan 2025
+ * @link 20. Valid Parentheses <a href="https://leetcode.com/problems/valid-parentheses/">LeetCode link</a>
+ * @topics String, Stack
+ * @companies Amazon, Google, Meta, Bloomberg, Microsoft, Intuit, Apple, Oracle, DE Shaw, Yandex, LinkedIn, Roblox, AT&T, Walmart Labs, Visa, TikTok, Deloitte, EPAM Systems, Goldman Sachs, Wix, Turing, Adobe, BlackRock, Zoho, tcs, ServiceNow, Infosys, Uber, J.P. Morgan, Epic Systems
  */
 public class ValidParentheses {
     public static void main(String[] args) {

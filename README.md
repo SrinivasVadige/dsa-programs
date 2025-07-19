@@ -371,7 +371,7 @@ Data Structures and Algorithm Programs
 
 24. #### [Stack](/Algorithms/StackAlgos)
 
-    * [ValidParentheses](Algorithms/StackAlgos/ValidParentheses.java)
+    * [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
     * [DailyTemperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
     * [Min Stack](Algorithms/StackAlgos/MinStackClass.java)
@@ -462,6 +462,7 @@ Data Structures and Algorithm Programs
 35. [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
 36. [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
 37. [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
+38. [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
 
 ## GOOGLE
 
