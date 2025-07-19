@@ -1,5 +1,6 @@
 package Algorithms.StackAlgos;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -13,6 +14,8 @@ public class ValidParentheses {
     public static void main(String[] args) {
         String s = "()[]{}";
         System.out.println("isValid: " + isValid(s));
+        System.out.println("isValid using HashMap: " + isValidUsingHashMap(s));
+
     }
 
     public static boolean isValid(String s) {
@@ -27,6 +30,35 @@ public class ValidParentheses {
         }
         return stack.isEmpty();
     }
+
+
+
+    static HashMap<Character, Character> mappings = new HashMap<>() {{
+        put(')', '(');
+        put('}', '{');
+        put(']', '[');
+    }};
+    public static boolean isValidUsingHashMap(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (mappings.containsKey(c)) {
+                if(stack.empty() || stack.pop()!=mappings.get(c)) {
+                    return false;
+                }
+            } else {
+                stack.push(c);
+            }
+        }
+        return stack.isEmpty();
+    }
+
+
+
+
+
+
+
 
     // or use hashMap with open and close chars as keys and values
     public boolean isValidMyApproach(String s) {
