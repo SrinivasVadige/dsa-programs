@@ -460,6 +460,8 @@ Data Structures and Algorithm Programs
 33. [Minimum Window Substring](Algorithms/SlidingWindow/MinimumWindowSubstring.java)
 34. [Longest Common Prefix](/Algorithms/Strings/LongestCommonPrefix.java)
 35. [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
+36. [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
+37. [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
 
 ## GOOGLE
 

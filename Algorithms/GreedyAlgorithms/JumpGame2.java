@@ -7,16 +7,47 @@ import java.util.Arrays;
  * @since 26 Feb 2025
  * @link 45. Jump Game II <a href="https://leetcode.com/problems/jump-game-ii/">Leetcode link</a>
  * @topics Array, Greedy, Dynamic Programming
+ * @companies Amazon, Zoho, Meta, Microsoft, TikTok, Nutanix, Google, Bloomberg, ServiceNow, HashedIn, Adobe, Apple, Oracle, Uber, DoorDash, DE, PhonePe, Expedia, tcs, Flipkart
  */
 public class JumpGame2 {
     public static void main(String[] args) {
         int[] nums = {2,3,1,1,4};
-        System.out.printf("jump => %d%n", jump(nums));
-        System.out.printf("jumpUsingBfs => %d%n", jumpUsingBfs(nums));
+        System.out.printf("jump using Greedy MaxJump => %d%n", jumpUsingGreedyMaxJump(nums));
+        System.out.printf("jumpUsing using Greedy Bfs => %d%n", jumpUsingGreedyBfs(nums));
         System.out.printf("jumpUsingDfs => %d%n", jumpUsingDfs(nums));
     }
 
-    public static int jump(int[] nums) {
+    /**
+     * Using Greedy
+
+        i = index
+        e = endI or currEnd
+        j = maxJump or currFar
+
+
+        INITIALLY ---
+        [2, 3, 1, 1, 4] maxJump=0, jump=0
+         i
+         je
+
+        [2, 3, 1, 1, 4] maxJump=2, jump=1
+         i
+               je
+
+        [2, 3, 1, 1, 4] maxJump=4, jump=1
+            i
+               e     j
+
+        [2, 3, 1, 1, 4] maxJump=4, jump=2
+               i
+                     ej
+
+        [2, 3, 1, 1, 4] maxJump=4, jump=2
+                  i
+                     ej
+
+     */
+    public static int jumpUsingGreedyMaxJump(int[] nums) {
         int jumps = 0, maxJump = 0, endI = 0;
         for (int i = 0; i < nums.length - 1; i++) {
             maxJump = Math.max(maxJump, i + nums[i]);
@@ -28,6 +59,12 @@ public class JumpGame2 {
         return jumps;
     }
 
+
+
+
+
+
+
     /**
      * Just imagine as sections or levels --> calculate after how many levels we reach the end
      * <pre>
@@ -35,18 +72,41 @@ public class JumpGame2 {
           [ 2, 3, 1, 1, 4 ]
            |_| |__|  |___|
             1   2      3
+            lr l  r  l   r
 
         Here, 0th index 2 is 1st level, and we can jump to 1,2 indices, then consider this 1,2 indices as 2nd level
         Now check the 3rd level we can jump from from 2nd level, if the 3rd level contains n-1 then we can return the jumps
+
+
+             INITIALLY ---
+        [2, 3, 1, 1, 4] newR=0
+         i
+        |_|                    level 1
+         lr
+
+
+
+        [2, 3, 1, 1, 4] newR=2
+         i
+            |__|               level 2
+            l  r
+
+        [2, 3, 1, 1, 4] newR=4
+            i
+                  |___|        level 3 ---> r>=n-1 stop
+                  l   r
+
      * </pre>
      */
-    public static int jumpUsingBfs(int[] nums) {
+    public static int jumpUsingGreedyBfs(int[] nums) {
         int l=0, r=0, jumps=0, n=nums.length;
-        while(r<n-1) {
+        while(r<n-1) { // ----> stop when we came across the last level
+            /*
+             calculate next level boundaries --> next l & r
+             --> we already know that nextL=currR+1.
+             So basically we calculate the nextR
+             */
             int farthestJump=0; // nextR
-            // calculate next level boundaries --> next l, r
-            // --> we already know that nextL=currR+1.
-            // So basically we calculate the nextR
             for(int i=l; i<=r; i++) {
                 farthestJump = Math.max(farthestJump, i+nums[i]);
             }
@@ -56,6 +116,50 @@ public class JumpGame2 {
         }
         return jumps;
     }
+
+
+
+
+
+
+
+    /**
+     * Using Greedy --> similar to {@link #jumpUsingGreedyBfs}
+
+            0  1  2  3  4
+          [ 2, 3, 1, 1, 4 ]
+           |_| |__|  |___|
+            1   2      3
+            lr l  r  l   r
+
+     */
+    public static int jumpUsingGreedyBfs2(int[] nums) {
+        if (nums.length == 1) {
+            return 0;
+        }
+
+        int l = 0;
+        int r = 0;
+        int jumps = 1;
+
+        for (int i = 0; i < nums.length; i++) { // or while(r < n-1) {}
+            int newR = 0; // or farthest
+            for (int j = l; j <= r; j++) {
+                newR = Math.max(newR, nums[j] + j);
+            }
+            if (r >= nums.length - 1) {
+                break;
+            }
+            jumps++;
+            l = r + 1;
+            r = newR;
+        }
+
+        return jumps;
+    }
+
+
+
 
 
 
