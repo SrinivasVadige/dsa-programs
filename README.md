@@ -74,7 +74,7 @@ Data Structures and Algorithm Programs
    * [Combination Sum III](/Algorithms/BackTracking/CombinationSumIII.java)
    * [LetterCombinations of a PhoneNumber](/Algorithms/BackTracking/LetterCombinationsOfPhoneNumber.java)
    * [NonContiguousSubArraySum](/Algorithms/BackTracking/NonContiguousSubArraySum.java)
-   * [GenerateParentheses](/Algorithms/BackTracking/GenerateParentheses.java)
+   * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
    * [Permutations](/Algorithms/BackTracking/Permutations.java)
    * [N-Queens](/Algorithms/BackTracking/NQueens.java)
    * [Subsets](/Algorithms/BackTracking/Subsets.java)
@@ -463,6 +463,7 @@ Data Structures and Algorithm Programs
 36. [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
 37. [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
 38. [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
+39. [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
 
 ## GOOGLE
 
