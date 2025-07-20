@@ -289,7 +289,7 @@ Data Structures and Algorithm Programs
     * [Merge k Sorted Lists](/Algorithms/LinkedListAlgos/MergeKSortedLists.java)
     * [Swap Nodes In Pairs](/Algorithms/LinkedListAlgos/SwapNodesInPairs.java)
     * [Reverse Nodes in k-Group](/Algorithms/LinkedListAlgos/ReverseNodesInKGroup.java)
-    * [Copy/Clone ListWithRandomPointer](/Algorithms/LinkedListAlgos/CopyListWithRandomPointer.java)
+    * [Copy List with Random Pointer](/Algorithms/LinkedListAlgos/CopyListWithRandomPointer.java)
     * [LinkedListCycle](/Algorithms/LinkedListAlgos/LinkedListCycle.java)
     * [LinkedListCycle 2](/Algorithms/LinkedListAlgos/LinkedListCycle2.java)
     * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
@@ -464,6 +464,7 @@ Data Structures and Algorithm Programs
 37. [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
 38. [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
 39. [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
+40. [Copy List with Random Pointer](/Algorithms/LinkedListAlgos/CopyListWithRandomPointer.java)
 
 ## GOOGLE
 
