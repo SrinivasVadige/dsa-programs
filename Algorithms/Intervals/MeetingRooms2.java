@@ -15,57 +15,69 @@ import java.util.PriorityQueue;
 public class MeetingRooms2 {
     public static void main(String[] args) {
         int[][] intervals = {{0, 10}, {2, 5}, {7, 8}}; // => 2
-        System.out.println("minMeetingRooms using Priority Queue => " + minMeetingRoomsUsingPriorityQueue(intervals));
+        System.out.println("minMeetingRooms using min heap => " + minMeetingRoomsUsingMinHeap(intervals));
         System.out.println("minMeetingRooms using Chronological Ordering => " + minMeetingRoomsUsingChronologicalOrdering(intervals));
     }
+
+
 
     /**
      * @TimeComplexity O(NlogN)
      * @SpaceComplexity O(N)
 
-         APPROACH: PriorityQueue to track the recent meeting mend
-         ---------
+        APPROACH: MinHeap / PriorityQueue to track the recent meeting that is going to end
+        ---------
 
-        intervals = [[0,10], [2,5], [7,8]]
+        NOTE:
+        If we sort by endTime, we lose the chronological sequence of when meetings start, which is crucial to simulate real-time allocation.
+
+        because we can't greedily pick the earliest-ending meeting (to replace the current meeting) when we haven't processed all earlier-starting meetings.
+        It leads to incorrect reuse and potentially more rooms.
+
+        if you sort by endTime instead of startTime, then we will have this below error ❌ ----> 🔥
+        example --> when intervals = [1,4],[2,5],[6,8],[4,9]
+
+        [1,4],[2,5],[6,8],[4,9]
+          o     o     |
+                      |
+                      ↓
+        how to know if this [6,8] meeting has to replaced [1,4] or [2,5] ?? --> cause the next [4,9] meeting can only be placed in [1,4]
+
+            ------------                                                                 <--| this [1,4] ?
+                -------------                                                            <--| or this [2,5] ?
+                                ---------       -> * ___ this [6,8] meeting replacement by ??
+                        --------------------
+        _____________________________________
+        0   1   2   3   4   5   6   7   8   9
+
+        the correct solution is fill [6,8] room in [2,5] instead of [1,4]. So, we can fill [4,9] room in [1,4] without any issues and no extra room needed
 
 
-        ----------------------------------------
-                ------------
-                                    ----
-        __________________________________________
-        0   1   2   3   4   5   6   7   8   9   10
 
-       using pq / minHeap --> track the meetings that are going to finish soon
+        So, sort with startTime to get this result
+            ------------
+                -------------
+                        --------------------
+                                ---------
+        _____________________________________
+        0   1   2   3   4   5   6   7   8   9
      */
-    public int minMeetingRoomsMyApproach(int[][] intervals) {
-        int rooms = 0;
-        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+    public static int minMeetingRoomsUsingMinHeap(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(i->i[0]));
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-
         for(int[] interval: intervals) {
-            if(minHeap.isEmpty() || minHeap.peek() > interval[0]) {
-                rooms++;
-            } else { // minHeap.peek() <= interval[0]
+            if(minHeap.isEmpty()) { // --> increase roomCount ++
+                minHeap.add(interval[1]);
+            } else if (minHeap.peek() > interval[0]) { // --> increase roomCount ++
+                minHeap.add(interval[1]);
+            } else { // minHeap.peek() <= interval[0] --> here the roomCount stays the same -- and ++ i.e., we replace the ending meeting roon with the current one
                 minHeap.poll();
+                minHeap.add(interval[1]);
             }
-            minHeap.offer(interval[1]);
-        }
-        return rooms; // or minHeap.size();
-    }
-
-
-    public static int minMeetingRoomsUsingPriorityQueue(int[][] intervals) {
-        Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-
-        for (int[] interval : intervals) {
-            if (!minHeap.isEmpty() && minHeap.peek() <= interval[0]) {
-                minHeap.poll();
-            }
-            minHeap.offer(interval[1]);
         }
         return minHeap.size();
     }
+
 
 
     /**
@@ -77,6 +89,8 @@ public class MeetingRooms2 {
          ---------
 
         intervals = [[0,10], [2,5], [7,8]]
+        start = [0, 2, 7]
+        end = [5, 8, 10]
 
         🟢      🟢          🔚      🟢  🔚      🔚
         __________________________________________
@@ -95,8 +109,8 @@ public class MeetingRooms2 {
         Arrays.sort(start);
         Arrays.sort(end);
         int rooms = 0, endI = 0; // or endPointer
-        for (int i = 0; i < n; i++) { // i -> is startI or startPointer
-            if (start[i] < end[endI]) { // is meetingStart < meetingEnd
+        for (int startI = 0; startI < n; startI++) { // or startPointer
+            if (start[startI] < end[endI]) { // is meetingStart < meetingEnd
                 rooms++;
             } else {
                 endI++; // we can reuse the room
@@ -116,6 +130,51 @@ public class MeetingRooms2 {
         */
         return rooms;
     }
+
+
+
+
+
+
+    /**
+     * same as above {@link #minMeetingRoomsUsingMinHeap} method but move this "minHeap.add(interval[1]);" operation common for all the iterations
+     */
+    public static int minMeetingRoomsUsingPriorityQueue2(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        for (int[] interval : intervals) {
+            if (!minHeap.isEmpty() && minHeap.peek() <= interval[0]) {
+                minHeap.poll();
+            }
+            minHeap.offer(interval[1]);
+        }
+        return minHeap.size();
+    }
+
+
+
+
+
+    public int minMeetingRoomsUsingPriorityQueue3(int[][] intervals) {
+        int rooms = 0;
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+
+        for(int[] interval: intervals) {
+            if(minHeap.isEmpty() || minHeap.peek() > interval[0]) {
+                rooms++;
+            } else { // minHeap.peek() <= interval[0]
+                minHeap.poll();
+            }
+            minHeap.offer(interval[1]);
+        }
+        return rooms; // or minHeap.size();
+    }
+
+
+
+
 
 
 
