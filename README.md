@@ -467,6 +467,7 @@ Data Structures and Algorithm Programs
 40. [Two Sum](Algorithms/Hashing/TwoSum.java)
 41. [Two Sum II - Input Array Is Sorted](/Algorithms/TwoPointers/TwoSum2InputArrayIsSorted.java)
 42. [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
+43. [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
 
 ## GOOGLE
 
