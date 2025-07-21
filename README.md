@@ -465,6 +465,8 @@ Data Structures and Algorithm Programs
 38. [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
 39. [Copy List with Random Pointer](/Algorithms/LinkedListAlgos/CopyListWithRandomPointer.java)
 40. [Two Sum](Algorithms/Hashing/TwoSum.java)
+41. [Two Sum II - Input Array Is Sorted](/Algorithms/TwoPointers/TwoSum2InputArrayIsSorted.java)
+42. [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
 
 ## GOOGLE
 
