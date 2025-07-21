@@ -9,6 +9,7 @@ import java.util.Map;
  * @since 01 July 2025
  * @link 167. Two Sum II - Input Array Is Sorted <a href="https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/">LeetCode link</a>
  * @topics Array, Two Pointers, Binary Search
+ * @companies Google, Amazon, Meta, Bloomberg, Microsoft, Apple, Adobe, Infosys, Oracle, Yandex, EPAM Systems, eBay, Qualcomm, Zomato
  */
 public class TwoSum2InputArrayIsSorted {
     public static void main(String[] args) {
