@@ -81,7 +81,7 @@ public class MaximumSubArray {
      *                     i  ---> sum = 2 => 0, maxSum = 3
      */
     public static int maxSubArrayUsingKadanesAlgorithm(int[] nums) {
-        int maxSum = nums[0];
+        int maxSum = nums[0]; // cause, we might have nums.length == 1
         int sum = 0;
         for (int num : nums) {
             if (sum < 0) { // --> reset, NOTE: we can also reset the sum after "max = Math.max(maxSum, sum);" statement
@@ -93,10 +93,24 @@ public class MaximumSubArray {
         return maxSum;
     }
 
+
     /**
-     * Same as above {@link #maxSubArrayUsingKadanesAlgorithm(int[] nums)} but with more readable code
+     * My own Approach of Kadane's Algorithm
      */
-    public static int maxSubArrayUsingKadanesAlgorithm2(int[] nums) {
+    public int maxSubArrayUsingKadanesAlgorithm2(int[] nums) {
+        int maxSum = nums[0];
+        int currSum = 0;
+        for(int num: nums) {
+            currSum += num;
+            maxSum = Math.max(maxSum, currSum);
+            currSum = Math.max(currSum, 0);
+        }
+        return maxSum;
+    }
+
+
+
+    public static int maxSubArrayUsingKadanesAlgorithm3(int[] nums) {
         int maxSum = nums[0];
         int sum = nums[0];
         for (int i = 1; i < nums.length; i++) {
@@ -110,26 +124,27 @@ public class MaximumSubArray {
 
 
 
+
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
      */
     public static int maxSubArrayUsingPrefixSum(int[] nums) {
         int n = nums.length;
-        int[] prefixSum = new int[n];
-        int max = Integer.MIN_VALUE;
-        prefixSum[n-1] = max = nums[n-1];
+        int[] prefixSum = new int[n]; // or nums.clone();
+        int maxSum = prefixSum[0] = nums[0];
 
-        for (int i=n-2; i>=0; i--) {
-            prefixSum[i] = Math.max(nums[i], prefixSum[i+1]+nums[i]);
-            max = Math.max(max, prefixSum[i]);
+        for (int i=1; i<nums.length; i++) {
+            prefixSum[i] = Math.max(nums[i], prefixSum[i-1]+nums[i]);
+            maxSum = Math.max(maxSum, prefixSum[i]);
         }
-        return max;
+        return maxSum;
     }
 
+
     /**
-     * @TimeComplexity O(n)
-     * @SpaceComplexity O(1)
+     * In-place space --> as we are modifying the given array
+     * we can go from 0 to n-1 indexes or n-1 to 0 indexes
      */
     public static int maxSubArrayUsingPrefixSum2(int[] nums) {
         int max = nums[nums.length-1];
@@ -149,6 +164,9 @@ public class MaximumSubArray {
 
 
     /**
+     * @TimeComplexity O(nlogn)
+     * @SpaceComplexity O(logn)
+
         Explanation:
         ------------
         - The array is split recursively.
@@ -264,40 +282,6 @@ public class MaximumSubArray {
 
 
 
-    public static int maxSubArrayUsingKadanesAlgorithm3(int[] nums) {
-        int max = Integer.MIN_VALUE;
-        int sum=0;
-        if(nums.length == 1) return nums[0];
-        for(int i=0; i<nums.length; i++){
-            sum += nums[i];
-            max = Math.max(max, sum);
-            sum = sum<0? 0:sum;
-        }
-        return max;
-    }
-
-
-    public int maxSubArrayUsingKadanesAlgorithm4(int[] nums) {
-        int max = nums[0];
-        int sum =0;
-
-        for(int val : nums){
-            sum +=val;
-            max = (sum>max)? sum:max;
-            if(sum<0) sum=0;
-        }
-        return max ;
-    }
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -311,13 +295,13 @@ public class MaximumSubArray {
         for(int i=0; i<nums.length; i++){
             prefixSum[i+1] = prefixSum[i]+nums[i];
         }
-        int max = Integer.MIN_VALUE;
+        int maxSum = Integer.MIN_VALUE;
         for(int i=0; i<nums.length; i++){
             for(int j=i+1; j<=nums.length; j++){
-                max = Math.max(max, prefixSum[j]-prefixSum[i]);
+                maxSum = Math.max(maxSum, prefixSum[j]-prefixSum[i]);
             }
         }
-        return max;
+        return maxSum;
     }
 
 
@@ -326,7 +310,7 @@ public class MaximumSubArray {
 
 
     // WON'T WORK AS IT MANIPULATED THE CURR INDICES
-    public int maxSubArrayUsingSort(int[] nums) {
+    public int maxSubArrayUsingSortNotWorking(int[] nums) {
         Arrays.sort(nums);
         int tempSum=0, sum=Integer.MIN_VALUE;
         for (int i=nums.length-1; i>=0; i--) {
