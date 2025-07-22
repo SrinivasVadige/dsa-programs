@@ -9,6 +9,7 @@ import java.util.Set;
  * @link 36. Valid Sudoku <a href="https://leetcode.com/problems/valid-sudoku/">LeetCode link</a>
  * @topics Array, Hash Table, Matrix
  * @companies Google, Amazon, Apple, Zoho, Confluent, Karat, Bloomberg, Meta, Uber, Samsara, Microsoft, PayPal, Adobe, Walmart Labs, Riot Games, Geico, LinkedIn, Media.net, Snap, Yahoo, TikTok, Autodesk
+ * see {@link Algorithms.BackTracking.SudokuSolver} for follow-up problem
 
 
     Sudoku means
@@ -303,6 +304,22 @@ public class ValidSudoku {
                 if (board[cr][cc] == val) return false;
             }
         }
+        /*
+        // or
+        int[][][] boxStarts = {
+                    {{0,0}, {0,3}, {0,6}},
+                    {{3,0}, {3,3}, {3,6}},
+                    {{6,0}, {6,3}, {6,6}}
+        };
+        int r = boxStarts[row/3][col/3][0];
+        int c = boxStarts[row/3][col/3][1];
+
+        int[][] boxLoop = {{r,c}, {r,c+1}, {r,c+2}, {r+1,c}, {r+1,c+1}, {r+1, c+2}, {r+2,c}, {r+2,c+1}, {r+2, c+2}};
+        for (int[] box : boxLoop) {
+            if (box[0] == row && box[1] == col) continue;
+            if (board[box[0]][box[1]] == val) return false;
+        }
+        */
 
         return true;
     }
