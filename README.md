@@ -82,6 +82,7 @@ Data Structures and Algorithm Programs
    * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
    * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
    * [Find Unique BinaryString](/Algorithms/BackTracking/FindUniqueBinaryString.java)
+   * [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch)
 
@@ -309,6 +310,7 @@ Data Structures and Algorithm Programs
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
     * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
     * [Valid Sudoku](Algorithms/Matrix/ValidSudoku.java)
+    * [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
 
 16. #### [Misc](/Algorithms/MiscAlgos)
 
@@ -469,6 +471,7 @@ Data Structures and Algorithm Programs
 41. [Two Sum II - Input Array Is Sorted](/Algorithms/TwoPointers/TwoSum2InputArrayIsSorted.java)
 42. [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
 43. [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
+44. [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
 
 ## GOOGLE
 
