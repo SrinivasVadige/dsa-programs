@@ -308,6 +308,7 @@ Data Structures and Algorithm Programs
     * [Set Matrix Zeroes](/Algorithms/Matrix/SetMatrixZeroes.java)
     * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
     * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
+    * [Valid Sudoku](Algorithms/Matrix/ValidSudoku.java)
 
 16. #### [Misc](/Algorithms/MiscAlgos)
 
