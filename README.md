@@ -356,6 +356,7 @@ Data Structures and Algorithm Programs
     * [Maximum Number of Vowels in a Substring of Given Length](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Max Consecutive Ones III](Algorithms/SlidingWindow/MaxConsecutiveOnesIII.java)
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
+    * [Minimum Size Subarray Sum](Algorithms/SlidingWindow/MinimumSizeSubarraySum.java)
 
 23. #### [Sorting](Algorithms/Sorting)
 
