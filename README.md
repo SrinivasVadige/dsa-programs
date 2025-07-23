@@ -473,6 +473,7 @@ Data Structures and Algorithm Programs
 42. [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
 43. [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
 44. [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
+45. [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
 
 ## GOOGLE
 
