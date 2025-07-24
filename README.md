@@ -268,7 +268,6 @@ Data Structures and Algorithm Programs
     * [Rotate Array by K times](Algorithms/IntegerArray/RotateArray.java)
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
-    * [Product of Array Except Self](Algorithms/IntegerArray/ProductOfArrayExceptSelf.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
@@ -333,6 +332,7 @@ Data Structures and Algorithm Programs
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
+    * [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
 
 19. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
 
@@ -473,7 +473,8 @@ Data Structures and Algorithm Programs
 42. [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
 43. [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
 44. [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
-45. [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
+45. [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java
+46. [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
 
 ## GOOGLE
 

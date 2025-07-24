@@ -1,4 +1,4 @@
-package Algorithms.IntegerArray;
+package Algorithms.PrefixSum;
 
 import java.util.Arrays;
 
