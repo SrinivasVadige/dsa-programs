@@ -120,8 +120,82 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class IteratorExample {
     public static void main(String[] args) {
 
+        // ConcurrentModificationException CME in List
+        System.out.println("Started List modification over Iterator -- will throw CME");
+        List<Integer> trues = new ArrayList<>(); // --- just like queue
+        trues.add(0);
+        for (int l : trues) { // lInclusive
+            if (trues.size() < 5) {
+                trues.remove(Integer.valueOf(l+5)); // no CME
+                // trues.add(l+1); // CME ❌
+            }
+        }
+
+
+
+        /**
+            Handle ConcurrentModificationException CME just by using i-loop instead of endhanced for-loop
+            NOTE:
+            1) if we use list.add() in enhanced for-loop and then immediately use break; statement, it doesn't throw CME
+                check out {@link Algorithms.DynamicProgramming.WordBreak#wordBreakUsingBottomUpTabulationDpWithBfsOverS3
+         */
+        System.out.println("Started List modification over i-loop -- won't throw CME");
+        trues = new ArrayList<>();
+        int idx = 0;
+        trues.add(idx);
+        while (idx++ < trues.size()) {
+            if (trues.size() < 5) {
+                trues.add(idx+1); // ✅ Safe: we're not using iterator here
+                trues.add(idx+2); // ✅
+                trues.add(idx+3); // ✅
+            }
+        }
+
+
+
+        /**
+            Handle ConcurrentModificationException CME just by using ListIterator instead of enhanced for-loop
+            NOTE:
+            1) Even {@link ListIterator#add(Object)} doesn't throw CME but it silently skips it ❌ not good
+            2) So, use {@link ListIterator#add(Object)} and then{@link ListIterator#previous()} right after
+                cause -- it inserts the element immediately before the element that would be returned by next()—that is, at the current iterator cursor position.
+                It can cause newly added elements to be skipped by the iterator if you're not careful with how you manage the cursor.
+            3) Don't use .previous() first and then .add() -- ❌ it adds the previous element twice
+         */
+        System.out.println("Started List modification over ListIterator -- won't throw CME");
+        trues = new ArrayList<>();
+        trues.add(0);
+        ListIterator<Integer> listIt = trues.listIterator();
+        while (listIt.hasNext()) {
+            int l = listIt.next();
+            if (trues.size() < 5) {
+                // trues.add(l+1); // CME ❌
+                listIt.add(l+1); // ✅ safe but it skips ❌ the element due to the cursor position at already incremented ele
+            }
+        }
+        System.out.println(trues);
+        // So, use ListIterator#add(Object) and then ListIterator#next()
+        trues = new ArrayList<>();
+        trues.add(0);
+        listIt = trues.listIterator();
+        while (listIt.hasNext()) {
+            int l = listIt.next();
+            if (trues.size() < 5) {
+                listIt.add(l+1); // ✅ Safe: we're not using iterator here
+                listIt.previous(); // ✅ Safe: we're not using iterator here
+            }
+        }
+        System.out.println(trues);
+
+
+
+
+
+
+
 
         // HANDLE ConcurrentModificationException CME in LinkedHashSet / HashSet
+        System.out.println("Started Set modification over Iterator");
         String str = "pwwkew";
         Set<Character> set = new LinkedHashSet<>();
         set.add(str.charAt(0));
