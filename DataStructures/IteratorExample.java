@@ -174,7 +174,7 @@ public class IteratorExample {
             }
         }
         System.out.println(trues);
-        // So, use ListIterator#add(Object) and then ListIterator#next()
+        // So, use ListIterator#add(Object) and then ListIterator#previous() 🔥
         trues = new ArrayList<>();
         trues.add(0);
         listIt = trues.listIterator();
