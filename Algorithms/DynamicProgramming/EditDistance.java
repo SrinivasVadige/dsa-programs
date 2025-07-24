@@ -465,6 +465,7 @@ public class EditDistance {
     /**
      * @TimeComplexity O(mn)
      * @SpaceComplexity O(n) --- Optimized from O(mn) space to O(n) space
+     * same like {@link Algorithms.DynamicProgramming.LongestCommonSubsequence#longestCommonSubsequenceBottomUpTabulationDpSpaceOptimized}
 
         Just replace
         dp[i-1] with prev
@@ -526,7 +527,12 @@ public class EditDistance {
 
      */
     public static int minDistanceUsingLevenshteinDistanceBottomUpTabulationDpOptimized(String word1, String word2) {
+        if(word1.length() < word2.length()) { // word1 must be bigger --- optional
+            return minDistanceUsingLevenshteinDistanceBottomUpTabulationDpOptimized(word2, word1);
+        }
+
         int m = word1.length(), n = word2.length();
+
 
         int[] prev = new int[n + 1]; // topRow
         int[] curr = new int[n + 1]; // currRow
