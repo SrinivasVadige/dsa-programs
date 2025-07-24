@@ -7,21 +7,23 @@ import java.util.Arrays;
  * @since 15 March 2025
  * @link 238. Product of Array Except Self <a href="https://leetcode.com/problems/product-of-array-except-self/">LeetCode link</a>
  * @topics Array, Prefix Sum
- *
+ * @companies Amazon, Google, Meta, Microsoft, Bloomberg, Apple, Zoho, Nvidia, Yandex, PayPal, Uber, Goldman Sachs, Adobe, ZS Associates, Fractal Analytics, Quantcast, Asana, Warnermedia, Intuit, Flipkart, Yahoo, Infosys, Oracle, TikTok, Accenture, IBM
+
  * Note: In problem description, it asked us not to use division operator, but we can still use multiplication operator
+ *
+ * Same like prefixSum, we can do prefixProduct and suffixProduct 🔥
+ *
  */
 public class ProductOfArrayExceptSelf {
     public static void main(String[] args) {
         int[] nums = {1,2,3,4};
-        System.out.printf("productExceptSelf => %s\n", Arrays.toString(productExceptSelf(nums)));
+        System.out.println("productExceptSelfBruteForce => " + Arrays.toString(productExceptSelfBruteForce(nums)));// Output: [24,12,8,6]
         System.out.printf("productExceptSelf using prefix[] and suffix[] => %s\n", Arrays.toString(productExceptSelfUsingPrefixAndSuffixArrays(nums)));
         System.out.printf("productExceptSelf using suffix[] and prevPrefixNum => %s\n", Arrays.toString(productExceptSelfUsingSuffixArrayAndPrevPrefixNum(nums)));
-
-
-
+        System.out.printf("productExceptSelf with O(1) Space => %s\n", Arrays.toString(productExceptSelf(nums)));
     }
 
-    public int[] productExceptSelfBruteForce(int[] nums) {
+    public static int[] productExceptSelfBruteForce(int[] nums) {
         int[] prods = new int[nums.length];
         for(int i=0; i<prods.length; i++){
             prods[i] = 1;
@@ -158,6 +160,25 @@ public class ProductOfArrayExceptSelf {
 
 
     public static int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] prefix = new int[n];
+        prefix[0] = 1;
+
+        for (int i = 1; i < n; i++) {
+            prefix[i] = nums[i - 1] * prefix[i - 1];
+        }
+
+        int R = 1; // suffixProduct
+        for (int i = n - 1; i >= 0; i--) {
+            prefix[i] = prefix[i] * R;
+            R *= nums[i];
+        }
+
+        return prefix;
+    }
+
+
+    public static int[] productExceptSelf1(int[] nums) {
         int n = nums.length;
         int[] suffix = new int[n];
 
