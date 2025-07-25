@@ -475,6 +475,7 @@ Data Structures and Algorithm Programs
 44. [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
 45. [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java
 46. [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
+47. [WordBreak](/Algorithms/DynamicProgramming/WordBreak.java)
 
 ## GOOGLE
 
