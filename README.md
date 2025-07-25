@@ -198,9 +198,9 @@ Data Structures and Algorithm Programs
 8. #### [Graphs](/Algorithms/Graphs)
 
    * [Graphs Intro](/DataStructures/Graphs.java)
+   * [Course Schedule -  Khan's Algorithm using Topological Sort](Algorithms/Graphs/CourseSchedule.java)
    * [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
    * [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
-   * [Course Schedule](Algorithms/Graphs/CourseSchedule.java)
    * [Rotting Oranges](Algorithms/Graphs/RottingOranges.java)
    * [Keys and Rooms](Algorithms/Graphs/KeysAndRooms.java)
    * [Number of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
@@ -473,9 +473,10 @@ Data Structures and Algorithm Programs
 42. [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
 43. [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
 44. [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
-45. [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java
+45. [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
 46. [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
 47. [WordBreak](/Algorithms/DynamicProgramming/WordBreak.java)
+48. [Course Schedule -  Khan's Algorithm using Topological Sort](Algorithms/Graphs/CourseSchedule.java)
 
 ## GOOGLE
 
