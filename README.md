@@ -199,6 +199,7 @@ Data Structures and Algorithm Programs
 
    * [Graphs Intro](/DataStructures/Graphs.java)
    * [Course Schedule -  Khan's Algorithm using Topological Sort](Algorithms/Graphs/CourseSchedule.java)
+   * [Course Schedule II](Algorithms/Graphs/CourseSchedule2.java)
    * [GiftingGroups](/Algorithms/Matrix/GiftingGroups.java)
    * [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
    * [Rotting Oranges](Algorithms/Graphs/RottingOranges.java)
@@ -477,6 +478,7 @@ Data Structures and Algorithm Programs
 46. [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
 47. [WordBreak](/Algorithms/DynamicProgramming/WordBreak.java)
 48. [Course Schedule -  Khan's Algorithm using Topological Sort](Algorithms/Graphs/CourseSchedule.java)
+49. [Course Schedule II](Algorithms/Graphs/CourseSchedule2.java)
 
 ## GOOGLE
 
