@@ -13,7 +13,7 @@ Data Structures and Algorithm Programs
 * [Data Structures & imp classes](#data-structures--important-classes)
 * [Basic Programs](#basic-programs)
 * [Algorithms](#algorithms)
-* [Top Companies (FAANG / MAANG) hiring process](#top-companies-hiring-process-)
+* [Top Companies (FAANG / MAANG) hiring process](#top-companies-hiring-process)
 * [Companies frequency questions](#companies-frequency-questions)
   * [Amazon](#amazon)  
   * [Google](#google)
