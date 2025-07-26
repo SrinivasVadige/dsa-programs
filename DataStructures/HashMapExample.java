@@ -235,7 +235,13 @@ public class HashMapExample {
 
         // PUT (add new or update existing)
         map.put('A',1); //=> map.put(k,v) to insert new or update existing
-        map.putIfAbsent('A',1); //=> only insert new entry set
+        map.putIfAbsent('A',1); //=> only insert new entry set; and returns null if key is already present.
+        /*
+              NOTE: While working with List<> value
+              map.putIfAbsent(k, new ArrayList<>()).add(1); ❌ will throw NullPointerException as it returns null if key is already present.
+              use map.putIfAbsent(k, new ArrayList<>()); along with map.get(k).add(1); ✅
+              or just simply use ---> map.computeIfAbsent(k, k1-> new ArrayList<>()).add(1); ✅
+         */
         map.putAll(map2); //=> map.putAll(HashMap / TreeMap / any Map obj) to add 2 maps
 
         // GET
