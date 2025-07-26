@@ -13,7 +13,10 @@ Data Structures and Algorithm Programs
 * [Data Structures & imp classes](#data-structures--important-classes)
 * [Basic Programs](#basic-programs)
 * [Algorithms](#algorithms)
-* [FAANG Companies hiring process](#companies-hiring-overview--faang--maang-process-)
+* [Top Companies (FAANG / MAANG) hiring process](#top-companies-hiring-process-)
+* [Companies frequency questions](#companies-frequency-questions)
+  * [Amazon](#amazon)  
+  * [Google](#google)
 * [Sources](#sources)
 
 <br></br>
@@ -422,11 +425,18 @@ Data Structures and Algorithm Programs
 <br></br>
 <br></br>
 
-## COMPANIES Hiring Overview [(FAANG / MAANG PROCESS)](https://interviewing.io/guides/hiring-process)
+## Top Companies Hiring Process 
 
 ## NOTES
 
-1. [GitHub - xizhang20181005/Leetcode_company_frequency](https://github.com/xizhang20181005/Leetcode_company_frequency)
+1. [(FAANG / MAANG PROCESS)](https://interviewing.io/guides/hiring-process)
+2. [GitHub - xizhang20181005/Leetcode_company_frequency](https://github.com/xizhang20181005/Leetcode_company_frequency)
+
+
+<br></br>
+<br></br>
+
+## Companies Frequency Questions
 
 ## AMAZON
 
