@@ -1,20 +1,19 @@
 package Algorithms.BinaryTrees;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 02 Feb 2025
+ * @link 236. Lowest Common Ancestor of a Binary Tree <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">LeetCode Link</a>
+ * @topics Tree, DFS, Binary Tree
+ * @companies Meta, Amazon, Google, Atlassian, Microsoft, TikTok, BitGo, Lucid, NewsBreak, Bloomberg, Apple, Yandex, LinkedIn, Oracle, Adobe, Salesforce, GE Healthcare, Flipkart, Goldman Sachs, Wix, Myntra, Yahoo
+ * @see Algorithms.BinaryTrees.LowestCommonAncestorOfBinarySearchTree
  */
 public class LowestCommonAncestorOfBinaryTree {
-    static class TreeNode {int val;TreeNode left, right;TreeNode() {}TreeNode(int val) { this.val = val; }TreeNode(int val, TreeNode left, TreeNode right) {this.val = val;this.left = left;this.right = right;}}
+    public static class TreeNode {int val; TreeNode left, right; TreeNode(int val) {this.val = val;} TreeNode(int val, TreeNode left, TreeNode right) {this.val = val;this.left = left;this.right = right;}
+        @Override public String toString() {return "TreeNode{val=" + val + " }";}
+    }
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(3);
@@ -36,63 +35,115 @@ public class LowestCommonAncestorOfBinaryTree {
                                   / \
                                  7   4
          */
-        System.out.println("lowestCommonAncestorUsingRecursion(root, 5, 4): " + lowestCommonAncestorUsingRecursion(root, root.left, root.left.right.right).val); // 5,4
-        System.out.println("lowestCommonAncestorUsingStackAndParentMap(root, 5, 4): " + lowestCommonAncestorUsingStackAndParentMap(root, root.left, root.left.right.right).val); // 5,4
-        System.out.println("lowestCommonAncestorUsingPaths(root, 5, 4 ): " + lowestCommonAncestorUsingPaths(root, root.left, root.left.right.right).val); // 5,4
-        System.out.println("lowestCommonAncestorUsingPaths2(root, 5, 4 ): " + lowestCommonAncestorUsingPaths2(root, root.left, root.left.right.right).val); // 5,4
-    }
-
-
-
-    TreeNode lca = null;
-    public TreeNode lowestCommonAncestorBruteForce(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null) return null;
-        if(helper(root, p, q, new boolean[2])) lca=root; // this lca value is replaced by all the common ancestors of p and q but final one is Least Common Ancestor
-        lowestCommonAncestorBruteForce(root.left, p, q);
-        lowestCommonAncestorBruteForce(root.right, p, q);
-        return lca;
-    }
-    private boolean helper(TreeNode node, TreeNode p, TreeNode q, boolean[] arr) {
-        if(arr[0] && arr[1]) return true;
-        if(node == null) return false;
-        if(node == p) arr[0]=true;
-        if(node == q) arr[1]=true;
-        boolean left = helper(node.left, p, q, arr);
-        boolean right = helper(node.right, p, q, arr);
-        return (left || right);
+        System.out.println("lowestCommonAncestor Using Recursion (root, 5, 4): " + lowestCommonAncestorUsingRecursion(root, root.left, root.left.right.right)); // 5,4
+        System.out.println("lowestCommonAncestor Using Recursion2 (root, 5, 4): " + lowestCommonAncestorUsingRecursion2(root, root.left, root.left.right.right)); // 5,4
+        System.out.println("lowestCommonAncestor Using ParentPointers (root, 5, 4): " + lowestCommonAncestorUsingParentPointers(root, root.left, root.left.right.right)); // 5,4
+        System.out.println("lowestCommonAncestor Using Explicit Stack and State Machine (root, 5, 4): " + lowestCommonAncestorUsingExplicitStackAndStateMachine(root, root.left, root.left.right.right));
+        System.out.println("lowestCommonAncestor Using Paths (root, 5, 4 ): " + lowestCommonAncestorUsingPaths(root, root.left, root.left.right.right)); // 5,4
+        System.out.println("lowestCommonAncestorUsingPaths2(root, 5, 4 ): " + lowestCommonAncestorUsingPaths2(root, root.left, root.left.right.right)); // 5,4
     }
 
 
 
     /**
-     * If p or q == root node, we can return root as LCA, cause we know that p & q are must be in the root tree
+                          p=5,q=0
+
+                                3
+                              /    \
+                      [T]    5      1
+                           /   \    /\
+                          6     2  0  8 [T]
+                               / \
+                              7   4
+
+
+
+                          p=5,q=4
+
+                                3
+                              /    \
+                      [T]    5      1
+                           /   \    /\
+                          6     2  0  8
+                               / \
+                              7   4 [T]
+
      */
-    public static TreeNode lowestCommonAncestorUsingRecursion(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q) return root;
+    static TreeNode res;
 
-        TreeNode left = lowestCommonAncestorUsingRecursion(root.left, p, q);
-        TreeNode right = lowestCommonAncestorUsingRecursion(root.right, p, q);
+    /**
+     * @TimeComplexity O(N)
+     * @SpaceComplexity O(N)
+     */
+    public static TreeNode lowestCommonAncestorUsingRecursion(TreeNode root, TreeNode p, TreeNode q) {  // lowestCommonAncestorUsingDfs
+        res = null;
+        dfs(root, p, q);
+        return res;
+    }
+    public static boolean dfs(TreeNode node, TreeNode p, TreeNode q) {
+        if(node == null) return false;
 
-        if (left != null && right != null) return root; // found p in left/right and q in right/left
-        if (left == null) return right; // found both p and q in right subtree
-        if (right == null) return left; // found both p and q in left subtree
-        return null; // or root; -- p & q not found in this subtree
+        boolean isCurr = node == p || node == q;
+        boolean left = dfs(node.left, p, q);
+        boolean right = dfs(node.right, p, q);
 
-        // or
-        // if (left != null && right != null) return root;
-        // if (left == null) return right;
-        // return left;
+        if(isCurr && (left || right)) {
+            res = node;
+        } else if (left && right) {
+            res = node;
+        }
+
+        return isCurr || left || right;
     }
 
 
 
 
+
+
+    /**
+     * 🔥🔥🔥
+     * @TimeComplexity O(N)
+     * @SpaceComplexity O(1), but we can say O(N) if we count the stack space
+     * If p or q == root node, we can return root as LCA, cause we know that p & q are must be in the root tree
+
+
+     Instead of this decision making
+
+                          p=5,q=4
+
+                                3
+                              /    \
+                      [T]    5      1
+                           /   \    /\
+                          6     2  0  8
+                               / \
+                              7   4 [T]
+
+
+     Return Node(5), don't traverse inside this Node(5) and if we didn't find the Node(4) in right-side of Node(3)
+     then Node(4) must be inside Node(5), as the problem statement says that p & q are must be in the root tree
+
+                              p=5,q=4
+                                              ___
+                                3              ↑
+                              /    \           |
+                      [T]    5      1         [F]
+                           /   \    /\         |
+                          6     2  0  8        ↓
+                               / \            ---
+                              7   4
+
+
+     */
     public static TreeNode lowestCommonAncestorUsingRecursion2(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) return root;
+
         TreeNode left = lowestCommonAncestorUsingRecursion2(root.left, p, q);
         TreeNode right = lowestCommonAncestorUsingRecursion2(root.right, p, q);
-        if (left != null && right != null) return root; // found both p and q
-        return left != null ? left : right;
+
+        if (left != null && right != null) return root; // found both p and q in curr node's left and right subtree
+        return left != null ? left : right; // q is child of p or p is child of q
     }
 
 
@@ -100,48 +151,161 @@ public class LowestCommonAncestorOfBinaryTree {
 
 
 
-    public static TreeNode lowestCommonAncestorUsingStackAndParentMap(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) return null;
 
-        // Stack for iterative DFS traversal
-        Stack<TreeNode> stack = new Stack<>();
-        // HashMap to store parent pointers
-        Map<TreeNode, TreeNode> parentMap = new HashMap<>();
 
-        // Root has no parent, start traversal
-        parentMap.put(root, null);
+    private static TreeNode ans=null;
+    public static TreeNode lowestCommonAncestorUsingRecursion3(TreeNode root, TreeNode p, TreeNode q) { // lowestCommonAncestorUsingDfs2
+        helper(root, p,  q);
+        return ans;
+    }
+    private static boolean helper(TreeNode root, TreeNode p, TreeNode q){
+        if(root==null) return false;
+
+        int mid=(root==p || root==q)?1:0;
+        int left = helper(root.left, p, q)?1:0;
+        int right = helper(root.right, p, q)?1:0;
+
+        if(left+mid+right>=2){
+            ans=root;
+        }
+
+        return left+mid+right>0;
+     }
+
+
+
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(N)
+     * @SpaceComplexity O(N)
+
+
+                          p=5,q=4
+
+                                3
+                              /    \
+                      [T]    5      1
+                           /   \    /\
+                          6     2  0  8
+                               / \
+                              7   4 [T]
+
+         pAncestors = [5, 3]
+         qAncestors = [4, 2, 5, 3]
+
+     */
+    public static TreeNode lowestCommonAncestorUsingParentPointers(TreeNode root, TreeNode p, TreeNode q) { // StackAndParentMap
+        Stack<TreeNode> stack = new Stack<>(); // Stack DFS or Recursion DFS
         stack.push(root);
+        Map<TreeNode, TreeNode> parent = new HashMap<>(); // HashMap for parent pointers
+        parent.put(root, null);
 
-        // Traverse the tree until both nodes are found
-        while (!parentMap.containsKey(p) || !parentMap.containsKey(q)) {
+        // Iterate until we find both the nodes p and q
+        while (!parent.containsKey(p) || !parent.containsKey(q)) {
             TreeNode node = stack.pop();
-
             if (node.left != null) {
-                parentMap.put(node.left, node);
+                parent.put(node.left, node);
                 stack.push(node.left);
             }
             if (node.right != null) {
-                parentMap.put(node.right, node);
+                parent.put(node.right, node);
                 stack.push(node.right);
             }
         }
 
-        // Set to store ancestors of p
-        Set<TreeNode> ancestors = new HashSet<>();
-
-        // Traverse up from p to root, storing ancestors
+        Set<TreeNode> pAncestors = new HashSet<>(); // all p's ancestors
         while (p != null) {
-            ancestors.add(p);
-            p = parentMap.get(p);
+            pAncestors.add(p);
+            p = parent.get(p);
         }
 
-        // Traverse up from q until we find an ancestor of p
-        while (!ancestors.contains(q)) {
-            q = parentMap.get(q);
+        while (!pAncestors.contains(q)) { // The first ancestor of q which appears in p's ancestor set() is their lowest common ancestor.
+            q = parent.get(q);
         }
 
-        return q; // LCA found
+        return q;
     }
+
+
+
+
+
+
+
+    // Three static flags to keep track of post-order traversal.
+    private final static int BOTH_PENDING = 2; // Both left and right traversal pending for a node. Indicates the nodes children are yet to be traversed.
+    private final static int LEFT_DONE = 1; // Left traversal done.
+    private final static int BOTH_DONE = 0; // Both left and right traversal done for a node. Indicates the node can be popped off the stack.
+    public static TreeNode lowestCommonAncestorUsingExplicitStackAndStateMachine(TreeNode root, TreeNode p, TreeNode q) {
+        class Pair<K, V> {private final K key; private final V value; public Pair(K key, V value) {this.key = key;this.value = value;}public K getKey() {return key;}public V getValue() {return value;}}
+        Stack<Pair<TreeNode, Integer>> stack = new Stack<>(); // Stack<Map.Entry<TreeNode, Integer>> and Map.Entry<TreeNode, Integer> = new AbstractMap.SimpleEntry<>(root, BOTH_PENDING);
+        stack.push(new Pair<>(root, BOTH_PENDING));
+
+        boolean one_node_found = false; // This flag is set when either one of p or q is found.
+        TreeNode LCA = null;
+        TreeNode child_node = null;
+
+        // We do a post order traversal of the binary tree using stack
+        while (!stack.isEmpty()) {
+
+            Pair<TreeNode, Integer> top = stack.peek();
+            TreeNode parent_node = top.getKey();
+            int parent_state = top.getValue();
+
+            // If the parent_state is not equal to BOTH_DONE, this means the parent_node can't be popped off yet.
+            if (parent_state != BOTH_DONE) {
+
+                // If both child traversals are pending
+                if (parent_state == BOTH_PENDING) {
+
+                    // Check if the current parent_node is either p or q.
+                    if (parent_node == p || parent_node == q) {
+
+                        if (one_node_found) { // If one_node_found was set already, this means we have found both the nodes.
+                            return LCA;
+                        } else {
+                            one_node_found = true; // Otherwise, set one_node_found to True, to mark one of p and q is found.
+                            LCA = stack.peek().getKey(); // Save the current top element of stack as the LCA.
+                        }
+                    }
+                    child_node = parent_node.left; // If both pending, traverse the left child first
+                } else {
+                    child_node = parent_node.right; // traverse right child
+                }
+
+                // Update the node state at the top of the stack. Since we have visited one more child.
+                stack.pop();
+                stack.push(new Pair<>(parent_node, parent_state-1));
+
+                // Add the child node to the stack for traversal.
+                if (child_node != null) {
+                    stack.push(new Pair<>(child_node, BOTH_PENDING));
+                }
+            } else {
+
+                // If the parent_state of the node is both done, the top node could be popped off the stack. Update the LCA node to be the next top node.
+                if (LCA == stack.pop().getKey() && one_node_found) {
+                    LCA = stack.peek().getKey();
+                }
+
+            }
+        }
+
+        return null;
+    }
+
+
+
+
+
+
+
+
 
 
 
@@ -199,6 +363,9 @@ public class LowestCommonAncestorOfBinaryTree {
     }
 
 
+
+
+
     public static TreeNode lowestCommonAncestorUsingPaths2(TreeNode root, TreeNode p, TreeNode q) {
         List<TreeNode> pathP = new ArrayList<>();
         Stack<TreeNode> stackP = new Stack<>();
@@ -234,47 +401,30 @@ public class LowestCommonAncestorOfBinaryTree {
 
 
 
-    // If Binary Search Tree (BST) is given, we can find the LCA in O(H) time complexity, where h is the height of the tree.
-    public static TreeNode lowestCommonAncestorIfBST(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode curr = root;
-        while (curr != null) {
-            if (curr.val < p.val && curr.val < q.val) {
-                curr = curr.right; // both p and q are in the right subtree
-            } else if (curr.val > p.val && curr.val > q.val) {
-                curr = curr.left; // both p and q are in the left subtree
-            } else {
-                return curr; // found the split point, i.e., the LCA
-            }
-        }
-        return null; // if p and q are not in the tree
+
+
+
+    static TreeNode lca;
+    public static TreeNode lowestCommonAncestorBruteForce(TreeNode root, TreeNode p, TreeNode q) {
+        lca = null;
+        if(root == null) return null;
+        if(helper(root, p, q, new boolean[2])) lca=root; // this lca value is replaced by all the common ancestors of p and q but final one is Least Common Ancestor
+        lowestCommonAncestorBruteForce(root.left, p, q);
+        lowestCommonAncestorBruteForce(root.right, p, q);
+        return lca;
+    }
+    private static boolean helper(TreeNode node, TreeNode p, TreeNode q, boolean[] arr) {
+        if(arr[0] && arr[1]) return true;
+        if(node == null) return false;
+        if(node == p) arr[0]=true;
+        if(node == q) arr[1]=true;
+        boolean left = helper(node.left, p, q, arr);
+        boolean right = helper(node.right, p, q, arr);
+        return (left || right);
     }
 
 
 
-
-
-
-
-    /**
-     * Here, we the same node is either p or q, and we found the other node in this current node's child
-     * Then this scenario is failing for this {@link #lowestCommonAncestorNotWorking()} is failing
-     */
-    public TreeNode lowestCommonAncestorNotWorking(TreeNode root, TreeNode p, TreeNode q) {
-        return dfs(root, p, q, new boolean[2]);
-    }
-    private TreeNode dfs(TreeNode node, TreeNode p, TreeNode q, boolean[] arr) {
-        if(node == null) return null;
-        if(!arr[0] && node.val == p.val) arr[0] = true;
-        if(!arr[1] && node.val == q.val) arr[1] = true;
-
-        TreeNode left = dfs(node.left, p, q, arr);
-        TreeNode right = dfs(node.right, p, q, arr);
-        if(left!=null && right !=null) {
-            return node;
-        }
-        if(arr[0] && arr[1]) return node;
-        return null;
-    }
 
 
 
