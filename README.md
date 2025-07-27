@@ -56,7 +56,7 @@ Data Structures and Algorithm Programs
   * [CountDigits](BasicPrograms/CountDigits.java)
   * [GCD_HCF](BasicPrograms/GCD_HCF.java)
   * [LeapYear](BasicPrograms/LeapYear.java)
-  * [Palindrome Or ReverseNumber](BasicPrograms/PalindromeOrReverseNumber.java)
+  * [ReverseNumber](BasicPrograms/ReverseNumber.java)
   * [Patterns and shapes](BasicPrograms/Patterns.java)
   * [PrimeNumber](BasicPrograms/PrimeNumber.java)
   * [Anagram](/BasicPrograms/Anagram.java)
@@ -322,6 +322,7 @@ Data Structures and Algorithm Programs
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
     * [Next Permutation](Algorithms/MiscAlgos/NextPermutation.java)
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
+    * [Reverse Integer](Algorithms/MiscAlgos/ReverseInteger.java)
 
 17. #### [Monotonic Stack](/Algorithms/MonotonicStack)
 
@@ -491,6 +492,7 @@ Data Structures and Algorithm Programs
 49. [Course Schedule II](Algorithms/Graphs/CourseSchedule2.java)
 50. [Lowest Common Ancestor of a Binary Tree / LCA of BT](/Algorithms/BinaryTrees/LowestCommonAncestorOfBinaryTree.java)
 51. [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
+52. [Reverse Integer](Algorithms/MiscAlgos/ReverseInteger.java)
 
 ## GOOGLE
 

@@ -1,10 +1,11 @@
 package BasicPrograms;
 
 /**
-* @author Srinvas Vadige, srinivas.vadige@gmail.com
-* @since 21 Sept 2024
+ * @author Srinvas Vadige, srinivas.vadige@gmail.com
+ * @since 21 Sept 2024
+ * @see Algorithms.MiscAlgos.ReverseInteger
 */
-public class PalindromeOrReverseNumber {
+public class ReverseNumber {
 
     public static void main(String[] args) {
         int n = 543212345;
