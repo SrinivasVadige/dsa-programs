@@ -45,6 +45,9 @@ public class ThreeSum {
 
 
 
+
+
+
     /**
      * @TimeComplexity O(n^2)
      * @SpaceComplexity O(n)
@@ -82,6 +85,39 @@ public class ThreeSum {
         return new ArrayList<>(res);
     }
 
+
+
+
+
+    public static List<List<Integer>> threeSumUsingTwoSumTwoPassHashMap2(int[] nums) { // threeSumUsingTwoSumApproachNew
+        int n = nums.length;
+        Map<Integer, Integer> map = new HashMap<>();
+        Set<List<Integer>> set = new HashSet<>();
+        Arrays.sort(nums);
+
+        for(int i=0; i<n; i++) {
+            map.put(nums[i], i);
+        }
+
+        for(int i=0; i<n; i++) {
+            if(i!=0 && nums[i-1]==nums[i]) { // or  if(!visitedINums.add(nums[i])) continue;
+                continue;
+            }
+
+            for(int j=i+1; j<n; j++) {
+                int sum = nums[i] + nums[j];
+                int need = -sum;
+                int needI = map.getOrDefault(need, -1);
+                if(needI>-1 && needI>j) {
+                    set.add(Arrays.asList(nums[i], nums[j], need));
+                }
+
+                while(j+1<n && nums[j]==nums[j+1]) j++;  // skip duplicate "j"s
+            }
+        }
+
+        return new ArrayList<>(set);
+    }
 
 
 
