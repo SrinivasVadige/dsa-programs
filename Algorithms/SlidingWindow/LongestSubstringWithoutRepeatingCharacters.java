@@ -60,6 +60,26 @@ public class LongestSubstringWithoutRepeatingCharacters {
               l   r
      */
     public static int lengthOfLongestSubstringUsingTwoPointersAndHashSet(String s) {
+        Set<Character> set = new HashSet<>();
+        int maxLen = 0;
+        int l=0;
+        for(int r=0; r<s.length(); r++) {
+            if(set.add(s.charAt(r))) {
+                maxLen = Math.max(maxLen, r-l+1);
+            } else {
+                while(set.contains(s.charAt(r))) {
+                    set.remove(s.charAt(l++));
+                }
+                set.add(s.charAt(r));
+            }
+        }
+        return maxLen;
+    }
+
+
+
+
+    public static int lengthOfLongestSubstringUsingTwoPointersAndHashSet2(String s) {
         int l=0;
         int n=s.length();
         int maxLen = 0;
@@ -87,6 +107,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
+     * Only one variable needed, not two
      */
     public static int lengthOfLongestSubstringUsingLinkedHashSet(String s) {
         Set<Character> set = new LinkedHashSet<>();
@@ -94,10 +115,11 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
         for(char c : s.toCharArray()) {
             if(!set.add(c)) {
-                Iterator<Character> it = set.iterator();
+                Iterator<Character> it = set.iterator(); // but try(Iterator it = ..) {} is not valid as "it" is not the type that implements AutoCloseable like Reader, Scanner, Stream, InputStream, Connection
                 while(it.hasNext() && it.next() != c) {
                     it.remove();
                 }
+                // change the access order i.e., shift 'c' to the end
                 set.remove(c);
                 set.add(c);
             }
@@ -208,27 +230,6 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
 
 
-    public static int lengthOfLongestSubstringUsingTwoPointersAndHashSet2(String s) {
-        int n = s.length();
-        int maxLength = 0;
-        Set<Character> set = new HashSet<>();
-        int l = 0;
-
-        for (int r = 0; r < n; r++) {
-            if (!set.contains(s.charAt(r))) {
-                set.add(s.charAt(r));
-                maxLength = Math.max(maxLength, r-l+1);
-            } else {
-                while (set.contains(s.charAt(r))) {
-                    set.remove(s.charAt(l));
-                    l++;
-                }
-                set.add(s.charAt(r));
-            }
-        }
-
-        return maxLength;
-    }
 
 
 
@@ -237,7 +238,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
 
     /*
-     * No nedd to use two pointer approach like MinimumWindowSubString problem. Because we're focussing only one dup char
+     * No need to use two pointer approach like MinimumWindowSubString problem. Because we're focussing only one dup char
     */
     public static int lengthOfLongestSubstringNoPointers(String s) {
         int n = s.length();
