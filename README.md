@@ -362,6 +362,7 @@ Data Structures and Algorithm Programs
     * [Max Consecutive Ones III](Algorithms/SlidingWindow/MaxConsecutiveOnesIII.java)
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
     * [Minimum Size Subarray Sum](Algorithms/SlidingWindow/MinimumSizeSubarraySum.java)
+    * [Substring with Concatenation of All Words](Algorithms/SlidingWindow/SubstringWithConcatenationOfAllWords.java)
 
 23. #### [Sorting](Algorithms/Sorting)
 
