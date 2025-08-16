@@ -60,6 +60,9 @@ public class SubstringWithConcatenationOfAllWords {
     /**
      * @TimeComplexity O(m * wordLen)
      * @SpaceComplexity O(n * wordLen)
+     *
+     * Here if we start checking all indexes from 0 to wordLen ---> i.e., concatenated string might start from 0 or 1 or 2 or 3 or ... or (wordLen-1)
+     * eventually we get the result
      */
     public static List<Integer> findSubstring(String s, String[] words) {
         List<Integer> result = new ArrayList<>();
