@@ -57,6 +57,7 @@ Data Structures and Algorithm Programs
   * [GCD_HCF](BasicPrograms/GCD_HCF.java)
   * [LeapYear](BasicPrograms/LeapYear.java)
   * [ReverseNumber](BasicPrograms/ReverseNumber.java)
+  * [Palindrome Number](BasicPrograms/PalindromeNumber.java)
   * [Patterns and shapes](BasicPrograms/Patterns.java)
   * [PrimeNumber](BasicPrograms/PrimeNumber.java)
   * [Anagram](/BasicPrograms/Anagram.java)
