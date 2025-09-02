@@ -7,40 +7,160 @@ import java.util.Map;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 08 March 2025
+ * @link 48. Rotate Image <a href="https://leetcode.com/problems/rotate-image/">LeetCode Link</a>
+ * @topics Array, Math, Matrix
  */
 public class RotateImage {
     public static void main(String[] args) {
-        // int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int[][] matrix = {{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
-        System.out.println("rotateMyApproach: ---------------------");
-        System.out.println("Before rotation: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
-        rotateMyApproach(matrix);
-        System.out.println("\nAfter rotation: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
+         int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+         
+        System.out.println("\nrotate using transpose and reverse: ---------------------");
+        matrix = new int[][]{{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
+        System.out.println("Before rotation: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
+        rotateUsingTransposeAndReverse(matrix);
+        System.out.println("\nAfter rotation: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
 
 
         System.out.println("\nrotate: ---------------------");
         matrix = new int[][]{{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
-        System.out.println("Before rotation: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
-        rotate(matrix);
-        System.out.println("\nAfter rotation: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
+        System.out.println("Before rotation: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
+        rotate2(matrix);
+        System.out.println("\nAfter rotation: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
 
 
-        System.out.println("\nrotate using transpose and reverse: ---------------------");
+        System.out.println("\nrotateMyApproach Old: ---------------------");
         matrix = new int[][]{{1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}, {16, 17, 18, 19, 20}, {21, 22, 23, 24, 25}};
-        System.out.println("Before rotation: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
-        rotateUsingTransposeAndReverse(matrix);
-        System.out.println("\nAfter rotation: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
+        System.out.println("Before rotation: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
+        rotateMyApproachOld(matrix);
+        System.out.println("\nAfter rotation: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
     }
+    
+    
+    
+    
+    /**
+     * Diagonal transpose and reverse
+     *          A                       B                        C
+        -----------------         -----------------       -----------------
+        |0,0|0,1|0,2|0,3|         |0,0|1,0|2,0|3,0|       |3,0|2,0|1,0|0,0|
+        |1,0|1,1|1,2|1,3|    =>   |0,1|1,1|2,1|3,1|   =>  |3,1|2,1|1,1|0,1|
+        |2,0|2,1|2,2|2,3|         |0,2|1,2|2,2|3,2|       |3,2|2,2|1,2|0,2|
+        |3,0|3,1|3,2|3,3|         |0,3|1,3|2,3|3,3|       |3,3|2,3|1,3|0,3|
+        -----------------         -----------------       -----------------
+
+        PATTERNS:
+        ---------
+        1) When we compare matrixA and matrixC, the cols became rows and rows became cols but in reverse order
+        2) MatrixB is rows & cols exchange of matrixA, just like matrixC but matrixA and matrixB are in same order i.e reverse of matrixC
+        3) And in MatrixA and MatrixB, imagine a diagonal line and now (1,0) is placed in (0,1) and all eles
+        4) Therefore matrixB[i][j]==matrixA[j][i] 
+        5) Now just reverse the matrixB rows then we'll get matrixC.
+     */
+    public static void rotateUsingTransposeAndReverse(int[][] matrix) {
+        int n = matrix.length;
+        // transpose
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j < n; j++) {
+                // swap
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+        // reverse
+        for (int row=0; row<n; row++) {
+            int l=0, r=n-1;
+            while (l<r) {
+                // reverse
+                int temp = matrix[row][l];
+                matrix[row][l] = matrix[row][r];
+                matrix[row][r] = temp;
+                l++; r--;
+            }
+        }
+    }
+
+
+
+
+    /**
+
+              l           r          l           r               l   r
+            -----------------      -----------------       -----------------
+        t   |0,0|0,1|0,2|0,3|      |3,0|2,0|1,0|0,0|       |   |   |   |   |
+            |1,0|1,1|1,2|1,3|  =>  |3,1|   |   |0,1|   =>  |   |2,1|1,1|   |   t
+            |2,0|2,1|2,2|2,3|      |3,2|   |   |0,2|       |   |2,2|1,2|   |   b
+        b   |3,0|3,1|3,2|3,3|      |3,3|2,3|1,3|0,3|       |   |   |   |   |
+            -----------------      -----------------       -----------------
+
+        Here l,r,t,b are fixed. And we trav the each col
+
+        or it can also be portrayed as, where * is skip last ele as it'll be calculated by first ele
+
+                                        l1   l2 lr3 r2  r1
+            ---------------------      ---------------------      ---------------------
+            |0,0|0,1|0,2|0,3|0,4|   t1 |0,0|0,1|0,2|0,3| * |      |4,0|3,0|2,0|1,0|0,0|
+            |1,0|1,1|1,2|1,3|1,4|   t2 |   |1,1|1,2| * |   |      |4,1|3,1|2,1|1,1|0,1|
+            |2,0|2,1|2,2|2,3|2,4|  tb3 |   |   |2,2|   |   |      |4,2|3,2|2,2|1,2|0,2|
+            |3,0|3,1|3,2|3,3|3,4|   b2 |   |   |   |   |   |      |4,3|3,3|2,3|1,3|0,3|
+            |4,0|4,1|4,2|4,3|4,4|   b1 |   |   |   |   |   |      |4,4|3,3|2,2|1,1|0,4|
+            ---------------------      ---------------------      ---------------------
+
+        as l==r in (2,2) while(l<r) will be exited
+        use i to add or subtract l,r,t,d accordingly
+
+             l             r
+             0    1    2   3 ---> i
+            ------------------
+        t   |🍏| 🔵 | ⭐ |🍏|
+            |⭐|          |🔵|
+            |🔵|          |⭐|
+        b   |🍏| ⭐ | 🔵 |🍏|
+            -------------------
+
+        If we observe carefully, we can see that 🍏 forms one square, similarly 🔵, ⭐ also forms diff squares
+
+     */
+    public static void rotate2(int[][] matrix) {
+        int n = matrix.length;
+        int l = 0, r = n-1; // fixed cols, change after one top square layer is rotated
+        while(l<r) {
+            int top = l, bottom = r; // as this is a square matrix
+            // use i to trav each col position from l to r except r ele --- all i, i+1, i+2.... rotation squares
+            for (int i = 0; i < r-l; i++) { // or for(int lI=l, i=0; lI<r; lI++, i++) i.e., ignore the last ele in the row because it was already rotated when i=0;
+                int topLeft = matrix[top][l+i]; // TOP_LEFT
+                matrix[top][l+i] = matrix[bottom-i][l]; // TOP_LEFT = BOTTOM_LEFT
+                matrix[bottom-i][l] = matrix[bottom][r-i]; // BOTTOM_LEFT = BOTTOM_RIGHT
+                matrix[bottom][r-i] = matrix[top+i][r]; // BOTTOM_RIGHT = TOP_RIGHT
+                matrix[top+i][r] = topLeft; // TOP_RIGHT = TOP_LEFT or topLeft
+            }
+            l++; r--; // calculate inside box -- move inside until l>=r i.e., middle eles in the matrix
+        }
+    }
+
+
+    public static void rotate3(int[][] matrix) {
+        int n = matrix.length;
+        int l = 0, r = n-1; // col
+        while(l<r) {
+            for (int i = 0; i < r-l; i++) {
+                int temp = matrix[l][l+i];
+                matrix[l][l+i] = matrix[r-i][l]; // TOP_LEFT = DOWN_LEFT
+                matrix[r-i][l] = matrix[r][r-i]; // DOWN_LEFT = DOWN_RIGHT
+                matrix[r][r-i] = matrix[l+i][r]; // DOWN_RIGHT = TOP_RIGHT
+                matrix[l+i][r] = temp; // TOP_RIGHT = TOP_LEFT or temp
+            }
+            l++; r--;
+        }
+    }
+    
+    
+    
+    
 
     /**
      * Without extra space
-     *
+
         PATTERNS:
         ---------
         1) Traverse each matrix[i][j] and rotate it's corresponding square elements
@@ -105,7 +225,7 @@ public class RotateImage {
 
 
      */
-    public static void rotateMyApproach(int[][] matrix) {
+    public static void rotateMyApproachOld(int[][] matrix) {
         int n = matrix.length;
         int jI = n%2==0? n/2-1 : n/2;
         for (int i = 0; i < n/2; i++) { // rows < n/2
@@ -142,89 +262,82 @@ public class RotateImage {
         }
     }
 
-    /**
-     * Same type of rotation like rotateMyApproach()
 
-              l           r          l           r               l   r
-            -----------------      -----------------       -----------------
-        t   |0,0|0,1|0,2|0,3|      |3,0|2,0|1,0|0,0|       |   |   |   |   |
-            |1,0|1,1|1,2|1,3|  =>  |3,1|   |   |0,1|   =>  |   |2,1|1,1|   |   t
-            |2,0|2,1|2,2|2,3|      |3,2|   |   |0,2|       |   |2,2|1,2|   |   b
-        b   |3,0|3,1|3,2|3,3|      |3,3|2,3|1,3|0,3|       |   |   |   |   |
-            -----------------      -----------------       -----------------
-
-        Here l,r,t,b are fixed. And we trav the each col
-
-        or it can also be portrayed as, where * is skip last ele as it'll be calculated by first ele
-
-                                        l1   l2 lr3 r2  r1
-            ---------------------      ---------------------      ---------------------
-            |0,0|0,1|0,2|0,3|0,4|   t1 |0,0|0,1|0,2|0,3| * |      |4,0|3,0|2,0|1,0|0,0|
-            |1,0|1,1|1,2|1,3|1,4|   t2 |   |1,1|1,2| * |   |      |4,1|3,1|2,1|1,1|0,1|
-            |2,0|2,1|2,2|2,3|2,4|  tb3 |   |   |2,2|   |   |      |4,2|3,2|2,2|1,2|0,2|
-            |3,0|3,1|3,2|3,3|3,4|   b2 |   |   |   |   |   |      |4,3|3,3|2,3|1,3|0,3|
-            |4,0|4,1|4,2|4,3|4,4|   b1 |   |   |   |   |   |      |4,4|3,3|2,2|1,1|0,4|
-            ---------------------      ---------------------      ---------------------
-
-        as l==r in (2,2) while(l<r) will be exited
-        use i to add or subtract l,r,t,d accordingly
-     */
-    public static void rotate(int[][] matrix) {
-        int n = matrix.length;
-        int left = 0, right = n-1; // fixed cols, change after one top square layer is rotated
-        while(left<right) {
-            int top = left, bottom = right; // fixed rows -- and once for loop is done we go to the inside square / matrix
-            // use i to manage the rotate for each col position
-            for (int i = 0; i < right-left; i++) { // i<(right-left) will leave the last ele in the row, cause it'll rotated when i=0;
-                int temp = matrix[top][left+i]; // TOP_LEFT
-                matrix[top][left+i] = matrix[bottom-i][left]; // TOP_LEFT = DOWN_LEFT
-                matrix[bottom-i][left] = matrix[bottom][right-i]; // DOWN_LEFT = DOWN_RIGHT
-                matrix[bottom][right-i] = matrix[top+i][right]; // DOWN_RIGHT = TOP_RIGHT
-                matrix[top+i][right] = temp; // TOP_RIGHT = TOP_LEFT or temp
-            }
-            left++; right--; // move inside until left>=right i.e middle eles in the matrix
-        }
-    }
 
 
     /**
-     *          A                       B                        C
-        -----------------         -----------------       -----------------
-        |0,0|0,1|0,2|0,3|         |0,0|1,0|2,0|3,0|       |3,0|2,0|1,0|0,0|
-        |1,0|1,1|1,2|1,3|    =>   |0,1|1,1|2,1|3,1|   =>  |3,1|2,1|1,1|0,1|
-        |2,0|2,1|2,2|2,3|         |0,2|1,2|2,2|3,2|       |3,2|2,2|1,2|0,2|
-        |3,0|3,1|3,2|3,3|         |0,3|1,3|2,3|3,3|       |3,3|2,3|1,3|0,3|
-        -----------------         -----------------       -----------------
+     * rotateMyApproachNew
 
-        PATTERNS:
-        ---------
-        1) When compare to matrixA and matrixC, the cols became rows and rows became cols but in reverse order
-        2) MatrixB is rows & cols exchange of matrixA, just like matrixC but matrixA and matrixB are in same order i.e reverse of matrixC
-        3) And in MatrixA and MatrixB, imagine a diagonal line and now (1,0) is placed in (0,1) and all eles
-        4) Therefore matrixB[i][j]==matrixA[j][i]
-        5) Now just reverse the matrixB rows then we'll get matrixC.
+
+        each ele is moving n-1 places
+
+        (0,0) (0,1) (0,2)
+        (1,0) (1,1) (1,2)
+        (2,0) (2,1) (2,2)
+
+        (2,0) (1,0) (0,0)
+        (2,1) (1,1) (0,1)
+        (2,2) (1,2) (0,2)
+
+
+        i*cols+j ---> unique position
      */
-    public static void rotateUsingTransposeAndReverse(int[][] matrix) {
-        int n = matrix.length;
-        // transpose
-        for (int i = 0; i < n; i++) {
-            for (int j = i+1; j < n; j++) {
-                // swap
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[j][i];
-                matrix[j][i] = temp;
+    public void rotateUsingLayerByLayerCycleRotation(int[][] matrix) {
+        final int N = matrix.length;
+        int top = 0, bottom = N-1;
+        int left = 0, right = N-1;
+
+        while(top <= bottom && left <= right) { // outer-box
+
+            final int CURR_N = (right-left+1);
+            int calculatedCols = 0;
+
+            while(calculatedCols < (right-left)) { // top-row
+                int startLocation = top*N + (left + calculatedCols);
+                int prevNum = Integer.MIN_VALUE;
+                int currLocation = top*N + (left + calculatedCols);
+
+                while(true) { // each-col
+                    int r = currLocation/N, c = currLocation % N;
+                    int num = matrix[r][c];
+                    matrix[r][c] = prevNum;
+
+                    if (prevNum != Integer.MIN_VALUE && currLocation == startLocation) break;
+
+                    // nextLocation
+                    int nextR = -1, nextC = -1;
+                    final int JUMP = CURR_N - 1;
+                    int jumped = 0;
+
+                    if(r == top) {
+                        jumped = right-c;
+                        nextC = c + jumped;
+                        nextR = r + (JUMP - jumped);
+                    } else if (c == right) {
+                        jumped = bottom - r;
+                        nextR = r + jumped;
+                        nextC = c - (JUMP - jumped);
+                    } else if (r == bottom) {
+                        jumped = c-left;
+                        nextC = c - jumped;
+                        nextR = r - (JUMP - jumped);
+                    } else {
+                        jumped = r - top;
+                        nextR = r - jumped;
+                        nextC = c + (JUMP - jumped);
+                    }
+
+                    prevNum = num;
+                    currLocation = nextR*N + nextC;
+                }
+
+                calculatedCols++;
             }
-        }
-        // reverse
-        for (int row=0; row<n; row++) {
-            int l=0, r=n-1;
-            while (l<r) {
-                // reverse
-                int temp = matrix[row][l];
-                matrix[row][l] = matrix[row][r];
-                matrix[row][r] = temp;
-                l++; r--;
-            }
+
+            top++;
+            bottom--;
+            left++;
+            right--;
         }
     }
 
@@ -232,22 +345,9 @@ public class RotateImage {
 
 
 
-    public static void rotate2(int[][] matrix) {
-        int n = matrix.length;
-        int l = 0, r = n-1; // col
-        while(l<r) {
-            for (int i = 0; i < r-l; i++) {
-                int temp = matrix[l][l+i];
-                matrix[l][l+i] = matrix[r-i][l]; // TOP_LEFT = DOWN_LEFT
-                matrix[r-i][l] = matrix[r][r-i]; // DOWN_LEFT = DOWN_RIGHT
-                matrix[r][r-i] = matrix[l+i][r]; // DOWN_RIGHT = TOP_RIGHT
-                matrix[l+i][r] = temp; // TOP_RIGHT = TOP_LEFT or temp
-            }
-            l++; r--;
-        }
-    }
 
-    public static void rotate3(int[][] matrix) {
+
+    public static void rotate4(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n/2; i++) { // rows < n/2
             for (int j = i; j < n-1-i; j++) { // cols < n-1-i, but not (n%2==0? n/2 : (n/2)+1)
