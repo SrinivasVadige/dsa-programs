@@ -242,9 +242,54 @@ public class SetMatrixZeroes {
 
 
 
-
-
     public static void setZeroes2(int[][] matrix) {
+        final int ROWS = matrix.length;
+        final int COLS = matrix[0].length;
+        boolean rowZero = false;
+
+        // Determine which rows/cols need to be zero
+        for (int r = 0; r < ROWS; r++) {
+            for (int c = 0; c < COLS; c++) {
+                if (matrix[r][c] == 0) {
+                    matrix[0][c] = 0;
+                    if (r > 0) {
+                        matrix[r][0] = 0;
+                    } else {
+                        rowZero = true;
+                    }
+                }
+            }
+        }
+
+        // Set matrix cells to zero based on first row and first column
+        for (int r = 1; r < ROWS; r++) {
+            for (int c = 1; c < COLS; c++) {
+                if (matrix[0][c] == 0 || matrix[r][0] == 0) {
+                    matrix[r][c] = 0;
+                }
+            }
+        }
+
+        // Zero out first column if needed
+        if (matrix[0][0] == 0) {
+            for (int r = 0; r < ROWS; r++) {
+                matrix[r][0] = 0;
+            }
+        }
+
+        // Zero out first row if needed
+        if (rowZero) {
+            for (int c = 0; c < COLS; c++) {
+                matrix[0][c] = 0;
+            }
+        }
+    }
+
+
+
+
+
+    public static void setZeroes3(int[][] matrix) {
         boolean isFirstRowZero = false;
         boolean isFirstColZero = false;
 
@@ -303,7 +348,7 @@ public class SetMatrixZeroes {
 
 
      */
-    public static void setZeroes3(int[][] matrix) {
+    public static void setZeroes4(int[][] matrix) {
         int m = matrix.length, n = matrix[0].length;
         boolean isRowZero = false;
         for (int r = 0; r < m; r++) {
