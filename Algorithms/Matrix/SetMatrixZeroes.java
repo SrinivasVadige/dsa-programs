@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 10 March 2025
- *
+ * @link 73. Set Matrix Zeroes <a href="https://leetcode.com/problems/set-matrix-zeroes/">LeetCode Link</a>
+ * @topics Array, Hash Table, Matrix
  */
 public class SetMatrixZeroes {
     public static void main(String[] args) {
@@ -16,16 +17,138 @@ public class SetMatrixZeroes {
             (0,0),(0,1),(0,2),(0,3),(0,4)
             (1,0),(1,1),(1,2),(1,3),(1,4)
             (2,0),(2,1),(2,2),(2,3),(2,4)
-            (3,0),34,1)3(4,23,(4,3),(4,4)
+            (3,0),(3,1),(3,2),(3,3),(3,4)
             (4,0),(4,1),(4,2),(4,3),(4,4)
          */
+
+        matrix = new int[][]{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+        setZeroesUsingList(matrix);
+
+        matrix = new int[][]{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+        setZeroesUsingDummyRowAndCol(matrix);
+
         System.out.println("setZeroes: ---------------------");
-        System.out.println("Before: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
+        matrix = new int[][]{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+        System.out.println("Before: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
         setZeroes(matrix);
-        System.out.println("\nAfter: ");
-        for (int i = 0; i < matrix.length; i++) System.out.println(Arrays.toString(matrix[i]));
+        System.out.println("\nAfter: "); for (int[] ints : matrix) System.out.println(Arrays.toString(ints));
     }
+
+
+
+    /**
+
+        r*cols+c ---> imagine a 1D array. And one row contains cols number of eles, and to go to next row, we need to jump curr_row*cols eles?
+        Row 0 start index → 0*4 = 0
+        Row 1 start index → 1*4 = 4
+        Row 2 start index → 2*4 = 8
+
+     */
+    public static void setZeroesUsingList(int[][] matrix) {
+        List<Integer> list = new ArrayList<>(); // or List<int[]> zeros = new ArrayList<>();
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        for(int r=0; r<rows; r++) {
+            for (int c=0; c<cols; c++) {
+                if(matrix[r][c]==0) {
+                    list.add(r*cols+c); // or zeros.add(new int[]{r, c})
+                }
+            }
+        }
+
+
+        for(int idx: list) {
+            int r = idx/cols;
+            int c = idx%cols;
+
+            for (int i=0; i<rows; i++) {
+                matrix[i][c] = 0;
+            }
+
+            for(int i=0; i<cols; i++) {
+                matrix[r][i] = 0;
+            }
+
+        }
+    }
+
+
+
+    /**
+     * @TimeComplexity O(m*n)
+     * @SpaceComplexity O(m+n)
+     *
+     *         ___ [ ----- dummy row  -------  ]
+     *          |  (0,0),(0,1),(0,2),(0,3),(0,4)
+     *          |  (1,0),(1,1),(1,2),(1,3),(1,4)
+     *   dummy col (2,0),(2,1),(2,2),(2,3),(2,4)
+     *          |  (3,0),(3,1),(3,2),(3,3),(3,4)
+     *         _|_ (4,0),(4,1),(4,2),(4,3),(4,4)
+     *
+     *
+     *             ___[T   f   f   T]
+     *              T  0   1   2   0
+     *              f  3   4   5   2
+     *             _f_ 1   3   1   5
+     *
+     */
+    public static void setZeroesUsingDummyRowAndCol(int[][] matrix) {
+        int m = matrix.length, n = matrix[0].length;
+        boolean[] row = new boolean[m];
+        boolean[] col = new boolean[n];
+
+        // mark the positions that need to be zeroed out
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (matrix[r][c] == 0) {
+                    row[r] = true;
+                    col[c] = true;
+                }
+            }
+        }
+
+        // zero out the marked positions
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (row[r] || col[c]) matrix[r][c] = 0;
+            }
+        }
+    }
+
+
+    public static void setZeroesUsingDummyRowAndCol2(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        boolean[] zeroRows = new boolean[rows];
+        boolean[] zeroCols = new boolean[cols];
+
+        for(int r=0; r<rows; r++) {
+            for(int c=0; c<cols; c++) {
+                if(matrix[r][c] == 0) {
+                    zeroRows[r] = true;
+                    zeroCols[c] = true;
+                }
+            }
+        }
+
+        for(int r=0; r<rows; r++) {
+            if(zeroRows[r]) {
+                Arrays.fill(matrix[r], 0);
+            }
+        }
+
+        for(int c=0; c<cols; c++) {
+            if(zeroCols[c]) {
+                for(int r=0; r<rows; r++) {
+                    matrix[r][c] = 0;
+                }
+            }
+        }
+    }
+
+
+
 
 
     /**
@@ -117,6 +240,61 @@ public class SetMatrixZeroes {
         }
     }
 
+
+
+
+
+    public static void setZeroes2(int[][] matrix) {
+        boolean isFirstRowZero = false;
+        boolean isFirstColZero = false;
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        for (int r=0; r<rows; r++) {
+            for(int c=0; c<cols; c++) {
+                if(matrix[r][c] == 0) {
+                    if(r == 0) {
+                        isFirstRowZero = true;
+                    } else if(c==0) {
+                        isFirstColZero = true;
+                    } else {
+                        matrix[r][0] = 0;
+                        matrix[0][c] = 0;
+                    }
+                }
+            }
+        }
+
+
+        for (int r=1; r<rows; r++) {
+            if (matrix[r][0] == 0) {
+                Arrays.fill(matrix[r], 0);
+            }
+        }
+
+        for (int c=0; c<cols; c++) {
+            if (matrix[0][c] == 0) {
+                for(int r=0; r<rows; r++) {
+                    matrix[r][c] = 0;
+                }
+            }
+        }
+
+        if(isFirstRowZero) {
+            Arrays.fill(matrix[0], 0);
+        }
+
+        if(isFirstColZero) {
+            for(int r=0; r<rows; r++) {
+                matrix[r][0] = 0;
+            }
+        }
+    }
+
+
+
+
     /**
      * @TimeComplexity O(m*n)
      * @SpaceComplexity O(1)
@@ -125,7 +303,7 @@ public class SetMatrixZeroes {
 
 
      */
-    public static void setZeroes2(int[][] matrix) {
+    public static void setZeroes3(int[][] matrix) {
         int m = matrix.length, n = matrix[0].length;
         boolean isRowZero = false;
         for (int r = 0; r < m; r++) {
@@ -151,47 +329,6 @@ public class SetMatrixZeroes {
             for (int c = 0; c < n; c++) matrix[0][c] = 0;
         }
 
-    }
-
-    /**
-     * @TimeComplexity O(m*n)
-     * @SpaceComplexity O(m+n)
-     *
-     *         ___ [ ----- dummy row  -------  ]
-     *          |  (0,0),(0,1),(0,2),(0,3),(0,4)
-     *          |  (1,0),(1,1),(1,2),(1,3),(1,4)
-     *   dummy col (2,0),(2,1),(2,2),(2,3),(2,4)
-     *          |  (3,0),(3,1),(3,2),(3,3),(3,4)
-     *         _|_ (4,0),(4,1),(4,2),(4,3),(4,4)
-     *
-     *
-     *             ___[T   f   f   T]
-     *              T  0   1   2   0
-     *              f  3   4   5   2
-     *             _f_ 1   3   1   5
-     *
-     */
-    public static void setZeroesUsingDummyRowAndCol(int[][] matrix) {
-        int m = matrix.length, n = matrix[0].length;
-        boolean[] row = new boolean[m];
-        boolean[] col = new boolean[n];
-
-        // mark the positions that need to be zeroed out
-        for (int r = 0; r < m; r++) {
-            for (int c = 0; c < n; c++) {
-                if (matrix[r][c] == 0) {
-                    row[r] = true;
-                    col[c] = true;
-                }
-            }
-        }
-
-        // zero out the marked positions
-        for (int r = 0; r < m; r++) {
-            for (int c = 0; c < n; c++) {
-                if (row[r] || col[c]) matrix[r][c] = 0;
-            }
-        }
     }
 
 
@@ -232,7 +369,8 @@ public class SetMatrixZeroes {
 
 
 
-    public static void setZeroesUsingList(int[][] matrix) {
+
+    public static void setZeroesUsingList2(int[][] matrix) {
         List<List<Integer>> lst = new ArrayList<>();
         for (int i=0; i<matrix.length; i++) {
             for(int j=0; j<matrix[0].length; j++) {
