@@ -315,6 +315,7 @@ Data Structures and Algorithm Programs
     * [Design Spread sheet](/Algorithms/Matrix/DesignSpreadsheet.java)
     * [Valid Sudoku](Algorithms/Matrix/ValidSudoku.java)
     * [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
+    * [Game of Life](Algorithms/Matrix/GameOfLife.java)
 
 16. #### [Misc](/Algorithms/MiscAlgos)
 
