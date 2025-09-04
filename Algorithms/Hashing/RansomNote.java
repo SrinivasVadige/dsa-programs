@@ -1,36 +1,98 @@
 package Algorithms.Hashing;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
  * Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
- * Each character in ransomNote may only be used once in magazine.
+ * Each character in ransomNote may only be used once in a magazine.
  * i.e we cut the letter in the magazine book and paste it in our personal Note
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 09 Nov 2024
+ * @link 383. Ransom Note <a href="https://leetcode.com/problems/ransom-note/">LeetCode Link</a>
+ * @topics Hash table, String, Counting
  */
 public class RansomNote {
     public static void main(String[] args) {
         String ransomNote = "aa", magazine = "aab";
-        System.out.println(canConstructMyApproach(ransomNote, magazine));
-        System.out.println(canConstruct(ransomNote, magazine));
+        System.out.println("canConstruct using HashMap => " + canConstructUsingHashMap(ransomNote, magazine));
+        System.out.println("canConstruct using int[] => " + canConstructUsingIntArray(ransomNote, magazine));
     }
 
-    public static boolean canConstructMyApproach(String ransomNote, String magazine) {
+    /**
+     * @TimeComplexity O(n+m)
+     * @SpaceComplexity O(n+m)
+     */
+    public static boolean canConstructUsingHashMap(String ransomNote, String magazine) {
+        // Map<Character, Integer> rMap = ransomNote.chars().mapToObj(i->(char)i).collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(e->1)));
+        // Map<Character, Integer> mMap = Arrays.stream(magazine.split("")).map(s->s.charAt(0)).collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(e->1)));
+
+        Map<Character, Integer> rMap = new HashMap<>();
+        Map<Character, Integer> mMap = new HashMap<>();
+
+        for(int i=0; i<ransomNote.length(); i++) {
+            rMap.merge(ransomNote.charAt(i), 1, Integer::sum);
+        }
+
+        for(int i=0; i<magazine.length(); i++) {
+            mMap.merge(magazine.charAt(i), 1, Integer::sum);
+        }
+
+        for(char c: rMap.keySet()) {
+            if(!mMap.containsKey(c) || rMap.get(c) > mMap.get(c)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean canConstructUsingHashMap2(String ransomNote, String magazine) {
         Map<String, Integer> rMap= Arrays.stream(ransomNote.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(_->1)));
         Map<String, Integer> mMap= Arrays.stream(magazine.split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(_->1)));
 
         for(Map.Entry<String, Integer> re: rMap.entrySet() ) {
-            if(mMap.getOrDefault(re.getKey(), 0).intValue() < re.getValue().intValue())
+            if(mMap.getOrDefault(re.getKey(), 0) < re.getValue())
                 return false;
         }
         return true;
     }
 
-    public static boolean canConstruct(String ransomNote, String magazine) {
+
+    /**
+     * @TimeComplexity O(n+m)
+     * @SpaceComplexity O(1)
+     */
+    public static boolean canConstructUsingIntArray(String ransomNote, String magazine) {
+        int[] rFreq = new int[26];
+        int[] mFreq = new int[26];
+
+        for(int i=0; i<ransomNote.length(); i++) {
+            rFreq[ransomNote.charAt(i)-'a']++;
+        }
+
+        for(int i=0; i<magazine.length(); i++) {
+            mFreq[magazine.charAt(i)-'a']++;
+        }
+
+        for(int i=0; i<26; i++) {
+            if(rFreq[i] > mFreq[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+
+    /**
+     * @TimeComplexity O(n+m)
+     * @SpaceComplexity O(n+m), because we are using str.toCharArray()
+     */
+    public static boolean canConstructUsingIntArray2(String ransomNote, String magazine) {
         int[] count = new int[26];
 
         for (char c : ransomNote.toCharArray())
@@ -39,13 +101,16 @@ public class RansomNote {
         for (char c : magazine.toCharArray())
             count[c - 'a']--;
 
-        for (int i : count)
+        for (int i : count) {
             if (i > 0) return false;
+        }
 
         return true;
     }
 
-    public static boolean canConstruct2(String ransomNote, String magazine) {
+
+
+    public static boolean canConstructUsingIntArray3(String ransomNote, String magazine) {
         int[] count = new int[26];
 
         for (char c : magazine.toCharArray())
@@ -57,7 +122,9 @@ public class RansomNote {
         return true;
     }
 
-    public static boolean canConstruct3(String ransomNote, String magazine) {
+
+
+    public static boolean canConstructUsingIntArray4(String ransomNote, String magazine) {
         int[] check = new int[26];
          for (char c : ransomNote.toCharArray()) {
              int index = magazine.indexOf(c, check[c % 26]);
@@ -67,6 +134,9 @@ public class RansomNote {
          }
          return true;
     }
+
+
+
 
     public boolean canConstructBruteForce(String ransomNote, String magazine) {
         for (int i = 0; i < ransomNote. length(); i++) {
