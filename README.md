@@ -1,5 +1,3 @@
-span
-
 # dsa-programs
 
 Data Structures and Algorithm Programs
@@ -61,7 +59,6 @@ Data Structures and Algorithm Programs
   * [Patterns and shapes](BasicPrograms/Patterns.java)
   * [PrimeNumber](BasicPrograms/PrimeNumber.java)
   * [Anagram](/BasicPrograms/Anagram.java)
-  * [WordPattern](BasicPrograms/WordPattern.java)
   * [Number of Steps to Reduce the Number to Zero](BasicPrograms/NumberOfStepsToReduceNumberToZero.java)
   * [Fizz Buzz](BasicPrograms/FizzBuzz.java)
   * [Richest Customer Wealth](BasicPrograms/RichestCustomerWealth.java)
@@ -244,6 +241,7 @@ Data Structures and Algorithm Programs
     * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
     * [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
     * [Isomorphic Strings](Algorithms/Hashing/IsomorphicStrings.java)
+    * [WordPattern](Algorithms/Hashing/WordPattern.java)
 
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 

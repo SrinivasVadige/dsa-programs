@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * @since 04 Sept 2025
  * @link 205. Isomorphic Strings <a href="https://leetcode.com/problems/isomorphic-strings/">Leetcode link</a>
  * @topics Hash Table, String
+ * @see Algorithms.Hashing.WordPattern
 
         Examples for easy understanding
 
