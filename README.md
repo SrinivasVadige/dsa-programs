@@ -243,6 +243,7 @@ Data Structures and Algorithm Programs
     * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
     * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
     * [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
+    * [Isomorphic Strings](Algorithms/Hashing/IsomorphicStrings.java)
 
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 
