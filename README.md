@@ -242,6 +242,7 @@ Data Structures and Algorithm Programs
     * [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
     * [Isomorphic Strings](Algorithms/Hashing/IsomorphicStrings.java)
     * [WordPattern](Algorithms/Hashing/WordPattern.java)
+    * [ValidAnagram](Algorithms/Hashing/ValidAnagram.java)
 
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 
