@@ -244,6 +244,8 @@ Data Structures and Algorithm Programs
     * [WordPattern](Algorithms/Hashing/WordPattern.java)
     * [ValidAnagram](Algorithms/Hashing/ValidAnagram.java)
     * [HappyNumber](Algorithms/Hashing/HappyNumber.java)
+    * [Contains Duplicates](Algorithms/Hashing/ContainsDuplicate.java)
+    * [Contains Duplicates II](Algorithms/Hashing/ContainsDuplicate2.java)
 
 11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
 
