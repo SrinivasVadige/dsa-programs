@@ -143,7 +143,7 @@ Data Structures and Algorithm Programs
    * [Satisfiability of Equality Equations](/Algorithms/DisjointSetUnion/SatisfiabilityOfEqualityEquations.java)
    * [Min Cost to Connect All Points](/Algorithms/DisjointSetUnion/MinCostToConnectAllPoints.java)
    * [Number Of Good Paths](/Algorithms/DisjointSetUnion/NumberOfGoodPaths.java)
-   * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
+   * [Longest Consecutive Sequence](Algorithms/Hashing/LongestConsecutiveSequence.java)
    * [Path With Minimum Effort](Algorithms/DisjointSetUnion/PathWithMinimumEffort.java)
    * [Minimize Hamming Distance After Swap Operations](Algorithms/DisjointSetUnion/MinimizeHammingDistanceAfterSwapOperations.java)
    * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
@@ -230,7 +230,7 @@ Data Structures and Algorithm Programs
 
     * [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
-    * [Longest Consecutive Sequence](Algorithms/DisjointSetUnion/LongestConsecutiveSequence.java)
+    * [Longest Consecutive Sequence](Algorithms/Hashing/LongestConsecutiveSequence.java)
     * [Two Sum](Algorithms/Hashing/TwoSum.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [Find the Difference of Two Arrays](Algorithms/Hashing/FindTheDifferenceOfTwoArrays.java)
