@@ -276,6 +276,7 @@ Data Structures and Algorithm Programs
     * [Rotate Array by K times](Algorithms/IntegerArray/RotateArray.java)
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
+    * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
@@ -285,6 +286,7 @@ Data Structures and Algorithm Programs
     * [Meeting Rooms II](Algorithms/Intervals/MeetingRooms2.java)
     * [Non-overlapping Intervals](Algorithms/Intervals/NonOverlappingIntervals.java)
     * [Minimum Number of Arrows to Burst Balloons](Algorithms/Intervals/MinimumNumberOfArrowsToBurstBalloons.java)
+    * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
 
 14. #### [LinkedList Algos](/Algorithms/LinkedListAlgos)
 
