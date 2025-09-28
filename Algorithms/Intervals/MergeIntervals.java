@@ -12,6 +12,9 @@ import java.util.*;
 public class MergeIntervals {
     public static void main(String[] args) {
         int[][] intervals = {{1, 4}, {5, 6}};
+        System.out.println("merge Using Sort & List => ") ;
+        intervals = mergeUsingSortAndList(intervals); for (int[] i : intervals) System.out.print(Arrays.toString(i));
+
         System.out.println("merge Using Sort & Array => ") ;
         intervals = mergeUsingSortAndArray(intervals); for (int[] i : intervals) System.out.print(Arrays.toString(i));
 
@@ -24,6 +27,60 @@ public class MergeIntervals {
         System.out.println("\n\nmerge using custom binary interval partitioning tree => "); ;
         intervals = new int[][]{{1, 4}, {5, 6}}; for (int[] interval : mergeUsingCustomBinaryIntervalPartitioningTree(intervals)) System.out.print(Arrays.toString(interval));
     }
+
+
+    public static int[][] mergeUsingSortAndList(int[][] intervals) { // mergeUsingSortAndList
+        Arrays.sort(intervals, Comparator.comparingInt(a->a[0]));
+
+        List<int[]> res = new ArrayList<>();
+
+        for(int[] interval: intervals) {
+
+            if(res.isEmpty()) {
+                res.add(interval);
+                continue;
+            }
+
+            int[] prev = res.get(res.size()-1);
+
+            if(prev[1] < interval[0]) {
+                res.add(interval);
+            } else {
+                // prev[0] = Math.min(prev[0], interval[0]); // not required, as the prev[0] is always <= interval[0]
+                prev[1] = Math.max(prev[1], interval[1]);
+            }
+        }
+
+        return res.toArray(new int[res.size()][]); // or res.toArray(int[][]::new)
+    }
+
+
+
+
+
+    public static int[][] mergeUsingSortAndList2(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        List<int[]> merged = new ArrayList<>();
+
+        int[] current = intervals[0];
+
+        for (int i = 1; i < intervals.length; i++) {
+            int[] next = intervals[i];
+
+            if (current[1] >= next[0]) { // overlap
+                current[1] = Math.max(current[1], next[1]);
+            } else {
+                merged.add(current);
+                current = next;
+            }
+        }
+
+        merged.add(current); // add the last merged interval
+        return merged.toArray(new int[merged.size()][]);
+    }
+
+
+
 
 
 
@@ -101,7 +158,7 @@ public class MergeIntervals {
 
     public int[][] mergeUsingSortAndMinHeapPQ(int[][] intervals) {
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-        int[]prev = {-1,-1};
+        int[] prev = {-1,-1};
         pq.addAll(Arrays.asList(intervals));
         List<int[]> lst = new ArrayList<>();
 
@@ -117,32 +174,6 @@ public class MergeIntervals {
 
         return lst.toArray(new int[lst.size()][]);
     }
-
-
-
-
-    public static int[][] mergeUsingSortAndList(int[][] intervals) {
-        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
-        List<int[]> merged = new ArrayList<>();
-
-        int[] current = intervals[0];
-
-        for (int i = 1; i < intervals.length; i++) {
-            int[] next = intervals[i];
-
-            if (current[1] >= next[0]) { // overlap
-                current[1] = Math.max(current[1], next[1]);
-            } else {
-                merged.add(current);
-                current = next;
-            }
-        }
-
-        merged.add(current); // add the last merged interval
-        return merged.toArray(new int[merged.size()][]);
-    }
-
-
 
 
 
