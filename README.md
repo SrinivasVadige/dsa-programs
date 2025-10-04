@@ -287,6 +287,7 @@ Data Structures and Algorithm Programs
     * [Non-overlapping Intervals](Algorithms/Intervals/NonOverlappingIntervals.java)
     * [Minimum Number of Arrows to Burst Balloons](Algorithms/Intervals/MinimumNumberOfArrowsToBurstBalloons.java)
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
+    * [Insert Interval](Algorithms/Intervals/InsertInterval.java)
 
 14. #### [LinkedList Algos](/Algorithms/LinkedListAlgos)
 
