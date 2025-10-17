@@ -2,6 +2,8 @@ package Algorithms.StackAlgos;
 
 import java.util.HashMap;
 import java.util.Stack;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
@@ -19,7 +21,41 @@ public class ValidParentheses {
 
     }
 
-    public static boolean isValidUsingStack(String s) {
+
+    public static boolean isValidUsingStack(String s) { // isValidUsingStack1
+        Stack<Character> stack = new Stack<>();
+        for(char c : s.toCharArray()) {
+            if (isOpen.test(c)) {
+                stack.push(c);
+            } else if (!stack.isEmpty() && isMatched.test(stack.peek(), c)) {
+                stack.pop();
+            } else { // stack empty
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+    static Predicate<Character> isOpen = c -> c == '(' || c == '{' || c == '[';
+    static BiPredicate<Character, Character> isMatched = (c1, c2) ->
+            c1 == '(' && c2 == ')' || c1 == '{' && c2 == '}' || c1 == '[' && c2 == ']';
+
+    // or
+    private static boolean isOpen(char c) {
+        return c == '(' || c == '{' || c == '[';
+    }
+    private static char getOpen(char closed) {
+        char open;
+        if (closed == ')') open = '(';
+        else if (closed == '}') open = '{';
+        else open = '[';
+        return open;
+    }
+
+
+
+
+
+    public static boolean isValidUsingStack2(String s) {
         if (s.length() % 2 != 0) return false;
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
@@ -36,7 +72,7 @@ public class ValidParentheses {
 
 
 
-    public boolean isValidUsingStack2(String s) {
+    public boolean isValidUsingStack3(String s) {
         if (s.length() % 2 != 0) return false;
         Stack<Character> stack = new Stack<>();
         for (int i=0; i<s.length(); i++) {
@@ -86,27 +122,27 @@ public class ValidParentheses {
         if (s.length() % 2 != 0) return false;
 
         char[] stack = new char[s.length()];
-        int head = 0;
+        int i = 0; // head
 
         for (char c : s.toCharArray()) {
             switch (c) {
                 case '(':
                 case '{':
                 case '[':
-                    stack[head++] = c;
+                    stack[i++] = c;
                     break;
                 case ')':
-                    if (head == 0 || stack[--head] != '(') return false;
+                    if (i == 0 || stack[--i] != '(') return false;
                     break;
                 case '}':
-                    if (head == 0 || stack[--head] != '{') return false;
+                    if (i == 0 || stack[--i] != '{') return false;
                     break;
                 case ']':
-                    if (head == 0 || stack[--head] != '[') return false;
+                    if (i == 0 || stack[--i] != '[') return false;
                     break;
             }
         }
-        return head == 0;
+        return i == 0;
     }
 
 
@@ -120,7 +156,7 @@ public class ValidParentheses {
      * test "([)]"
      * here parenthesisOpen == parenthesisClose and squareOpen == squareClose but that's not the valid one
      *
-     * @see #isValidUsingOpenCountOfSingleType for more understanding ---> this is the intuition but it only works with one type of parenthesis
+     * @see #isValidUsingOpenCountOfSingleTypeNotWorking for more understanding ---> this is the intuition but it only works with one type of parenthesis
      * close never exceeds open in valid parenthesis
      */
     public static boolean isValidUsingOpenAndCloseCountsNotWorking(String s) {
@@ -157,7 +193,7 @@ public class ValidParentheses {
     /**
      * We know that at any given point of time --- open >= close ---> i.e close never exceeds open
      */
-    private static boolean isValidUsingOpenCountOfSingleType(String str) {
+    private static boolean isValidUsingOpenCountOfSingleTypeNotWorking(String str) {
         int open = 0;
         int close = 0;
         for (char c : str.toCharArray()) {
