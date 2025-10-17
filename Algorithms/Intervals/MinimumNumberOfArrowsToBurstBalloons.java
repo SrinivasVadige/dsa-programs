@@ -2,6 +2,7 @@ package Algorithms.Intervals;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
@@ -134,5 +135,43 @@ public class  MinimumNumberOfArrowsToBurstBalloons {
         }
 
         return arrows;
+    }
+
+
+
+
+    public int findMinArrowShotsNotWorking(int[][] points) {
+
+        Arrays.sort(points, Comparator.comparingInt(p -> p[0]));
+        // Arrays.sort(points, (a, b)-> a[0]==b[0] ? a[1]-b[1] : a[0]-b);
+
+        Arrays.stream(points).forEach(x -> System.out.print(Arrays.toString(x)));
+        System.out.println();
+
+        LinkedList<int[]> q = new LinkedList<>();
+        int count = 0;
+
+        for(int[] p : points) {
+            if(q.isEmpty() || p[0] <= q.peek()[1]) {
+                q.offer(p);
+                continue;
+            }
+
+            count++;
+
+            if(p[0] > q.peek()[1]) {
+                int firstEnd = q.peek()[1];
+                while (!q.isEmpty() && firstEnd >= q.peek()[0]) q.poll();
+            }
+
+            q.add(p);
+        }
+
+        q.forEach(x -> System.out.print(Arrays.toString(x)));
+
+        if (!q.isEmpty()) count++ ;
+        // if (!q.isEmpty() && (q.size() == 1 || q.peekFirst()[1] <= q.peekLast()[0]) ) count++;
+
+        return Math.max(count, 1);
     }
 }
