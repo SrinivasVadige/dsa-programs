@@ -396,6 +396,7 @@ Data Structures and Algorithm Programs
     * [Decode String](Algorithms/StackAlgos/DecodeString.java)
     * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
     * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
+    * [Simplify Path](Algorithms/StackAlgos/SimplifyPath.java)
 
 25. #### [Strings](/Algorithms/Strings)
 
