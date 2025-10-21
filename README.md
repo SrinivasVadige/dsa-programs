@@ -392,7 +392,7 @@ Data Structures and Algorithm Programs
     * [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
     * [DailyTemperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
-    * [Min Stack](Algorithms/StackAlgos/MinStackClass.java)
+    * [Min Stack](Algorithms/StackAlgos/MinStack.java)
     * [Decode String](Algorithms/StackAlgos/DecodeString.java)
     * [Removing Stars From a String](Algorithms/StackAlgos/RemovingStarsFromString.java)
     * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
