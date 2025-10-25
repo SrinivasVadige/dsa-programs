@@ -358,6 +358,7 @@ Data Structures and Algorithm Programs
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
+    * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
 
 22. #### [Sliding Window](Algorithms/SlidingWindow)
 
@@ -398,6 +399,8 @@ Data Structures and Algorithm Programs
     * [Asteroid Collision](Algorithms/StackAlgos/AsteroidCollision.java)
     * [Simplify Path](Algorithms/StackAlgos/SimplifyPath.java)
     * [Evaluate Reverse Polish Notation](Algorithms/StackAlgos/EvaluateReversePolishNotation.java)
+    * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
+    * [Basic Calculator II](Algorithms/StackAlgos/BasicCalculator2.java)
 
 25. #### [Strings](/Algorithms/Strings)
 
