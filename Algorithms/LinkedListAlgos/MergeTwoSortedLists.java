@@ -9,10 +9,12 @@ import java.util.List;
  *
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 11 Nov 2024
+ * @link 21. Merge Two Sorted Lists <a href="https://leetcode.com/problems/merge-two-sorted-lists/">LeetCode link</a>
+ * @topics Linked List, Recursion
  */
 public class MergeTwoSortedLists {
 
-    static class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
         ListNode() {}
@@ -24,13 +26,24 @@ public class MergeTwoSortedLists {
         ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
 
+        System.out.println("mergeTwoLists: ");
         ListNode mergedList = mergeTwoLists(list1, list2);
         while (mergedList != null) {
             System.out.print(mergedList.val + " ");
             mergedList = mergedList.next;
         }
 
-        System.out.println();
+        System.out.println("\nmergeTwoLists Recursively: ");
+        list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+        list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+        mergedList = mergeTwoListsRecursively(list1, list2);
+        for (ListNode trav = mergedList; trav != null; trav = trav.next) {
+            System.out.print(trav.val + " ");
+        }
+
+
+
+        System.out.println("\nmergeTwoLists Using Sort: ");
         list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
         mergedList = mergeTwoListsUsingSort(list1, list2);
@@ -51,12 +64,12 @@ public class MergeTwoSortedLists {
         ListNode trav = dummy;
         while (list1 != null && list2 != null) {
             if (list1.val < list2.val) {
-                trav.next = list1;
+                trav.next = list1; // or trav.next = new ListNode(list1.val);
                 // or trav.next = new ListNode(list1.val, list1.next != null ? new ListNode() : null);
                 // and even though we assign total list1 values to our trav.next we'll change that trav.next.next values in next iteration
                 list1 = list1.next;
             } else {
-                trav.next = list2;
+                trav.next = list2; // or trav.next = new ListNode(list2.val);
                 list2 = list2.next;
             }
             trav = trav.next;
@@ -64,6 +77,28 @@ public class MergeTwoSortedLists {
         trav.next = list1 != null ? list1 : list2; // when one of the lists is empty
         return dummy.next;
     }
+
+
+
+
+
+    public static ListNode mergeTwoListsRecursively(ListNode list1, ListNode list2) {
+        if (list1 == null) return list2;
+        if (list2 == null) return list1;
+        if (list1.val < list2.val) {
+            // now curr list1 node is the smallest node. So, use curr and calculate the next node
+            list1.next = mergeTwoListsRecursively(list1.next, list2);
+            return list1;
+        } else {
+            list2.next = mergeTwoListsRecursively(list1, list2.next);
+            return list2;
+        }
+    }
+
+
+
+
+
 
     /**
      * @TimeComplexity O((m+n)long(m+n))
