@@ -37,11 +37,11 @@ public class CopyListWithRandomPointer {
         System.out.print("\nGiven ----------- \n");
         for (Node trav = head; trav != null; trav = trav.next) System.out.print(trav);
 
-        System.out.println("\n\ncopyRandomList Using OldNodeToNewNode HashMap -----------");
-        for (Node trav = copyRandomListUsingOldNodeToNewNodeHashMap(head); trav != null; trav = trav.next) System.out.print(trav);
-
         System.out.println("\n\ncopyRandomList Using Iterative NoSpace -----------");
         for (Node trav = copyRandomListUsingIterativeNoSpace(head); trav != null; trav = trav.next) System.out.print(trav);
+
+        System.out.println("\n\ncopyRandomList Using OldNodeToNewNode HashMap -----------");
+        for (Node trav = copyRandomListUsingOldNodeToNewNodeHashMap1(head); trav != null; trav = trav.next) System.out.print(trav);
 
         System.out.println("\n\ncopyRandomList Using Recursion -----------");
         for (Node trav = copyRandomListUsingRecursion(head); trav != null; trav = trav.next) System.out.print(trav);
@@ -49,40 +49,6 @@ public class CopyListWithRandomPointer {
         System.out.println("\n\ncopyRandomList Using IndexNode HashMap -----------");
         for (Node trav = copyRandomListUsingIndexNodeHashMap(head); trav != null; trav = trav.next) System.out.print(trav);
     }
-
-
-
-    /**
-     * @TimeComplexity O(n)
-     * @SpaceComplexity O(n)
-     */
-    public static Node copyRandomListUsingOldNodeToNewNodeHashMap(Node head) {
-        Map<Node, Node> oldNodeToNewNode = new HashMap<>();
-
-        for (Node oldNode = head; oldNode!=null; oldNode = oldNode.next) {
-            oldNodeToNewNode.put(oldNode, new Node(oldNode.val));
-        }
-
-        for (Node oldNode = head; oldNode != null; oldNode = oldNode.next) {
-            Node newNode = oldNodeToNewNode.get(oldNode);
-            newNode.next = oldNodeToNewNode.get(oldNode.next);
-            newNode.random = oldNodeToNewNode.get(oldNode.random);
-        }
-
-        /*
-        // or
-        for(Node oldNode = head, newNode = oldNodeToNewNode.get(head); oldNode!=null; oldNode=oldNode.next, newNode=newNode.next) {
-            newNode.next = oldNodeToNewNode.get(oldNode.next);
-            newNode.random = oldNodeToNewNode.get(oldNode.random);
-        }
-         */
-
-        return oldNodeToNewNode.get(head);
-    }
-
-
-
-
 
 
 
@@ -140,6 +106,59 @@ public class CopyListWithRandomPointer {
 
 
 
+    public static Node copyRandomListUsingOldNodeToNewNodeHashMap1(Node head) {
+        Map<Node, Node> oldToNew = new HashMap<>();
+        oldToNew.put(null, null);
+
+        Node dummy = new Node(-1);
+        for(Node oldNode = head, newNode = dummy; oldNode != null; oldNode = oldNode.next, newNode = newNode.next) {
+            Node copy = new Node(oldNode.val);
+            oldToNew.put(oldNode, copy);
+            newNode.next = copy;
+        }
+
+        for(Node oldNode = head, newNode = dummy.next; oldNode != null; oldNode = oldNode.next, newNode = newNode.next) {
+            newNode.random = oldToNew.get(oldNode.random);
+        }
+
+        return dummy.next;
+    }
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(n)
+     */
+    public static Node copyRandomListUsingOldNodeToNewNodeHashMap2(Node head) {
+        Map<Node, Node> oldNodeToNewNode = new HashMap<>();
+
+        for (Node oldNode = head; oldNode!=null; oldNode = oldNode.next) {
+            oldNodeToNewNode.put(oldNode, new Node(oldNode.val));
+        }
+
+        for (Node oldNode = head; oldNode != null; oldNode = oldNode.next) {
+            Node newNode = oldNodeToNewNode.get(oldNode);
+            newNode.next = oldNodeToNewNode.get(oldNode.next);
+            newNode.random = oldNodeToNewNode.get(oldNode.random);
+        }
+
+        /*
+        // or
+        for(Node oldNode = head, newNode = oldNodeToNewNode.get(head); oldNode!=null; oldNode=oldNode.next, newNode=newNode.next) {
+            newNode.next = oldNodeToNewNode.get(oldNode.next);
+            newNode.random = oldNodeToNewNode.get(oldNode.random);
+        }
+         */
+
+        return oldNodeToNewNode.get(head);
+    }
+
+
+
+
 
 
     /**
@@ -147,7 +166,7 @@ public class CopyListWithRandomPointer {
      * @SpaceComplexity O(n)
      * same like above OldNodeToNewNode HashMap method but here we iterate once instead of two times
      */
-    public static Node copyRandomListUsingOldNodeToNewNodeHashMap2(Node head) {
+    public static Node copyRandomListUsingOldNodeToNewNodeHashMap3(Node head) {
         if (head == null) {
             return null;
         }
@@ -253,7 +272,7 @@ public class CopyListWithRandomPointer {
 
 
 
-    public static Node copyRandomListUsingOldNodeToNewNodeHashMap3(Node head) {
+    public static Node copyRandomListUsingOldNodeToNewNodeHashMap4(Node head) {
         Map<Node, Node> oldToCopy = new HashMap<>(); // i.e old node as key and the new node as value
 
         Node curr = head;
@@ -279,7 +298,7 @@ public class CopyListWithRandomPointer {
 
 
 
-    public static Node copyRandomListUsingOldNodeToNewNodeHashMap4(Node head) {
+    public static Node copyRandomListUsingOldNodeToNewNodeHashMap5(Node head) {
         Map<Node, Node> oldToCopy = new HashMap<>();
         oldToCopy.put(null,null);
 
