@@ -293,6 +293,7 @@ Data Structures and Algorithm Programs
 
     * [MiddleOfTheLinkedList](/Algorithms/LinkedListAlgos/MiddleOfTheLinkedList.java)
     * [Reverse LinkedList](/Algorithms/LinkedListAlgos/ReverseLinkedList.java)
+    * [Reverse LinkedList 2](/Algorithms/LinkedListAlgos/ReverseLinkedList2.java)
     * [Zipper LinkedLists](/Algorithms/LinkedListAlgos/ZipperLinkedLists.java)
     * [Add Two Numbers](/Algorithms/LinkedListAlgos/AddTwoNumbers.java)
     * [Remove Nth Node From End of List](/Algorithms/LinkedListAlgos/RemoveNthNodeFromEndOfList.java)
