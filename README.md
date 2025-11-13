@@ -312,6 +312,7 @@ Data Structures and Algorithm Programs
     * [Odd Even Linked List](/Algorithms/LinkedListAlgos/OddEvenLinkedList.java)
     * [Maximum Twin Sum of a Linked List](/Algorithms/LinkedListAlgos/MaximumTwinSumOfLinkedList.java)
     * [Remove Duplicates from Sorted List](/Algorithms/LinkedListAlgos/RemoveDuplicatesFromSortedList.java)
+    * [Remove Duplicates from Sorted List II](/Algorithms/LinkedListAlgos/RemoveDuplicatesFromSortedList2.java)
 
 15. #### [Matrix](/Algorithms/Matrix)
 
