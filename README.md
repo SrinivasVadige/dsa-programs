@@ -314,6 +314,7 @@ Data Structures and Algorithm Programs
     * [Remove Duplicates from Sorted List](/Algorithms/LinkedListAlgos/RemoveDuplicatesFromSortedList.java)
     * [Remove Duplicates from Sorted List II](/Algorithms/LinkedListAlgos/RemoveDuplicatesFromSortedList2.java)
     * [Rotate List](/Algorithms/LinkedListAlgos/RotateList.java)
+    * [Partition List](/Algorithms/LinkedListAlgos/PartitionList.java)
 
 15. #### [Matrix](/Algorithms/Matrix)
 
