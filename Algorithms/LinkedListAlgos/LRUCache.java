@@ -23,7 +23,7 @@ import java.util.*;
 public class LRUCache {
 
     public static void main(String[] args) {
-        LRUCacheUsingCustomNode cache = new LRUCacheUsingCustomNode(2);
+        LRUCacheUsingDoublyLinkedList cache = new LRUCacheUsingDoublyLinkedList(2);
         cache.put(1, 1);
         cache.put(2, 2);
         cache.get(1);       // returns 1
@@ -40,25 +40,16 @@ public class LRUCache {
      * see {@link DataStructures.HashMapExample} javaDoc
      * accessOrder==true --> orderByAccess not by insertion
      */
-    static class LRUCacheUsingLinkedHashMap extends LinkedHashMap<Integer, Integer> {
+    static class LRUCacheUsingLinkedHashMapAccessOrderAsParent extends LinkedHashMap<Integer, Integer> {
         int capacity;
-        public LRUCacheUsingLinkedHashMap(int capacity) {
+        public LRUCacheUsingLinkedHashMapAccessOrderAsParent(int capacity) {
             super(capacity+1, 1f, true); // --> as capacity is not changing or use default super(capacity, 0.75f, true);
-            /*
-            // or
-             Map<Integer, Integer> map = new LinkedHashMap<>(capacity, 0.75f, true) {
-                @Override
-                protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-                    return size() > capacity;
-                }
-               };
-            */
             this.capacity = capacity;
         }
 
-        @Override
+        @Override  // it's automatically called after every put() in LinkedHashMap
         protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-            return size() > capacity;
+            return size() > capacity; // Automatically remove LRU
         }
 
         public int get(int key) {
@@ -73,6 +64,193 @@ public class LRUCache {
 
 
 
+    static class LRUCacheUsingLinkedHashMapAccessOrder {
+        Map<Integer, Integer> cache;
+
+        public LRUCacheUsingLinkedHashMapAccessOrder(int capacity) {
+            cache = new LinkedHashMap<>(capacity, 0.75f, true) {
+                @Override
+                protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {return size() > capacity;}
+            };
+        }
+
+        public int get(int key) {return cache.getOrDefault(key, -1);}
+
+        public void put(int key, int value) {cache.put(key, value);}
+    }
+
+
+
+
+
+
+
+    /**
+     * It's just the internal implementation of LinkedHashMap with accessOrder instead of insertionOrder
+     */
+    static class LRUCacheUsingDoublyLinkedList {
+        int capacity;
+        static class Node { int key; int val; Node prev; Node next; Node(){} Node(int key, int val) {this.key=key; this.val=val;}}
+        Node dummyHead = new Node(0,0), dummyTail = new Node(0,0);
+        Map<Integer, Node> map = new HashMap<>();
+
+        public LRUCacheUsingDoublyLinkedList(int capacity) {
+            this.capacity = capacity;
+            dummyHead.next = dummyTail;
+            dummyTail.prev = dummyHead;
+        }
+
+        public int get(int key) {
+            if (map.containsKey(key)) {
+                Node node = map.get(key);
+                updateCache(node);
+                return node.val;
+            }
+            return -1;
+        }
+
+        public void put(int key, int value) {
+            if (map.containsKey(key)) {
+                Node node = map.get(key);
+                updateCache(node);
+                node.val = value;
+            } else {
+                Node node = new Node(key, value);
+                Node tail = dummyTail.prev;
+                tail.next = node;
+                node.prev = tail;
+                node.next = dummyTail;
+                dummyTail.prev = node;
+
+                map.put(key, node);
+            }
+
+            if (map.size() > capacity) {
+                Node lru = dummyHead.next; // actual head
+                dummyHead.next = lru.next;
+                lru.next.prev = dummyHead;
+                map.remove(lru.key);
+            }
+        }
+
+        private void updateCache(Node node) {
+            if (node == dummyTail.prev) return;
+
+            Node prevNode = node.prev;
+            Node nextNode = node.next;
+
+            prevNode.next = node.next;
+            nextNode.prev = node.prev;
+
+            Node tail = dummyTail.prev;
+            tail.next = node;
+            node.prev = tail;
+            node.next = dummyTail;
+            dummyTail.prev = node;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    static class LRUCacheUsingDoublyLinkedList2 {
+
+        static class Node {int key, value; Node prev, next; Node(int k, int v) { key = k; value = v; }}
+
+        private final Map<Integer, Node> map = new HashMap<>();
+        private final int capacity;
+        private final Node dummyHead = new Node(0, 0);
+        private final Node dummyTail = new Node(0, 0);
+
+        public LRUCacheUsingDoublyLinkedList2(int capacity) {
+            this.capacity = capacity;
+            dummyHead.next = dummyTail;
+            dummyTail.prev = dummyHead;
+        }
+
+        public int get(int key) {
+            if (!map.containsKey(key)) return -1;
+            Node node = map.get(key);
+            remove(node);
+            insert(node);
+            return node.value;
+        }
+
+        public void put(int key, int value) {
+            if (map.containsKey(key)) {
+                Node node = map.get(key);
+                node.value = value;
+                remove(node);
+                insert(node);
+            } else {
+                if (map.size() == capacity) {
+                    Node lru = dummyHead.next; // actual head
+                    remove(lru);
+                    map.remove(lru.key);
+                }
+                Node newNode = new Node(key, value);
+                map.put(key, newNode);
+                insert(newNode);
+            }
+        }
+
+        private void remove(Node node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
+
+        private void insert(Node node) {
+            Node tail = dummyTail.prev;
+            tail.next = node;
+            node.prev = tail;
+            node.next = dummyTail;
+            dummyTail.prev = node;
+        }
+    }
+
+
+
+
+
+
+
+
+
+    static class LRUCacheUsingLinkedHashMap {
+        Map<Integer, Integer> cache = new LinkedHashMap<>();
+        int capacity;
+
+        public LRUCacheUsingLinkedHashMap(int capacity) {
+            this.capacity = capacity;
+        }
+
+        public int get(int key) {
+            if (cache.containsKey(key)) {
+                int val = cache.get(key);
+                cache.remove(key);
+                cache.put(key, val);
+                return val;
+            }
+            return -1;
+        }
+
+        public void put(int key, int value) {
+            cache.remove(key);
+            cache.put(key, value);
+
+            if(cache.size()>capacity) {
+                int removeKey = cache.keySet().iterator().next();
+                cache.remove(removeKey);
+            }
+        }
+    }
+
 
 
 
@@ -81,11 +259,11 @@ public class LRUCache {
      * Use (LinkedHashSet with HashMap) or (LinkedHashMap with insertionOrder)
      * ---> and then remove from the middle and add to the end
      */
-    static class LRUCacheUsingHashMapAndLinkedHashSet {
+    static class LRUCacheUsingLinkedHashSetAndHashMap {
         Map<Integer, Integer> map = new HashMap<>();
         Set<Integer> set = new LinkedHashSet<>();
         int size = 0;
-        public LRUCacheUsingHashMapAndLinkedHashSet(int capacity) {
+        public LRUCacheUsingLinkedHashSetAndHashMap(int capacity) {
             size = capacity;
         }
 
@@ -100,9 +278,7 @@ public class LRUCache {
         public void put(int key, int value) {
             map.put(key, value);
 
-            if(set.contains(key)) {
-                set.remove(key);
-            }
+            set.remove(key);
             set.add(key);
 
             if(map.size() > size) {
@@ -112,93 +288,6 @@ public class LRUCache {
             }
         }
     }
-
-
-
-
-
-
-
-
-    /**
-     * It's just the internal implementation of LinkedHashMap with accessOrder instead of insertionOrder
-     */
-    static class LRUCacheUsingCustomNode {
-        // "Custom Node" with prev and next or "Doubly Linked List"
-        static class Node {
-            int key, val;
-            Node prev, next;
-            public Node(int key, int val) {this.key = key; this.val = val;}
-            public Node() {} // default noArgs constructor will be removed if create a constructor with parameters
-        }
-
-        private final int capacity;
-        private final  Map<Integer, Node> cache; // key & it's node address... oldest is the head of that node and latest is the tail
-        private final Node head; // least recently used (LRU) ---> HEAD
-        private final Node tail; // most recently used (MRU) ---> TAIL
-
-
-        public LRUCacheUsingCustomNode(int capacity) {
-            this.capacity = capacity;
-            cache = new HashMap<>();
-
-            head = new Node(0,0); // or new Node(); or new Node(-1, -1);
-            tail = new Node(0,0); // or new Node(); or new Node(-1, -1);
-
-            head.next = tail;
-            tail.prev = head;
-        }
-
-        public int get(int key) {
-            if (!cache.containsKey(key)) {
-                return -1;
-            }
-
-            Node node = cache.get(key);
-            removeNode(node);
-            insertNode(node); // make node as tail
-            return node.val;
-        }
-
-        public void put(int key, int val) {
-            if (cache.containsKey(key)) {
-                Node currentNode = cache.get(key);
-                removeNode(currentNode);
-            }
-
-            // as we removed the currentNode -- treat every Node as newNode
-            Node newNode = new Node(key, val);
-            insertNode(newNode); // make node as tail
-            cache.put(key, newNode);
-
-            if (capacity < cache.size()) {
-                Node lruNode = head.next; // node to evict --> least recently used (LRU)
-                removeNode(lruNode);
-                cache.remove(lruNode.key);
-            }
-        }
-
-
-        // "Custom node" or "Doubly Linked List" methods
-        private void removeNode(Node node) {
-            Node prev = node.prev;
-            Node next = node.next;
-
-            prev.next = next;
-            next.prev = prev;
-        }
-        private void insertNode(Node node) { // newNode doesn't contains prev and next
-            Node prev = tail.prev;
-            prev.next = node;
-            node.prev = prev;
-
-            node.next = tail;
-            tail.prev = node;
-        }
-    }
-
-
-
 
 
 

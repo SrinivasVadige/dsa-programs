@@ -305,7 +305,7 @@ Data Structures and Algorithm Programs
     * [LinkedListCycle](/Algorithms/LinkedListAlgos/LinkedListCycle.java)
     * [LinkedListCycle 2](/Algorithms/LinkedListAlgos/LinkedListCycle2.java)
     * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
-    * [LRUCache](/Algorithms/LinkedListAlgos/LRUCache.java)
+    * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
     * [Intersection of Two LinkedLists](/Algorithms/LinkedListAlgos/IntersectionOfTwoLinkedLists.java)
     * [Palindrome LinkedList](/Algorithms/LinkedListAlgos/PalindromeLinkedList.java)
     * [Delete the Middle Node of a Linked List](/Algorithms/LinkedListAlgos/DeleteTheMiddleNodeOfLinkedList.java)
