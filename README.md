@@ -106,6 +106,7 @@ Data Structures and Algorithm Programs
    * [BinaryTree In-Order Traversal](/Algorithms/BinaryTrees/BinaryTreeInOrderTraversal.java)
    * [BinaryTree LevelOrder Traversal](/Algorithms/BinaryTrees/BinaryTreeLevelOrderTraversal.java)
    * [Validate BinarySearchTree](/Algorithms/BinaryTrees/ValidateBinarySearchTree.java)
+   * [Same Tree](/Algorithms/BinaryTrees/SameTree.java)
    * [Symmetric Tree](/Algorithms/BinaryTrees/SymmetricTree.java)
    * [Maximum Depth of Binary Tree](/Algorithms/BinaryTrees/MaximumDepthOfBinaryTree.java)
    * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
