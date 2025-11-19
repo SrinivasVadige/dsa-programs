@@ -38,19 +38,26 @@ import java.util.Stack;
  * - N nodes & N-1 edges
  * - Two vertices are connected by exactly one edge i.e exactly one path
  * Example: File System Tree or directories --> /, /usr, /temp, /usr/local, /usr/local/bin
- *
+
  * - root node level is always 0 (HORIZONTAL LINE)
  * - root node height if it does not have any child node then 0, otherwise 1 + max(height(left), height(right))
  * - calculate height from bottom
  * - depth and level are same. depth is opposite of height
  * - level, height and depth are edges count not nodes
- *
+
  * PROPERTIES OF BINARY TREE
  * - Maximum number of nodes in the level l is 2^l => level 0 = 2^0, level 1 = 2^1, level 2 = 2^2, level 3 = 2^3.....
- * - Total maximum number(from root to current height) of nodes at given height is "2^(h+1) - 1" or "2^(l+1) - 1". Because it's summation of all max nodes in each level i.e 2^0 + 2^1 + 2^2 + 2^3 + 2^(h) => 2^(h(h+1)/2) => 2^(h+1) - 1
+ * - Total maximum number(from root to current height) of nodes at given height is "2^(h+1) - 1" or "2^(l+1) - 1". Because it's the summation of all max nodes in each level
+ * => 2^0 + 2^1 + 2^2 + ... + 2^(h)
+ * =>  1  +  2  +  4  + ... + 2^h
+ * 1  +  2  +  4  + ... + 2^n is a geometric progression with formula a(r^(n+1)-1)/(r-1) where a = 1, r = 2
+ * => 1(2^(h+1)-1)/(2-1)
+ * => ( 2^(h+1)-1 )/(2-1)
+ * => (2^(h+1)-1 )/1 => 2^(h+1)-1
+ * - Maximum number of nodes at height h is 2^(h+1)-1 🔥
  * - Minimum number of nodes at height h is h+1.
  * - Minimum Height h at given nodes n is log2(n+1)-1. Because n=2^(h+1)-1 => n+1 = 2^(h+1) => log2(n+1) = h+1 => h = log2(n+1)-1
- *
+
  * THEORY:
  * - GFG Introduction to Binary Tree: https://www.geeksforgeeks.org/introduction-to-binary-tree/ (read all next articles)
  *
