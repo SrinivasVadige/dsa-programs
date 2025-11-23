@@ -109,7 +109,7 @@ Data Structures and Algorithm Programs
    * [Same Tree](/Algorithms/BinaryTrees/SameTree.java)
    * [Symmetric Tree](/Algorithms/BinaryTrees/SymmetricTree.java)
    * [Maximum Depth of Binary Tree](/Algorithms/BinaryTrees/MaximumDepthOfBinaryTree.java)
-   * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
+   * [ConstructBinaryTreeFromPreorderAndInorderTraversal](/Algorithms/BinaryTrees/ConstructBinaryTreeFromPreorderAndInorderTraversal.java)
    * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
    * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
    * [BinaryTree RightSideView](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
@@ -563,6 +563,7 @@ Data Structures and Algorithm Programs
 2. My "Top 100 Liked" badge received on 20 March 2025
 3. My "100 Days badge 2025" received on 01 May 2025
 4. My "LeetCode 75" badge received on 26 May 2025
+5. My "200 Days badge 2025" received on 09 August 2025
 5. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153)
 6. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552)
 
