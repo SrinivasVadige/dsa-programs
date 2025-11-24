@@ -7,7 +7,7 @@ import java.util.*;
  * @since 27 Jan 2025
  * @link 105. Construct Binary Tree from Preorder and Inorder Traversal <a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">LeetCode Link</a>
  * @topics Array, Hash Table, Divide and Conquer, Tree, Binary Tree
- * @companies Google, Microsoft, Amazon, Meta, TikTok, Bloomberg, Adobe, Apple, Uber, Snowflake, Salesforce, Pure
+ * @companies Google(2), Microsoft(2), Amazon(2), Meta(3), TikTok(3), Bloomberg(13), Adobe(8), Apple(2), Uber(2), Snowflake(2), Salesforce(2), Pure(2)
  */
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
     public static class TreeNode {int val; TreeNode left, right; TreeNode() {}TreeNode(int val) { this.val = val; } TreeNode(int val, TreeNode left, TreeNode right) {this.val = val;this.left = left;this.right = right;}}
@@ -15,9 +15,60 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
         int[] preOrder = {3, 9, 20, 15, 7};
         int[] inOrder = {9, 3, 15, 20, 7};
 
+        printTree(buildTree(preOrder, inOrder));
         printTree(buildTreeUsingMyDistanceApproach(preOrder, inOrder));
-        printTree(buildTree3(preOrder, inOrder));
     }
+
+
+        /**
+         * @see #buildTreeUsingMyDistanceApproach
+         * @see Algorithms.BinaryTrees.ConstructBinaryTreeFromInorderAndPostorderTraversal#buildTree
+
+                     0 1 2  3  4
+        inorder =   [9,3,15,20,7]     l  val  r
+        postorder = [9,15,7,20,3]     l   r  val
+        preorder =  [3,9,20,15,7]     val  l   r
+
+                        3
+                       /  \
+                      9    20
+                          /  \
+                         15   7
+
+
+                            {node, leftDistance, rightDistance}
+                                        {3, 1, 3}
+                       _____________________|_____________________
+                       |                                         |
+                 {9, 0, 0}                                  {20, 1, 1}
+                                                 ________________|________________
+                                                 |                               |
+                                            {15, 0, 0}                       {7, 0, 0}
+     */
+    static int preorderIndex;
+    static Map<Integer, Integer> inorderIndexMap;
+    public static TreeNode buildTree(int[] preorder, int[] inorder) {
+        preorderIndex = 0;
+        inorderIndexMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) inorderIndexMap.put(inorder[i], i);
+        return arrayToTree(preorder, 0, preorder.length - 1);
+    }
+
+    private static TreeNode arrayToTree(int[] preorder, int left, int right) {
+        if (left > right) return null;
+
+        int rootValue = preorder[preorderIndex++];
+        TreeNode root = new TreeNode(rootValue);
+
+        root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
+        root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
+        return root;
+    }
+
+
+
+
+
 
     /**
 
@@ -101,7 +152,8 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
 
 
 
-    public static TreeNode buildTree2(int[] preorder, int[] inorder) {
+
+    public static TreeNode buildTree3(int[] preorder, int[] inorder) {
         return helper(preorder, inorder, 0, preorder.length-1, 0, inorder.length-1);
     }
 
@@ -120,31 +172,6 @@ public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
         root.left = helper(preOrder, inOrder, preOrderStart+1, preOrderStart+leftDistance, inOrderStart, rootIndexInInOrder-1);
         root.right = helper(preOrder, inOrder, preOrderStart+leftDistance+1, preOrderEnd, rootIndexInInOrder+1, inOrderEnd);
 
-        return root;
-    }
-
-
-
-
-
-
-    static int preorderIndex;
-    static Map<Integer, Integer> inorderIndexMap;
-    public static TreeNode buildTree3(int[] preorder, int[] inorder) {
-        preorderIndex = 0;
-        inorderIndexMap = new HashMap<>();
-        for (int i = 0; i < inorder.length; i++) inorderIndexMap.put(inorder[i], i);
-        return arrayToTree(preorder, 0, preorder.length - 1);
-    }
-
-    private static TreeNode arrayToTree(int[] preorder, int left, int right) {
-        if (left > right) return null;
-
-        int rootValue = preorder[preorderIndex++];
-        TreeNode root = new TreeNode(rootValue);
-
-        root.left = arrayToTree(preorder, left, inorderIndexMap.get(rootValue) - 1);
-        root.right = arrayToTree(preorder, inorderIndexMap.get(rootValue) + 1, right);
         return root;
     }
 
