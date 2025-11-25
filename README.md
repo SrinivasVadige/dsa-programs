@@ -125,6 +125,7 @@ Data Structures and Algorithm Programs
    * [Maximum Level Sum of a Binary Tree](/Algorithms/BinaryTrees/MaxLevelSumOfBT.java)
    * [Search in a Binary Search Tree](/Algorithms/BinaryTrees/SearchInBinarySearchTree.java)
    * [Delete Node in a BST](/Algorithms/BinaryTrees/DeleteNodeInBST.java)
+   * [Populating Next Right Pointers in Each Node](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
