@@ -127,6 +127,7 @@ Data Structures and Algorithm Programs
    * [Delete Node in a BST](/Algorithms/BinaryTrees/DeleteNodeInBST.java)
    * [Populating Next Right Pointers in Each Node](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode.java)
    * [Populating Next Right Pointers in Each Node II](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode2.java)
+   * [Path Sum](/Algorithms/BinaryTrees/PathSum.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
