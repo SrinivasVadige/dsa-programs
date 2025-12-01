@@ -128,6 +128,7 @@ Data Structures and Algorithm Programs
    * [Populating Next Right Pointers in Each Node](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode.java)
    * [Populating Next Right Pointers in Each Node II](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode2.java)
    * [Path Sum](/Algorithms/BinaryTrees/PathSum.java)
+   * [Sum Root to Leaf Numbers](/Algorithms/BinaryTrees/SumRootToLeafNumbers.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
