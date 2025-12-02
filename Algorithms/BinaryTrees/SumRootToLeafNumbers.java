@@ -1,5 +1,7 @@
 package Algorithms.BinaryTrees;
 
+import DataStructures.BinaryTreeBasics;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,8 +27,10 @@ public class SumRootToLeafNumbers {
     }
 
 /**
+ * @see DataStructures.BinaryTreeBasics#morrisInOrderTraversal
  * @TimeComplexity O(n)
  * @SpaceComplexity O(1)
+<pre>
 
                      4
                    /   \
@@ -218,7 +222,7 @@ public class SumRootToLeafNumbers {
     As root = null, break the loop
 
 
-
+</pre>
  */
 public static int sumNumbersUsingMorrisPreorderTraversal(TreeNode root) {
         int totalSum = 0, currSum = 0;
@@ -226,12 +230,11 @@ public static int sumNumbersUsingMorrisPreorderTraversal(TreeNode root) {
         TreeNode predecessor;
 
         while (root != null) {
-            // If there is a left child, then compute the predecessor (curr root's left child's rightmost leaf node)
-            // "predecessor.right = root" is the link
-            // If there is no link --> set it & move root to left child
-            // If there is a link --> break it & move root to right child
-            if (root.left != null) {
-                // The Predecessor node is one step to the left and then to the right leafNode till you can.
+            if (root.left == null) {
+                currSum = currSum * 10 + root.val;
+                if (root.right == null) totalSum += currSum; // root is leaf node -> ➕ totalSum
+                root = root.right;
+            } else {
                 predecessor = root.left;
                 steps = 1;
                 while (predecessor.right != null && predecessor.right != root) {
@@ -239,35 +242,16 @@ public static int sumNumbersUsingMorrisPreorderTraversal(TreeNode root) {
                     steps++;
                 }
 
-                // Set "predecessor.right = root" link and go to explore the left subtree
-                if (predecessor.right == null) { // --- NO LINK ---
-                    currSum = currSum * 10 + root.val;
+                if (predecessor.right == null) { // --- NOT LINKED ---
+                    currSum = currSum * 10 + root.val; // don't update totalSum yet -> as we do not know if the predecessor is leaf or not
                     predecessor.right = root;
                     root = root.left;
-                } else { // i.e., "predecessor.right == root" --- LINK ---
-                    // Break the link
-                    // If you're on the leaf, update the sum
-                    // And if we have left sub-tree then change subtree and go to the right
-                    if (predecessor.left == null) {
-                        totalSum += currSum;
-                    }
-                    // This part of tree is explored, backtrack
-                    for (int i = 0; i < steps; ++i) {
-                        currSum /= 10;
-                    }
+                } else { // i.e., "predecessor.right == root" --- LINKED ---
+                    if (predecessor.left == null) totalSum += currSum; // predecessor is leaf node -> ➕ totalSum
+                    for (int i = 0; i < steps; ++i) currSum /= 10;
                     predecessor.right = null;
                     root = root.right;
                 }
-            }
-            // If there is no left child
-            // then just go right.
-            else {
-                currSum = currSum * 10 + root.val;
-                // if you're on the leaf, update the sum
-                if (root.right == null) {
-                    totalSum += currSum;
-                }
-                root = root.right;
             }
         }
         return totalSum;
