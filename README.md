@@ -129,6 +129,7 @@ Data Structures and Algorithm Programs
    * [Path Sum](/Algorithms/BinaryTrees/PathSum.java)
    * [Sum Root to Leaf Numbers](/Algorithms/BinaryTrees/SumRootToLeafNumbers.java)
    * [Binary Tree Maximum Path Sum](/Algorithms/BinaryTrees/BinaryTreeMaximumPathSum.java)
+   * [Binary Search Tree Iterator](/Algorithms/BinaryTrees/BinarySearchTreeIterator.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
