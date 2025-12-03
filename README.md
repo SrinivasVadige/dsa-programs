@@ -92,7 +92,6 @@ Data Structures and Algorithm Programs
    * [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
    * [Search Insert Position](/Algorithms/BinarySearch/SearchInsertPosition.java)
    * [Search in 2D Sorted Matrix](/Algorithms/BinarySearch/Search2DSortedMatrix.java)
-   * [BinaryTree MaximumPathSum](/Algorithms/BinarySearch/BinaryTreeMaximumPathSum.java)
    * [Find Min in RotatedSortedArray](/Algorithms/BinarySearch/FindMinInRotatedSortedArray.java)
    * [Guess Number Higher or Lower](/Algorithms/BinarySearch/GuessNumberHigherOrLower.java)
    * [Successful Pairs of Spells and Potions](/Algorithms/BinarySearch/SuccessfulPairsOfSpellsAndPotions.java)
@@ -129,6 +128,7 @@ Data Structures and Algorithm Programs
    * [Populating Next Right Pointers in Each Node II](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode2.java)
    * [Path Sum](/Algorithms/BinaryTrees/PathSum.java)
    * [Sum Root to Leaf Numbers](/Algorithms/BinaryTrees/SumRootToLeafNumbers.java)
+   * [Binary Tree Maximum Path Sum](/Algorithms/BinaryTrees/BinaryTreeMaximumPathSum.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
