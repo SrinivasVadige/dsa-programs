@@ -7,7 +7,7 @@ import java.util.*;
  * @since 02 Feb 2025
  * @link 236. Lowest Common Ancestor of a Binary Tree <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">LeetCode Link</a>
  * @topics Tree, DFS, Binary Tree
- * @companies Meta, Amazon, Google, Atlassian, Microsoft, TikTok, BitGo, Lucid, NewsBreak, Bloomberg, Apple, Yandex, LinkedIn, Oracle, Adobe, Salesforce, GE Healthcare, Flipkart, Goldman Sachs, Wix, Myntra, Yahoo
+ * @companies Meta(34), LinkedIn(6), Atlassian(4), Google(3), Microsoft(3), Amazon(2), Bloomberg(2), Oracle(2), Adobe(2), Apple(2), TikTok(2), Yandex(2), Lucid(2), NewsBreak(5), Flipkart(2), Goldman Sachs(2), Wix(2), Intuit(2), Myntra(2), Salesforce(2), GE Healthcare(2), BitGo(2), Snapdeal(2)
  * @see Algorithms.BinaryTrees.LowestCommonAncestorOfBinarySearchTree
  */
 public class LowestCommonAncestorOfBinaryTree {
@@ -35,10 +35,10 @@ public class LowestCommonAncestorOfBinaryTree {
                                   / \
                                  7   4
          */
+        System.out.println("lowestCommonAncestor Using DFS Recursion (root, 5, 4): " + lowestCommonAncestorUsingDfs(root, root.left, root.left.right.right)); // 5,4
         System.out.println("lowestCommonAncestor Using Recursion (root, 5, 4): " + lowestCommonAncestorUsingRecursion(root, root.left, root.left.right.right)); // 5,4
-        System.out.println("lowestCommonAncestor Using Recursion2 (root, 5, 4): " + lowestCommonAncestorUsingRecursion2(root, root.left, root.left.right.right)); // 5,4
-        System.out.println("lowestCommonAncestor Using ParentPointers (root, 5, 4): " + lowestCommonAncestorUsingParentPointers(root, root.left, root.left.right.right)); // 5,4
-        System.out.println("lowestCommonAncestor Using Explicit Stack and State Machine (root, 5, 4): " + lowestCommonAncestorUsingExplicitStackAndStateMachine(root, root.left, root.left.right.right));
+        System.out.println("lowestCommonAncestor Using Stack with ParentPointers (root, 5, 4): " + lowestCommonAncestorUsingStackWithParentPointers(root, root.left, root.left.right.right)); // 5,4
+        System.out.println("lowestCommonAncestor Using Explicit Stack and State Machine (root, 5, 4): " + lowestCommonAncestorUsingStackWithoutParentPointers(root, root.left, root.left.right.right));
         System.out.println("lowestCommonAncestor Using Paths (root, 5, 4 ): " + lowestCommonAncestorUsingPaths(root, root.left, root.left.right.right)); // 5,4
         System.out.println("lowestCommonAncestorUsingPaths2(root, 5, 4 ): " + lowestCommonAncestorUsingPaths2(root, root.left, root.left.right.right)); // 5,4
     }
@@ -75,7 +75,7 @@ public class LowestCommonAncestorOfBinaryTree {
      * @TimeComplexity O(N)
      * @SpaceComplexity O(N)
      */
-    public static TreeNode lowestCommonAncestorUsingRecursion(TreeNode root, TreeNode p, TreeNode q) {  // lowestCommonAncestorUsingDfs
+    public static TreeNode lowestCommonAncestorUsingDfs(TreeNode root, TreeNode p, TreeNode q) {  // lowestCommonAncestorUsingDfs
         res = null;
         dfs(root, p, q);
         return res;
@@ -136,11 +136,11 @@ public class LowestCommonAncestorOfBinaryTree {
 
 
      */
-    public static TreeNode lowestCommonAncestorUsingRecursion2(TreeNode root, TreeNode p, TreeNode q) {
+    public static TreeNode lowestCommonAncestorUsingRecursion(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) return root;
 
-        TreeNode left = lowestCommonAncestorUsingRecursion2(root.left, p, q);
-        TreeNode right = lowestCommonAncestorUsingRecursion2(root.right, p, q);
+        TreeNode left = lowestCommonAncestorUsingRecursion(root.left, p, q);
+        TreeNode right = lowestCommonAncestorUsingRecursion(root.right, p, q);
 
         if (left != null && right != null) return root; // found both p and q in curr node's left and right subtree
         return left != null ? left : right; // q is child of p or p is child of q
@@ -153,17 +153,57 @@ public class LowestCommonAncestorOfBinaryTree {
 
 
 
+    static TreeNode result;
+    public static TreeNode lowestCommonAncestorUsingDfs2(TreeNode root, TreeNode p, TreeNode q) {
+        result = null;
+        dfs2(root, p, q);
+        return result;
+    }
+
+    private static TreeNode dfs2(TreeNode node, TreeNode p, TreeNode q) {
+        if (node == null || result != null) return null;
+
+        TreeNode left = dfs2(node.left, p, q);
+        TreeNode right = dfs2(node.right, p, q);
+
+        boolean isCurr = node == p || node == q;
+        boolean isLeft = left == p || left == q;
+        boolean isRight = right == p || right == q;
+        // System.out.printf("node: %s, left: %s, right: %s\n", node.val, left==null?null:left.val, right==null?null:right.val);
+
+        if (isLeft && isRight) {
+            result = node;
+        }
+
+        if (isCurr && (isLeft || isRight)) {
+            result = node;
+        }
+
+        if (isCurr) {
+            return node;
+        }
+
+        return left == null ? right : left;
+    }
+
+
+
+
+
+
+
+
     private static TreeNode ans=null;
-    public static TreeNode lowestCommonAncestorUsingRecursion3(TreeNode root, TreeNode p, TreeNode q) { // lowestCommonAncestorUsingDfs2
-        helper(root, p,  q);
+    public static TreeNode lowestCommonAncestorUsingDfs3(TreeNode root, TreeNode p, TreeNode q) {
+        dfs3(root, p,  q);
         return ans;
     }
-    private static boolean helper(TreeNode root, TreeNode p, TreeNode q){
+    private static boolean dfs3(TreeNode root, TreeNode p, TreeNode q){
         if(root==null) return false;
 
         int mid=(root==p || root==q)?1:0;
-        int left = helper(root.left, p, q)?1:0;
-        int right = helper(root.right, p, q)?1:0;
+        int left = dfs3(root.left, p, q)?1:0;
+        int right = dfs3(root.right, p, q)?1:0;
 
         if(left+mid+right>=2){
             ans=root;
@@ -199,7 +239,7 @@ public class LowestCommonAncestorOfBinaryTree {
          qAncestors = [4, 2, 5, 3]
 
      */
-    public static TreeNode lowestCommonAncestorUsingParentPointers(TreeNode root, TreeNode p, TreeNode q) { // StackAndParentMap
+    public static TreeNode lowestCommonAncestorUsingStackWithParentPointers(TreeNode root, TreeNode p, TreeNode q) { // StackAndParentMap
         Stack<TreeNode> stack = new Stack<>(); // Stack DFS or Recursion DFS
         stack.push(root);
         Map<TreeNode, TreeNode> parent = new HashMap<>(); // HashMap for parent pointers
@@ -241,7 +281,7 @@ public class LowestCommonAncestorOfBinaryTree {
     private final static int BOTH_PENDING = 2; // Both left and right traversal pending for a node. Indicates the nodes children are yet to be traversed.
     private final static int LEFT_DONE = 1; // Left traversal done.
     private final static int BOTH_DONE = 0; // Both left and right traversal done for a node. Indicates the node can be popped off the stack.
-    public static TreeNode lowestCommonAncestorUsingExplicitStackAndStateMachine(TreeNode root, TreeNode p, TreeNode q) {
+    public static TreeNode lowestCommonAncestorUsingStackWithoutParentPointers(TreeNode root, TreeNode p, TreeNode q) {
         class Pair<K, V> {private final K key; private final V value; public Pair(K key, V value) {this.key = key;this.value = value;}public K getKey() {return key;}public V getValue() {return value;}}
         Stack<Pair<TreeNode, Integer>> stack = new Stack<>(); // Stack<Map.Entry<TreeNode, Integer>> and Map.Entry<TreeNode, Integer> = new AbstractMap.SimpleEntry<>(root, BOTH_PENDING);
         stack.push(new Pair<>(root, BOTH_PENDING));

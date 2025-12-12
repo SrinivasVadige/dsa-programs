@@ -3,6 +3,9 @@ package Algorithms.BinaryTrees;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 27 April 2025
+ * @link 235. Lowest Common Ancestor of a Binary Search Tree <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/">LeetCode Link</a>
+ * @topics Tree, BinaryTree, BinarySearchTree, BinarySearch, DFS
+ * @companies LinkedIn(9), Amazon(5), Google(3), Meta(2), Bloomberg(5), Microsoft(2), Apple(4), Yandex(4), TikTok(2), X(2)
  */
 public class LowestCommonAncestorOfBinarySearchTree {
     static class TreeNode {int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; }}
