@@ -130,6 +130,7 @@ Data Structures and Algorithm Programs
    * [Sum Root to Leaf Numbers](/Algorithms/BinaryTrees/SumRootToLeafNumbers.java)
    * [Binary Tree Maximum Path Sum](/Algorithms/BinaryTrees/BinaryTreeMaximumPathSum.java)
    * [Binary Search Tree Iterator](/Algorithms/BinaryTrees/BinarySearchTreeIterator.java)
+   * [Count Complete Tree Nodes](/Algorithms/BinaryTrees/CountCompleteTreeNodes.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
@@ -568,7 +569,8 @@ Data Structures and Algorithm Programs
 1. My "50 Days Badge 2025" received on 12 March 2025
 2. My "100 Days Badge 2025" received on 01 May 2025
 3. My "200 Days Badge 2025" received on 09 August 2025
-4. My "Annual Badge 2025" received on 29 November 2025 
+4. My "Annual Badge 2025" received on 29 November 2025
+5. My "365 Days Badge 2025" received on 12 December 2025
 5. My "Top 100 Liked" badge received on 20 March 2025
 6. My "LeetCode 75" badge received on 26 May 2025 
 7. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153)
