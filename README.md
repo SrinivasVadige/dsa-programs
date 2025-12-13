@@ -112,7 +112,7 @@ Data Structures and Algorithm Programs
    * [Construct Binary Tree from Inorder and Postorder Traversal](/Algorithms/BinaryTrees/ConstructBinaryTreeFromInorderAndPostorderTraversal.java)
    * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
    * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
-   * [BinaryTree RightSideView](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
+   * [Binary Tree Right Side View](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
    * [Kth Smallest Element in BST](/Algorithms/BinaryTrees/KthSmallestElementInBST.java)
    * [Lowest Common Ancestor of a Binary Tree / LCA of BT](/Algorithms/BinaryTrees/LowestCommonAncestorOfBinaryTree.java)
    * [Lowest Common Ancestor of a Binary Search Tree / LCA of BST](/Algorithms/BinaryTrees/LowestCommonAncestorOfBinarySearchTree.java)
