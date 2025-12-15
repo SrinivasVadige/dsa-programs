@@ -133,6 +133,7 @@ Data Structures and Algorithm Programs
    * [Binary Search Tree Iterator](/Algorithms/BinaryTrees/BinarySearchTreeIterator.java)
    * [Count Complete Tree Nodes](/Algorithms/BinaryTrees/CountCompleteTreeNodes.java)
    * [Average of Levels in Binary Tree](/Algorithms/BinaryTrees/AverageOfLevelsInBinaryTree.java)
+   * [Minimum Absolute Difference in BST](/Algorithms/BinaryTrees/MinimumAbsoluteDifferenceInBST.java)
 
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
