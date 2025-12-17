@@ -16,7 +16,10 @@ import java.util.Queue;
  * Graph have no root unless explicitly defined
  * In graph problems, we usually call it as: starting node, source node, or entry point (instead of "root")
  * they can be cyclic or acyclic.
- * In trees, we only have max of 2 children for each node but in graphs, a node can have any number of children.
+ *
+ * In the Binary tree, we only have a maximum of 2 children for each node.
+ * But a tree or a graph node can have any number of children.
+ * And all trees are acyclic.
  *
  * Graphs can be directed or undirected, weighted or unweighted.
  * A directed graph has edges with a direction, while an undirected graph has edges without a direction.
@@ -130,22 +133,22 @@ public class Graphs {
     public static void main(String[] args) {
         int n = 5;
         // Example usage of the Adjacency List Graph class
-        AdjacencyListGraph adjLstGraph = new AdjacencyListGraph(n);
-        adjLstGraph.addEdge(0, 1);
-        adjLstGraph.addEdge(0, 4);
-        adjLstGraph.addEdge(1, 2);
-        adjLstGraph.addEdge(1, 3);
-        adjLstGraph.addEdge(1, 4);
-        adjLstGraph.addEdge(2, 3);
-        adjLstGraph.addEdge(3, 4);
+        AdjacencyListGraph adjListGraph = new AdjacencyListGraph(n);
+        adjListGraph.addEdge(0, 1);
+        adjListGraph.addEdge(0, 4);
+        adjListGraph.addEdge(1, 2);
+        adjListGraph.addEdge(1, 3);
+        adjListGraph.addEdge(1, 4);
+        adjListGraph.addEdge(2, 3);
+        adjListGraph.addEdge(3, 4);
         System.out.println("Adjacency List:");
-        adjLstGraph.printGraph();
+        adjListGraph.printGraph();
 
         System.out.println("\nDFS Traversal in Adjacency List:");
-        adjLstGraph.dfs(0, new boolean[n], adjLstGraph.adjLst);
+        adjListGraph.dfs(0, new boolean[n], adjListGraph.adjList);
 
         System.out.println("\nBFS Traversal in Adjacency List:");
-        adjLstGraph.bfs(0, adjLstGraph.adjLst);
+        adjListGraph.bfs(0, adjListGraph.adjList);
 
 
 
@@ -184,27 +187,27 @@ public class Graphs {
 
     @SuppressWarnings("unchecked")
     static class AdjacencyListGraph {
-        private int V; // Number of vertices
-        private List<Integer>[] adjLst; // Adjacency list
+        private final int V; // Number of vertices == nodes
+        private final List<Integer>[] adjList; // Adjacency list
 
         public AdjacencyListGraph(int v) {
             V = v;
-            adjLst = new LinkedList[v];
+            adjList = new LinkedList[v];
             for (int i = 0; i < v; i++) {
-                adjLst[i] = new LinkedList<>(); // or new ArrayList<>()
+                adjList[i] = new LinkedList<>(); // or new ArrayList<>()
             }
         }
 
         public void addEdge(int u, int v) {
-            adjLst[u].add(v);
-            adjLst[v].add(u); // For undirected graph
+            adjList[u].add(v);
+            adjList[v].add(u); // For undirected graph
         }
 
 
         public void printGraph() {
             for (int i = 0; i < V; i++) {
                 System.out.print(i + ": ");
-                for (Integer neighbor : adjLst[i]) {
+                for (Integer neighbor : adjList[i]) {
                     System.out.print(neighbor + " ");
                 }
                 System.out.println();
@@ -277,8 +280,8 @@ public class Graphs {
 
 
     static class AdjacencyMatrixGraph {
-        private int V; // Number of vertices
-        private int[][] adjMatrix; // Adjacency matrix
+        private final int V; // Number of vertices
+        private final int[][] adjMatrix; // Adjacency matrix
 
         public AdjacencyMatrixGraph(int v) {
             V = v;
@@ -309,7 +312,7 @@ public class Graphs {
                 }
             }
         }
-        public void dfs2(int[][] isConnected, boolean[] visited, int i) {
+        public void dfs2(int[][] isConnected, boolean[] visited, int i) { // isConnected == adjMatrix
             visited[i] = true;
             for (int nei = 0; nei < isConnected.length; nei++) {
                 if (isConnected[i][nei] == 1 && !visited[nei]) {
