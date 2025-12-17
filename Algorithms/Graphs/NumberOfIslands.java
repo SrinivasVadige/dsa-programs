@@ -9,7 +9,7 @@ import java.util.Queue;
  * @link 200. Number of Islands <a href="https://leetcode.com/problems/number-of-islands/">LeetCode link</a>
  * @description Islands are connected horizontally or vertically but not diagonally
  * @topics Array, Matrix, DFS, BFS, Union Find
- * @companies amazon, bloomberg, google, facebook, microsoft, tiktok, snapchat, apple, linkedin, walmart, uber, oracle, anduril, goldman, zoho, paypal, tesla, visa, yandex, redfin, adobe, samsung, salesforce, nvidia, intel, bytedacolse, yahoo, siemens, ebay, citadel
+ * @companies Bloomberg(28), Amazon(14), Uber(11), Microsoft(10), Google(8), LinkedIn(8), Anduril(7), Oracle(6), Apple(5), TikTok(5), Meta(10), Tesla(5), Yandex(5), Snap(5), Samsung(4), Walmart Labs(3), Zoho(3), Nvidia(3), Wells Fargo(3), Capital One(3), Goldman Sachs(23), PayPal(11), Adobe(9), Intel(9), Salesforce(9), Siemens(8), ByteDance(7), Citadel(6), SAP(6), Wix(5)
  * NOTE:
  * Even though it looks like "Adjacency Matrix Graph"
  * but the nodes are not connected properly by edges like it used to connect in Adjacency Matrix
@@ -118,6 +118,46 @@ public class NumberOfIslands {
 
 
 
+    public static int numIslandsUsingBFS2(char[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int islands = 0;
+
+        for (int r = 0; r < rows; ++r) {
+            for (int c = 0; c < cols; ++c) {
+                if (grid[r][c] == '1') {
+                    islands++;
+                    bfs(grid, r, c);
+                }
+            }
+        }
+        return islands;
+    }
+    private static void bfs(char[][]grid, int row, int col) {
+        int rows = grid.length, cols = grid[0].length;
+        Queue<Integer> q = new LinkedList<>();
+        q.add(row*cols+col);
+        grid[row][col] = '0';
+
+        int[][] dirs = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+
+        while(!q.isEmpty()) {
+            int num = q.poll();
+            int r = num / cols, c = num % cols;
+
+            for (int[] dir: dirs) {
+                int nr = r + dir[0], nc = c + dir[1];
+                if (nr >= rows || nc >= cols || nr < 0 || nc < 0 || grid[nr][nc] != '1') continue;
+                q.add(nr*cols + nc);
+                grid[nr][nc] = '0';
+            }
+        }
+    }
+
+
+
+
+
 
 
 
@@ -168,16 +208,16 @@ public class NumberOfIslands {
             for (int i = 0; i < m; ++i) {
                 for (int j = 0; j < n; ++j) {
                     if (grid[i][j] == '1') {
-                        parent[i * n + j] = i * n + j;
-                        ++count;
+                        parent[i * n + j] = i * n + j; // self as parent
+                        count++;
                     }
                     rank[i * n + j] = 0;
                 }
             }
         }
 
-        public int find(int i) { // path compression
-            if (parent[i] != i) parent[i] = find(parent[i]);
+        public int find(int i) {
+            if (parent[i] != i) parent[i] = find(parent[i]); // path compression
             return parent[i];
         }
 
