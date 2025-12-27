@@ -3,11 +3,65 @@ package Algorithms.Graphs;
 import java.util.*;
 
 /**
- * Given an integer numCourses and a list of prerequisite pairs, where prerequisites[i] = [ai, bi] indicates that you must take course ai first if you want to take course "bi".
- * For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
- * This problem statement resembles more of the Khan's Algorithm using Topological sort problem ✅ and, it's not related to Disjoint Sets Union Find (DSU)❌ ---> cause in DSU — a node can have many children (but it only has one parent) — DAGs are not possible
+ * @author Srinivas Vadige, srinivas.vadige@gmail.com
+ * @since 14 Feb 2025
+ * @link 207. Course Schedule <a href="https://leetcode.com/problems/course-schedule/">LeetCode Link</a>
+ * @topics Graph, Topological Sort, DFS, BFS
+ * @companies Meta(12), Google(8), Amazon(6), Roblox(5), Microsoft(3), TikTok(3), Uber(3), LinkedIn(2), Apple(2), Oracle(2), Bloomberg(5), ByteDance(2), Tesla(2), Nvidia(2), Anduril(2), Coupang(8), Snowflake(5), Snap(5), Adobe(4), Nordstrom(4), Visa(4), Flipkart(3), Swiggy(3), eBay(3), DoorDash(3)
 
- 🔥Topological sort 🔥 is only possible if the graph has no cycles --- only one direction
+<pre>
+DESCRIPTION:
+     Given an integer numCourses and a list of prerequisite pairs, where prerequisites[i] = [ai, bi] indicates that you must take course ai first if you want to take course "bi".
+     For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+
+     This problem statement resembles more of the
+     - DAG (Directed Acyclic Graph) and
+     - Khan's Algorithm using Topological sort problem ✅ and
+     - it's not related to Disjoint Sets Union Find (DSU)❌
+       - cause in DSU
+           * a node can have many children (but it only has one parent)
+           * DAGs are not possible - multiple nodes can have same children
+
+PRE-REQUISITE KNOWLEDGE:
+    1. Directed Acyclic Graphs (DAGs) 🔥
+    2. Topological sort 🔥
+
+
+1. Directed Acyclic Graph (DAG)
+-------------------------------
+     To complete all courses, the graph has to be non-cyclic -> check the Directed Acyclic Graph DAG
+
+     Example 1:
+        [[1,2],[2,3],[3,4],[4,1]] -> canFinish = false ---> Directed Cyclic Graph
+        1 --> 2
+        ↑     ↓
+        4 <-- 3
+
+     Example 2:
+        [[1,2],[2,3],[3,4],[1,4]] -> canFinish = true ---> Directed Acyclic Graph (DAG)
+        1 --> 2
+        ↓     ↓
+        4 <-- 3
+
+     Example 3:
+        [[0,1],[0,2],[1,2]] -> canFinish = true ---> Directed Acyclic Graph (DAG)
+        0 --> 1
+        |     |
+        -> 2 <-
+
+     Example 4:
+        [[1,0],[2,6],[1,7],[6,4],[7,0],[0,5]] -> canFinish = true ---> Directed Acyclic Graph (DAG)
+        1 --> 0 --> 5
+        ↓     ↑
+        7 -----
+        2 --> 6 --> 4
+
+     here in Example 4 DAG, we are traversing 1-0-5 and 1-7-0-5 ---> i.e we are traversing 0-5 path multiple times
+
+
+2. Topological sort
+-------------------
+Topological sort is only possible if the graph has no cycles --- only one direction
    It means one or more things should be done before the current thing / or one or more things are dependent on the current thing
    Examples:
    1) Dressing up for party
@@ -57,57 +111,20 @@ import java.util.*;
     So, a topological sort is an ordering of the nodes in a directed graph where for each directed edge from nodeU to nodeV u → v, u comes before v in the ordering.
  🔥 Khan's algorithm 🔥 is a simple topological sort algorithm that can find a topological ordering in O(V + E) time.
 
-
-
-
-        INITIAL THOUGHTS:
-        -----------------
-        1) numCourses is unique numbers in prerequisites[][]
-        2) prerequisites[i].length == 2
-        3) to complete prerequisites[i][0], we need to complete prerequisites[i][1]
-        4) use hashMap to note every possible pre-reqs
-        5) [[1,4],[2,4],[3,1],[3,2]] is valid --> one course(4) is used to complete multiple courses(1,2) and to complete one course(3) we may need to complete multiple courses(1,2) ---> i.e one course can have multiple pre-reqs
-        6) Now I see some graph structure like below ---> "Graph Nodes"
-
-                            3
-                          __|___
-                         /      \
-                        2        1
-                        |__    __|
-                           \  /
-                             4
-
-        7) [[1,0],[0,2],[2,1]] => {0=[2], 1=[0], 2=[1]} ---> so dfs?
-        8) if we get loop, return false
-        9) And the graph is also represented as below ---> "Adjacency List"
-
-            numCourses == num of unique courses = n = 5;
-            pre=[[1,4],[2,4],[3,1],[3,2]]
-
-                       n
-             __________|_________________
-             |     |       |            |
-             0     1       2            3
-                   |       |        ____|____
-                   4       4       1         2
-
-
- * @author Srinivas Vadige, srinivas.vadige@gmail.com
- * @since 14 Feb 2025
- * @link 207. Course Schedule <a href="https://leetcode.com/problems/course-schedule/">LeetCode Link</a>
- * @topics Graph, Topological Sort, DFS, BFS
- * @companies Amazon, Meta, Google, TikTok, Microsoft, Apple, Bloomberg, Tesla, Nordstrom, DoorDash, Coupang, Anduril, Oracle, Snowflake, PayPal, Swiggy, Cruise, IXL, CrowdStrike, State Farm, Uber, Adobe, ByteDance, Flipkart, eBay, Karat, Walmart Labs, Visa, Snap, Yelp
+</pre>
  */
 public class CourseSchedule {
     public static void main(String[] args) {
-        int numCourses = 20;
-        int[][] prerequisites = {{0,10},{3,18},{5,5},{6,11},{11,14},{13,1},{15,1},{17,4}};
+        int numCourses;
+        int[][] prerequisites;
 
         numCourses = 5;
         prerequisites = new int[][]{{1,3},{0,1},{2,0},{1,2}};
+//        numCourses = 20;
+//        prerequisites = new int[][]{{0,10},{3,18},{5,5},{6,11},{11,14},{13,1},{15,1},{17,4}};
         System.out.println("canFinish using BFS - Using Kahn's Algorithm Topological Sort => " + canFinishUsingBfsKahnsAlgorithmTopologicalSort(numCourses, prerequisites));
-        System.out.println("canFinish using DFS => " + canFinishUsingDfs(numCourses, prerequisites));
-        System.out.println("canFinish using Graph Class => " + canFinishUsingGraphClass(numCourses, prerequisites) );
+        System.out.println("canFinish using DFS => " + canFinishUsingDfs1(numCourses, prerequisites));
+        System.out.println("canFinish using Graph Class => " + canFinishUsingDfsWithGraphClass(numCourses, prerequisites) );
     }
 
 
@@ -115,8 +132,6 @@ public class CourseSchedule {
     /**
      * @TimeComplexity O(u + v), where u = numCourses / nodes and v = children list / vertices
      * @SpaceComplexity O(u + v)
-
-
 
      Here
      preReqs = [[1,3], [0,1], [2,0], [1,2]]
@@ -164,20 +179,44 @@ public class CourseSchedule {
 
      nodesVisited ≠ numCourses --> 2 ≠ 5
 
+
+     in-degree means = number of incoming arrows
+
+     [[0,1],[2,1],[1,3]]
+
+            3
+            ↓
+      0 --> 1
+            ↓
+            2
+
+    This topological representation looks like the opposite of normal graph DFS
+    Cause in topological representation, first complete the preReq[1] and move to preReq[0]
+
      */
     public static boolean canFinishUsingBfsKahnsAlgorithmTopologicalSort(int numCourses, int[][] prerequisites) {
         int[] inDegree = new int[numCourses]; // by default all nodes have inDegree=0
         List<List<Integer>> adj = new ArrayList<>(numCourses);
 
-        // prepare adjacency list for all nodes -- no children yet
+        // create the adjacency list for all nodes -- no children yet
         for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
 
-        // prepare adjacency list with children
+        // prepare the adjacency list with children
         for (int[] prereq : prerequisites) {
             adj.get(prereq[1]).add(prereq[0]);
-            inDegree[prereq[0]]++; // prereq[0] has one more dependency/prereq/parent ---> [0,1] means to complete course 0, we need to complete course 1 first. So, 1 is parent of 0;  inDegree = incoming arrows = how dependencies/prerequisites/parents does the current node have
+            inDegree[prereq[0]]++;
+            // prereq[0] has one more dependency/prereq/parent --->
+            // [0,1] means to complete course 0, we need to complete course 1 first. So, 1 is parent of 0;
+            // i.e., first complete 1 and then move to 0 ---> multiple courses are dependent on 1
+            // inDegree = incoming arrows = how dependencies/prerequisites/parents do the current node have
+
+            /*
+              // or
+              adj.get(prereq[0]).add(prereq[1]);
+              inDegree[prereq[1]]++;
+             */
         }
 
         Queue<Integer> queue = new LinkedList<>(); // for BFS
@@ -218,8 +257,126 @@ public class CourseSchedule {
     /**
      * @TimeComplexity O(u + v), where u = numCourses / nodes and v = children list / vertices
      * @SpaceComplexity O(u + v)
+     * Solve by focusing on Directed Acyclic Graphs (DAGs)
      */
-    public static boolean canFinishUsingDfs(int numCourses, int[][] prerequisites) {
+    static boolean[] seenPath;
+    static List<Integer>[] al; // adjacencyListGraph
+    static Boolean[] completed;
+    public static boolean canFinishUsingDfs1(int numCourses, int[][] prerequisites) {
+        al = new List[numCourses];
+        for (int i=0; i<numCourses; i++) al[i] = new ArrayList<>();
+        seenPath = new boolean[numCourses];
+        completed = new Boolean[numCourses];
+
+        // 1. PREPARE GRAPH
+        for(int[] pair: prerequisites) {
+            int u = pair[0];
+            int v = pair[1];
+
+            al[u].add(v);
+        }
+
+        // 2. DFS
+        for (int i=0; i<numCourses; i++) {
+            if (isCyclic(i)) return false;
+        }
+
+        return true;
+    }
+    private static boolean isCyclic(int course) {
+        if (completed[course] != null) return completed[course];
+
+        for (int nei: al[course]) {
+            if (seenPath[nei]) return completed[course] = true;
+
+            seenPath[nei]=true;
+            if (isCyclic(nei)) return completed[course] = true;
+            seenPath[nei]=false;
+        }
+        return completed[course] = false;
+    }
+    private static boolean isCyclic2(int course) { // here instead of marking seenPath[nei], we mark seenPath[course]
+        if (completed[course] != null) return completed[course];
+
+        seenPath[course] = true;
+        for (int nei : al[course]) {
+            if (seenPath[nei]) return completed[course] = true;
+            if (isCyclic2(nei)) return completed[course] = true;
+        }
+        seenPath[course] = false;
+
+        return completed[course] = false;
+    }
+
+
+
+
+
+
+
+
+    static int[] state;
+    /**
+     state
+         0 = unvisited
+         1 = visiting (in current DFS path)
+         2 = visited (fully processed, no cycle
+     same as {@link #canFinishUsingDfs1} with {@link #isCyclic2}
+     */
+    public static boolean canFinishUsingDfs2(int numCourses, int[][] prerequisites) {
+        // 1. Build graph
+        al = new List[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            al[i] = new ArrayList<>();
+        }
+
+        for (int[] p : prerequisites) {
+            int course = p[0];
+            int prereq = p[1];
+            al[course].add(prereq);
+        }
+
+        // 2. Initialize state array
+        state = new int[numCourses];
+
+        // 3. Run DFS from every node
+        for (int i = 0; i < numCourses; i++) {
+            if (state[i] == 0) {
+                if (dfs(i)) return false; // cycle detected
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * same as {@link #isCyclic2}
+     */
+    private static boolean dfs(int node) { // isCycle
+        if (state[node] == 1) return true; // If node is already in current DFS path → cycle
+        if (state[node] == 2) return false; // If node is already fully processed → no cycle from here
+
+        state[node] = 1; // Mark as visiting
+
+        for (int nei : al[node]) { // Explore neighbors
+            if (dfs(nei)) return true;
+        }
+
+        state[node] = 2; // Mark as fully processed
+        return false;
+    }
+
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(u + v), where u = numCourses / nodes and v = children list / vertices
+     * @SpaceComplexity O(u + v)
+     */
+    public static boolean canFinishUsingDfs3(int numCourses, int[][] prerequisites) {
         List<List<Integer>> adjList = new ArrayList<>(numCourses);
 
         for (int i = 0; i < numCourses; i++) { // all nodes from 0 to numCourses i.e inDegree=0 nodes don't have any prereqs
@@ -266,7 +423,7 @@ public class CourseSchedule {
 
 
 
-    public static boolean canFinishUsingDfs2(int numCourses, int[][] prerequisites) {
+    public static boolean canFinishUsingDfs4(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> graph = new HashMap<>(); // prepare graph using adjacencyList List[] or Map<node, List<childNode>>
         for(int[] pre: prerequisites) {
             graph.computeIfAbsent(pre[0], k-> new ArrayList<>()).add(pre[1]);
@@ -298,7 +455,7 @@ public class CourseSchedule {
 
 
 
-    public boolean canFinishUsingDfs3(int numCourses, int[][] prerequisites) {
+    public boolean canFinishUsingDfs5(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> graph = new HashMap<>(); // prepare graph using adjacency list int[] or hashMap
         for(int[] pre: prerequisites) {
             graph.computeIfAbsent(pre[0], k-> new ArrayList<>()).add(pre[1]);
@@ -365,7 +522,7 @@ public class CourseSchedule {
     private static Graph graph;
     private static boolean[] checkedCourses;
     private static boolean[] reachedCourses;
-    public static boolean canFinishUsingGraphClass(int numCourses, int[][] prerequisites) {
+    public static boolean canFinishUsingDfsWithGraphClass(int numCourses, int[][] prerequisites) {
         graph = new Graph(numCourses, prerequisites);
         checkedCourses = new boolean[numCourses];
         reachedCourses = new boolean[numCourses];
@@ -459,5 +616,39 @@ public class CourseSchedule {
             }
         }
         return res;
+    }
+
+
+
+
+
+
+    /**
+        It'll fail for Directed Acyclic Graphs DAGs
+     */
+    public boolean canFinishUsingUfNotWorking(int numCourses, int[][] prerequisites) {
+        int[] parent = new int[numCourses];
+        for (int i=0; i<numCourses; i++) parent[i]=i;
+
+        for (int[] pair: prerequisites) {
+            int u = pair[0];
+            int v = pair[1];
+            if (!canUnion(u,v,parent)) return false;
+        }
+        return true;
+    }
+    private boolean canUnion(int u, int v, int[] parent) {
+        int pu = find(u, parent);
+        int pv = find(v, parent);
+        if (pu == pv) return false;
+
+        parent[pu] = pv;
+        return true;
+    }
+    private int find(int x, int[] parent) {
+        while (parent[x] != x) {
+            x = find(parent[x], parent);
+        }
+        return x;
     }
 }
