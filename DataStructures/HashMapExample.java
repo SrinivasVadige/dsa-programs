@@ -166,9 +166,35 @@ import java.util.stream.Stream;
 
         Map<Integer, Integer> linkedHashMap5 = new LinkedHashMap<>(16, 0.75f, true); // same as above>
 
- NOTE:
- 1) We can achieve accessOrder inside insertion ordered LinkedHashMap
+ NOTES: 🔥
+1) We can achieve accessOrder inside insertion ordered LinkedHashMap
     ---> just by removing the node from the middle and adding the recent key at tail or end
+2) putIfAbsent → returns what was there before
+3) computeIfAbsent / computeIfPresent → returns what’s there now ---> so always use this for list addd like map.computeIfAbsent(k, k-> new ArrayList<>()).add(...)
+4) merge → updates and can delete (return null)
+5) remove(key, value) → deletes only if value matches (atomic)
+6) Using map.entrySet() we can remove the
+    map.entrySet()          // O(1) → just a view of the existing map
+       .removeIf(...)   // O(n) → iteration + removals
+    map.remove() is O(1)
+    map.entrySet().remove() is O(n)
+    normalSet.remove() is O(1)
+7) To avoid ConcurrentModificationException CME (remove an item while iterating) -> 1. Iterator and 2. ConcurrentHashMap, 3. map.entrySet.removeIf(->) or map.keySet.removeIf(->)
+Iterator<Map.Entry<K,V>> it = map.entrySet().iterator(); // or map.keySet().iterator()
+while (it.hasNext()) {
+    Map.Entry<K,V> e = it.next();
+    if (cond(e)) {
+        it.remove();   // ✅ safe
+    }
+}
+ConcurrentHashMap<K,V> chm = new ConcurrentHashMap<>();
+chm.forEach((k, v) -> {
+    if (cond(v)) {
+        chm.remove(k); // ✅ safe
+    }
+});
+map.entrySet().removeIf(e -> e.getValue() < 0); or map.keySet().removeIf(k -> k.startsWith("tmp"));
+
 
 */
 @SuppressWarnings("unused")
