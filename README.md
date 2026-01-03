@@ -223,6 +223,7 @@ Data Structures and Algorithm Programs
    * [Nearest Exit from Entrance in Maze](Algorithms/Graphs/NearestExitFromEntranceInMaze.java)
    * [Surrounded Regions](Algorithms/Graphs/SurroundedRegions.java)
    * [Clone Graph](Algorithms/Graphs/CloneGraph.java)
+   * [Snakes and Ladders](Algorithms/Graphs/SnakesAndLadders.java)
 
 9. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms)
 
