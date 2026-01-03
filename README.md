@@ -224,6 +224,7 @@ Data Structures and Algorithm Programs
    * [Surrounded Regions](Algorithms/Graphs/SurroundedRegions.java)
    * [Clone Graph](Algorithms/Graphs/CloneGraph.java)
    * [Snakes and Ladders](Algorithms/Graphs/SnakesAndLadders.java)
+   * [Minimum Genetic Mutation](Algorithms/Graphs/MinimumGeneticMutation.java)
 
 9. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms)
 
