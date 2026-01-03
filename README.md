@@ -225,6 +225,7 @@ Data Structures and Algorithm Programs
    * [Clone Graph](Algorithms/Graphs/CloneGraph.java)
    * [Snakes and Ladders](Algorithms/Graphs/SnakesAndLadders.java)
    * [Minimum Genetic Mutation](Algorithms/Graphs/MinimumGeneticMutation.java)
+   * [Word Ladder](Algorithms/Graphs/WordLadder.java)
 
 9. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms)
 
