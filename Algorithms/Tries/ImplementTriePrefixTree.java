@@ -3,9 +3,12 @@ package Algorithms.Tries;
 import java.util.ArrayList;
 import java.util.List;
 
-import Algorithms.Tries.ImplementTriePrefixTree.Trie;
-
 /**
+ * @author Srinivas Vadige, srinivas.vadige@gmail.com
+ * @since 23 Feb 2025
+ * @link 208. Implement Trie (Prefix Tree) <a href="https://leetcode.com/problems/implement-trie-prefix-tree/">LeetCode Link</a>
+ * @topics HashTable, String, Design, Trie
+ * @companies Oracle(4), MongoDB(4), Amazon(3), Bloomberg(2), Microsoft(5), Google(4), Meta(3), General Motors(3), Apple(2), DoorDash(10), Roblox(7), DocuSign(5), Citadel(3), Grammarly(3), Adobe(2), Walmart Labs(2), TikTok(2), Goldman Sachs(2), Uber(2)
  * <pre>
  *
     THOUGHTS:
@@ -28,8 +31,6 @@ import Algorithms.Tries.ImplementTriePrefixTree.Trie;
         e isEnd=true
  *
  * </pre>
- * @author Srinivas Vadige, srinivas.vadige@gmail.com
- * @since 23 Feb 2025
  */
 @SuppressWarnings("unused")
 public class ImplementTriePrefixTree {
@@ -58,7 +59,7 @@ public class ImplementTriePrefixTree {
     }
 
     static class Trie {
-        class TrieNode {
+        static class TrieNode {
             TrieNode[] children = new TrieNode[26]; // or HashMap
             boolean isEnd = false;
         }
@@ -102,6 +103,61 @@ public class ImplementTriePrefixTree {
 
 
 
+
+
+
+
+    static class Trie2 {
+
+        static class TrieNode {
+            private final int R = 26;
+            private final TrieNode[] links = new TrieNode[R];
+            private boolean isEnd;
+
+            public boolean containsKey(char ch) {return links[ch -'a'] != null;}
+            public TrieNode get(char ch) {return links[ch -'a'];}
+            public void put(char ch, TrieNode node) {links[ch -'a'] = node;}
+            public void setEnd() {isEnd = true;}
+            public boolean isEnd() {return isEnd;}
+        }
+
+        private final TrieNode root = new TrieNode();
+
+        public void insert(String word) {
+            TrieNode node = root;
+            for (int i = 0; i < word.length(); i++) {
+                char currentChar = word.charAt(i);
+                if (!node.containsKey(currentChar)) {
+                    node.put(currentChar, new TrieNode());
+                }
+                node = node.get(currentChar);
+            }
+            node.setEnd();
+        }
+
+        public boolean search(String word) {
+           TrieNode node = searchPrefix(word);
+           return node != null && node.isEnd();
+        }
+
+        public boolean startsWith(String prefix) {
+            TrieNode node = searchPrefix(prefix);
+            return node != null;
+        }
+
+        private TrieNode searchPrefix(String word) {
+            TrieNode node = root;
+            for (int i = 0; i < word.length(); i++) {
+               char c = word.charAt(i);
+               if (node.containsKey(c)) {
+                   node = node.get(c);
+               } else {
+                   return null;
+               }
+            }
+            return node;
+        }
+    }
 
 
 
@@ -221,10 +277,10 @@ public class ImplementTriePrefixTree {
 
 
 
-    class Trie2 {
+    static class Trie3 {
         Node root;
 
-        public Trie2() {
+        public Trie3() {
             root = new Node();
         }
 
@@ -240,7 +296,7 @@ public class ImplementTriePrefixTree {
             return root.search(prefix, 0, true);
         }
 
-        class Node {
+        static class Node {
             Node[] nodes;
             boolean isEnd;
 
