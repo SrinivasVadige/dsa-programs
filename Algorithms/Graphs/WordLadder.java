@@ -8,6 +8,7 @@ import java.util.*;
  * @link 127. Word Ladder <a href="https://leetcode.com/problems/word-ladder/">LeetCode Link</a>
  * @topics Graph, Hash Table, DFS, BFS
  * @companies CleverTap(8), Google(5), Meta(4), Amazon(4), Microsoft(3), Bloomberg(3), Oracle(3), ByteDance(2), Citadel(2), Okta(2), LinkedIn(5), Apple(3), TikTok(2), ServiceNow(2), Expedia(2), Reddit(18), Snap(8), Uber(6), eBay(6), Adobe(4), Flipkart(3), Visa(3), Salesforce(3), Box(3), The Trade Desk(3)
+ * @see Algorithms.Graphs.MinimumGeneticMutation
  */
 public class WordLadder {
     public static void main(String[] args) {
@@ -23,6 +24,7 @@ public class WordLadder {
     /**
      * @TimeComplexity O(M^2 * N), where M is the length of each word and N wordList size
      * @SpaceComplexity O(N)
+     * same as {@link Algorithms.Graphs.MinimumGeneticMutation#minMutationUsingBfs4}
      */
     public static int ladderLengthUsingBfs1(String beginWord, String endWord, List<String> wordList) {
         int k = beginWord.length();
