@@ -294,6 +294,7 @@ Data Structures and Algorithm Programs
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
+    * [Plus One](Algorithms/IntegerArray/PlusOne.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
