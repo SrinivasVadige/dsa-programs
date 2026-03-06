@@ -1,9 +1,6 @@
 package Algorithms.BackTracking;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
 
@@ -76,17 +73,76 @@ this means digits.length == List.get(i).length
 
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 16 Feb 2025
+ * @link 17. Letter Combinations of a Phone Number <a href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/">LeetCode link</a>
+ * @topics Hash Table, String, Backtracking
+ * @companies Amazon(11), LinkedIn(8), Microsoft(7), Meta(6), Google(5), Bloomberg(2), TCS(2), Epic Systems(15), DE Shaw(10), Uber(8), Accenture(8), Apple(6), Oracle(6), IBM(5), Zoho(5), Tesla(5), Flexport(5)
  */
 @SuppressWarnings("all")
 public class LetterCombinationsOfPhoneNumber {
     public static void main(String[] args) {
         String digits = "234";
-        System.out.println("letterCombinationsMyApproach(digits) => " + letterCombinationsMyApproach(digits));
-        System.out.println("letterCombinations(digits) => " + letterCombinations(digits));
+        System.out.println("letterCombinations 1 => " + letterCombinations1(digits));
+        System.out.println("letterCombinations 2 => " + letterCombinations2(digits));
     }
 
 
-    public static List<String> letterCombinationsMyApproach(String digits) {
+    /**
+     * @TimeComplexity O(4^n * n) -- worst case when 9 is in digits, where n is the length of digits and 4 is the max number of characters for a digit i.e "wxyz"
+     * @SpaceComplexity O(n) -- recursion stack space
+     */
+    static String[] keypad = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    static List<String> result = new ArrayList<>();
+    public static List<String> letterCombinations1(String digits) {
+        backtrack(new StringBuilder(), digits, 0);
+        return result;
+    }
+
+    private static void backtrack(StringBuilder word, String digits, int digitIndex){
+        if (word.length() == digits.length()) {
+            result.add(word.toString());
+            return;
+        }
+
+        String letters = keypad[digits.charAt(digitIndex)-'0'];
+        for (char c : letters.toCharArray()) {
+            word.append(c);
+            backtrack(word, digits, digitIndex+1);
+            word.deleteCharAt(word.length()-1);
+        }
+
+    }
+
+
+
+
+
+
+
+    public static List<String> letterCombinations2(String digits) {
+        if (digits.isEmpty()) return new ArrayList<>();
+        String[] map = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        return backtrack(digits, 0, map, new StringBuilder());
+    }
+
+    public static List<String> backtrack(String digits, int digitsIndex, String[] map, StringBuilder sb) {
+        if (digitsIndex == digits.length()) return List.of(sb.toString()); // or new ArrayList<>(Arrays.asList(sb.toString().split("")));
+
+        List<String> lst = new ArrayList<>();
+        String letters = map[digits.charAt(digitsIndex) - '0']; // or Integer.parseInt(digits.charAt(index) + "");
+        for (String c : letters.split("")) {
+            sb.append(c);
+            lst.addAll(backtrack(digits, digitsIndex + 1, map, sb));
+            sb.deleteCharAt(sb.length() - 1); // after adding "adg" to lst, remove "g" from sb as we need to calculate "adh"
+        }
+        return lst;
+    }
+
+
+
+
+
+
+    public static List<String> letterCombinations3(String digits) {
         List<String> lst = new ArrayList<>();
         int n = digits.length();
         String[] keypad = new String[]{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
@@ -108,44 +164,37 @@ public class LetterCombinationsOfPhoneNumber {
 
 
 
-    public static List<String> letterCombinationsMyApproach2(String digits) {
-        List<String> lst = new ArrayList<>();
-        int n = digits.length();
-        if(n==0) return lst;
+    public static List<String> letterCombinations4(String digits) {
         String[] keypad = new String[]{"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        dfs2(digits, n, 0, keypad, lst, new String());
-        return lst;
-    }
-    public static void dfs2(String digits, int n, int i, String[] keypad, List<String> lst, String prevStr) {
-        char digit = digits.charAt(i++);
-        String str = keypad[digit-'2'];
-        for(String s: str.split("")) {
-            if(i==n) lst.add(prevStr+s);
-            else dfs2(digits, n, i, keypad, lst, prevStr+s);
-        }
-    }
+        Queue<String> q = new LinkedList<>();
 
-
-
-
-    public static List<String> letterCombinations(String digits) {
-        if (digits.isEmpty()) return new ArrayList<>();
-        String[] map = new String[]{"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        return backtrack(digits, 0, map, new StringBuilder());
-    }
-
-    public static List<String> backtrack(String digits, int digitsIndex, String[] map, StringBuilder sb) {
-        if (digitsIndex == digits.length()) return List.of(sb.toString()); // or new ArrayList<>(Arrays.asList(sb.toString().split("")));
-
-        List<String> lst = new ArrayList<>();
-        String letters = map[digits.charAt(digitsIndex) - '0']; // or Integer.parseInt(digits.charAt(index) + "");
+        String letters = keypad[digits.charAt(0) - '2'];
         for (String c : letters.split("")) {
-            sb.append(c);
-            lst.addAll(backtrack(digits, digitsIndex + 1, map, sb));
-            sb.deleteCharAt(sb.length() - 1); // after adding "adg" to lst, remove "g" from sb as we need to calculate "adh"
+            q.offer(c);
         }
-        return lst;
+
+        for (int i = 1; i < digits.length(); i++) {
+            int size = q.size();
+
+            while (size-- > 0) {
+                String out = q.poll();
+
+                String currLetters = keypad[digits.charAt(i) - '2'];
+                for (char c : currLetters.toCharArray()) {
+                    q.offer(out + c);
+                }
+            }
+        }
+
+        return new ArrayList<>(q);
     }
+
+
+
+
+
+
+
 
     private static String[][] letters = new String[][]{
         {},                     //0
@@ -160,7 +209,7 @@ public class LetterCombinationsOfPhoneNumber {
         {"w", "x", "y", "z"},   //9
     };
 
-    public static List<String> letterCombinations2(String digits) {
+    public static List<String> letterCombinations5(String digits) {
         if (digits.length() == 0) return new ArrayList<>();
         List<String> res = new ArrayList<>();
         backtrack(digits, 0, new StringBuilder(), res);
@@ -181,6 +230,11 @@ public class LetterCombinationsOfPhoneNumber {
     }
 
 
+
+
+
+
+
     static Map<Character,String> map = new HashMap<>();
     static {
         map.put('2',"abc");
@@ -192,7 +246,7 @@ public class LetterCombinationsOfPhoneNumber {
         map.put('8',"tuv");
         map.put('9',"wxyz");
     }
-    public static List<String> letterCombinations3(String digits) {
+    public static List<String> letterCombinations6(String digits) {
         List<String> ans = new ArrayList<>();
         if(digits.length()==0)return ans;
         solve(0,digits,ans,new StringBuilder());
@@ -216,8 +270,16 @@ public class LetterCombinationsOfPhoneNumber {
 
 
 
+
+
+
+
+
+
+
+
     // Need to research more
-    public List<String> letterCombinationsMyApproachOld(String digits) {
+    public List<String> letterCombinationsMyApproachOldest(String digits) {
         if (digits.isEmpty()) return new ArrayList<>();
 
         Map<String, String> keyboard = new HashMap<>();
