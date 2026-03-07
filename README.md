@@ -84,6 +84,7 @@ Data Structures and Algorithm Programs
    * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
    * [Find Unique BinaryString](/Algorithms/BackTracking/FindUniqueBinaryString.java)
    * [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
+   * [Combinations](/Algorithms/BackTracking/Combinations.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch)
 
