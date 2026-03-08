@@ -1,9 +1,6 @@
 package Algorithms.BackTracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Let's say we have [1,2,3] list    of numbers
@@ -14,14 +11,88 @@ import java.util.List;
  *
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 19 Feb 2025
+ * @link 46. Permutations <a href="https://leetcode.com/problems/permutations/">LeetCode link</a>
+ * @topics Array, Backtracking
+ * @companies Google(10), Amazon(5), Meta(4), Microsoft(2), LinkedIn(5), Bloomberg(3), Goldman Sachs(2), TikTok(7), Apple(6), Oracle(4), Booking.com(4), Adobe(2), Epic Systems(2), Uber(2), Cisco(2), Arista Networks(2), American Express(2)
  */
 public class Permutations {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 4};
-        System.out.println("permute(nums) => " + permute(nums));
+        System.out.println("permute1(nums) => " + permute1(nums));
         System.out.println("permute2(nums) => " + permute2(nums));
         System.out.println("permute3(nums) => " + permute3(nums));
     }
+
+
+
+
+    /**
+     * @TimeComplexity O(n * n!), where left side n is for cloning the subSet and right side n! is for permutations
+     * @SpaceComplexity O(n), where n is the subSet size but the actual space complexity is O(n * n!) for storing all permutations
+     <pre>
+                                                                [ ]
+                            _____________________________________|_____________________________________
+                            [1]                                 [2]                                   [3]
+                     ________|________
+                    [1,2]          [1,3]
+                      |              |
+                   [1,2,3]        [1,3,2]
+     </pre>
+     */
+    static List<List<Integer>> result = new ArrayList<>();
+    public static List<List<Integer>> permute1(int[] nums) {
+        backtrack(nums, new LinkedHashSet<>());
+        return result;
+    }
+
+    private static void backtrack(int[] nums, Set<Integer> subSet) {
+        if (subSet.size() == nums.length) {
+            result.add(new ArrayList<>(subSet));
+            return;
+        }
+
+        for (int num : nums) {
+            if (subSet.add(num)) {
+                backtrack(nums, subSet);
+                subSet.remove(num);
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    static List<List<Integer>> res = new ArrayList<>();
+    public static List<List<Integer>> permute2(int[] nums) {
+        backtrack(nums, 0);
+        return res;
+    }
+    private static void backtrack(int[] nums, int startI) {
+        // base case: all positions fixed
+        if (startI == nums.length) {
+            List<Integer> perm = new ArrayList<>();
+            for (int num : nums) perm.add(num);
+            res.add(perm);
+            return;
+        }
+
+        for (int i = startI; i < nums.length; i++) {
+            swap(nums, startI, i);      // choose
+            backtrack(nums, startI + 1);
+            swap(nums, startI, i);      // undo
+        }
+    }
+    private static void swap(int[] nums, int a, int b) {
+        int temp = nums[a];
+        nums[a] = nums[b];
+        nums[b] = temp;
+    }
+
+
+
+
+
 
     /**
      * <pre>
@@ -90,11 +161,11 @@ public class Permutations {
     * </pre>
      */
 
-    public static List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> lst = new ArrayList<>();
+    public static List<List<Integer>> permute3(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
         if (nums.length == 1) { // base case for single numbers
-            lst.add(new ArrayList<>(Arrays.asList(nums[0])));
-            return lst;
+            list.add(new ArrayList<>(Arrays.asList(nums[0])));
+            return list;
         }
 
         for (int i = 0; i < nums.length; i++) {
@@ -107,21 +178,22 @@ public class Permutations {
                     index++;
                 }
             }
-            List<List<Integer>> perms = permute(remainingNums); // divide into smaller problems until base case single number
+            List<List<Integer>> perms = permute3(remainingNums); // divide into smaller problems until base case single number
             for (List<Integer> perm : perms) { // add the current number and return the list and this list will be added to it's parent list & so on
                 perm.add(n);
             }
 
-            lst.addAll(perms);
+            list.addAll(perms);
         }
-        return lst;
+
+        return list;
     }
 
     /**
     In same code in python looks like:
 
     def permute(nums):
-        lst = []
+        list = []
 
         #base case
         if len(nums) == 1:
@@ -134,14 +206,14 @@ public class Permutations {
             for perm in perms:
                 perm.append(n)
 
-            lst.extend(perms)
+            list.extend(perms)
 
-        return lst
+        return list
 
     or
 
     def permute(nums):
-        lst = []
+        list = []
 
         #base case
         if len(nums) == 1:
@@ -153,37 +225,37 @@ public class Permutations {
             for perm in perms:
                 perm.append(n)
 
-            lst.extend(perms)
+            list.extend(perms)
             nums.append(n)
 
-        return lst
+        return list
      */
 
 
 
 
     // this tree is default one i.e converting from [] to [1,2,3,4], not like above #permute()
-    public static List<List<Integer>> permute2(int[] nums) {
-        List<List<Integer>> lst = new ArrayList<>();
-        dfs(nums, new ArrayList<>(), lst); // empty path
-        return lst;
+    public static List<List<Integer>> permute4(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+        dfs(nums, new ArrayList<>(), list); // empty path
+        return list;
     }
 
-    private static void dfs(int[] nums, List<Integer> path, List<List<Integer>> lst) {
+    private static void dfs(int[] nums, List<Integer> path, List<List<Integer>> list) {
         if (path.size() == nums.length) { // base case: path is a permutation of nums
-            lst.add(new ArrayList<>(path));
+            list.add(new ArrayList<>(path));
             return;
         }
 
         /**
          * add every possible number but duplicates are not allowed.
-         * So, use LinkedHashSet - Set<Integer> set = new LinkedHashSet<>(); lst.add(new ArrayList<>(set)); but to get last element from set is O(n)
+         * So, use LinkedHashSet - Set<Integer> set = new LinkedHashSet<>(); list.add(new ArrayList<>(set)); but to get last element from set is O(n)
          * or path.contains(nums[i])
          */
         for (int i = 0; i < nums.length; i++) {
             if (path.contains(nums[i])) continue; // skip duplicates
             path.add(nums[i]); // add the current number to the path
-            dfs(nums, path, lst); // recurse
+            dfs(nums, path, list); // recurse
             path.remove(path.size() - 1); // after calculating [1,2], we need calculate [1,3], [1,4]. So, remove the last element
         }
     }
@@ -192,16 +264,16 @@ public class Permutations {
 
 
     // it's same as #permute()
-    public static List<List<Integer>> permute3(int[] nums) {
+    public static List<List<Integer>> permute5(int[] nums) {
         LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
         int rSize;
-        result.add(new ArrayList<Integer>());
+        result.add(new ArrayList<>());
         for (int num: nums) {
             rSize = result. size();
             while (rSize > 0) {
                 List<Integer> permutation = result.pollFirst();
                 for (int i = 0; i <= permutation.size(); i++) {
-                    List<Integer> newPermutation = new ArrayList<Integer>(permutation);
+                    List<Integer> newPermutation = new ArrayList<>(permutation);
                     newPermutation.add(i, num) ;
                     result.add(newPermutation) ;
                 }
