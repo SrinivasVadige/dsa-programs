@@ -7,6 +7,10 @@ import java.util.Arrays;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 20 Feb 2025
+ * @link 51. N-Queens <a href="https://leetcode.com/problems/n-queens/">LeetCode link</a>
+ * @topics Backtracking
+ * @companies Google(13), Amazon(6), Microsoft(4), Meta(3), Bloomberg(3), TikTok(17), Goldman Sachs(7), TCS(5), Oracle(5), Zoho(5), IBM(2), Adobe(2), Apple(2), Snowflake(2), Salesforce(2)
+ * @see Algorithms.BackTracking.NQueens2
  */
 public class NQueens {
     public static void main(String[] args) {

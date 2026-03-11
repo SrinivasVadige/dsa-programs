@@ -78,6 +78,7 @@ Data Structures and Algorithm Programs
    * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
    * [Permutations](/Algorithms/BackTracking/Permutations.java)
    * [N-Queens](/Algorithms/BackTracking/NQueens.java)
+   * [N-Queens II](/Algorithms/BackTracking/NQueens2.java)
    * [Subsets](/Algorithms/BackTracking/Subsets.java)
    * [Word Search](/Algorithms/BackTracking/WordSearch.java)
    * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
