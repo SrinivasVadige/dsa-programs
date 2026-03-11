@@ -84,6 +84,10 @@ public class NQueens2 {
 
 
 
+    /**
+     * @TimeComplexity O(2^(n²))
+     * @SpaceComplexity O(n^2)
+     */
     public static int totalNQueensUsingBacktracking2(int n) {
         int[][] board = new int[n][n];
         return backtrack(board, 0);
@@ -125,6 +129,8 @@ public class NQueens2 {
 
     /**
      * 🔥🔥🔥
+     * @TimeComplexity O(n!)
+     * @SpaceComplexity O(n)
                      0   1   2   3   4  ---> cols
                    ---------------------
                0 |  [ ] [ ] [ ] [ ] [ ]
@@ -189,7 +195,10 @@ public class NQueens2 {
 
 
 
-
+    /**
+     * @TimeComplexity O(n!)
+     * @SpaceComplexity O(n)
+     */
     static Set<Integer> rSeen = new HashSet<>();
     static Set<Integer> cSeen = new HashSet<>();
     public static int totalNQueensUsingBacktracking4(int n) {
