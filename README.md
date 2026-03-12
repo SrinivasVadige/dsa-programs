@@ -174,6 +174,7 @@ Data Structures and Algorithm Programs
    * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
    * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
    * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
+   * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
 
 7. #### [DynamicProgramming](Algorithms/DynamicProgramming)
 

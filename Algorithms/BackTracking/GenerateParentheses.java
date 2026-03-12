@@ -7,7 +7,7 @@ import java.util.*;
  * @since 17 Feb 2025
  * @link 22. Generate Parentheses <a href="https://leetcode.com/problems/generate-parentheses/">LeetCode link</a>
  * @topics String, Backtracking, Dynamic Programming, Divide and Conquer
- * @companies Amazon, Google, Zoho, Meta, Bloomberg, Microsoft, TikTok, Grammarly, Walmart Labs, Apple, Infosys, tcs, Flipkart, EPAM Systems, eBay, ServiceNow, Adobe, Yandex, Uber, Yahoo, Oracle, Goldman Sachs, Nvidia, Huawei, J.P. Morgan, DE Shaw
+ * @companies Amazon(18), Google(14), Meta(9), Microsoft(6), Bloomberg(4), TikTok(3), IBM(2), Walmart Labs(2), Zoho(16), Oracle(11), Apple(10), Grammarly(9), Yandex(7), Goldman Sachs(6), ServiceNow(6), Infosys(5), TCS(4), Adobe(4)
  */
 @SuppressWarnings("all")
 public class GenerateParentheses {
@@ -17,7 +17,7 @@ public class GenerateParentheses {
         System.out.println("generateParenthesis using open & close counts => " + generateParenthesisUsingOpenAndCloseCounts(n));
         System.out.println("generateParenthesis using DivideAndConquer => " + generateParenthesisUsingDivideAndConquer(n));
         System.out.println("generateParenthesis using open & close counts 2 => " + generateParenthesisUsingOpenAndCloseCounts2(n));
-        System.out.println("generateParenthesisMyApproach(n): " + generateParenthesisMyApproach(n));
+        System.out.println("generateParenthesisMyApproach(n): " + generateParenthesisMyApproachOld(n));
     }
 
 
@@ -45,7 +45,7 @@ public class GenerateParentheses {
                                                        ""
                                            ____________|_____
                                            |                 |
-                                          "("                ❌ close<open is false
+                                          "("                ❌ as "close < open" is false
                           _________________|_____________________________________________________________________________________________________
                           |                                                                                                                         |
                         "(("                                                                                                                       "()" c<o true
@@ -63,8 +63,60 @@ public class GenerateParentheses {
                   ❌ o<n false  "((()))"             ❌ o<n false     "(()())" c<o t  ❌ o<n f      "(())()"            ❌        "()(())" ❌         "()()()"
                                    ✅                                    ✅                             ✅                           ✅                  ✅
 
+
+
+     and to understand how the time complexity is calculated
+
+    n = 1
+    ()
+    count = 1
+
+    n = 2
+    (())
+    ()()
+    count = 2
+
+    n = 3
+    ((()))
+    (()())
+    (())()
+    ()(())
+    ()()()
+    Count = 5
+
+
+    Number of valid combinations:
+    n = 1 → 1
+    n = 2 → 2
+    n = 3 → 5
+    n = 4 → 14
+    n = 5 → 42
+    n = 6 → 132
+
+    This sequence is the Catalan sequence.
+    Catalan(n) ≈ 4^n / √n and we know that 2^(2n) = 4^n
+
      */
     public static List<String> generateParenthesisUsingOpenAndCloseCounts(int n) {
+        List<String> result = new ArrayList<>();
+        backtrack(n, 1, 0, "(", result);
+        return result;
+    }
+    private static void backtrack(int n, int l, int r, String str, List<String> result) {
+        if (n == l && n == r) {
+            result.add(str);
+            return;
+        } else if (l < r || n < l || n < r) { // as close braces <= open braces
+            return;
+        }
+
+        backtrack(n, l+1, r, str+"(", result);
+        backtrack(n, l, r+1, str+")", result);
+    }
+
+
+
+    public static List<String> generateParenthesisUsingOpenAndCloseCounts2(int n) {
         List<String> lst = new ArrayList<>();
         backtrack(lst, "", 0, 0, n);
         return lst;
@@ -80,18 +132,47 @@ public class GenerateParentheses {
     }
 
 
+    /**
+     * @TimeComplexity O(4ⁿ / √n)
+     * @SpaceComplexity O(2n)
+
+                                                     F(n)
+              ________________________________________|________________________________________
+              |                      |                            |                           |
+          F(0)F(n-1)             F(1)F(n-2)                  F(2)F(n-3) ..........       F(n-1)(F0)
+
+        and again each F(0), F(1).... F(n-1) will be further divided like above decision tree
+
+    Algorithm:
+
+    1. If n = 0, return [""].
+
+    2. Create an empty array answer = []. Iterate over the number of parentheses pairs with a variable left_count.
+
+    3. Iterate over each valid string left_string from generateParenthesis(left_count).
+
+    4. Iterate over each valid string right_string from generateParenthesis(n - left_count - 1).
+
+    5. Construct a valid string of length 2n: We enclose left_string by a pair of parentheses, which is denoted as ( + left_string + ), then contatenate it with right_string, and add the resulting string to answer.
+
+    6. Return answer when the nested iterations are complete.
 
 
+
+     */
     public static List<String> generateParenthesisUsingDivideAndConquer(int n) {
         if (n == 0) {
             return new ArrayList(Arrays.asList(""));
         }
 
         List<String> answer = new ArrayList();
-        for (int leftCount = 0; leftCount < n; ++leftCount)
-            for (String leftString : generateParenthesisUsingDivideAndConquer(leftCount))
-                for (String rightString : generateParenthesisUsingDivideAndConquer(n - 1 - leftCount))
+        for (int leftCount = 0; leftCount < n; leftCount++) {
+            for (String leftString : generateParenthesisUsingDivideAndConquer(leftCount)) { // F(0)
+                for (String rightString : generateParenthesisUsingDivideAndConquer(n - 1 - leftCount)) { // F(n-1-0) = F(n-1)
                     answer.add("(" + leftString + ")" + rightString);
+                }
+            }
+        }
         return answer;
     }
 
@@ -102,7 +183,7 @@ public class GenerateParentheses {
 
 
 
-    public static List<String> generateParenthesisUsingOpenAndCloseCounts2(int n) {
+    public static List<String> generateParenthesisUsingOpenAndCloseCounts3(int n) {
         List<String> res = new ArrayList<>();
         genParenthesisHelper(res, new StringBuilder(), n, n);
         return res;
@@ -135,6 +216,8 @@ public class GenerateParentheses {
     /**
      * @TimeComplexity O(2^2n * n)
      * @SpaceComplexity O(2^2n * n)
+     * 2^2n cause in 2n size string we have 2 choices for each index i.e "(" or ")" --> 2*2*2...n times --> 2^n
+     * and for each 2^2n we have n size string and we use isValid() which takes O(n) time --> 2^2n * n
      */
     public static List<String> generateParenthesisUsingBruteForceIsValid(int n) {
         List<String> res = new ArrayList<>();
@@ -253,7 +336,7 @@ public class GenerateParentheses {
         "()(("         "()()"   "(((("    "((()"  "(()("    "(())"
 
      */
-    public static List<String> generateParenthesisMyApproach(int n) {
+    public static List<String> generateParenthesisMyApproachOld(int n) {
         List<String> lst = new ArrayList<>();
         backtrack(n, n-1, -1, lst, "("); // we already know that ")" is not well-formed
         return lst;
