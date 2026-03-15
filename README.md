@@ -113,7 +113,7 @@ Data Structures and Algorithm Programs
    * [Maximum Depth of Binary Tree](/Algorithms/BinaryTrees/MaximumDepthOfBinaryTree.java)
    * [Construct Binary Tree from Preorder and Inorder Traversal](/Algorithms/BinaryTrees/ConstructBinaryTreeFromPreorderAndInorderTraversal.java)
    * [Construct Binary Tree from Inorder and Postorder Traversal](/Algorithms/BinaryTrees/ConstructBinaryTreeFromInorderAndPostorderTraversal.java)
-   * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
+   * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinaryTrees/ConvertSortedArrayToBinarySearchTree.java)
    * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
    * [Binary Tree Right Side View](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
    * [Kth Smallest Element in a BST](/Algorithms/BinaryTrees/KthSmallestElementInBST.java)
@@ -172,7 +172,7 @@ Data Structures and Algorithm Programs
    * [Median of Two Sorted Arrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
    * [Merge k Sorted Lists](/Algorithms/LinkedListAlgos/MergeKSortedLists.java)
    * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
-   * [SortedArray to BinarySearchTree](/Algorithms/BinaryTrees/SortedArrayToBinarySearchTree.java)
+   * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinaryTrees/ConvertSortedArrayToBinarySearchTree.java)
    * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
    * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
 
