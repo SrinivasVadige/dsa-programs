@@ -65,7 +65,7 @@ public class ConvertSortedArrayToBinarySearchTree {
 
     public static void main(String[] args) {
         int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        TreeNode root = sortedArrayToBST1(nums);
+        TreeNode root = sortedArrayToBSTUsingDivideAndConquerApproach1(nums);
         printTree(root);
     }
 
@@ -75,7 +75,7 @@ public class ConvertSortedArrayToBinarySearchTree {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(log n) for recursion stack
      */
-    public static TreeNode sortedArrayToBST1(int[] nums) {
+    public static TreeNode sortedArrayToBSTUsingDivideAndConquerApproach1(int[] nums) {
         TreeNode root = new TreeNode();
         buildBalancedBST(nums, 0, nums.length-1, root);
         return root;
@@ -105,7 +105,7 @@ public class ConvertSortedArrayToBinarySearchTree {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(log n) for recursion stack
      */
-    public static TreeNode sortedArrayToBST2(int[] nums) {
+    public static TreeNode sortedArrayToBSTUsingDivideAndConquerApproach2(int[] nums) {
         return buildBalancedBST(nums, 0, nums.length-1);
     }
     private static TreeNode buildBalancedBST(int[] nums, int l, int r) {
@@ -128,14 +128,14 @@ public class ConvertSortedArrayToBinarySearchTree {
      * @TimeComplexity O(n log n) for copyOfRange() and O(n) for recursion
      * @SpaceComplexity O(n log n) for recursion stack
      */
-    public static TreeNode sortedArrayToBST3(int[] nums) {
+    public static TreeNode sortedArrayToBSTUsingDivideAndConquerApproach3(int[] nums) {
         int n = nums.length;
         if (n == 0) return null;
 
         int midI = n/2;
         TreeNode node = new TreeNode(nums[midI]);
-        if (midI-1 >= 0) node.left = sortedArrayToBST3(Arrays.copyOfRange(nums, 0, midI));
-        if (midI+1 <= n-1) node.right = sortedArrayToBST3(Arrays.copyOfRange(nums, midI+1, n));
+        if (midI-1 >= 0) node.left = sortedArrayToBSTUsingDivideAndConquerApproach3(Arrays.copyOfRange(nums, 0, midI));
+        if (midI+1 <= n-1) node.right = sortedArrayToBSTUsingDivideAndConquerApproach3(Arrays.copyOfRange(nums, midI+1, n));
 
         return node;
     }
@@ -149,7 +149,7 @@ public class ConvertSortedArrayToBinarySearchTree {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(log n) for recursion stack
      */
-    public TreeNode sortedArrayToBST4(int[] nums) {
+    public TreeNode sortedArrayToBSTUsingDivideAndConquerApproach4(int[] nums) {
         return helper(nums, 0, nums.length - 1);
     }
     public TreeNode helper(int[] nums, int left, int right) {
