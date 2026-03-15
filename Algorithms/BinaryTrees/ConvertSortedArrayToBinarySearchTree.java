@@ -1,6 +1,7 @@
 package Algorithms.BinaryTrees;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
@@ -68,6 +69,12 @@ public class ConvertSortedArrayToBinarySearchTree {
         printTree(root);
     }
 
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(log n) for recursion stack
+     */
     public static TreeNode sortedArrayToBST1(int[] nums) {
         TreeNode root = new TreeNode();
         buildBalancedBST(nums, 0, nums.length-1, root);
@@ -92,6 +99,12 @@ public class ConvertSortedArrayToBinarySearchTree {
 
 
 
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(log n) for recursion stack
+     */
     public static TreeNode sortedArrayToBST2(int[] nums) {
         return buildBalancedBST(nums, 0, nums.length-1);
     }
@@ -110,6 +123,11 @@ public class ConvertSortedArrayToBinarySearchTree {
 
 
 
+
+    /**
+     * @TimeComplexity O(n log n) for copyOfRange() and O(n) for recursion
+     * @SpaceComplexity O(n log n) for recursion stack
+     */
     public static TreeNode sortedArrayToBST3(int[] nums) {
         int n = nums.length;
         if (n == 0) return null;
@@ -120,6 +138,32 @@ public class ConvertSortedArrayToBinarySearchTree {
         if (midI+1 <= n-1) node.right = sortedArrayToBST3(Arrays.copyOfRange(nums, midI+1, n));
 
         return node;
+    }
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(log n) for recursion stack
+     */
+    public TreeNode sortedArrayToBST4(int[] nums) {
+        return helper(nums, 0, nums.length - 1);
+    }
+    public TreeNode helper(int[] nums, int left, int right) {
+        if (left > right) return null;
+
+        // choose random middle node as a root
+        int p = (left + right) / 2;
+        if ((left + right) % 2 == 1) p += new Random().nextInt(2);
+
+        // preorder traversal: node -> left -> right
+        TreeNode root = new TreeNode(nums[p]);
+        root.left = helper(nums, left, p - 1);
+        root.right = helper(nums, p + 1, right);
+        return root;
     }
 
 
