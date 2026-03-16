@@ -23,7 +23,10 @@ import java.util.stream.IntStream;
 public class BubbleSort {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(bubbleSort2(new int[]{3, 2, 4, -1, 1000, 100, 3, 1})));
+        int[] items = new int[]{3, 2, 4, -1, 1000, 100, 3, 1};
+        System.out.println("\nbubbleSort 1 => " + Arrays.toString(bubbleSortUsingClassicApproach(Arrays.copyOf(items, items.length))));
+        System.out.println("\nbubbleSort 2 => " + Arrays.toString(bubbleSortUsingClassicEnhancedApproach1(Arrays.copyOf(items, items.length))));
+        System.out.println("\nbubbleSort 3 => " + Arrays.toString(bubbleSortUsingClassicEnhancedApproach2(Arrays.copyOf(items, items.length))));
     }
 
 
@@ -32,7 +35,7 @@ public class BubbleSort {
      * @TimeComplexity O(n²)
      * @SpaceComplexity O(1)
      */
-    public static int[] bubbleSort1(int[] items){
+    public static int[] bubbleSortUsingClassicApproach(int[] items){
         System.out.println("Given array: " + Arrays.toString(items));
 
         for(int i=0; i<items.length; i++){
@@ -61,8 +64,11 @@ public class BubbleSort {
 
 
 
-
-    public static int[] bubbleSort2(int[] items) {
+    /**
+     * @TimeComplexity O(n²)
+     * @SpaceComplexity O(1)
+     */
+    public static int[] bubbleSortUsingClassicEnhancedApproach1(int[] items) {
         int n = items.length;
 
         for (int i = 0; i < n-1; i++) {
@@ -82,7 +88,12 @@ public class BubbleSort {
 
 
 
-    public static int[] bubbleSort3(int[] items) {
+
+    /**
+     * @TimeComplexity O(n²)
+     * @SpaceComplexity O(1)
+     */
+    public static int[] bubbleSortUsingClassicEnhancedApproach2(int[] items) {
         int n = items.length;
 
         for (int i = 0; i < n-1; i++) {
@@ -98,5 +109,132 @@ public class BubbleSort {
         }
 
         return items;
+    }
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n) in best case scenario
+     * @SpaceComplexity O(1)
+     * If no swaps in a pass → array already sorted.
+     */
+    public static void bubbleSortUsingEarlyStop(int[] a) {
+        int n = a.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false;
+
+            for (int j = 0; j < n - i - 1; j++) {
+
+                if (a[j] > a[j + 1]) {
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+
+                    swapped = true;
+                }
+            }
+
+            if (!swapped) return;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n^2)
+     * @SpaceComplexity O(1)
+     * After the last swap, everything to the right is already sorted.
+     * So we shrink the comparison range aggressively.
+     */
+    public static void bubbleSortUsingBoundary(int[] a) {
+        int n = a.length;
+
+        while (n > 1) {
+            int lastSwap = 0;
+
+            for (int j = 0; j < n - 1; j++) {
+
+                if (a[j] > a[j + 1]) {
+                    int temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+
+                    lastSwap = j + 1;
+                }
+            }
+
+            n = lastSwap;
+        }
+    }
+
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n²) worst case.
+     * @SpaceComplexity O(1)
+     * Bubble from left → then bubble from right
+     * Helps when small elements are stuck at the end
+     * Better when disorder exists on both sides
+     */
+    public static void bubbleSortUsingCocktailSort(int[] a) {
+
+        int start = 0;
+        int end = a.length - 1;
+
+        while (start < end) {
+
+            for (int j = start; j < end; j++) {
+                if (a[j] > a[j + 1]) {
+                    int t = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = t;
+                }
+            }
+            end--;
+
+            for (int j = end; j > start; j--) {
+                if (a[j] < a[j - 1]) {
+                    int t = a[j];
+                    a[j] = a[j - 1];
+                    a[j - 1] = t;
+                }
+            }
+            start++;
+        }
+    }
+
+
+
+
+
+
+
+    /**
+     * @TimeComplexity O(n²)
+     * @SpaceComplexity O(1)
+     */
+    public static void bubbleSortRecursive(int[] a, int n) {
+        if (n == 1) return;
+
+        for (int j = 0; j < n - 1; j++) {
+
+            if (a[j] > a[j + 1]) {
+                int t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+        }
+
+        bubbleSortRecursive(a, n - 1);
     }
 }
