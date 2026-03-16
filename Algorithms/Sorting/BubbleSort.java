@@ -23,7 +23,7 @@ import java.util.stream.IntStream;
 public class BubbleSort {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(sort(new int[]{3, 2, 4, -1, 1000, 100, 3, 1})));
+        System.out.println(Arrays.toString(bubbleSort2(new int[]{3, 2, 4, -1, 1000, 100, 3, 1})));
     }
 
 
@@ -32,7 +32,7 @@ public class BubbleSort {
      * @TimeComplexity O(n²)
      * @SpaceComplexity O(1)
      */
-    public static int[] sort(int[] items){
+    public static int[] bubbleSort1(int[] items){
         System.out.println("Given array: " + Arrays.toString(items));
 
         for(int i=0; i<items.length; i++){
@@ -43,7 +43,8 @@ public class BubbleSort {
                 int jItem = items[j];
                 int jNextItem = items[j+1];
                 System.out.println(Arrays.toString(items) + " - " + j + " & " + (j+1));
-                if(jNextItem < jItem){ // or keep track of the final updatable j+1 index in temp var and swap values after the j-loop
+                // or just like #bubbleSort2() or #bubbleSort3() -> keep track of the final maxIndex j+1 index and swap values after the j-loop
+                if(jNextItem < jItem){
                     int temp = items[j];
                     items[j] = items[j+1];
                     items[j+1] = temp;
@@ -51,6 +52,49 @@ public class BubbleSort {
             }
 
             System.out.println(Arrays.toString(items) + " - done");
+        }
+
+        return items;
+    }
+
+
+
+
+
+
+    public static int[] bubbleSort2(int[] items) {
+        int n = items.length;
+
+        for (int i = 0; i < n-1; i++) {
+            int maxIndex = 0; // next biggest item index
+
+            for (int j = 0; j < n-i-1; j++) {
+                if (items[maxIndex] < items[j+1]) maxIndex = j+1;
+            }
+
+            int lastUnsortedItem = items[n-i-1];
+            items[n-i-1] = items[maxIndex];
+            items[maxIndex] = lastUnsortedItem;
+
+        }
+        return items;
+    }
+
+
+
+    public static int[] bubbleSort3(int[] items) {
+        int n = items.length;
+
+        for (int i = 0; i < n-1; i++) {
+            int maxIndex = 0;
+
+            for (int j = 1; j < n-i; j++) {
+                if (items[maxIndex] < items[j]) maxIndex = j;
+            }
+
+            int lastUnsortedItem = items[n-i-1];
+            items[n-i-1] = items[maxIndex];
+            items[maxIndex] = lastUnsortedItem;
         }
 
         return items;
