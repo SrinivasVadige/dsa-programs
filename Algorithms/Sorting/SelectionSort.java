@@ -20,6 +20,7 @@ public class SelectionSort { // Select from left to right; j=i+1
      */
     public static int[] selectionSort(int[] items){
         for(int i=0; i<items.length; i++){
+            // PLACE THE iItem IN IT'S CORRECT POSITION
             for(int j=i+1; j<items.length; j++){
                 int iItem = items[i];
                 int jItem = items[j];
