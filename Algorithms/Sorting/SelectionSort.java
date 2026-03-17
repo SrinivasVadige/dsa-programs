@@ -8,16 +8,22 @@ import java.util.Arrays;
 public class SelectionSort { // Select from left to right; j=i+1
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(sort(new int[]{3, 2, 4, -1, 1000, 100, 3, 1})));
+        System.out.println(Arrays.toString(selectionSort(new int[]{3, 2, 4, -1, 1000, 100, 3, 1})));
     }
 
-     // keep the current left item constant and slide every right side items one by one
-    public static int[] sort(int[] items){
+    /**
+     * @TimeComplexity O(n²)
+     * @SpaceComplexity O(1)
+     * Move from left to right and sort from right to left
+     * keep the current left item iItem constant and slide every right side items one by one till the iItem placed in it's correct position
+     * So, it's looks like the combination of {@link Algorithms.Sorting.BubbleSort#bubbleSortUsingClassicApproach} and {@link Algorithms.Sorting.InsertionSort#insertionSortUsingSwap}
+     */
+    public static int[] selectionSort(int[] items){
         for(int i=0; i<items.length; i++){
             for(int j=i+1; j<items.length; j++){
                 int iItem = items[i];
                 int jItem = items[j];
-                if(jItem < iItem){ //swap every time or store the smallest item index and 'swap at last j'
+                if(iItem > jItem){ //swap every time or store the smallest item index and 'swap at last j'
                     int temp = items[i];
                     items[i] = items[j];
                     items[j] = temp;

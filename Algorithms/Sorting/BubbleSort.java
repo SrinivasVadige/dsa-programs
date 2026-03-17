@@ -34,6 +34,8 @@ public class BubbleSort {
     /**
      * @TimeComplexity O(n²)
      * @SpaceComplexity O(1)
+
+        This {@link #bubbleSortUsingClassicApproach} (left to right) is opposite of {@link Algorithms.Sorting.InsertionSort#insertionSortUsingSwap} (right to left)
      */
     public static int[] bubbleSortUsingClassicApproach(int[] items){
         System.out.println("Given array: " + Arrays.toString(items));
