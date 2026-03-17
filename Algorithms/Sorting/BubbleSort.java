@@ -47,7 +47,7 @@ public class BubbleSort {
                 int jNextItem = items[j+1];
                 System.out.println(Arrays.toString(items) + " - " + j + " & " + (j+1));
                 // or just like #bubbleSort2() or #bubbleSort3() -> keep track of the final maxIndex j+1 index and swap values after the j-loop
-                if(jNextItem < jItem){
+                if(jItem > jNextItem){
                     int temp = items[j];
                     items[j] = items[j+1];
                     items[j+1] = temp;
