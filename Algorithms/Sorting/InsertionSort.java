@@ -6,6 +6,8 @@ import java.util.Arrays;
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 21 Sept 2024
 
+    @TimeComplexity O(n²) worst case and O(n) best case ---> we use insertion sort in cards game for sorting them
+    @SpaceComplexity O(1)
 
     Here we sort (0 to 1), (0 to 2), (0 to 3) ... (0 to n-1) items by finding the iItem position in the sorted left subarray (0 to i-1)
 */
@@ -19,7 +21,7 @@ public class InsertionSort {
 
 
     /**
-     * @TimeComplexity O(n²)
+     * @TimeComplexity O(n²) worst case and O(n) best case ---> we use insertion sort in cards game for sorting them
      * @SpaceComplexity O(1)
 
         APPROACH:
@@ -99,7 +101,7 @@ public class InsertionSort {
                 j--; // right to left
             }
 
-            items[j+1] = key; // replace final original jItem with key iItem temp variable
+            items[j+1] = key; // replace final original jItem with key iItem
         }
 
         return items;

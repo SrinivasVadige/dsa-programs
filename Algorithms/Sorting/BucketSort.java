@@ -6,14 +6,17 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Summary:
- * Step 1: Create buckets.
- * Step 2: Distribute elements.
- * Step 3: Sort each bucket.
- * Step 4: Merge all buckets.
- *
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 21 Sept 2024
+
+    @TimeComplexity O(n+r) -> n = nums.length, r = range of nums == max-min+1 == Bucket size
+    @SpaceComplexity O(r)
+
+    Summary:
+    Step 1: Create buckets.
+    Step 2: Distribute elements.
+    Step 3: Sort each bucket.
+    Step 4: Merge all buckets.
 */
 public class BucketSort {
 

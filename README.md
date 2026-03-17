@@ -173,7 +173,7 @@ Data Structures and Algorithm Programs
    * [Merge k Sorted Lists](/Algorithms/LinkedListAlgos/MergeKSortedLists.java)
    * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
    * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinaryTrees/ConvertSortedArrayToBinarySearchTree.java)
-   * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
+   * [Sort List](/Algorithms/LinkedListAlgos/SortList.java)
    * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
 
 7. #### [DynamicProgramming](Algorithms/DynamicProgramming)
@@ -325,7 +325,7 @@ Data Structures and Algorithm Programs
     * [Copy List with Random Pointer](/Algorithms/LinkedListAlgos/CopyListWithRandomPointer.java)
     * [LinkedListCycle](/Algorithms/LinkedListAlgos/LinkedListCycle.java)
     * [LinkedListCycle 2](/Algorithms/LinkedListAlgos/LinkedListCycle2.java)
-    * [SortList](/Algorithms/LinkedListAlgos/SortList.java)
+    * [Sort List](/Algorithms/LinkedListAlgos/SortList.java)
     * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
     * [Intersection of Two LinkedLists](/Algorithms/LinkedListAlgos/IntersectionOfTwoLinkedLists.java)
     * [Palindrome LinkedList](/Algorithms/LinkedListAlgos/PalindromeLinkedList.java)

@@ -6,11 +6,24 @@ import java.util.Date;
 // import java.util.Random;
 
 /**
- * using PIVOT and take all left array items less than pivot and right as greater than pivot
- * same like merge sort + binary sort middleIndex, it is recursive algorithm, divide pivot and two left and right subarrays, then again each of these sub arrays again be divided into a pivot (of sub-array) and 2 sub-arrays (of sub-array) and so on.
- *
-* @author Srinvas Vadige, srinivas.vadige@gmail.com
-* @since 21 Sept 2024
+ * @author Srinvas Vadige, srinivas.vadige@gmail.com
+ * @since 21 Sept 2024
+
+    @TimeComplexity O(nlogn) for best and average case and O(n²) for worst case - if pivot is biggest or smallest element
+    @SpaceComplexity O(logn) for recursion stack
+
+    This algorithm is also uses the Divide and Conquer technique.
+
+<pre>
+
+
+    using PIVOT and take all left array items less than pivot and right as greater than pivot
+    same like merge sort + binary sort middleIndex, it is recursive algorithm, divide pivot and two left and right subarrays,
+    then again each of these sub arrays again be divided into a pivot (of sub-array) and 2 sub-arrays (of sub-array) and so on.
+
+
+
+ </pre>
 */
 public class QuickSort{
     public static void main(String[] args) {
@@ -59,6 +72,9 @@ public class QuickSort{
     }
 
     /**
+     * @TimeComplexity O(nlogn) for best and average case and O(n²) for worst case - if pivot is biggest or smallest element
+     * @SpaceComplexity O(logn) for recursion stack
+     *
      * ------------ MOVE SMALLER THAN PIVOT VALS TO LEFT ---------------
      * Always consider pivot as last element of the array
      * Do 2 operations when you find the j pointer element is smaller than pivot
@@ -70,7 +86,7 @@ public class QuickSort{
      *     __[0][1][2][3][4] -- indices
      *     i  j
      *
-     * move i only if jElement is smaller than pivot
+     * move i only if jItem is smaller than pivot -> move small items to left
      */
     public static void quickSort(int[] items, int low, int high){
 
@@ -78,12 +94,13 @@ public class QuickSort{
 
         if (low >= high ) return;
 
-        int i = low-1; //and int j = low; just like _i_[j0][1][2][3][4] -- indices
+        int i = low-1; //and int j = low; just like _i_[j0][1][2][3][4] -- indices => i.e., initially i = -1 and j = 0
         int pivot = items[high]; // last element, but pivot can be anything but to be consistent all over the recursions, take the last element of the array or sub-array
 
+        // move all items smaller than pivot to left and after this j-loop -> we move this pivot to it's correct position
         for (int j = low; j <= high; j++) {
             if (items[j] < pivot) {
-                i++; // move i only if jElement is smaller than pivot
+                i++; // move i only if (jItem < pivot) => small items to left
                 swap(items, i, j);
                 System.out.println("\nincremented i from "+ (i-1) + " to " + i +" and swapped(i:" +i+ " and j: "+j+")");
             } else System.out.println("\nSkipping");
@@ -91,11 +108,11 @@ public class QuickSort{
             System.out.println("Array at j= " + j + " is: " + Arrays.toString(items));
         }
 
-        // Currently pivot index is len-1 but now, it must be i+1. Because up to i, all elements are smaller than pivotVal
+        // PIVOT TO IT'S CORRECT POSITION -> Currently pivot index is len-1 but now, it must be i+1. Because up to i, all elements are smaller than pivotVal
         swap(items, i+1, high);
         System.out.println("\nArray at new pivot " + (i+1) + " is: " + Arrays.toString(items) + "\n");
 
-        // skip the i+1 => index current pivot value by skipping the new pivot index
+        // skip the i+1 => cause i+1 is the pivot's correct position and it's already sorted
         System.out.println("\nnext child are");
 		System.out.println(low + "," + i);
 		System.out.println(i+2 + "," + high);

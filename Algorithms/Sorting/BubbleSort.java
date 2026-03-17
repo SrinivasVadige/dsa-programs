@@ -6,7 +6,8 @@ import java.util.stream.IntStream;
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 21 Sept 2024
 
-
+    @TimeComplexity O(n²) worst case, O(n) best case
+    @SpaceComplexity O(1)
 
     APPROACH: Compare "adjacent pairs" and move the greater item (in the unsorted array section) to right
         start at j=0
@@ -32,7 +33,7 @@ public class BubbleSort {
 
 
     /**
-     * @TimeComplexity O(n²)
+     * @TimeComplexity O(n²) worst case, O(n) best case
      * @SpaceComplexity O(1)
 
         This {@link #bubbleSortUsingClassicApproach} (left to right) is opposite of {@link Algorithms.Sorting.InsertionSort#insertionSortUsingSwap} (right to left)

@@ -6,6 +6,10 @@ import java.util.Arrays;
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 21 Sept 2024
 
+
+    @TimeComplexity O(n log n) both best and worst case
+    @SpaceComplexity O(n), for extra space used in merge() method - two halves
+
     APPROACH:
         Divide & Conquer algorithm
 
@@ -25,7 +29,7 @@ public class MergeSort {
 
 
     /**
-     * @TimeComplexity O(n log n)
+     * @TimeComplexity O(n log n) both best and worst case
      * @SpaceComplexity O(n), for extra space used in merge() method - two halves
      */
     public static void sort(int[] inputArr){
