@@ -175,6 +175,7 @@ Data Structures and Algorithm Programs
    * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinaryTrees/ConvertSortedArrayToBinarySearchTree.java)
    * [Sort List](/Algorithms/LinkedListAlgos/SortList.java)
    * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
+   * [Construct Quad Tree](/Algorithms/DivideAndConquer/ConstructQuadTree.java)
 
 7. #### [DynamicProgramming](Algorithms/DynamicProgramming)
 
@@ -348,6 +349,7 @@ Data Structures and Algorithm Programs
     * [Valid Sudoku](Algorithms/Matrix/ValidSudoku.java)
     * [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
     * [Game of Life](Algorithms/Matrix/GameOfLife.java)
+    * [Construct Quad Tree](/Algorithms/DivideAndConquer/ConstructQuadTree.java)
 
 16. #### [Misc](/Algorithms/MiscAlgos)
 
