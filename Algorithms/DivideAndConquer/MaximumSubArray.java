@@ -7,13 +7,13 @@ import java.util.Arrays;
  * @since 13 March 2025
  * @link 53. Maximum Subarray <a href="https://leetcode.com/problems/maximum-subarray/">LeetCode link</a>
  * @topics Array, Greedy, Kadane's Algorithm, Prefix Sum, Divide and Conquer
- * @companies amazon, google, facebook, microsoft, bloomberg, linkedin, apple, goldman, nvidia, upstart, tcs, tiktok, tekion, ibm, deloitte, tesla, autodesk, accenture, intel, uber, adobe, cisco, oracle, infosys, samsung, yahoo, jpmorgan, walmart, zoho
+ * @companies Google(21), Microsoft(15), Amazon(11), LinkedIn(9), Upstart(6), Meta(4), Infosys(4), Bloomberg(2), Goldman Sachs(2), Meesho(2), Apple(11), Visa(4), TCS(2), Oracle(2), Nvidia(2), Yandex(2), Dell(2), Accenture(10), Cisco(9), TikTok(8), Salesforce(5), IBM(4), Zoho(4), Uber(4), Samsung(4), PayPal(4), SAP(4)
 
     PATTERNS:
     --------
     Maximum SubArray can be solved using
     1. Brute Force
-    2. Kadane’s Algorithm, ---> Greedy algorithm
+    2. Kadane’s Algorithm ---> DP recurrence + greedy optimization,
     3. Prefix Sum
     4. Divide and Conquer approach
 
@@ -26,16 +26,16 @@ import java.util.Arrays;
     and so on..
 
     Finally return the maxSum of all the indices
-    Check {@link #maxSubArrayBruteForce} method for easy understanding
-    And check {@link #maxSubArrayUsingKadanesAlgorithm} and {@link #maxSubArrayUsingKadanesAlgorithm2} methods for Kadane's Algorithm explanation
+    Check {@link #maxSubArrayBruteForceTLE} method for easy understanding
+    And check {@link #maxSubArrayUsingKadanesAlgorithm1} and {@link #maxSubArrayUsingKadanesAlgorithm2} methods for Kadane's Algorithm explanation
 
  */
 public class MaximumSubArray {
     public static void main(String[] args) {
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
-        System.out.println("maxSubArray Brute Force => " + maxSubArrayBruteForce(nums));
-        System.out.println("maxSubArray Using Kadanes Algorithm => " + maxSubArrayUsingKadanesAlgorithm(nums));
-        System.out.println("maxSubArray Using PrefixSum => " + maxSubArrayUsingPrefixSum(nums));
+        System.out.println("maxSubArray Brute Force => " + maxSubArrayBruteForceTLE(nums));
+        System.out.println("maxSubArray Using Kadanes Algorithm => " + maxSubArrayUsingKadanesAlgorithm1(nums));
+        System.out.println("maxSubArray Using PrefixSum => " + maxSubArrayUsingPrefixSum1(nums));
         System.out.println("maxSubArray Using DivideAndConquer => " + maxSubArrayUsingDivideAndConquer(nums));
     }
 
@@ -44,7 +44,7 @@ public class MaximumSubArray {
      * @TimeComplexity O(n^2)
      * @SpaceComplexity O(1)
      */
-    public static int maxSubArrayBruteForce(int[] nums) {
+    public static int maxSubArrayBruteForceTLE(int[] nums) {
         int max = Integer.MIN_VALUE;
         for(int i=0; i<nums.length; i++){
             int sum=0;
@@ -56,6 +56,7 @@ public class MaximumSubArray {
         return max;
     }
 
+    
 
 
 
@@ -80,7 +81,7 @@ public class MaximumSubArray {
      *                 i      ---> sum = 3 => 0, maxSum = 3
      *                     i  ---> sum = 2 => 0, maxSum = 3
      */
-    public static int maxSubArrayUsingKadanesAlgorithm(int[] nums) {
+    public static int maxSubArrayUsingKadanesAlgorithm1(int[] nums) {
         int maxSum = nums[0]; // cause, we might have nums.length == 1
         int sum = 0;
         for (int num : nums) {
@@ -94,10 +95,45 @@ public class MaximumSubArray {
     }
 
 
+
     /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     */
+    public static int maxSubArrayUsingKadanesAlgorithm2(int[] nums) {
+        int maxSum = nums[0];
+        int sum = 0;
+        for (int num : nums) {
+            sum = Math.max(0, sum) + num; // nums[i] max means sub-array started at i and ended at i
+            maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+
+
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     */
+    public static int maxSubArrayUsingKadanesAlgorithm3(int[] nums) {
+        int maxSum = nums[0];
+        int sum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            sum = Math.max(nums[i], sum + nums[i]); // nums[i] max means sub-array started at i and ended at i
+            maxSum = Math.max(maxSum, sum);
+        }
+        return maxSum;
+    }
+
+
+    
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
      * My own Approach of Kadane's Algorithm
      */
-    public int maxSubArrayUsingKadanesAlgorithm2(int[] nums) {
+    public int maxSubArrayUsingKadanesAlgorithm4(int[] nums) {
         int maxSum = nums[0];
         int currSum = 0;
         for(int num: nums) {
@@ -109,27 +145,35 @@ public class MaximumSubArray {
     }
 
 
+    
+    
+    
+    
+    
 
-    public static int maxSubArrayUsingKadanesAlgorithm3(int[] nums) {
-        int maxSum = nums[0];
-        int sum = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            sum = Math.max(sum + nums[i], nums[i]); // nums[i] max means sub-array started at i and ended at i
-            maxSum = Math.max(maxSum, sum);
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     * In-place space --> as we are modifying the given array
+     * we can go from 0 to n-1 indexes or n-1 to 0 indexes
+     */
+    public static int maxSubArrayUsingPrefixSum1(int[] nums) {
+        int max = nums[nums.length-1];
+        for (int i=nums.length-2; i>=0; i--) {
+            nums[i] = Math.max(nums[i], nums[i+1]+nums[i]);
+            max = Math.max(max, nums[i]);
         }
-        return maxSum;
+        return max;
     }
-
-
-
-
+    
+    
 
 
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
      */
-    public static int maxSubArrayUsingPrefixSum(int[] nums) {
+    public static int maxSubArrayUsingPrefixSum2(int[] nums) {
         int n = nums.length;
         int[] prefixSum = new int[n]; // or nums.clone();
         int maxSum = prefixSum[0] = nums[0];
@@ -142,18 +186,7 @@ public class MaximumSubArray {
     }
 
 
-    /**
-     * In-place space --> as we are modifying the given array
-     * we can go from 0 to n-1 indexes or n-1 to 0 indexes
-     */
-    public static int maxSubArrayUsingPrefixSum2(int[] nums) {
-        int max = nums[nums.length-1];
-        for (int i=nums.length-2; i>=0; i--) {
-            nums[i] = Math.max(nums[i], nums[i+1]+nums[i]);
-            max = Math.max(max, nums[i]);
-        }
-        return max;
-    }
+
 
 
 
@@ -184,29 +217,29 @@ public class MaximumSubArray {
         - Return the maximum of these three.
      */
     public static int maxSubArrayUsingDivideAndConquer(int[] nums) {
-        return maxSubArrayHelper(nums, 0, nums.length-1);
+        return helper(nums, 0, nums.length-1);
     }
 
-    public static int maxSubArrayHelper(int[] nums, int start, int end) {
+    public static int helper(int[] nums, int start, int end) {
         if (start == end) return nums[start];
         int mid = (start + end) / 2;
-        int leftSum = maxSubArrayHelper(nums, start, mid);
-        int rightSum = maxSubArrayHelper(nums, mid + 1, end);
-        int crossSum = maxCrossingSum(nums, start, mid, end);
-        return Math.max(Math.max(leftSum, rightSum), crossSum);
+        int leftSum = helper(nums, start, mid); // LSS = Left Sum SubArray
+        int rightSum = helper(nums, mid + 1, end); // RSS = Right Sum SubArray
+        int crossSum = maxCrossingSum(nums, start, mid, end); // CSS = Crossing Sum SubArray
+        return Math.max(Math.max(leftSum, rightSum), crossSum); // Max of (LSS, RSS, CSS)
     }
 
     public static int maxCrossingSum(int[] nums, int start, int mid, int end) {
         int leftSum = Integer.MIN_VALUE, sum = 0;
-        for (int i = mid; i >= start; i--) {
+        for (int i = mid; i >= start; i--) { // mid to start <- left traversal
             sum += nums[i];
-            leftSum = Math.max(leftSum, sum);
+            leftSum = Math.max(leftSum, sum); // this will save the max sum from start to mid
         }
         sum = 0;
         int rightSum = Integer.MIN_VALUE;
-        for (int i = mid + 1; i <= end; i++) {
+        for (int i = mid + 1; i <= end; i++) { // mid+1 to end -> right traversal
             sum += nums[i];
-            rightSum = Math.max(rightSum, sum);
+            rightSum = Math.max(rightSum, sum); // this will save the max sum from mid+1 to end
         }
         return leftSum + rightSum;
     }

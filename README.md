@@ -374,6 +374,7 @@ Data Structures and Algorithm Programs
     * [Find the Highest Altitude](Algorithms/PrefixSum/FindTheHighestAltitude.java)
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
     * [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
+    * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
 
 19. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
 
