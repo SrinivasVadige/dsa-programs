@@ -165,6 +165,7 @@ Data Structures and Algorithm Programs
 6. #### [Divide and Conquer](Algorithms/DivideAndConquer)
 
    * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
+   * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
    * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
    * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
    * [Search a 2D Matrix II](/Algorithms/Matrix/Search2DMatrixII.java)
@@ -375,6 +376,7 @@ Data Structures and Algorithm Programs
     * [Find Pivot Index](Algorithms/PrefixSum/FindPivotIndex.java)
     * [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
     * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
+    * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
 
 19. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
 
