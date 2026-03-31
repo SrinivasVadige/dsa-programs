@@ -88,12 +88,14 @@ public class BinarySearch {
      * For Duplicates and non-duplicates
      * NOTE: if target has no duplicates then findLast == findFirst
      * @see Algorithms.BinarySearch.FindElementPositionsInDupSortedArray
+
+        or we can use if (nums[mid] >= target) like below {@link #binarySearchWithDuplicates} method
      */
     public static int findFirstUsingBinarySearch(int[] nums, int target) {
         int l = 0, r = nums.length - 1, res = -1;
         while (l <= r) {
             int mid = l+(r-l)/2;
-            if (nums[mid] == target) { // or nums[mid] >= target like above #binarySearchWithDuplicates method
+            if (nums[mid] == target) {
                 res = mid;
                 r = mid - 1;
             } else if (nums[mid] < target) {
