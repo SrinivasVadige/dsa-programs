@@ -83,10 +83,35 @@ public class FindPeakElement {
     }
 
 
+
+    public int findPeakElementUsingBinarySearch3(int[] nums) {
+        int l = 0, r = nums.length - 1;
+        while (l < r) {
+            int mid = (l + r) / 2;
+            if (nums[mid] > nums[mid + 1]) r = mid;
+            else l = mid + 1;
+        }
+        return l;
+    }
+
+
+
+    public int findPeakElementUsingBinarySearch4(int[] nums) {
+        return search(nums, 0, nums.length - 1);
+    }
+
+    public int search(int[] nums, int l, int r) {
+        if (l == r) return l;
+        int mid = (l + r) / 2;
+        if (nums[mid] > nums[mid + 1]) return search(nums, l, mid);
+        return search(nums, mid + 1, r);
+    }
+
+
     /**
      * Note that we need any peak, not necessarily the max peak
      */
-    public static int findPeakElementUsingBinarySearch3(int[] nums) {
+    public static int findPeakElementUsingBinarySearch5(int[] nums) {
         int start = 0, end = nums.length - 1;
         while (start < end) {
             // * | *       --->  where '|' is mid, left '*' is leftNeighbor, right '*' is rightNeighbor
@@ -102,7 +127,7 @@ public class FindPeakElement {
 
 
 
-    public static int findPeakElementUsingBinarySearch4(int[] arr) {
+    public static int findPeakElementUsingBinarySearch6(int[] arr) {
         int n = arr.length;
         if(n==1) return 0;
         if(arr[0]>arr[1]) return 0;
