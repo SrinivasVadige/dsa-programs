@@ -91,7 +91,7 @@ Data Structures and Algorithm Programs
 
    * [Median of Two Sorted Arrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
    * [Search in Rotated Sorted Array](/Algorithms/BinarySearch/SearchInRotatedSortedArray.java)
-   * [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
+   * [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindFirstAndLastPositionOfElementInSortedArray.java)
    * [Search Insert Position](/Algorithms/BinarySearch/SearchInsertPosition.java)
    * [Search a 2D Matrix](/Algorithms/BinarySearch/Search2DSortedMatrix.java)
    * [Find Min in RotatedSortedArray](/Algorithms/BinarySearch/FindMinInRotatedSortedArray.java)
@@ -507,7 +507,7 @@ Data Structures and Algorithm Programs
 17. [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
 18. [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
 19. [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
-20. [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindElementPositionsInDupSortedArray.java)
+20. [Find First and Last Position of Element in Sorted Array](/Algorithms/BinarySearch/FindFirstAndLastPositionOfElementInSortedArray.java)
 21. [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
 22. [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
 23. [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
@@ -592,6 +592,7 @@ Data Structures and Algorithm Programs
 5. My "365 Days Badge 2025" received on 12 December 2025
 5. My "Top 100 Liked" badge received on 20 March 2025
 6. My "LeetCode 75" badge received on 26 May 2025 
+7. My "50 Days Badge 2025" received on 11 April 2026
 7. My AMAZON OA Question 1 Discussion [Parentheses Perfection Kit](https://leetcode.com/discuss/post/6286471/amazon-oa-question-parentheses-perfectio-3xp2/comment/2820153)
 8. My AMAZON OA Question 2 Discussion [Get Maximum Stability](https://leetcode.com/discuss/post/6281851/amazon-oa-question-get-maximum-stability-gsp9/comment/2855552)
 
