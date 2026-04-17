@@ -10,26 +10,34 @@ import java.util.Random;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 05 March 2025
- *
- * Here the QuickSelect or QuickSort is "Divide and Conquer" Algorithm
+ * @link 215. Kth Largest Element in an Array <a href="https://leetcode.com/problems/kth-largest-element-in-an-array/">LeetCode link</a>
+ * @topics Array, Divide and Conquer, Sorting, Heap (PriorityQueue), QuickSelect, BucketSort
+ * @companies Google(10), Meta(8), Amazon(6), Apple(4), Microsoft(3), Instacart(2), LinkedIn(7), Bloomberg(4), Oracle(3), TikTok(7), Applied Intuition(7), Uber(5), TCS(4), Tinkoff(4), Goldman Sachs(3), Citadel(3), Splunk(3), NetApp(3), Infosys(2)
+
+    Here the QuickSelect or QuickSort is "Divide and Conquer" Algorithm
+
+
  */
 public class KthLargestElementInArray {
     public static void main(String[] args) {
-        int[] nums = new int[]{3,2,1,5,6,4};
         int k = 2;
+        int[] nums = new int[]{3,2,1,5,6,4};
         System.out.println("findKthLargestUsingInBuiltSortMethod => " + findKthLargestUsingInBuiltSortMethod(nums, k));
         nums = new int[]{3,2,1,5,6,4};
         System.out.println("findKthLargest Using PriorityQueue with n size => " + findKthLargestUsingPqWithNSize(nums, k));
+        nums = new int[]{3,2,1,5,6,4};
         System.out.println("findKthLargest Using PriorityQueue with k size 🔥 => " + findKthLargestUsingPqWithKSize(nums, k));
+        nums = new int[]{3,2,1,5,6,4};
         System.out.println("findKthLargest Using Min Max Range BucketSort => " + findKthLargestUsingMinMaxRangeBucketSort(nums, k));
 
-        System.out.println("findKthLargestUsingQuickSort => " + findKthLargestUsingQuickSort(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingQuickSort2 => " + findKthLargestUsingQuickSort2(nums, k));
+        System.out.println("findKthLargest Using QuickSort => " + findKthLargestUsingQuickSort(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingMinHeap => " + findKthLargestUsingMinHeap(nums, k));
+        System.out.println("findKthLargest Using QuickSort2 => " + findKthLargestUsingQuickSort2(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargestUsingMaxHeap => " + findKthLargestUsingMaxHeap(nums, k));
+        System.out.println("findKthLargest Using MinHeap Heapify => " + findKthLargestUsingMinHeapHeapify(nums, k));
+        nums = new int[]{3,2,1,5,6,4};
+        System.out.println("findKthLargest Using MaxHeap Heapify => " + findKthLargestUsingMaxHeapHeapify(nums, k));
     }
 
     /**
@@ -314,7 +322,7 @@ public class KthLargestElementInArray {
      *
      * Down-Heapify (Percolate Down) ---> minHeap
      */
-    public static int findKthLargestUsingMinHeap(int[] nums, int k) {
+    public static int findKthLargestUsingMinHeapHeapify(int[] nums, int k) {
         int[] minHeap = new int[k];
         for (int i = 0; i < k; i++) {
             minHeap[i] = nums[i];
@@ -364,7 +372,7 @@ public class KthLargestElementInArray {
      *
      * Up-Heapify (Percolate Up) ---> maxHeap
      */
-    public static int findKthLargestUsingMaxHeap(int[] nums, int k) {
+    public static int findKthLargestUsingMaxHeapHeapify(int[] nums, int k) {
             int n = nums.length;
             for (int i = n / 2 - 1; i >= 0; i--) {
                 heapify(nums, i, n);
