@@ -375,18 +375,18 @@ public class KthLargestElementInArray {
     public static int findKthLargestUsingMaxHeapHeapify(int[] nums, int k) {
             int n = nums.length;
             for (int i = n / 2 - 1; i >= 0; i--) {
-                heapify(nums, i, n);
+                heapifyUp(nums, i, n);
             }
             for (int i = n - 1; i >= n - k; i--) {
                 int temp = nums[0];
                 nums[0] = nums[i];
                 nums[i] = temp;
-                heapify(nums, 0, i);
+                heapifyUp(nums, 0, i);
             }
             return nums[n - k];
         }
 
-    private static void heapify(int[] nums, int i, int n) {
+    private static void heapifyUp(int[] nums, int i, int n) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
@@ -400,7 +400,7 @@ public class KthLargestElementInArray {
             int temp = nums[i];
             nums[i] = nums[largest];
             nums[largest] = temp;
-            heapify(nums, largest, n);
+            heapifyUp(nums, largest, n);
         }
     }
 
