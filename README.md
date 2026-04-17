@@ -31,6 +31,7 @@ Data Structures and Algorithm Programs
   * [HashMap](/DataStructures/HashMapExample.java)
   * [Queue, Dequeue & PriorityQueue](/DataStructures/QueueDequeuePriorityQueue.java)
   * [Stack](/DataStructures/StackExample.java)
+  * [Heap (minHeap & maxHeap)](DataStructures/Heap.java)
   * [IteratorExample — Iterator, ListIterator, Spliterator, Enumeration & ConcurrentModificationException CME](/DataStructures/IteratorExample.java)
   * [Binary Search](/DataStructures/BinarySearch.java)
   * [BinaryTreeNode sample / example class](DataStructures/BinaryTreeNode.java)
