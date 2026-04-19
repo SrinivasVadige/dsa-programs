@@ -51,6 +51,15 @@ import java.util.concurrent.PriorityBlockingQueue;
 
     As heap have min & max heap, we have min & max PQ. By default the PQ is min PQ i.e returns smallest number. We can convert min PQ to max PQ by negating the numbers so that bigger numbers will be the smallest number.
 
+
+
+    HEAPIFY:
+    Heapify direction = direction in which index i travels
+    1. Heapify Down ---> we move curr i's num to the down
+    2. Heapify Up ---> we move curr i's num to the up
+
+    Check out {@link Algorithms.Sorting.HeapSort} for more explanation
+
  */
 public class Heap {
 
@@ -87,17 +96,18 @@ public class Heap {
         System.out.println("\n--- Manual heap construction ---");
         int[] nums = new int[] {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}, heap;
 
+        System.out.println("\n\nMAX HEAP:");
         heap = Arrays.copyOf(nums, nums.length);
+        System.out.printf("Given => " + Arrays.toString(heap));
+        buildMaxHeap(heap);
+        System.out.printf("\nOutput => " + Arrays.toString(heap));
+
         System.out.println("\nMIN HEAP:");
+        heap = Arrays.copyOf(nums, nums.length);
         System.out.printf("Given => " + Arrays.toString(heap));
         buildMinHeap(heap);
         System.out.printf("\nOutput => " + Arrays.toString(heap));
 
-        heap = Arrays.copyOf(nums, nums.length);
-        System.out.println("\n\nMAX HEAP:");
-        System.out.printf("Given => " + Arrays.toString(heap));
-        buildMaxHeap(heap);
-        System.out.printf("\nOutput => " + Arrays.toString(heap));
 
 
 
@@ -112,9 +122,18 @@ public class Heap {
         heap = Arrays.copyOf(nums, nums.length);
         minHeapSort(heap);
         System.out.printf(" => " + Arrays.toString(heap));
+
+        System.out.println("\nMIN HEAP SORT USING HEAPIFY UP - Descending order");
+        heap = Arrays.copyOf(nums, nums.length);
+        minHeapSortUsingHeapifyUp(heap);
+        System.out.printf(" => " + Arrays.toString(heap));
     }
 
 
+    /**
+        We know that we can use {@link Algorithms.HeapAlgos.KthLargestElementInArray#findKthLargestUsingPqWithKSize}
+        instead of this long heapify approach
+     */
     public static int findKthLargestUsingMinHeapHeapifyDown1(int[] nums, int k) {
         int[] minHeap = Arrays.copyOf(nums, k);
         buildMinHeap(minHeap);
@@ -157,52 +176,55 @@ public class Heap {
     }
 
 
-    /**
-     use {@link #minHeapHeapifyDown(int[] heap, int i, int n)} instead of {@link #minHeapHeapifyDown(int[] heap, int i)}
-     DESCENDING ORDER
-     */
-    public static void minHeapSort(int[] nums) {
-        buildMinHeap(nums);
-        for (int i = nums.length - 1; i > 0; i--) {
-            int temp = nums[0];
-            nums[0] = nums[i];
-            nums[i] = temp;
 
-            minHeapHeapifyDown(nums, 0, i);
-        }
-    }
 
 
     /**
      use {@link #maxHeapHeapifyDown(int[] heap, int i, int n)} instead of {@link #maxHeapHeapifyDown(int[] heap, int i)}
      ASCENDING ORDER
+
+     * @TimeComplexity O(nlogn)
+     * @SpaceComplexity O(1)
      */
     public static void maxHeapSort(int[] nums) {
         buildMaxHeap(nums);
         for (int i = nums.length - 1; i > 0; i--) {
-            int temp = nums[0];
-            nums[0] = nums[i];
-            nums[i] = temp;
-
+            swap(nums, 0, i);
             maxHeapHeapifyDown(nums, 0, i);
         }
     }
 
 
+
+    /**
+     use {@link #minHeapHeapifyDown(int[] heap, int i, int n)} instead of {@link #minHeapHeapifyDown(int[] heap, int i)}
+     DESCENDING ORDER
+
+     * @TimeComplexity O(nlogn)
+     * @SpaceComplexity O(1)
+     */
+    public static void minHeapSort(int[] nums) {
+        buildMinHeap(nums);
+        for (int i = nums.length - 1; i > 0; i--) {
+            swap(nums, 0, i);
+            minHeapHeapifyDown(nums, 0, i);
+        }
+    }
+
+
+
     /**
       DESCENDING ORDER
+
+     * @TimeComplexity O(n²logn)
+     * @SpaceComplexity O(1)
      */
     public static void minHeapSortUsingHeapifyUp(int[] nums) {
         buildMinHeapUsingHeapifyUp(nums);
 
         for (int i = nums.length - 1; i > 0; i--) {
-            // Move root (smallest) to end
-            int temp = nums[0];
-            nums[0] = nums[i];
-            nums[i] = temp;
-
-            // Rebuild heap using heapifyUp
-            for (int j = 1; j < i; j++) {
+            swap(nums, 0, i); // Move root (smallest) to end
+            for (int j = 1; j < i; j++) { // Rebuild heap using heapifyUp
                 minHeapHeapifyUp(nums, j);
             }
         }
@@ -213,11 +235,72 @@ public class Heap {
 
 
 
-    public static void buildMinHeap(int[] heap) {
+
+
+
+    /**
+                              i
+               0  1  2  3  4  5  6  7  8  9  10
+    Given =>  [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+    Output => [9, 6, 4, 5, 5, 3, 2, 1, 1, 3, 5]
+
+                    9
+                /      \
+              6         4
+            /   \     /   \
+           5     5   3     2
+          / \   / \
+         1   1 3   5
+
+
+     */
+    public static void buildMaxHeap(int[] heap) {
         for (int i = heap.length / 2 - 1; i >= 0; i--) {
-            minHeapHeapifyDown(heap, i, heap.length); // or minHeapHeapifyDown(heap, i);
+            maxHeapHeapifyDown(heap, i, heap.length); // or maxHeapHeapifyDown(heap, i);
         }
     }
+
+    private static void maxHeapHeapifyDown(int[] heap, int i, int n) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < n && heap[left] > heap[largest]) {
+            largest = left;
+        }
+        if (right < n && heap[right] > heap[largest]) {
+            largest = right;
+        }
+        if (largest != i) {
+            swap(heap, i, largest);
+            maxHeapHeapifyDown(heap, largest, n);
+        }
+    }
+
+    private static void maxHeapHeapifyDown(int[] heap, int i) {
+        int largest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < heap.length && heap[left] > heap[largest]) {
+            largest = left;
+        }
+        if (right < heap.length && heap[right] > heap[largest]) {
+            largest = right;
+        }
+        if (largest != i) {
+            swap(heap, i, largest);
+            maxHeapHeapifyDown(heap, largest);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     /**
 
                               i
@@ -235,21 +318,9 @@ public class Heap {
 
 
      */
-    public static void minHeapHeapifyDown(int[] heap, int i) {
-        int smallest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
-        if (left < heap.length && heap[left] < heap[smallest]) {
-            smallest = left;
-        }
-        if (right < heap.length && heap[right] < heap[smallest]) {
-            smallest = right;
-        }
-        if (smallest != i) {
-            int temp = heap[i];
-            heap[i] = heap[smallest];
-            heap[smallest] = temp;
-            minHeapHeapifyDown(heap, smallest);
+    public static void buildMinHeap(int[] heap) {
+        for (int i = heap.length / 2 - 1; i >= 0; i--) {
+            minHeapHeapifyDown(heap, i, heap.length); // or minHeapHeapifyDown(heap, i);
         }
     }
 
@@ -264,22 +335,37 @@ public class Heap {
             smallest = right;
         }
         if (smallest != i) {
-            int temp = heap[i];
-            heap[i] = heap[smallest];
-            heap[smallest] = temp;
+            swap(heap, i, smallest);
             minHeapHeapifyDown(heap, smallest, n);
         }
     }
 
-
-
-
-
-    public static void buildMaxHeap(int[] heap) {
-        for (int i = heap.length / 2 - 1; i >= 0; i--) {
-            maxHeapHeapifyDown(heap, i, heap.length); // or maxHeapHeapifyDown(heap, i);
+    public static void minHeapHeapifyDown(int[] heap, int i) {
+        int smallest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < heap.length && heap[left] < heap[smallest]) {
+            smallest = left;
+        }
+        if (right < heap.length && heap[right] < heap[smallest]) {
+            smallest = right;
+        }
+        if (smallest != i) {
+            swap(heap, i, smallest);
+            minHeapHeapifyDown(heap, smallest);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
     /**
                               i
                0  1  2  3  4  5  6  7  8  9  10
@@ -296,48 +382,6 @@ public class Heap {
 
 
      */
-    private static void maxHeapHeapifyDown(int[] heap, int i) {
-        int largest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
-        if (left < heap.length && heap[left] > heap[largest]) {
-            largest = left;
-        }
-        if (right < heap.length && heap[right] > heap[largest]) {
-            largest = right;
-        }
-        if (largest != i) {
-            int temp = heap[i];
-            heap[i] = heap[largest];
-            heap[largest] = temp;
-            maxHeapHeapifyDown(heap, largest);
-        }
-    }
-
-
-    private static void maxHeapHeapifyDown(int[] heap, int i, int n) {
-        int largest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
-        if (left < n && heap[left] > heap[largest]) {
-            largest = left;
-        }
-        if (right < n && heap[right] > heap[largest]) {
-            largest = right;
-        }
-        if (largest != i) {
-            int temp = heap[i];
-            heap[i] = heap[largest];
-            heap[largest] = temp;
-            maxHeapHeapifyDown(heap, largest, n);
-        }
-    }
-
-
-
-
-
-
     public static void buildMinHeapUsingHeapifyUp(int[] nums) {
         for (int i = 1; i < nums.length; i++) {
             minHeapHeapifyUp(nums, i);
@@ -348,13 +392,20 @@ public class Heap {
         while (i > 0) {
             int parent = (i - 1) / 2;
             if (heap[parent] > heap[i]) { // min heap condition
-                int temp = heap[parent];
-                heap[parent] = heap[i];
-                heap[i] = temp;
+                swap(heap, i, parent);
                 i = parent;
             } else {
                 break;
             }
         }
+    }
+
+
+
+
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
