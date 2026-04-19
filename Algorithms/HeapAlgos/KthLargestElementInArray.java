@@ -35,9 +35,9 @@ public class KthLargestElementInArray {
         nums = new int[]{3,2,1,5,6,4};
         System.out.println("findKthLargest Using QuickSort2 => " + findKthLargestUsingQuickSort2(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargest Using MinHeap Heapify => " + findKthLargestUsingMinHeapHeapify(nums, k));
+        System.out.println("findKthLargest Using MinHeap Heapify => " + findKthLargestUsingMinHeapHeapifyDown1(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargest Using MaxHeap Heapify => " + findKthLargestUsingMaxHeapHeapify(nums, k));
+        System.out.println("findKthLargest Using MaxHeap Heapify => " + findKthLargestUsingMaxHeapHeapifyUp(nums, k));
     }
 
     /**
@@ -316,48 +316,78 @@ public class KthLargestElementInArray {
 
 
 
+
     /**
      * @TimeComplexity O(n) in average and O(n^2) in worst
-     * @SpaceComplexity O(1)
+     * @SpaceComplexity O(K)
      *
      * Down-Heapify (Percolate Down) ---> minHeap
      */
-    public static int findKthLargestUsingMinHeapHeapify(int[] nums, int k) {
-        int[] minHeap = new int[k];
-        for (int i = 0; i < k; i++) {
-            minHeap[i] = nums[i];
-        }
+    public static int findKthLargestUsingMinHeapHeapifyDown1(int[] nums, int k) {
+        int[] minHeap = Arrays.copyOf(nums, k);
         buildMinHeap(minHeap);
+
         for (int i = k; i < nums.length; i++) {
             if (nums[i] > minHeap[0]) {
                 minHeap[0] = nums[i];
-                heapifyDown(minHeap, 0);
+
+                minHeapHeapifyDown(minHeap, 0);
             }
         }
         return minHeap[0];
     }
 
+    public static int findKthLargestUsingMinHeapHeapifyDown2(int[] nums, int k) {
+        buildMinHeap(nums);
+
+        for (int i = nums.length - 1; i >= k - 1; i--) {
+            int temp = nums[0];
+            nums[0] = nums[i];
+            nums[i] = temp;
+
+            minHeapHeapifyDown(nums, 0, i);
+        }
+        return nums[k - 1];
+    }
+
     public static void buildMinHeap(int[] heap) {
         for (int i = heap.length / 2 - 1; i >= 0; i--) {
-            heapifyDown(heap, i);
+            minHeapHeapifyDown(heap, i);
         }
     }
 
-    public static void heapifyDown(int[] heap, int index) {
-        int smallest = index;
-        int left = 2 * index + 1;
-        int right = 2 * index + 2;
+    public static void minHeapHeapifyDown(int[] heap, int i) {
+        int smallest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
         if (left < heap.length && heap[left] < heap[smallest]) {
             smallest = left;
         }
         if (right < heap.length && heap[right] < heap[smallest]) {
             smallest = right;
         }
-        if (smallest != index) {
-            int temp = heap[index];
-            heap[index] = heap[smallest];
+        if (smallest != i) {
+            int temp = heap[i];
+            heap[i] = heap[smallest];
             heap[smallest] = temp;
-            heapifyDown(heap, smallest);
+            minHeapHeapifyDown(heap, smallest);
+        }
+    }
+    public static void minHeapHeapifyDown(int[] heap, int i, int n) {
+        int smallest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        if (left < n && heap[left] < heap[smallest]) {
+            smallest = left;
+        }
+        if (right < n && heap[right] < heap[smallest]) {
+            smallest = right;
+        }
+        if (smallest != i) {
+            int temp = heap[i];
+            heap[i] = heap[smallest];
+            heap[smallest] = temp;
+            minHeapHeapifyDown(heap, smallest);
         }
     }
 
@@ -372,21 +402,26 @@ public class KthLargestElementInArray {
      *
      * Up-Heapify (Percolate Up) ---> maxHeap
      */
-    public static int findKthLargestUsingMaxHeapHeapify(int[] nums, int k) {
-            int n = nums.length;
-            for (int i = n / 2 - 1; i >= 0; i--) {
-                heapifyUp(nums, i, n);
-            }
-            for (int i = n - 1; i >= n - k; i--) {
-                int temp = nums[0];
-                nums[0] = nums[i];
-                nums[i] = temp;
-                heapifyUp(nums, 0, i);
-            }
-            return nums[n - k];
-        }
+    public static int findKthLargestUsingMaxHeapHeapifyUp(int[] nums, int k) {
+        buildMaxHeap(nums);
 
-    private static void heapifyUp(int[] nums, int i, int n) {
+        for (int i = nums.length - 1; i >= nums.length - k; i--) {
+            int temp = nums[0];
+            nums[0] = nums[i];
+            nums[i] = temp;
+
+            maxHeapHeapifyDown(nums, 0, i);
+        }
+        return nums[nums.length - k];
+    }
+
+    public static void buildMaxHeap(int[] heap) {
+        for (int i = heap.length / 2 - 1; i >= 0; i--) {
+            maxHeapHeapifyDown(heap, i, heap.length); // or maxHeapHeapifyDown(heap, i);
+        }
+    }
+
+    private static void maxHeapHeapifyDown(int[] nums, int i, int n) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
@@ -400,7 +435,22 @@ public class KthLargestElementInArray {
             int temp = nums[i];
             nums[i] = nums[largest];
             nums[largest] = temp;
-            heapifyUp(nums, largest, n);
+            maxHeapHeapifyDown(nums, largest, n);
+        }
+    }
+
+
+    public static void heapifyUp(int[] heap, int i) {
+        while (i > 0) {
+            int parent = (i - 1) / 2;
+            if (heap[parent] > heap[i]) { // min heap condition
+                int temp = heap[parent];
+                heap[parent] = heap[i];
+                heap[i] = temp;
+                i = parent;
+            } else {
+                break;
+            }
         }
     }
 
