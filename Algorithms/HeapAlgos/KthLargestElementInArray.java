@@ -35,9 +35,9 @@ public class KthLargestElementInArray {
         nums = new int[]{3,2,1,5,6,4};
         System.out.println("findKthLargest Using QuickSort2 => " + findKthLargestUsingQuickSort2(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargest Using MinHeap Heapify => " + findKthLargestUsingMinHeapHeapifyDown1(nums, k));
+        System.out.println("findKthLargest Using MinHeap Heapify Down => " + findKthLargestUsingMinHeapHeapifyDown1(nums, k));
         nums = new int[]{3,2,1,5,6,4};
-        System.out.println("findKthLargest Using MaxHeap Heapify => " + findKthLargestUsingMaxHeapHeapifyUp(nums, k));
+        System.out.println("findKthLargest Using MaxHeap Heapify Down => " + findKthLargestUsingMaxHeapHeapifyDown(nums, k));
     }
 
     /**
@@ -402,7 +402,7 @@ public class KthLargestElementInArray {
      *
      * Up-Heapify (Percolate Up) ---> maxHeap
      */
-    public static int findKthLargestUsingMaxHeapHeapifyUp(int[] nums, int k) {
+    public static int findKthLargestUsingMaxHeapHeapifyDown(int[] nums, int k) {
         buildMaxHeap(nums);
 
         for (int i = nums.length - 1; i >= nums.length - k; i--) {
