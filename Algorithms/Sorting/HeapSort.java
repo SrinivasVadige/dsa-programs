@@ -29,6 +29,36 @@ import java.util.Arrays;
     5. First leaf node = n / 2
 
 
+                    9
+                /      \
+              6         4
+            /   \     /   \
+           5     5   3     2
+          / \   / \
+         1   1 3   5
+
+
+    [9, 6, 4, 5, 5, 3, 2, 1, 1, 3, 5]
+     ↑  ↑  ↑
+     i  L  R
+
+    [9, 6, 4, 5, 5, 3, 2, 1, 1, 3, 5]
+        ↑     ↑  ↑
+        i     L  R
+
+    [9, 6, 4, 5, 5, 3, 2, 1, 1, 3, 5]
+           ↑        ↑  ↑
+           i        L  R
+
+    [9, 6, 4, 5, 5, 3, 2, 1, 1, 3, 5]
+              ↑           ↑  ↑
+              i           L  R
+
+    [9, 6, 4, 5, 5, 3, 2, 1, 1, 3, 5]
+                 ↑              ↑  ↑
+                 i              L  R
+
+
     STEPS FOR HEAP SORT:
     1. Build heap tree -> creates the min/max heap accordingly from the given unsorted array
     2. In heapify -> similar to build min/max heap, but assumes part of the array is already sorted
