@@ -99,7 +99,72 @@ public class FindKPairsWithSmallestSums {
 
 
 
+
+    /**
+        nums1 = [1,2,2,3,4], nums2 = [1,2,3,3]
+
+                      i0
+                   [1, x]
+        [1,1]       [1,2]     [1,3]     [1,3]
+          2           3         4         4
+
+
+                      i1
+                    [2, x]
+        [2,1]       [2,2]     [2,3]     [2,3]
+          3           4         5         5
+
+
+                      i2
+                    [2, x]
+        [2,1]       [2,2]     [2,3]     [2,3]
+          3           4         5         5
+
+
+                      i3
+                    [3, x]
+        [3,1]       [3,2]     [3,3]     [3,3]
+          4           5         6          6
+
+
+                      i4
+                    [4, x]
+        [4,1]       [4,2]     [4,3]     [4,3]
+          5           6         7         7
+
+
+     * @TimeComplexity O(min(k, mn) * log k) or O(min(klogk,mnlog(mn))), We iterate O(min(k,mn)), logk for heap, log(mn) for?
+     * @SpaceComplexity O(min(k,mn))
+     */
     public List<List<Integer>> kSmallestPairs2(int[] nums1, int[] nums2, int k) {
+        int m = nums1.length, n = nums2.length;
+        PriorityQueue<int[]> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+
+        for (int i = 0; i < Math.min(k, m); i++) { // all leftMost pairs in the matrix
+            minHeap.offer(new int[]{nums1[i] + nums2[0], i, 0});
+        }
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        while (k-- > 0 && !minHeap.isEmpty()) {
+            int[] top = minHeap.poll();
+            int i = top[1];
+            int j = top[2];
+            ans.add(Arrays.asList(nums1[i], nums2[j]));
+
+            if (j + 1 < n) {
+                minHeap.offer(new int[]{nums1[i] + nums2[j + 1], i, j + 1});
+            }
+        }
+
+        return ans;
+
+    }
+
+
+
+
+    public List<List<Integer>> kSmallestPairs3(int[] nums1, int[] nums2, int k) {
         return new AbstractList<>() {
 
             private List<List<Integer>> pairs;
