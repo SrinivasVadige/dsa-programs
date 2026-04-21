@@ -280,6 +280,7 @@ Data Structures and Algorithm Programs
     * [Maximum Subsequence Score](/Algorithms/HeapAlgos/MaximumSubsequenceScore.java)
     * [Total Cost to Hire K Workers](/Algorithms/HeapAlgos/TotalCostToHireKWorkers.java)
     * [IPO](/Algorithms/HeapAlgos/IPO.java)
+    * [Find K Pairs With Smallest Sums](/Algorithms/HeapAlgos/FindKPairsWithSmallestSums.java)
 
 12. #### [IntegerArray](/Algorithms/IntegerArray)
 
