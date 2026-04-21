@@ -279,6 +279,7 @@ Data Structures and Algorithm Programs
     * [Smallest Number in Infinite Set](/Algorithms/HeapAlgos/SmallestNumberInInfiniteSet.java)
     * [Maximum Subsequence Score](/Algorithms/HeapAlgos/MaximumSubsequenceScore.java)
     * [Total Cost to Hire K Workers](/Algorithms/HeapAlgos/TotalCostToHireKWorkers.java)
+    * [IPO](/Algorithms/HeapAlgos/IPO.java)
 
 12. #### [IntegerArray](/Algorithms/IntegerArray)
 
