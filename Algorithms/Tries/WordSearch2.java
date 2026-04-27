@@ -145,6 +145,84 @@ public class WordSearch2 {
 
 
 
+    static class Trie2 {
+        Trie2[] children = new Trie2[26];
+        boolean isWord;
+
+        void addWord(String word) {
+            Trie2 node = this;
+            for (char ch : word.toCharArray()) {
+                int i = ch - 'a';
+                if (node.children[i] == null) {
+                    node.children[i] = new Trie2();
+                }
+                node = node.children[i];
+            }
+            node.isWord = true;
+        }
+    }
+
+    public List<String> findWords2(char[][] board, String[] words) {
+        Trie2 root = new Trie2();
+
+        // Build Trie
+        for (String word : words) {
+            root.addWord(word);
+        }
+
+        int rows = board.length, cols = board[0].length;
+        Set<String> result = new HashSet<>();
+        boolean[][] visit = new boolean[rows][cols];
+
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                dfs(board, r, c, root, "", visit, result);
+            }
+        }
+
+        return new ArrayList<>(result);
+    }
+
+    private void dfs(char[][] board, int r, int c, Trie2 node, String word, boolean[][] visit, Set<String> result) {
+
+        int rows = board.length, cols = board[0].length;
+
+        if (r < 0 || c < 0 || r >= rows || c >= cols || visit[r][c]) return;
+
+        char ch = board[r][c];
+        if (node.children[ch - 'a'] == null) return;
+
+        visit[r][c] = true;
+
+        node = node.children[ch - 'a'];
+        word += ch;
+
+        if (node.isWord) {
+            result.add(word);
+        }
+
+        dfs(board, r - 1, c, node, word, visit, result);
+        dfs(board, r + 1, c, node, word, visit, result);
+        dfs(board, r, c - 1, node, word, visit, result);
+        dfs(board, r, c + 1, node, word, visit, result);
+
+        visit[r][c] = false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     static class TrieNode {
