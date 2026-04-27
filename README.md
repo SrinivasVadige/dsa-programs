@@ -80,8 +80,9 @@ Data Structures and Algorithm Programs
    * [Permutations](/Algorithms/BackTracking/Permutations.java)
    * [N-Queens](/Algorithms/BackTracking/NQueens.java)
    * [N-Queens II](/Algorithms/BackTracking/NQueens2.java)
-   * [Subsets](/Algorithms/BackTracking/Subsets.java)
    * [Word Search](/Algorithms/BackTracking/WordSearch.java)
+   * [Word Search II](Algorithms/Tries/WordSearch2.java)
+   * [Subsets](/Algorithms/BackTracking/Subsets.java)
    * [PalindromePartitioning](/Algorithms/BackTracking/PalindromePartitioning.java)
    * [Unique 3-Digit Even Numbers](/Algorithms/BackTracking/Unique3DigitEvenNumbers.java)
    * [Find Unique BinaryString](/Algorithms/BackTracking/FindUniqueBinaryString.java)
@@ -462,6 +463,7 @@ Data Structures and Algorithm Programs
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
     * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
     * [Design Add and Search Words Data Structure](Algorithms/Tries/DesignAddAndSearchWordsDataStructure.java)
+    * [Word Search II](Algorithms/Tries/WordSearch2.java)
 
 27. #### [Two Pointers](/Algorithms/TwoPointers)
 

@@ -12,6 +12,7 @@ import java.util.Set;
  * @link 79. Word Search <a href="https://leetcode.com/problems/word-search/">LeetCode link</a>
  * @topics Array, Backtracking, Matrix, DFS, String
  * @companies Amazon, PayPal, Google, Bloomberg, Uber, Karat, Microsoft, Faire, Meta, Netflix, Atlassian, Walmart, Goldman, Arista, Salesforce, Grammarly, TikTok, Oracle, Apple, Adobe, Snap, Zoho, Epic, Capital, Wix, Cisco
+ * @see Algorithms.Tries.WordSearch2
  */
 public class WordSearch {
     public static void main(String[] args) {
