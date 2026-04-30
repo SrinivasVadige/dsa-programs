@@ -146,6 +146,7 @@ Data Structures and Algorithm Programs
    * [Counting Bits](Algorithms/BitManipulation/CountingBits.java)
    * [Minimum Bit Flips to Convert Number](Algorithms/BitManipulation/MinimumBitFlipsToConvertNumber.java)
    * [Minimum Flips to Make a OR b Equal to c](Algorithms/BitManipulation/MinimumFlipsToMakeAorBisEqualToC.java)
+   * [Add Binary](Algorithms/BitManipulation/AddBinary.java)
 
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion)
 
