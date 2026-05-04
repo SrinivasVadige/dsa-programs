@@ -45,6 +45,7 @@ Data Structures and Algorithm Programs
   * [Record](DataStructures/RecordExample.java)
   * [Date & Time](DataStructures/DateTime.java)
   * [Multi-Threading in Java](/DataStructures/MultiThreading.java)
+  * [Bit Manipulation](/DataStructures/BitManipulation.java)
 
 <br></br>
 
@@ -147,6 +148,7 @@ Data Structures and Algorithm Programs
    * [Minimum Bit Flips to Convert Number](Algorithms/BitManipulation/MinimumBitFlipsToConvertNumber.java)
    * [Minimum Flips to Make a OR b Equal to c](Algorithms/BitManipulation/MinimumFlipsToMakeAorBisEqualToC.java)
    * [Add Binary](Algorithms/BitManipulation/AddBinary.java)
+   * [Reverse Bits](Algorithms/BitManipulation/ReverseBits.java)
 
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion)
 
