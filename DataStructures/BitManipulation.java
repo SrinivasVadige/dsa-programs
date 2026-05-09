@@ -173,6 +173,9 @@ package DataStructures;
 
 
 
+
+
+
     ----------------
     BIT MANIPULATION
     ----------------
@@ -210,6 +213,10 @@ package DataStructures;
 
 
 
+
+
+
+
     -----------------
     BITWISE OPERATORS
     -----------------
@@ -225,12 +232,26 @@ package DataStructures;
     In & AND operator:
         true  (1) - if both inputs are true
         false (0) - if at least one of the input is false
-    In ^ XOR (Extended OR) operator:
+    In ^ XOR (Extended OR) operator: 🔥
         false (0) - if both inputs are the same and
         true  (1) - if both inputs are different
     In ~ NOT operator:
         true  (1) - if input is false 0
         false (0) - if input is true 1
+
+    XOR Exclusive OE ---> To form an XOR gate from an OR operator,
+    you essentially take a standard OR gate and add logic to subtract the scenario where both inputs are true
+        a^b = a|b & ~(a&b)
+        or
+        a^b = a&~b | ~a&b
+
+    XOR PROPERTIES:
+        1. Self Cancellation: a^a=0
+        2. Identity Property: a^0=a
+        3. Commutative Property: a^b=b^a
+        4. Associative Property: (a^b)^c=a^(b^c)
+        5.
+
 
 
     Instead of + addition, we can do the binary addition with carry like this:
@@ -293,6 +314,7 @@ package DataStructures;
     * a + b = (a ^ b) + 2 (a ^ b)
     * a + b = (a | b) + (a & b)
     * a - b = a + (~b + 1)
+    * -n = ~n + 1
 
     a ^ b	sum without carry
     a & b	carry bits
@@ -392,6 +414,33 @@ package DataStructures;
 
 
     NEVER write 10 inline inside the number, the above steps are just for understanding
+
+
+
+
+
+
+
+
+
+
+    -----------
+    BIT MASKING
+    -----------
+    Using a binary pattern (mask) to select, clear, set, or modify specific bits
+    The “mask” is just another number whose bits help manipulate target bits.
+
+    It hides some bits and exposes others.
+    manipulating selected bits using bitwise operators and masks
+
+
+    Example:
+    (x & (1 << k)) != 0
+    here
+    1 << k           → mask creation
+    x & (1 << k)     → bit masking operation
+
+
 
 
 
@@ -510,7 +559,48 @@ package DataStructures;
 
 
 
-    8.
+    8. Brain Kernighan Algorithm to find the number of set bits in a binary representation of given number
+        When 1 is removed from a binary number then the rightmost set bit 1 of the original num will turn off - 0
+        and all the bits to its right (the trailing zeros) will become 1s
+                    -
+        n   = 12 = 1100
+        n-1 = 11 = 1011
+                    -
+
+        n & (n-1) = 1100 & 1011 = 1000
+
+        if you observe this the number of 1s here are reduced by count 1. so, repeat this until n==0
+
+        int count = 0;
+        while(n!=0){
+            n = n & (n-1);
+            count++;
+        }
+        this loopCount is number of set bits in the binary
+
+
+    9. Find the rightmost set bit in the binary
+        n&(-n)
+        and we know that -n = ~n + 1
+
+        n   = 12    = 1100
+        -n  = -12   = 0100
+
+        so, to find this position value, just move it right >> in the loop and return the loopCount
+
+        int isolated = n & (-n)
+        int position = 1
+        while (isolated != 1) {
+            isolated = isolated >> 1;
+            position++;
+        }
+        this position is the loop count
+
+
+    10. Find num of trailing zeros in the binary
+        log2(n&-n)
+
+
 
 
 </pre>
