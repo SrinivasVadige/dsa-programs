@@ -505,7 +505,11 @@ package DataStructures;
 
     5. Playing with the kth bit
 
-        We know that (1 >> k) = 2^k ---> here we left shift "1" binary to k times
+
+        We know that
+        n&1 ---> returns the last rightMost bit as 0&1=0 and 1&1=1 🔥
+        n&(1>>k) ---> returns the kth bit
+        (1 >> k) = 2^k ---> here we left shift "1" binary to k times
         Example: (1 >> 3) => converts "1" to "1000" in binary representation - k zeros = 3 zeros
 
         kth bit = kth LSB (Least Significant Bit) - kth bit from the right
