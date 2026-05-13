@@ -144,6 +144,7 @@ Data Structures and Algorithm Programs
 4. #### [BitManipulation](Algorithms/BitManipulation)
 
    * [Single Number](Algorithms/BitManipulation/SingleNumber.java)
+   * [Single Number II](Algorithms/BitManipulation/SingleNumber2.java)
    * [Counting Bits](Algorithms/BitManipulation/CountingBits.java)
    * [Minimum Bit Flips to Convert Number](Algorithms/BitManipulation/MinimumBitFlipsToConvertNumber.java)
    * [Minimum Flips to Make a OR b Equal to c](Algorithms/BitManipulation/MinimumFlipsToMakeAorBisEqualToC.java)
