@@ -151,6 +151,7 @@ Data Structures and Algorithm Programs
    * [Add Binary](Algorithms/BitManipulation/AddBinary.java)
    * [Reverse Bits](Algorithms/BitManipulation/ReverseBits.java)
    * [Number of 1 Bits](Algorithms/BitManipulation/NumberOf1Bits.java)
+   * [Bitwise AND of Numbers Range](Algorithms/BitManipulation/BitwiseAndOfNumbersRange.java)
 
 5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion)
 
