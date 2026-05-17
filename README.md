@@ -57,7 +57,7 @@ Data Structures and Algorithm Programs
   * [GCD_HCF](BasicPrograms/GCD_HCF.java)
   * [LeapYear](BasicPrograms/LeapYear.java)
   * [ReverseNumber](BasicPrograms/ReverseNumber.java)
-  * [Palindrome Number](BasicPrograms/PalindromeNumber.java)
+  * [Palindrome Number](Algorithms/Math/PalindromeNumber.java)
   * [Patterns and shapes](BasicPrograms/Patterns.java)
   * [PrimeNumber](BasicPrograms/PrimeNumber.java)
   * [Anagram](/BasicPrograms/Anagram.java)
@@ -350,7 +350,11 @@ Data Structures and Algorithm Programs
     * [Rotate List](/Algorithms/LinkedListAlgos/RotateList.java)
     * [Partition List](/Algorithms/LinkedListAlgos/PartitionList.java)
 
-15. #### [Matrix](/Algorithms/Matrix)
+15. #### [Math](/Algorithms/Math)
+
+    * [Palindrome Number](Algorithms/Math/PalindromeNumber.java)
+
+16. #### [Matrix](/Algorithms/Matrix)
 
     * [Gifting Groups](/Algorithms/Matrix/GiftingGroups.java)
     * [Rotate Image](/Algorithms/Matrix/RotateImage.java)
@@ -364,7 +368,7 @@ Data Structures and Algorithm Programs
     * [Game of Life](Algorithms/Matrix/GameOfLife.java)
     * [Construct Quad Tree](/Algorithms/DivideAndConquer/ConstructQuadTree.java)
 
-16. #### [Misc](/Algorithms/MiscAlgos)
+17. #### [Misc](/Algorithms/MiscAlgos)
 
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
@@ -373,13 +377,13 @@ Data Structures and Algorithm Programs
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
     * [Reverse Integer](Algorithms/MiscAlgos/ReverseInteger.java)
 
-17. #### [Monotonic Stack](/Algorithms/MonotonicStack)
+18. #### [Monotonic Stack](/Algorithms/MonotonicStack)
 
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
 
-18. #### [PrefixSum](/Algorithms/PrefixSum)
+19. #### [PrefixSum](/Algorithms/PrefixSum)
 
     * [Range Sum Query - Immutable & PrefixSum intro](Algorithms/PrefixSum/RangeSumQueryImmutable.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
@@ -390,20 +394,20 @@ Data Structures and Algorithm Programs
     * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
 
-19. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
+20. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
 
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
     * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
 
-20. #### [Recursion](/Algorithms/Recursion)
-21. #### [Searching](Algorithms/Searching)
+21. #### [Recursion](/Algorithms/Recursion)
+22. #### [Searching](Algorithms/Searching)
 
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
     * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
 
-22. #### [Sliding Window](Algorithms/SlidingWindow)
+23. #### [Sliding Window](Algorithms/SlidingWindow)
 
     * [Maximum Average SubArray I & Fixed Sliding Window Intro](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Longest Substring Without Repeating Characters & Dynamic Sliding Window Intro](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
@@ -416,7 +420,7 @@ Data Structures and Algorithm Programs
     * [Minimum Size Subarray Sum](Algorithms/SlidingWindow/MinimumSizeSubarraySum.java)
     * [Substring with Concatenation of All Words](Algorithms/SlidingWindow/SubstringWithConcatenationOfAllWords.java)
 
-23. #### [Sorting](Algorithms/Sorting)
+24. #### [Sorting](Algorithms/Sorting)
 
     * [SelectionSort](Algorithms/Sorting/SelectionSort.java)
     * [BubbleSort](Algorithms/Sorting/BubbleSort.java)
@@ -431,7 +435,7 @@ Data Structures and Algorithm Programs
     * [ShellSort](Algorithms/Sorting/ShellSort.java)
     * [TimSort](Algorithms/Sorting/TimSort.java)
 
-24. #### [Stack](/Algorithms/StackAlgos)
+25. #### [Stack](/Algorithms/StackAlgos)
 
     * [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
     * [DailyTemperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
@@ -445,7 +449,7 @@ Data Structures and Algorithm Programs
     * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
     * [Basic Calculator II](Algorithms/StackAlgos/BasicCalculator2.java)
 
-25. #### [Strings](/Algorithms/Strings)
+26. #### [Strings](/Algorithms/Strings)
 
     * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
@@ -464,14 +468,14 @@ Data Structures and Algorithm Programs
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
     * [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
 
-26. #### [Tries / Prefix Tree](/Algorithms/Tries)
+27. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
     * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
     * [Design Add and Search Words Data Structure](Algorithms/Tries/DesignAddAndSearchWordsDataStructure.java)
     * [Word Search II](Algorithms/Tries/WordSearch2.java)
 
-27. #### [Two Pointers](/Algorithms/TwoPointers)
+28. #### [Two Pointers](/Algorithms/TwoPointers)
 
     * [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
