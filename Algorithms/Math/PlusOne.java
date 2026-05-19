@@ -1,4 +1,4 @@
-package Algorithms.IntegerArray;
+package Algorithms.Math;
 
 import java.util.Arrays;
 
@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @since 05 March 2026
  * @link 66. Plus One <a href="https://leetcode.com/problems/plus-one/">LeetCode Link</a>
  * @topics Array, Math
- * @companies Google(17), Amazon(8), Bloomberg(6), Meta(4), Microsoft(3), Intuit(4), Capgemini(2), TCS(6), Accenture(4), IBM(2), TikTok(2), Visa(2)
+ * @companies Google(4), Amazon(4), Bloomberg(4), Meta(2), Microsoft(2), Intuit(11), TCS(5), Accenture(3), IBM(2), TikTok(2)
 
 
   9
@@ -57,7 +57,7 @@ public class PlusOne {
     public static int[] plusOneUsingGenericCarryForward(int[] digits) {
         int n = digits.length;
         int carryForward = 1;
-        for (int i=n-1; i>=0; i--) {
+        for (int i=n-1; i>=0; i--) { // or  i>=0 && carryForward == 1
             int digit = digits[i];
             digit += carryForward;
             digits[i] = digit % 10;
@@ -86,10 +86,10 @@ public class PlusOne {
 
         for (int i=digits.length-1; i>=0; i--){
             if (digits[i]<9){
-                digits[i]++; // digits[i]+=1;
+                digits[i]++;
                 return digits;
             }
-            digits[i]=0;
+            digits[i]=0; // if (digits[i] == 9)
         }
 
         int[] result = new int[digits.length+1];
@@ -109,8 +109,8 @@ public class PlusOne {
         for (int i = n - 1; i >= 0; --i) {
             if (digits[i] == 9) {
                 digits[i] = 0;
-            } else {
-                digits[i]++; // digits[i]+=1;
+            } else { // digits[i] < 9
+                digits[i]++;
                 return digits;
             }
         }

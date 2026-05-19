@@ -310,7 +310,6 @@ Data Structures and Algorithm Programs
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
-    * [Plus One](Algorithms/IntegerArray/PlusOne.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
@@ -353,6 +352,7 @@ Data Structures and Algorithm Programs
 15. #### [Math](/Algorithms/Math)
 
     * [Palindrome Number](Algorithms/Math/PalindromeNumber.java)
+    * [Plus One](Algorithms/Math/PlusOne.java)
 
 16. #### [Matrix](/Algorithms/Matrix)
 
