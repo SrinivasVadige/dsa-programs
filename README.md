@@ -354,6 +354,7 @@ Data Structures and Algorithm Programs
     * [Palindrome Number](Algorithms/Math/PalindromeNumber.java)
     * [Plus One](Algorithms/Math/PlusOne.java)
     * [Factorial Trailing Zeroes](Algorithms/Math/FactorialTrailingZeroes.java)
+    * [Sqrt(x)](Algorithms/Math/Sqrt.java)
 
 16. #### [Matrix](/Algorithms/Matrix)
 
