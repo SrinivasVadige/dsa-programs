@@ -176,7 +176,7 @@ public class Sqrt {
 
         double x0 = x;
         double x1 = (x0 + x / x0) / 2.0;
-        while (Math.abs(x0 - x1) >= 1) {
+        while (Math.abs(x0 - x1) >= 1) { // diff >= 1
             x0 = x1;
             x1 = (x0 + x / x0) / 2.0;
         }
