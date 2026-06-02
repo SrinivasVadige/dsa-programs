@@ -355,6 +355,7 @@ Data Structures and Algorithm Programs
     * [Plus One](Algorithms/Math/PlusOne.java)
     * [Factorial Trailing Zeroes](Algorithms/Math/FactorialTrailingZeroes.java)
     * [Sqrt(x)](Algorithms/Math/Sqrt.java)
+    * [Pow(x, n)](Algorithms/Math/Pow.java)
 
 16. #### [Matrix](/Algorithms/Matrix)
 
