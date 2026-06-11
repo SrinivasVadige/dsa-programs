@@ -204,7 +204,7 @@ Data Structures and Algorithm Programs
    * [LongestValidParenthesis](/Algorithms/DynamicProgramming/LongestValidParenthesis.java)
    * [UniquePaths](/Algorithms/DynamicProgramming/UniquePaths.java)
    * [MinimumPathSum](/Algorithms/DynamicProgramming/MinimumPathSum.java)
-   * [ClimbingStairs](/Algorithms/DynamicProgramming/ClimbingStairs.java)
+   * [Climbing Stairs](/Algorithms/DynamicProgramming/ClimbingStairs.java)
    * [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
    * [PascalsTriangle](/Algorithms/DynamicProgramming/PascalsTriangle.java)
    * [WordBreak](/Algorithms/DynamicProgramming/WordBreak.java)
