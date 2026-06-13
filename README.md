@@ -209,7 +209,7 @@ Data Structures and Algorithm Programs
    * [PascalsTriangle](/Algorithms/DynamicProgramming/PascalsTriangle.java)
    * [WordBreak](/Algorithms/DynamicProgramming/WordBreak.java)
    * [MaximumProductSubArray](/Algorithms/DynamicProgramming/MaximumProductSubArray.java)
-   * [HouseRobber](/Algorithms/DynamicProgramming/HouseRobber.java)
+   * [House Robber](/Algorithms/DynamicProgramming/HouseRobber.java)
    * [LongestIncreasingSubsequence](/Algorithms/DynamicProgramming/LongestIncreasingSubsequence.java)
    * [PerfectSquares](/Algorithms/DynamicProgramming/PerfectSquares.java)
    * [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
