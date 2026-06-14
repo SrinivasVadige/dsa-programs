@@ -207,7 +207,7 @@ Data Structures and Algorithm Programs
    * [Climbing Stairs](/Algorithms/DynamicProgramming/ClimbingStairs.java)
    * [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
    * [PascalsTriangle](/Algorithms/DynamicProgramming/PascalsTriangle.java)
-   * [WordBreak](/Algorithms/DynamicProgramming/WordBreak.java)
+   * [Word Break](/Algorithms/DynamicProgramming/WordBreak.java)
    * [MaximumProductSubArray](/Algorithms/DynamicProgramming/MaximumProductSubArray.java)
    * [House Robber](/Algorithms/DynamicProgramming/HouseRobber.java)
    * [LongestIncreasingSubsequence](/Algorithms/DynamicProgramming/LongestIncreasingSubsequence.java)

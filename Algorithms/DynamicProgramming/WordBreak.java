@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
  * @since 26 Oct 2024
  * @link 139. Word Break <a href="https://leetcode.com/problems/word-break/">LeetCode link</a>
  * @topics Array, Hash Table, String, Dynamic Programming, Memoization, Trie
- * @companies Amazon, Meta, Google, Microsoft, Walmart Labs, Apple, MongoDB, Bloomberg, Uber, Netflix, TikTok, Adobe, Salesforce, Oracle, Intuit, Coupang, Yahoo, LinkedIn, Goldman Sachs, Zoho
+ * @companies Amazon(5), Google(4), Bloomberg(3), Microsoft(2), Hexaware(2), Meta(2), Intuit(2), MongoDB(2), Apple(13), Walmart Labs(9), Uber(8), TikTok(7), LinkedIn(3), Oracle(3), Netflix(3), Salesforce(3), Coupa(3), Otter.ai(3)
  */
 public class WordBreak {
     public static void main(String[] args) {
@@ -38,15 +38,16 @@ public class WordBreak {
         List<String> wordDict = Arrays.asList("cc","ac");
 
         // loops "s" ---> O(n^2) time
-        System.out.println("wordBreak using backtracking over s: " + wordBreakUsingBacktrackingOverS(s, wordDict));
-        System.out.println("wordBreak using topDownMemoDp over s: " + wordBreakUsingTopDownMemoWithDfsDpOverS(s, wordDict));
-        System.out.println("wordBreak using bottomUpTabulationDp over s: " + wordBreakUsingBottomUpTabulationDpWithBfsOverS(s, wordDict));
+        System.out.println("wordBreak using backtracking over s - TLE: " + wordBreakUsingBacktrackingOverS_TLE(s, wordDict));
+        System.out.println("wordBreak using topDownMemoDp over s 1: " + wordBreakUsingTopDownMemoWithDfsDpOverS1(s, wordDict));
+        System.out.println("wordBreak using topDownMemoDp over s 2: " + wordBreakUsingTopDownMemoWithDfsDpOverS2(s, wordDict));
+        System.out.println("wordBreak using bottomUpTabulationDp over s: " + wordBreakUsingBottomUpTabulationDpWithBfsOverS1(s, wordDict));
 
 
         // loops "wordDict" ---> O(mn) time
-        System.out.println("wordBreak using backtracking over wordDict: " + wordBreakStartsUsingBacktrackingOverWordDictLoop(s, wordDict));
+        System.out.println("wordBreak using backtracking over wordDict - TLE: " + wordBreakStartsUsingBacktrackingOverWordDictLoop_TLE(s, wordDict));
         System.out.println("wordBrea using topDownMemoDp over WordDict: " + wordBreakUsingTopDownMemoDpOverWordDictLoop(s, wordDict));
-        System.out.println("wordBreak using bottomUpTabulationDp over WordDict: " + wordBreakUsingBottomUpTabulationDpOverWordDictLoop(s, wordDict));
+        System.out.println("wordBreak using bottomUpTabulationDp over WordDict: " + wordBreakUsingBottomUpTabulationDpOverWordDictLoop1(s, wordDict));
 
 
         // Trie ---> O(n^2+m⋅k) time
@@ -61,11 +62,27 @@ public class WordBreak {
      * @SpaceComplexity O(k), where k = wordDict.size()
 
 
-     s = "leetcode", wordDict = ["lee", "code", "leetc", "ode"]
-     so, only "leetc + ode" works
 
 
      ================= DECISION TREE ================
+
+        1) catsandog, ["cats","dog","sand","and","cat"]
+                                                     " "
+                                ______________________|______________________
+                                |                                           |
+                        "cat" need "sandog"                       "cats" need "andog"
+                                |                                           |
+                        "sand" need "og"                             "and" need "g"
+                                |                                           |
+                               ❌                                          ❌
+
+        or
+
+
+        2) "leetcode", ["lee", "code", "leetc", "ode"]
+            so, only "leetc + ode" works
+
+            here l, r are left and right pointers
 
 
                      ✅ 2 matches      l e e t c o d e
@@ -84,31 +101,64 @@ public class WordBreak {
                                                          DONE
 
      */
-    public static boolean wordBreakUsingBacktrackingOverS(String s, List<String> wordDict) {
-        return backtrack(s, s.length(), 0, new StringBuilder(), new HashSet<>(wordDict));
+    public static boolean wordBreakUsingBacktrackingOverS_TLE(String s, List<String> wordDict) {
+        return backtrack(s, s.length(), 0, new HashSet<>(wordDict));
     }
 
-    private static boolean backtrack(String s, int n, int l, StringBuilder sb, Set<String> wordSet){
-        if(l==n) {
-            return true;
-        }
+    private static boolean backtrack(String s, int n, int l, Set<String> wordSet){
+        if(l==n) return true;
 
-        boolean isFound = false;
+        StringBuilder sb = new StringBuilder();
         for(int r=l; r<n; r++) {
             sb.append(s.charAt(r));
-            if(wordSet.contains(sb.toString()) && !isFound) { // or if(wordSet.contains(sb.toString()) && backtrack(s, n, r+1, new StringBuilder(), wordSet, seen) {isFound = true; break;}
-                isFound = backtrack(s, n, r+1, new StringBuilder(), wordSet);
-            }
+            if(wordSet.contains(sb.toString()) && backtrack(s, n, r+1, wordSet)) return true;
         }
         // sb.setLength(0); // free up reused buffer -- optional
 
-        return isFound;
+        return false;
     }
 
 
 
 
 
+    /**
+
+        catsandog
+        ["cats","dog","sand","and","cat"]
+
+
+                                                     " "
+                                ______________________|______________________
+                                |                                           |
+                        "cat" need "sandog"                       "cats" need "andog"
+                                |                                           |
+                        "sand" need "og"                             "and" need "g"
+                                |                                           |
+                               ❌                                          ❌
+
+
+    /**
+     * @TimeComplexity O(n^2)
+     * @SpaceComplexity O(n + k), n = s.length(), k = wordDict.size()
+     */
+    public static boolean wordBreakUsingTopDownMemoWithDfsDpOverS1(String s, List<String> wordDict) {
+        return dfs(s, new HashSet<>(wordDict), new HashSet<>());
+    }
+
+    private static boolean dfs(String need, Set<String> wordSet, Set<String> needNotFound) {
+        if (need.isEmpty() || wordSet.contains(need)) return true;
+        else if (needNotFound.contains(need)) return false;
+
+        String curr = "";
+        for (char c: need.toCharArray()) {
+            curr += c;
+            if (wordSet.contains(curr) && dfs(need.substring(curr.length()), wordSet, needNotFound)) return true;
+        }
+
+        needNotFound.add(need);
+        return false;
+    }
 
 
 
@@ -117,28 +167,26 @@ public class WordBreak {
      * @TimeComplexity O(n^2)
      * @SpaceComplexity O(n + k), n = s.length(), k = wordDict.size()
      */
-    public static boolean wordBreakUsingTopDownMemoWithDfsDpOverS(String s, List<String> wordDict) {
-        return dfs(s, s.length(), 0, new StringBuilder(), new HashSet<>(wordDict), new Boolean[s.length()]);
+    public static boolean wordBreakUsingTopDownMemoWithDfsDpOverS2(String s, List<String> wordDict) {
+        return dfs(s, s.length(), 0, new HashSet<>(wordDict), new boolean[s.length()]);
     }
 
-    private static boolean dfs(String s, int n, int l, StringBuilder sb, Set<String> wordSet, Boolean[] seen){
-        if(l==n) {
-            return true;
-        } else if (seen[l] != null) {
-            return seen[l];
-        }
+    private static boolean dfs(String s, int n, int l, Set<String> wordSet, boolean[] seen){
+        if(l==n) return true;
+        else if (seen[l]) return false;
 
-        boolean isFound = false;
+        StringBuilder sb = new StringBuilder();
         for(int r=l; r<n; r++) {
             sb.append(s.charAt(r));
-            if(wordSet.contains(sb.toString()) && !isFound) { // or if(wordSet.contains(sb.toString()) && dfs(s, n, r+1, new StringBuilder(), wordSet, seen) {isFound = true; break;}
-                isFound = dfs(s, n, r+1, new StringBuilder(), wordSet, seen);
-            }
+            if(wordSet.contains(sb.toString()) && dfs(s, n, r+1, wordSet, seen)) return true;
         }
         // sb.setLength(0); // free up reused buffer -- optional
 
-        return seen[l] = isFound;
+        seen[l] = true;
+        return false;
     }
+
+
 
 
     /**
@@ -149,12 +197,12 @@ public class WordBreak {
 
         here we have to use combination of (seenSet and queue) to avoid -> duplication check
         or
-        we can use boolean[] dp array just like {@link #wordBreakUsingBottomUpTabulationDpOverWordDictLoop}
+        we can use boolean[] dp array just like {@link #wordBreakUsingBottomUpTabulationDpOverWordDictLoop1}
      */
-    public static boolean wordBreakUsingBottomUpTabulationDpWithBfsOverS(String s, List<String> wordDict) {
+    public static boolean wordBreakUsingBottomUpTabulationDpWithBfsOverS1(String s, List<String> wordDict) {
         Set<String> wordSet = new HashSet<>(wordDict);
-        int n = s.length();
-        boolean[] dp = new boolean[n];
+        final int N = s.length();
+        boolean[] dp = new boolean[N];
 
         Queue<Integer> starts = new LinkedList<>();
         starts.add(0);
@@ -162,8 +210,8 @@ public class WordBreak {
 
         while(!starts.isEmpty()) {
             int l = starts.poll();
-            // if (l == n) return true;
-            for (int r = l; r < n; r++) {
+            // if (l == N) return true;
+            for (int r = l; r < N; r++) {
                 if (wordSet.contains(s.substring(l, r+1))) {
                     dp[r] = true;
                     if (seen.add(r)) starts.offer(r+1);
@@ -171,15 +219,15 @@ public class WordBreak {
             }
         }
 
-        return dp[n-1];
+        return dp[N-1];
     }
 
 
 
     public static boolean wordBreakUsingBottomUpTabulationDpWithBfsOverS2(String s, List<String> wordDict) {
         Set<String> wordSet = new HashSet<>(wordDict);
-        int n = s.length();
-        boolean[] dp = new boolean[n + 1];
+        int N = s.length();
+        boolean[] dp = new boolean[N + 1];
         dp[0] = true;
 
         List<Integer> trues = new ArrayList<>(); // or use Queue
@@ -188,7 +236,7 @@ public class WordBreak {
         int i = 0;
         while (i < trues.size()) {
             int l = trues.get(i++);
-            for (int r = l + 1; r <= n; r++) {
+            for (int r = l + 1; r <= N; r++) {
                 if (wordSet.contains(s.substring(l, r)) && !dp[r]) {
                     dp[r] = true;
                     trues.add(r); // ✅ Safe, no CME: we're not using iterator (as forEach is a Iterator.hasNext() loop internally)
@@ -196,7 +244,7 @@ public class WordBreak {
             }
         }
 
-        return dp[n];
+        return dp[N];
     }
 
 
@@ -260,7 +308,7 @@ public class WordBreak {
                 if (wordSet.contains(s.substring(l, wSize))) {
                     dp[wSize] = true;
                     trues.add(wSize);
-                    break; // ✅ because of this break, it doesn't throw CME
+                    break; // ✅ because of this break, it doesn't throw CME - or move this trues.add after the for loop
                 }
             }
         }
@@ -336,8 +384,8 @@ public class WordBreak {
 
     /**
      * working but TLE
-     * check {@link #wordBreakIndexOfApproach} for more understanding
-     * note that wordBreakIndexOfApproach() only works for unique words with unique chars
+     * check {@link #wordBreakIndexOfApproach_NotWorking} for more understanding
+     * note that wordBreakIndexOfApproach_NotWorking() only works for unique words with unique chars
 
 
      s = "leetcode", wordDict = ["lee", "code", "leetc", "ode"]
@@ -363,7 +411,7 @@ public class WordBreak {
 
 
     */
-    public static boolean wordBreakStartsUsingBacktrackingOverWordDictLoop(String s, List<String> wordDict) {
+    public static boolean wordBreakStartsUsingBacktrackingOverWordDictLoop_TLE(String s, List<String> wordDict) {
         return backtrack(s, wordDict);
     }
 
@@ -391,18 +439,20 @@ public class WordBreak {
      * and if matched then make the start index as "after that word"
      */
     public static boolean wordBreakUsingTopDownMemoDpOverWordDictLoop(String s, List<String> wordDict) {
-        return dfs(s, 0, wordDict, new Boolean[ s.length()]);
+        return dfs(s, 0, wordDict, new boolean[s.length()]);
     }
 
-    private static boolean dfs(String s, int i, List<String> wordDict, Boolean[] dp) {
+    private static boolean dfs(String s, int i, List<String> wordDict, boolean[] seen) {
         if (i == s.length()) return true; // i.e., exactly matched "leetcode↓" ---> IndexOutOfBound base case
-        if (dp[i] != null) return dp[i];
+        if (seen[i]) return false;
 
         for (String word : wordDict) {
-            if (s.startsWith(word, i) && dfs(s, i + word.length(), wordDict, dp)) // move to r+1 index, just like #wordBreakUsingTopDownMemoWithDfsDpOverS()
-                return dp[i] = true;
+            if (s.startsWith(word, i) && dfs(s, i+word.length(), wordDict, seen)) // move to r+1 index just like #wordBreakUsingTopDownMemoWithDfsDpOverS()
+                return true;
         }
-        return dp[i] = false;
+
+        seen[i] = true;
+        return false;
     }
 
 
@@ -425,11 +475,11 @@ public class WordBreak {
      * @TimeComplexity O(mn)
      * @SpaceComplexity O(m)
      */
-    public static boolean wordBreakUsingBottomUpTabulationDpOverWordDictLoop(String s, List<String> wordDict) {
-        boolean[] dp = new boolean[s.length() + 1]; // +1 for "leetcode↓" ---> it maintains all possible future start indices
+    public static boolean wordBreakUsingBottomUpTabulationDpOverWordDictLoop1(String s, List<String> wordDict) {
+        boolean[] dp = new boolean[s.length() + 1]; // +1 for "leetcode↓" ---> it maintains all possible future start indices / wordStart
         dp[0] = true; // initial future start index
         for (int l = 0; l < s.length(); l++) {
-            if (!dp[l]) continue; // => skip up the non-valid future indexes
+            if (!dp[l]) continue; // => skip up the non-valid future indexes -> iterate this l-for-loop till we find valid start index / wordStart
             for (String word : wordDict) {
                 if (l + word.length() <= s.length() && s.startsWith(word, l)) {
                     dp[l + word.length()] = true; // r+1 => future start indices
@@ -517,7 +567,7 @@ public class WordBreak {
         // Step 2: Check if any word can be formed -- O(n^2)
         boolean[] dp = new boolean[s.length()];
         for (int l = 0; l < s.length(); l++) {
-            if (l == 0 || dp[l - 1]) { // i.e dp[l] is valid word end
+            if (l == 0 || dp[l-1]) { // i.e dp[l] is valid word end - this l-for-loop will loop until dp[l-1]=true
                 TrieNode curr = root;
                 for (int r = l; r < s.length(); r++) {
                     char c = s.charAt(r);
@@ -551,10 +601,16 @@ public class WordBreak {
 
 
 
+
+
+
+
+
     // -------------- MY THOUGHTS - 26/10/2024 -------------
+    // NOT WORKING AND TLEs
 
     @SuppressWarnings("unused")
-    public static boolean wordBreakIndexOfApproach(String s, List<String> wordDict) {
+    public static boolean wordBreakIndexOfApproach_NotWorking(String s, List<String> wordDict) {
         Map<String, Integer> map = wordDict.stream().collect(
             Collectors.groupingBy(i->i, Collectors.summingInt(e->0)) );
         return rec1(s, map);
@@ -627,7 +683,7 @@ public class WordBreak {
      * here check "cats" scenario, "cat" scenario and here we already reached last "ogcat" case
      * as we already checked upto "catsand" i.e "cats, and" or "cat sand"
      */
-    public static boolean wordBreakStartsWithTopDownMemoDp(String s, List<String> wordDict) {
+    public static boolean wordBreakStartsWithTopDownMemoDp_TLE(String s, List<String> wordDict) {
         boolean[] dp = new boolean[s.length() + 1];
         rec(s, wordDict, dp, s.length()-1);
         return dp[dp.length-1]; // last index to save if we already reached up to "" in rec()
@@ -639,11 +695,11 @@ public class WordBreak {
             dp[dp.length-1]=true;
             return true;
         }
-        else if(dp[dp.length-1] == true) return true;
-        else if(dp[i] == true) return true;
+        else if(dp[dp.length-1]) return true;
+        else if(dp[i]) return true;
 
         for (String w: list) {
-            if(dp[dp.length-1] == true) return true;
+            if(dp[dp.length-1]) return true;
             if(s.startsWith(w)) {
                 dp[i] = rec(s.substring(w.length()), list, dp, dp.length-s.length()-1);
             }
