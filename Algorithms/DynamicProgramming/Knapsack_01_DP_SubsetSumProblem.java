@@ -81,6 +81,17 @@ import java.util.Arrays;
     But we cannot achieve #isSubsetSumUsingStartIndexForLoopBottomUpDPOptimizedSpace1
     🔥🔥🔥
 
+
+Method	                                                        Time Complexity	        Space Complexity
+{@link #isSubsetSumUsing01KnapsackBacktracking1}	            O(2ⁿ)	                O(n) (recursion stack)
+{@link #isSubsetSumUsing01KnapsackTopDownMemoDP1}	            O(n × S)	            O(n × S) + O(n) stack = O(n × S)
+{@link #isSubsetSumUsing01KnapsackTopDownMemoDP2}	            O(n × S)	            O(n × S) + O(n) stack = O(n × S)
+{@link #isSubsetSumUsing01KnapsackBottomUpDP1}	                O(n × S)	            O(n × S)
+{@link #isSubsetSumUsing01KnapsackBottomUpDPOptimizedSpace1}	O(n × S)	            O(S)
+{@link #isSubsetSumUsingStartIndexForLoopBacktracking1}	        O(2ⁿ)	                O(n) (recursion stack)
+{@link #isSubsetSumUsingStartIndexForLoopTopDownMemoDP1}	    O(n² × S)	            O(n × S) + O(n) stack = O(n × S)
+{@link #isSubsetSumUsingStartIndexForLoopBottomUpDP1}	        O(n² × S)	            O(n × S)
+
  </pre>
  */
 public class Knapsack_01_DP_SubsetSumProblem {
