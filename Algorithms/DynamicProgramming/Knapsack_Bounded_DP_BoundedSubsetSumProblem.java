@@ -11,49 +11,50 @@ public class Knapsack_Bounded_DP_BoundedSubsetSumProblem {
         int[] arr = {2, 3, 7, 8, 10};
         int[] count = {1, 2, 3, 1, 2};
         int sum = 37;
-        System.out.println("isBoundedSubsetSum Using Backtracking => " + isBoundedSubsetSumUsingBacktracking(arr, count, sum));
-        System.out.println("isBoundedSubsetSum Using BottomUp DP => " + isBoundedSubsetSumUsingBottomUpDP(arr, count, sum));
+        System.out.println("isBoundedSubsetSum Using Backtracking => " + isBoundedSubsetSumUsingBoundedKnapsackBacktracking(arr, count, sum));
+        System.out.println("isBoundedSubsetSum Using BottomUp DP => " + isBoundedSubsetSumUsingBoundedKnapsackBottomUpDP(arr, count, sum));
+        System.out.println("isBoundedSubsetSum Using BottomUp DP Optimized Space => " + isBoundedSubsetSumUsingBoundedKnapsackBottomUpDPOptimizedSpace(arr, count, sum));
     }
 
 
-    public static boolean isBoundedSubsetSumUsingBacktracking(int[] arr, int[] count, int sum) {
+    /**
+     * @TimeComplexity O(2^T) (where T = Σ counts) → O(2^n) when every count = 1
+     * @SpaceComplexity O(T) recursion stack
+     */
+    public static boolean isBoundedSubsetSumUsingBoundedKnapsackBacktracking(int[] arr, int[] count, int sum) {
         return backtrack(arr, count, sum, 0, 0);
     }
-
-    private static boolean backtrack(int[] arr, int[] count, int sum, int index, int countUsed) {
-        if (sum == 0) {
-            return true;
-        }
-        if (sum < 0 || index >= arr.length || countUsed >= count[index]) {
-            return false;
-        }
-        return backtrack(arr, count, sum - arr[index], index + 1, countUsed + 1) || backtrack(arr, count, sum, index + 1, countUsed); // return (include_num || exclude_num);
+    private static boolean backtrack(int[] arr, int[] count, int sum, int i, int countUsed) {
+        if (sum == 0) return true;
+        if (sum < 0 || i >= arr.length || countUsed >= count[i]) return false;
+        return backtrack(arr, count, sum-arr[i], i+1, countUsed + 1) || backtrack(arr, count, sum, i+1, countUsed); // return (include_num || exclude_num);
     }
 
 
 
 
-
-    public static boolean isBoundedSubsetSumUsingBottomUpDP(int[] arr, int[] count, int targetSum) {
+    /**
+     * @TimeComplexity O(n × S × C) (C = maximum count)
+     * @SpaceComplexity O(n × S)
+     */
+    public static boolean isBoundedSubsetSumUsingBoundedKnapsackBottomUpDP(int[] arr, int[] count, int targetSum) {
         int n = arr.length;
         boolean[][] dp = new boolean[n + 1][targetSum + 1];
 
-        // Base case: sum = 0 is always possible with 0 items
-        for (int i = 0; i <= n; i++) {
+        for (int i = 0; i <= n; i++) { // Base case: sum = 0 is always possible with 0 items
             dp[i][0] = true;
         }
 
-        // Fill the table
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) { // Fill the table
             int num = arr[i - 1];
             int maxCount = count[i - 1];
 
             for (int sum = 0; sum <= targetSum; sum++) {
-                // Case 1: don't take the current item
-                dp[i][sum] = dp[i - 1][sum];
 
-                // Case 2: try using current item k times (1 ≤ k ≤ maxCount)
-                for (int k = 1; k <= maxCount; k++) {
+                dp[i][sum] = dp[i - 1][sum]; // Case 1: don't take the current item
+
+
+                for (int k = 1; k <= maxCount; k++) { // Case 2: try using current item k times (1 ≤ k ≤ maxCount)
                     int prevSum = sum - k * num;
                     if (prevSum < 0) break;
 
@@ -74,7 +75,11 @@ public class Knapsack_Bounded_DP_BoundedSubsetSumProblem {
 
 
 
-    public static boolean isBoundedSubsetSumUsingBottomUpDP2(int[] arr, int[] count, int targetSum) {
+    /**
+     * @TimeComplexity O(n × S)
+     * @SpaceComplexity O(S)
+     */
+    public static boolean isBoundedSubsetSumUsingBoundedKnapsackBottomUpDPOptimizedSpace(int[] arr, int[] count, int targetSum) {
         int n = arr.length;
         boolean[] dp = new boolean[targetSum + 1];
         dp[0] = true; // sum 0 is always possible
