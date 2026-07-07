@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 10 July 2025
- * @link <a href="https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1">GeeksForGeeks problem link</a>
+ * @link Subset Sum Problem <a href="https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1/">GeeksForGeeks problem link</a>
  * @link <a href="https://www.geeksforgeeks.org/dsa/subset-sum-problem-dp-25/">GeeksForGeeks article link</a>
  * @description Subset sum Equals to target - Return T/F if the given array numbers can form the given target sum
  * @topics Array, Dynamic Programming
