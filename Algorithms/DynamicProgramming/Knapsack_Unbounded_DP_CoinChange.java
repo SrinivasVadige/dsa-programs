@@ -60,7 +60,7 @@ import java.util.Map;
  * </pre>
  * @author Srinvas Vadige, srinivas.vadige@gmail.com
  * @since 04 Nov 2024
- * @link 1152. Analyze User Website Visit Pattern <a href="https://leetcode.com/problems/analyze-user-website-visit-pattern/">Leetcode link</a>
+ * @link 322. Coin Change <a href="https://leetcode.com/problems/coin-change/">Leetcode link</a>
  * @topics Array, Dynamic Programming, BFS
  * @companies Amazon(10), Google(9), Bloomberg(6), Meta(5), Infosys(3), Intuit(3), Microsoft(5), Pinterest(3), Accolite(2), Oracle(2), Agoda(2), Datadog(20), TikTok(16), Uber(10), Goldman Sachs(8), PayPal(8), Walmart Labs(7), Apple(5), Geico(5), Fractal Analytics(5), Adobe(4)
  */
