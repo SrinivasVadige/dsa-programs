@@ -6,42 +6,55 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * <pre>
- * Given an array of integers nums, return the length of the longest
- * increasing subsequence.
- *
- * A subsequence is a sequence that can be derived from an array
- * by deleting some or no elements without changing the order of the remaining elements.
- *
- * nums = {1, 2, 4, 3}
- *
- *  initial sequence -->                                     {}
- *                        ____________________________________|____________________________
- *                        |                                  |                  |          |
- *  start sequence -->  i0 {1}                             i1 {2}             i2 {4}     i3 {3}
- *         _______________|________________        __________|______            |
- *         |              |                |       |                |          {4,3} ❌
- *     i1 {1, 2}      i2 {1, 4}        i3 {1, 3}    {2,4}            {2,3}
- *     _____|_______      |{1,4,3} ❌                 |
- *     |           |                             {2,4,3} ❌
- *  {1, 2, 4}    {1, 2, 3}
- *     |
- *  {1, 2, 4, 3} ❌
- *
- * i.e we have to make what will be the next element in each and every sequence in increasing order
- * Here it looks like a tree (not a binary tree) and non-fixed child notes length - but max child nodes is (i to n-1)
- * i.e for {1} the nodes are {1, 2}, {1, 3} and {1, 4} and looks like the width of the child is always less than parent
- *
- * we don't need to calculate i1 {2} i.e "index 1" scenario again cause we already have at i0 {1}'s child i.e i1 {1,2} "index 1"
- * So, don't calculate same index again
- *
- * So, from the graph we need the max valid depth i.e dfs
- *
- * SOLUTION:
- * 1. Calculate from right to left and save it in dp. Eg: so that we can use index 1 scenario from {2} in index 1 scenario in {1,2}
- * 2.
- *
- * </pre>
+ <pre>
+
+ A subsequence is a sequence that can be derived from an array by deleting some or no elements without changing the order of the remaining elements.
+ It's not necessarily be contiguous
+ Example:
+    [3, 6, 2, 7] is an subsequence of [0, 3, 1, 6, 2, 2, 7, 10] array - but it's not the Increasing subsequence
+
+
+
+
+
+ Old thoughts:
+ --------------
+
+ nums = {1, 2, 4, 3}
+
+  initial sequence -->                                     {}
+                        ____________________________________|______________________________
+                        |                                   |                  |          |
+  start sequence -->  i0 {1}                              i1 {2}             i2 {4}     i3 {3}
+         _______________|_________________        __________|_______           |
+         |              |                |        |                |          {4,3} ❌
+     i1 {1, 2}      i2 {1, 4}        i3 {1, 3}  {2,4}            {2,3}
+     _____|_______      |                |
+     |           |   {1,4,3} ❌       {2,4,3} ❌
+  {1, 2, 4}  {1, 2, 3}
+     |
+  {1, 2, 4, 3} ❌
+
+ i.e we have to make what will be the next element in each and every sequence in increasing order
+ Here it looks like a tree (not a binary tree) and non-fixed child notes length - but max child nodes is (i to n-1)
+ i.e for {1} the nodes are {1, 2}, {1, 3} and {1, 4} and looks like the width of the child is always less than parent
+
+ we don't need to calculate i1 {2} i.e "index 1" scenario again cause we already have at i0 {1}'s child i.e i1 {1,2} "index 1"
+ So, don't calculate same index again
+
+ So, from the graph we need the max valid depth i.e dfs
+ Calculate from right to left and save it in dp. Eg: so that we can use index 1 scenario from {2} in index 1 scenario in {1,2}
+
+
+
+ Here we can solve this problem like {@link Knapsack_01_DP_SubsetSumProblem}
+    1. 01 Knapsack Include/Exclude
+    2. For loop
+
+
+
+
+ </pre>
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 03 Nov 2024
  * @link 300. Longest Increasing Subsequence <a href="https://leetcode.com/problems/longest-increasing-subsequence/">Leetcode link</a>
@@ -439,44 +452,48 @@ i=4         [0,1,3]  [0,1,2]      [0,1]
 
     /**
      <pre>
-                                                0  1  2  3  4  5
-                                        nums = [0, 1, 0, 3, 2, 3]
+                                                        0  1  2  3  4  5
+                                                nums = [0, 1, 0, 3, 2, 3]
 
-                                        Initially => sub = [0]
-
-
-i = 1 (value = 1)
-    1 > last_sub=0 ✅ - Just add last            => sub = [0, 1]
+                                                                sub = [0] - Initially
 
 
-
-i = 2 (value = 0)
-    0 > last_sub=1 ❌ - Replace sub[0] with 0    => sub = [0, 1]     🔥 replace - not add
-
-        - Find first element >= 0
-            j = 0 (sub[0] = 0)
-
-
-i = 3 (value = 3)
-    3 > last_sub=1 ✅ - Just add                 => sub = [0, 1, 3]
-
-
-i = 4 (value = 2)
-    2 > last_sub=3 ❌ - Replace sub[2] with 2    => sub = [0, 1, 2]  🔥 replace - not add
-
-        - Find first element >= 2
-            j = 0 (sub[0] = 0) => 2 > 0 ✅
-            j = 1 (sub[1] = 1) => 2 > 1 ✅
-            j = 2 (sub[2] = 3) => 2 > 3 ❌
-
-
-i = 5 (value = 3)
-    3 > last_sub=2 ✅ - Just add last            => sub = [0, 1, 2, 3]
+        i = 1 (value = 1)
+            1 > last_sub=0 ✅ - Just add last                => sub = [0, 1]
 
 
 
-Finally sub = [0, 1, 2, 3], Answer = sub.size() = 4
+        i = 2 (value = 0)
+            0 > last_sub=1 ❌ - Replace sub[0]=0 with 0      => sub = [0, 1]     🔥 replace - not add
 
+                - Find first element >= 0
+                    j = 0 (sub[0] = 0) => 0 > 0 ❌
+
+
+        i = 3 (value = 3)
+            3 > last_sub=1 ✅ - Just add                     => sub = [0, 1, 3]
+
+
+        i = 4 (value = 2)
+            2 > last_sub=3 ❌ - Replace sub[2]=3 with 2      => sub = [0, 1, 2]  🔥 replace - not add
+
+                - Find first element >= 2
+                    j = 0 (sub[0] = 0) => 0 < 2 ✅
+                    j = 1 (sub[1] = 1) => 1 < 2 ✅
+                    j = 2 (sub[2] = 3) => 3 < 2 ❌
+
+
+        i = 5 (value = 3)
+            3 > last_sub=2 ✅ - Just add last                => sub = [0, 1, 2, 3]
+
+
+
+        Finally sub = [0, 1, 2, 3], Answer = sub.size() = 4
+
+
+        TAKE AWAY:
+        ----------
+        1. In i=4, we replaced [0, 1, 3] with [0, 1, 2] -> so in future we'll have bigger nums than 2
 
     </pre>
 
@@ -490,12 +507,9 @@ Finally sub = [0, 1, 2, 3], Answer = sub.size() = 4
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] > sub.get(sub.size() - 1)) {
                 sub.add(nums[i]);
-            } else { // Find the first element in sub that is greater than or equal to nums[i]
+            } else { // Find the nums[i] position -> "first num in sub" >= nums[i] -> replace
                 int j = 0;
-                while (nums[i] > sub.get(j)) {
-                    j += 1;
-                }
-
+                while (sub.get(j) < nums[i]) j++;
                 sub.set(j, nums[i]); // we're replacing - not adding 🔥
             }
         }
