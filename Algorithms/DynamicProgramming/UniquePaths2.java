@@ -99,6 +99,10 @@ public class UniquePaths2 {
 
 
     /**
+
+        Top-Down is asking: Who do I call?
+        Bottom-Up is asking: Who must already know the answer?
+
             dfs(r,c) -> dp[r][c]
 
             dp[r][c] = depends on dp[r+1][c] & dp[r][c+1]

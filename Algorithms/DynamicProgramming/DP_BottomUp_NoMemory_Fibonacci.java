@@ -3,16 +3,16 @@ package Algorithms.DynamicProgramming;
 /**
  * <p> Same like Bottom-Up Tabulation DP but no need to store all the node values. Just two vars are enough
  * <p> And it can be normal loop or recursion or recursion with loop(Eg: LongestPalindromicSubstring)
- * @Approach: Bottom Up - No Memory
- * @TimeComplexity: O(n)
+ * @Approach Bottom Up - No Memory
+ * @TimeComplexity O(n)
  *
- * @see ./Fibonacci_DP_BottomUp_Tabulation.java
- * @see ./LongestPalindromicSubstring.java
+ * @see Algorithms.DynamicProgramming.DP_BottomUp_Tabulation_Fibonacci
+ * @see Algorithms.DynamicProgramming.LongestPalindromicSubstring
  *
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 06 Oct 2024
 */
-public class Fibonacci_DP_BottomUp_NoMemory {
+public class DP_BottomUp_NoMemory_Fibonacci {
     public static void main(String[] args) {
         int n = 5;
         fibonacci(n);

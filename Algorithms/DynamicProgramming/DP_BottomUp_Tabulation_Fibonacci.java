@@ -7,17 +7,17 @@ import java.util.Arrays;
  * <p> smaller number to bigger number
  * <p> And it can be normal loop or recursion or recursion with loop
  *
- * @Approach: Bottom Up Tabulation - add all the series/node values in an array
- * @TimeComplexity: O(n)
+ * @Approach Bottom Up Tabulation - add all the series/node values in an array
+ * @TimeComplexity O(n)
  *
- * @see ./Fibonacci_DP_BottomUp_NoMemory.java
+ * @see Algorithms.DynamicProgramming.DP_BottomUp_NoMemory_Fibonacci
  *
  *
  *
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 21 Sept 2024
 */
-public class Fibonacci_DP_BottomUp_Tabulation {
+public class DP_BottomUp_Tabulation_Fibonacci {
 
     public static void main(String[] args) {
         int n = 5;

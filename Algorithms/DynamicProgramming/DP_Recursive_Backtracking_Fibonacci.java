@@ -99,12 +99,12 @@ package Algorithms.DynamicProgramming;
  *
  *
  * </pre>
- * @TimeComplexity: O(2^n) due to repetitive calls
- * @see <a href="/DataStructures/BinaryTree.java"> /DataStructures/BinaryTree.java </a>
+ * @TimeComplexity O(2^n) due to repetitive calls
+ * @see DataStructures.BinaryTreeNode
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 06 Oct 2024
  */
-public class Fibonacci_DP_Recursive_Backtracking {
+public class DP_Recursive_Backtracking_Fibonacci {
     public static void main(String[] args) {
         int n = 6;
         fib(n);

@@ -8,9 +8,9 @@ import java.util.HashMap;
  * <p> Bigger nodes to smaller (but inside recursion it'll return from smaller node value to bigger)
  * <p> It's exactly same as Recursive Backtracking DP, but here with memoization to skip already calculated nodes sub-problems
  *
- * @Approach: Top Down DP with Memoization
- * @TimeComplexity: O(n)
- * @SpaceComplexity: O(n)
+ * @Approach Top Down DP with Memoization
+ * @TimeComplexity O(n)
+ * @SpaceComplexity O(n)
  *
  * @see <a href="/DataStructures/BinaryTree.java"> /DataStructures/BinaryTree.java </a>
  * @see <a href="./Fibonacci_DP_Recursive_Backtracking.java">./Fibonacci_DP_Recursive_Backtracking.java</a>
@@ -18,7 +18,7 @@ import java.util.HashMap;
 * @author Srinvas Vadige, srinivas.vadige@gmail.com
 * @since 21 Sept 2024
 */
-public class Fibonacci_DP_TopDown_Memoization {
+public class DP_TopDown_Memoization_Fibonacci {
 
     public static void main(String[] args) {
         int n = 5; // root node

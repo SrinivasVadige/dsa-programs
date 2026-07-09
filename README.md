@@ -189,10 +189,14 @@ Data Structures and Algorithm Programs
 
 7. #### [DynamicProgramming](Algorithms/DynamicProgramming)
 
-   * [Fibonacci_DP_Recursive_Backtracking & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_Recursive_Backtracking.java)
-   * [Fibonacci_DP_TopDown_Memoization & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_TopDown_Memoization.java)
-   * [Fibonacci_DP_BottomUp_Tabulation & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_Tabulation.java)
-   * [Fibonacci_DP_BottomUp_NoMemory & DP intro](Algorithms/DynamicProgramming/Fibonacci_DP_BottomUp_NoMemory.java)
+   * [DP_Recursive_Backtracking Fibonacci](Algorithms/DynamicProgramming/DP_Recursive_Backtracking_Fibonacci.java)
+   * [DP_TopDown_Memoization Fibonacci](Algorithms/DynamicProgramming/DP_TopDown_Memoization_Fibonacci.java)
+   * [DP_BottomUp_Tabulation Fibonacci](Algorithms/DynamicProgramming/DP_BottomUp_Tabulation_Fibonacci.java)
+   * [DP_BottomUp_NoMemory Fibonacci](Algorithms/DynamicProgramming/DP_BottomUp_NoMemory_Fibonacci.java)
+   * [DP_Approaches_Progression_Flow 🔥 Unique Paths](/Algorithms/DynamicProgramming/UniquePaths.java)
+   * [DP_Approaches_Progression_Flow Unique Paths II](/Algorithms/DynamicProgramming/UniquePaths2.java)
+   * [DP_Approaches_Progression_Flow Minimum Path Sum](/Algorithms/DynamicProgramming/MinimumPathSum.java)
+   * [DP_Approaches_Progression_Flow Triangle](/Algorithms/DynamicProgramming/Triangle.java)
    * [Knapsack_01_DP_SubsetSumProblem & Knapsack 0-1 Intro 🔥](/Algorithms/DynamicProgramming/Knapsack_01_DP_SubsetSumProblem.java)
    * [Knapsack_Bounded_DP_BoundedSubsetSumProblem & Knapsack Bounded Intro](/Algorithms/DynamicProgramming/Knapsack_Bounded_DP_BoundedSubsetSumProblem.java)
    * [Knapsack_Unbounded_DP_CoinChange & Knapsack Unbounded Intro](/Algorithms/DynamicProgramming/Knapsack_Unbounded_DP_CoinChange.java)
@@ -202,8 +206,6 @@ Data Structures and Algorithm Programs
    * [LongestCommonSubsequence](/Algorithms/DynamicProgramming/LongestCommonSubsequence.java)
    * [LongestPalindromicSubstring](/Algorithms/DynamicProgramming/LongestPalindromicSubstring.java)
    * [LongestValidParenthesis](/Algorithms/DynamicProgramming/LongestValidParenthesis.java)
-   * [UniquePaths](/Algorithms/DynamicProgramming/UniquePaths.java)
-   * [Minimum Path Sum](/Algorithms/DynamicProgramming/MinimumPathSum.java)
    * [Climbing Stairs](/Algorithms/DynamicProgramming/ClimbingStairs.java)
    * [Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
    * [PascalsTriangle](/Algorithms/DynamicProgramming/PascalsTriangle.java)
@@ -221,7 +223,6 @@ Data Structures and Algorithm Programs
    * [Best Time to Buy and Sell Stock with Transaction Fee](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithTransactionFee.java)
    * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
    * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
-   * [Triangle](/Algorithms/DynamicProgramming/Triangle.java)
 
 8. #### [Graphs](/Algorithms/Graphs)
 

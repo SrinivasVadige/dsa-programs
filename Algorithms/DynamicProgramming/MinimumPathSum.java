@@ -3,7 +3,24 @@ package Algorithms.DynamicProgramming;
 import java.util.Arrays;
 
 /**
+
+
 <pre>
+
+
+ DYNAMIC PROGRAMMING APPROACHES PROGRESSION FLOW:
+
+                        BACKTRACKING                == State (Decision Tree, Recurrence Relation / formula)
+                              ↓
+                        TOP-DOWN MEMO               == Same State + Memoization
+                              ↓
+                        BOTTOM-UP 2D                == (Dependencies + Iteration Order) == Same State => Replace dfs(...) with dp[...] & => Find dependencies - Dependencies determine iteration order
+                              ↓
+                        BOTTOM-UP OPTIMIZED SPACE 1D== Ask: "How many previous states do I really need?"
+                              ↓
+                        BOTTOM-UP IN PLACE
+
+
  0 & +ve nums
 
  top left to bottom right
@@ -69,7 +86,7 @@ public class MinimumPathSum {
 
 
      * @TimeComplexity O(2^(m+n))
-     * @SpaceComplexity O(m+n)
+     * @SpaceComplexity O(n)
      */
     public static int minPathSumUsingBacktracking_TLE(int[][] grid) {
         return backtrack(grid, 0, 0, grid.length, grid[0].length);
@@ -91,7 +108,7 @@ public class MinimumPathSum {
     
     /**
      * @TimeComplexity O(mn)
-     * @SpaceComplexity O(mn)
+     * @SpaceComplexity O(n)
      */
     public static int minPathSumUsingTopDownMemoDp(int[][] grid) {
         int rows = grid.length, cols = grid[0].length;
@@ -120,6 +137,8 @@ public class MinimumPathSum {
     
     /**
 
+        Top-Down is asking: Who do I call?
+        Bottom-Up is asking: Who must already know the answer?
 
         dfs(r,c) -> dp[r][c]
 

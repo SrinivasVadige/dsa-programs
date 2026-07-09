@@ -5,8 +5,27 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+<pre>
+
+
+ DYNAMIC PROGRAMMING APPROACHES PROGRESSION FLOW:
+
+                        BACKTRACKING                == State (Decision Tree, Recurrence Relation / formula)
+                              ↓
+                        TOP-DOWN MEMO               == Same State + Memoization
+                              ↓
+                        BOTTOM-UP 2D                == (Dependencies + Iteration Order) == Same State => Replace dfs(...) with dp[...] & => Find dependencies - Dependencies determine iteration order
+                              ↓
+                        BOTTOM-UP OPTIMIZED SPACE 1D== Ask: "How many previous states do I really need?"
+                              ↓
+                        BOTTOM-UP IN PLACE
+
+
+</pre>
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 07 July 2026
+ * @see Algorithms.DynamicProgramming.UniquePaths
+ * @see Algorithms.DynamicProgramming.MinimumPathSum
  * @link 120. Triangle <a href="https://leetcode.com/problems/triangle/">Leetcode link</a>
  * @topics Array, Dynamic Programming
  * @companies Microsoft(2), Amazon(2), Bloomberg(2), Google(3), Meta(10), Oracle(3), Infosys(2), Walmart Labs(2), Goldman Sachs(2), Agoda(2), Upstart(2)
