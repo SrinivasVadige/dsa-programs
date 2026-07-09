@@ -1,5 +1,7 @@
 package Algorithms.DynamicProgramming;
 
+import java.util.Arrays;
+
 /**
 <pre>
  0 & +ve nums
@@ -33,25 +35,224 @@ package Algorithms.DynamicProgramming;
 
 
 
-
-@author Srinvas Vadige, srinivas.vadige@gmail.com
-@since 14 Oct 2024
-@see /Algorithms/DynamicProgramming/UniquePathSum.java
-
-*/
+ * @author Srinvas Vadige, srinivas.vadige@gmail.com
+ * @since 14 Oct 2024
+ * @see Algorithms.DynamicProgramming.Triangle
+ * @see Algorithms.DynamicProgramming.UniquePaths
+ * @link 64. Minimum Path Sum <a href="https://leetcode.com/problems/minimum-path-sum/">Leetcode link</a>
+ * @topics Array, Dynamic Programming, Matrix
+ * @companies Amazon(3), Goldman Sachs(2), SpaceX(4), Meta(3), Microsoft(3), Google(2), Infosys(2), Bloomberg(8), TikTok(5), Uber(4), Zoho(3), Nvidia(3), General Motors(3), Texas Instruments(3), Snap(2), Squarepoint Capital(2)
+ */
 public class MinimumPathSum {
 
     public static void main(String[] args) {
         int[][] grid = {{1,3,1},{1,5,1},{4,2,1}};
-        System.out.println("minPathSumBottomUpTabulation: " + minPathSumBottomUpTabulation(grid));
-        System.out.println("minPathSumBottomUpTabulationMyApproach: " + minPathSumBottomUpTabulationMyApproach(grid));
-        System.out.println("minPathSumTopDownMemoMyApproach: " + minPathSumTopDownMemoMyApproach(grid));
-        System.out.println("minPathSumTopDownMemo: " + minPathSumTopDownMemo(grid));
+        System.out.println("minPathSum Using Backtracking_TLE: " + minPathSumUsingBacktracking_TLE(grid));
+        System.out.println("minPathSum Using TopDownMemoDp: " + minPathSumUsingTopDownMemoDp(grid));
+        System.out.println("minPathSum Using BottomUpDp: " + minPathSumUsingBottomUpDp(grid));
+        System.out.println("minPathSum Using BottomUpDp OptimizedSpace: " + minPathSumUsingBottomUpDpOptimizedSpace(grid));
+        System.out.println("minPathSum Using BottomUpDp InPlace: " + minPathSumUsingBottomUpDpInPlace(grid));
     }
 
+
+
     /**
-     * Time Complexity: O(m) + O(n) + O(mn) = O(mn)
-     * Space Complexity: O(mn)
+                                                                (r,c)
+                                                                (0,0)
+                                          ________________________|________________________
+                                          |                                               |
+                                        (0,1)                                           (1,0)
+                             _____________|_____________                     _____________|_____________
+                             |                         |                     |                         |
+                           (0,2)                     (1,1)                 (1,1)                     (2,0)
+
+
+
+     * @TimeComplexity O(2^(m+n))
+     * @SpaceComplexity O(m+n)
+     */
+    public static int minPathSumUsingBacktracking_TLE(int[][] grid) {
+        return backtrack(grid, 0, 0, grid.length, grid[0].length);
+    }
+    private static int backtrack(int[][] grid, int r, int c, int rows, int cols) {
+        if (r == rows-1 && c == cols-1) return grid[r][c];
+//        else if (r == rows || c == cols) return Integer.MAX_VALUE;
+
+        int down = Integer.MAX_VALUE, right = Integer.MAX_VALUE;
+        if (r < rows-1) down = backtrack(grid, r+1, c, rows, cols);
+        if (c < cols-1) right = backtrack(grid, r, c+1, rows, cols);
+
+        return grid[r][c] + Math.min(down, right);
+    }
+
+
+    
+    
+    
+    /**
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
+     */
+    public static int minPathSumUsingTopDownMemoDp(int[][] grid) {
+        int rows = grid.length, cols = grid[0].length;
+        int[][] memo = new int[rows][cols];
+        for (int[] row: memo) {
+            Arrays.fill(row, -1);
+        }
+        return dfs(grid, 0, 0, grid.length, grid[0].length, memo);
+    }
+    private static int dfs(int[][] grid, int r, int c, int rows, int cols, int[][] memo) {
+        if (r == rows-1 && c == cols-1) return grid[r][c];
+        else if (memo[r][c] >= 0) return memo[r][c];
+//        else if (r == rows || c == cols) return Integer.MAX_VALUE;
+
+        int down = Integer.MAX_VALUE, right = Integer.MAX_VALUE;
+        if (r < rows-1) down = dfs(grid, r+1, c, rows, cols, memo);
+        if (c < cols-1) right = dfs(grid, r, c+1, rows, cols, memo);
+
+        return memo[r][c] = grid[r][c] + Math.min(down, right);
+    }
+
+
+
+
+    
+    
+    /**
+
+
+        dfs(r,c) -> dp[r][c]
+
+        dp[r][c] depends on dp[r+1][c] & dp[r][c+1] -> calculate bottom rows first & right to left (<-) col dir
+
+        [1,3,1]     [0,0,0,0]
+        [1,5,1]     [0,0,0,0]
+        [4,2,1]     [0,0,0,0]
+                    [0,0,0,0]
+
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
+     */
+    public static int minPathSumUsingBottomUpDp(int[][] grid) {
+        int rows = grid.length, cols = grid[0].length;
+        int[][] dp = new int[rows][cols];
+
+        dp[rows-1][cols-1] = grid[rows-1][cols-1];
+        for (int r=rows-1, c=cols-2; c>=0; c--) {
+            dp[r][c] = grid[r][c] + dp[r][c+1];
+        }
+
+        for (int r = rows-2; r>=0; r--) {
+            for (int c=cols-1; c>=0; c--) {
+                int down = Integer.MAX_VALUE, right = Integer.MAX_VALUE;
+                if (r+1 < rows) down = dp[r+1][c];
+                if (c+1 < cols) right = dp[r][c+1];
+
+                dp[r][c] = grid[r][c] + Math.min(down, right);
+
+                /*
+                    // or
+                    if (r == rows-1) dp[r][c] = grid[r][c] + dp[r][c+1];
+                    else if (c == cols-1) dp[r][c] = grid[r][c] + dp[r+1][c];
+                    else dp[r][c] = grid[r][c] + Math.min(dp[r+1][c], dp[r][c+1]);
+                 */
+            }
+        }
+
+        return dp[0][0];
+    }
+
+
+
+    /**
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
+     */
+    public int minPathSumUsingBottomUpDp2(int[][] grid) {
+        int rows = grid.length, cols = grid[0].length;
+        int[][] dp = new int[rows][cols];
+        for (int r = rows-1; r >= 0; r--) {
+            for (int c = cols-1; c >= 0; c--) {
+                if (r == rows-1 && c != cols-1) dp[r][c] = grid[r][c] + dp[r][c + 1];
+                else if (c == cols-1 && r != rows-1) dp[r][c] = grid[r][c] + dp[r + 1][c];
+                else if (c != cols-1 && r != rows-1) dp[r][c] = grid[r][c] + Math.min(dp[r + 1][c], dp[r][c + 1]);
+                else dp[r][c] = grid[r][c];
+            }
+        }
+        return dp[0][0];
+    }
+
+
+    
+    
+    
+    /**
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(n)
+     */
+    public static int minPathSumUsingBottomUpDpOptimizedSpace(int[][] grid) {
+        int rows = grid.length, cols = grid[0].length;
+        int[] dp = new int[cols+1];
+
+        for (int r=rows-1, c=cols-1; c>=0; c--) {
+            dp[c] = grid[r][c] + dp[c+1];
+        }
+        dp[cols] = Integer.MAX_VALUE;
+
+        for (int r = rows-2; r>=0; r--) {
+            for (int c=cols-1; c>=0; c--) {
+                dp[c] = grid[r][c] + Math.min(dp[c], dp[c+1]);
+            }
+        }
+
+        return dp[0];
+    }
+
+    
+    
+    
+    /**
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(1)
+     */
+    public static int minPathSumUsingBottomUpDpInPlace(int[][] grid) {
+        int rows = grid.length, cols = grid[0].length;
+        for (int i = rows-1; i >= 0; i--) {
+            for (int j = cols-1; j >= 0; j--) {
+                if (i == rows-1 && j != cols - 1) grid[i][j] = grid[i][j] + grid[i][j + 1];
+                else if (j == cols - 1 && i != rows-1) grid[i][j] = grid[i][j] + grid[i + 1][j];
+                else if (j != cols - 1 && i != rows-1) grid[i][j] = grid[i][j] + Math.min(grid[i + 1][j], grid[i][j + 1]);
+            }
+        }
+        return grid[0][0];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+        ---------------------------------------------------
+                        OLD METHODS
+        ---------------------------------------------------
+
+     */
+
+
+
+
+    /**
+     * @TimeComplexity O(m) + O(n) + O(mn) = O(mn)
+     * @SpaceComplexity O(mn)
      */
     public static int minPathSumBottomUpTabulation(int[][] grid) {
         int m = grid.length;
@@ -73,24 +274,23 @@ public class MinimumPathSum {
     }
 
     /**
-     * Time Complexity: O(mn)
-     * Space Complexity: O(mn)
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
      */
     public static int minPathSumBottomUpTabulationMyApproach(int[][] grid) {
         int[][] dp = new int[grid.length][grid[0].length];
 
         for(int i=0; i<grid.length; i++){
             for(int j=0; j<grid[0].length; j++){
+                 int left = j>0? ( dp[i][j-1] ): 0;
+                 int top = i>0? ( dp[i-1][j] ) : 0;
 
-         int left = j>0? ( dp[i][j-1] ): 0;
-         int top = i>0? ( dp[i-1][j] ) : 0;
-
-         if(j==0)
-            dp[i][j] += ( top + grid[i][j]  );
-         else if(i==0)
-            dp[i][j] += (  left + grid[i][j]  );
-         else
-            dp[i][j] += (  Math.min(top, left) + grid[i][j]  );
+                 if(j==0)
+                    dp[i][j] += ( top + grid[i][j]  );
+                 else if(i==0)
+                    dp[i][j] += (  left + grid[i][j]  );
+                 else
+                    dp[i][j] += (  Math.min(top, left) + grid[i][j]  );
             }
         }
 
@@ -213,8 +413,8 @@ public class MinimumPathSum {
      *
      * It's not working --------
      *
-     * @TimeComplexity: O(mn)
-     * @SpaceComplexity: O(mn)
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
      */
     public static int minPathSumTopDownMemo3(int[][] grid) {
         int m = grid.length;
