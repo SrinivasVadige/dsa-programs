@@ -10,7 +10,11 @@ package Algorithms.BitManipulation;
 public class BitwiseAndOfNumbersRange {
     public static void main(String[] args) {
         int left = 5, right = 7;
-        System.out.println("rangeBitwiseAnd 1 => " + rangeBitwiseAndUsing32Bit(left, right));
+        System.out.println("rangeBitwiseAnd Using Loop TLE1 => " + rangeBitwiseAndUsingLoopTLE1(left, right));
+        System.out.println("rangeBitwiseAnd Using Loop TLE2 => " + rangeBitwiseAndUsingLoopTLE2(left, right));
+        System.out.println("rangeBitwiseAnd Using 32Bit => " + rangeBitwiseAndUsing32Bit(left, right));
+        System.out.println("rangeBitwiseAnd Using BitShift => " + rangeBitwiseAndUsingBitShift(left, right));
+        System.out.println("rangeBitwiseAnd Using BrainKernighansAlgorithm => " + rangeBitwiseAndUsingBrainKernighansAlgorithm(left, right));
     }
 
 
@@ -120,8 +124,33 @@ public class BitwiseAndOfNumbersRange {
     }
 
 
+    /**
+     * @TimeComplexity O(log(right-left) = O(logn)
+     * @SpaceComplexity O(1)
+     */
+    public int rangeBitwiseAndUsingLoop1(int left, int right) {
+        while (left < right) {
+            right = right & (right - 1);
+        }
+        return right;
+    }
 
 
+    /**
+     * @TimeComplexity O(log(right-left) = O(logn)
+     * @SpaceComplexity O(1)
+     */
+    public int rangeBitwiseAndUsingLoop2(int left, int right) {
+        int shift = 0;
 
+        // Find common prefix
+        while (left != right) {
+            left >>= 1;
+            right >>= 1;
+            shift++;
+        }
+        // Shift back to the left to restore the prefix position
+        return left << shift;
+    }
 
 }
