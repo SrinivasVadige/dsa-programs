@@ -38,8 +38,7 @@ import java.util.Map;
  * @since 22 Oct 2024
  * @link 72. Edit Distance <a href="https://leetcode.com/problems/edit-distance/">LeetCode link</a>
  * @topics String, Dynamic Programming
- * @companies Amazon, Google, Microsoft, LinkedIn, Swiggy, Meta, Bloomberg, Flipkart, TikTok, Zoho, HashedIn, tcs, Adobe, Oracle, Accenture, Snap, Infosys, Apple, DE Shaw, Arcesium, Rubrik
- * @see Algorithms.DynamicProgramming.LongestCommonSubsequence
+ * @companies Amazon(6), Google(4), Infosys(3), Microsoft(2), Apple(2), Meta(4), Bloomberg(3), IBM(2), Axon(2), TikTok(9), LinkedIn(8), Cisco(7), Zoho(6), Flipkart(3), Swiggy(3), Deloitte(2), Walmart Labs(2), EPAM Systems(2), Visa(2)
  */
 public class EditDistance {
 
@@ -48,11 +47,175 @@ public class EditDistance {
         String word1 = "plasma"; // or "horse"
         String word2 = "altruism"; // or "ros"
 
-        System.out.println("minDistance using Backtracking: " + minDistanceUsingBacktracking(word1, word2));
-        System.out.println("minDistance using TopDownMemoDp: " + minDistanceUsingTopDownMemoDp(word1, word2));
-        System.out.println("minDistance using LevenshteinDistanceDp: " + minDistanceUsingLevenshteinDistanceBottomUpTabulationDp(word1, word2));
-        System.out.println("minDistance using LevenshteinDistance BottomUpTabulationDp Optimized: " + minDistanceUsingLevenshteinDistanceBottomUpTabulationDpOptimized(word1, word2));
+        System.out.println("minDistance Using Backtracking TLE 1: " + minDistanceUsingBacktracking_TLE1(word1, word2));
+        System.out.println("minDistance Using TopDownMemoDp 1: " + minDistanceUsingTopDownMemoDp1(word1, word2));
+        System.out.println("minDistance Using BottomUpDp 1: " + minDistanceUsingBottomUpDp1(word1, word2));
+        System.out.println("minDistance Using BottomUpDp Optimized Space 1: " + minDistanceUsingBottomUpDpOptimizedSpace1(word1, word2));
+
+        System.out.println("minDistance using Backtracking TLE 2: " + minDistanceUsingBacktracking2(word1, word2));
+        System.out.println("minDistance using TopDownMemoDp 2: 🔥 - check this memo approach " + minDistanceUsingTopDownMemoDp2(word1, word2));
+        System.out.println("minDistance using LevenshteinDistanceDp 2: " + minDistanceUsingLevenshteinDistanceBottomUpTabulationDp(word1, word2));
+        System.out.println("minDistance using LevenshteinDistance BottomUpTabulationDp Optimized 2: " + minDistanceUsingLevenshteinDistanceBottomUpTabulationDpOptimized(word1, word2));
     }
+
+
+
+    /**
+                 i
+        word1 = "horse",
+        word2 = "ros"
+                 j
+                                                                0
+                                                               "h"
+                                ________________________________|__________________________
+                                |                    |                     |              |
+                              insert               delete               replace        do_nothing
+                                c++                  c++                   c++           c
+                                i                    i++                   i++           i++
+                                j++                  j                     j++           j++
+
+
+
+
+     * @TimeComplexity O(3^(m+n))
+     * @SpaceComplexity O(m+n)
+     */
+    public static int minDistanceUsingBacktracking_TLE1(String word1, String word2) {
+        return backtrack(word1, word2, word1.length(), word2.length(), 0, 0);
+    }
+    private static int backtrack(String word1, String word2, int m, int n, int i, int j) {
+        if (i == m && j == n) return 0;
+        else if (i == m) return n-j;
+        else if (j == n) return m-i;
+
+        if (word1.charAt(i) == word2.charAt(j)) {
+            return backtrack(word1, word2, m, n, i+1, j+1);
+        }
+
+        int min = Integer.MAX_VALUE;
+        min = Math.min(min, backtrack(word1, word2, m, n, i, j+1) + 1); // insert
+        min = Math.min(min, backtrack(word1, word2, m, n, i+1, j) + 1); // delete
+        min = Math.min(min, backtrack(word1, word2, m, n, i+1, j+1) + 1); // replace
+
+        return min;
+    }
+
+
+    /**
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
+     */
+    public static int minDistanceUsingTopDownMemoDp1(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        return dfs(word1, word2, m, n, 0, 0, new Integer[m][n]);
+    }
+    private static int dfs(String word1, String word2, int m, int n, int i, int j, Integer[][] memo) {
+        if (i == m && j == n) return 0;
+        else if (i == m) return n-j;
+        else if (j == n) return m-i;
+        else if (memo[i][j] != null) return memo[i][j];
+
+        if (word1.charAt(i) == word2.charAt(j)) {
+            return memo[i][j] = dfs(word1, word2, m, n, i+1, j+1, memo);
+        }
+
+        int min = Integer.MAX_VALUE;
+
+        min = Math.min(min, dfs(word1, word2, m, n, i, j+1, memo) + 1); // insert
+        min = Math.min(min, dfs(word1, word2, m, n, i+1, j, memo) + 1); // delete
+        min = Math.min(min, dfs(word1, word2, m, n, i+1, j+1, memo) + 1); // replace
+
+        return memo[i][j] = min;
+    }
+
+
+
+    /**
+
+        dfs(r, c) == dp[r][c]
+
+        dp[r][c] depends on word1.charAt(r) == word2.charAt(c), dp[r][c+1], dp[r+1][c], dp[r+1][c+1]
+
+
+        for (r=m-1)
+            for (c=n-1)
+
+
+         0  1  2  3
+         r  o  s  ""
+        [0, 0, 0, 0] h 0
+        [0, 0, 0, 0] o 1
+        [0, 0, 0, 0] r 2
+        [0, 0, 0, 0] s 3
+        [0, 0, 0, 0] e 4
+        [0, 0, 0, 0] "" 5
+
+        if same dp[r+1][c+1] else min of all 3
+
+
+        else if (i == m) return n-j;
+        else if (j == n) return m-i;
+
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(mn)
+     */
+    public static int minDistanceUsingBottomUpDp1(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+        int[][] dp = new int[m+1][n+1];
+
+        for (int c = 0; c <= n; c++) dp[m][c] = n - c; // r == m -> word1 is empty -> n-c count need to convert "" word1 to word2
+        for (int r = 0; r <= m; r++) dp[r][n] = m - r; // c == n -> word2 is empty -> m-r count need to convert word1 to "" word2
+
+        for (int r=m-1; r>=0; r--) {
+            for (int c=n-1; c>=0; c--) {
+                if (word1.charAt(r) == word2.charAt(c)) dp[r][c] = dp[r+1][c+1];
+                else {
+                    int min = dp[r][c+1];
+                    min = Math.min(min, dp[r+1][c]);
+                    min = Math.min(min, dp[r+1][c+1]);
+                    dp[r][c] = min+1;
+                }
+            }
+        }
+
+        return dp[0][0];
+    }
+
+
+
+    /**
+     * @TimeComplexity O(mn)
+     * @SpaceComplexity O(n)
+     */
+    public static int minDistanceUsingBottomUpDpOptimizedSpace1(String word1, String word2) {
+        int m = word1.length(), n = word2.length();
+
+        int[] prev = new int[n + 1];
+        int[] curr = new int[n + 1];
+
+        for (int c = 0; c <= n; c++) prev[c] = n-c; // r == m -> word1 is empty -> n-c count need to convert "" word1 to word2
+
+        for (int r = m-1; r >= 0; r--) {
+            curr[n] = m-r; // c == n -> word2 is empty -> m-r count need to convert word1 to "" word2
+            for (int c = n-1; c >= 0; c--) {
+                if (word1.charAt(r) == word2.charAt(c)) {
+                    curr[c] = prev[c+1];
+                } else {
+                    curr[c] = 1 + Math.min( prev[c+1], Math.min(prev[c], curr[c+1]) ); // replace, delete, insert
+                }
+            }
+
+            int[] temp = prev;
+            prev = curr;
+            curr = temp;
+        }
+
+        return prev[0];
+    }
+
+
+
+
 
 
 
@@ -175,7 +338,7 @@ public class EditDistance {
      NOTE: Always maintain the "distanceFromCurrToEnd" in dp 🔥
 
      */
-    public static int minDistanceUsingBacktracking(String word1, String word2) {
+    public static int minDistanceUsingBacktracking2(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
 
@@ -221,7 +384,7 @@ public class EditDistance {
      * @SpaceComplexity O(nm)
      * same as above backtracking approach but added memo for repeated sub-problems
      */
-    public static int minDistanceUsingTopDownMemoDp(String word1, String word2) {
+    public static int minDistanceUsingTopDownMemoDp2(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
         if(m==0 || n==0) {
@@ -268,7 +431,7 @@ public class EditDistance {
 
 
 
-    public int minDistanceUsingTopDownMemoDp2(String word1, String word2) {
+    public int minDistanceUsingTopDownMemoDp3(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
         if (m == 0 || n == 0) {
@@ -305,7 +468,7 @@ public class EditDistance {
 
 
 
-    public static int minDistanceUsingTopDownMemoDp3(String word1, String word2) {
+    public static int minDistanceUsingTopDownMemoDp4(String word1, String word2) {
         int n=word1.length();
         int m=word2.length();
         int[][] dp=new int[n][m];
@@ -332,7 +495,7 @@ public class EditDistance {
 
 
     /**
-     * see  {@link #minDistanceUsingBacktracking} for better understanding of "RECURRENCE RELATION" i.e., dp[i][j] = 1 + Math.min(dp[i-1][j-1], Math.min(dp[i-1][j], dp[i][j-1]))
+     * see  {@link #minDistanceUsingBacktracking2} for better understanding of "RECURRENCE RELATION" i.e., dp[i][j] = 1 + Math.min(dp[i-1][j-1], Math.min(dp[i-1][j], dp[i][j-1]))
      * <>
      * this recurrence equation is same like "Longest common subsequence" {@link Algorithms.DynamicProgramming.LongestCommonSubsequence#longestCommonSubsequenceBottomUpTabulationDp}
      *
@@ -449,7 +612,7 @@ public class EditDistance {
                     dp[i][j] = dp[i-1][j-1];
                 } else {
                     dp[i][j] = 1 + Math.min(dp[i-1][j-1], Math.min(dp[i-1][j], dp[i][j-1]));
-                    // RECURRENCE RELATION for insert, delete, replace -- to understand this check the #minDistanceUsingBacktracking() documentation
+                    // RECURRENCE RELATION for insert, delete, replace -- to understand this check the #minDistanceUsingBacktracking2()() documentation
                 }
 
                 /*
