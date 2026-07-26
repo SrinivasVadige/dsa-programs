@@ -10,14 +10,15 @@ import java.util.Map;
  * @since 27 Feb 2025
  * @link 121. Best Time to Buy and Sell Stock <a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/">LeetCode link</a>
  * @topics Two Pointers, Dynamic Programming, Array
- * @companies amazon, facebook, google, apple, bloomberg, microsoft, agoda, oracle, tiktok, zoho, uber, visa, zoox, ibm, atlassian, infosys, tcs, adobe, goldman, tesla, morgan, accenture, jpmorgan, yahoo, nvidia, bolt, walmart, yandex, paypal, samsung
+ * @companies Amazon(39), Google(29), Bloomberg(9), Meta(8), Microsoft(7), Apple(4), Infosys(3), TCS(2), Atlassian(2), Accenture(2), IBM(3), Goldman Sachs(3), Walmart Labs(2), TikTok(2), Tesla(2), Nvidia(2), CarWale(2), Media.net(2), Mastercard(2), Squarepoint Capital(2), Zoho(19), Uber(17), Agoda(15), Morgan Stanley(14), Visa(13), Zoox(12), Citadel(11), Oracle(9), JPMorgan Chase(7), Deloitte(6)
+ * @see Algorithms.DynamicProgramming.BestTimeToBuyAndSellStockIII
  */
 public class BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
         int[] prices = {7,1,5,3,6,4};
         System.out.println("maxProfit using l,r pointers => " + maxProfitUsingTwoPointers(prices));
         System.out.println("maxProfit using two pointers (minPrice, i) => " + maxProfitUsingTwoPointers2(prices));
-        System.out.println("maxProfit using two pointers (effectiveBuyPrice, maxProfit) => " + maxProfitUsingTwoPointersEffectiveBuyPrice(prices));
+        System.out.println("maxProfit using two pointers (effectiveBuyPrice, maxProfit) => " + maxProfitUsingStateMachineDpEffectiveBuyPrice(prices));
         System.out.println("maxProfit using bottom up tabulation dp => " + maxProfitUsingBottomUpTabulationDp(prices));
         System.out.println("maxProfit using brute force => " + maxProfitUsingBruteForce(prices));
     }
@@ -159,9 +160,9 @@ public class BestTimeToBuyAndSellStock {
      *
      * This approach is same as {@link #maxProfitUsingTwoPointers2} and {@link #maxProfitUsingTwoPointerMyApproachOld(int[])}
      * but instead of minPrice, it uses effectiveBuyPrice
-     * see {@link Algorithms.DynamicProgramming.BestTimeToBuyAndSellStockII#maxProfitUsingTwoPointersEffectiveBuyPrice} for easier understanding
+     * see {@link Algorithms.DynamicProgramming.BestTimeToBuyAndSellStockII#maxProfitUsingStateMachineDpEffectiveBuyPrice} for easier understanding
      */
-    public static int maxProfitUsingTwoPointersEffectiveBuyPrice(int[] prices) {
+    public static int maxProfitUsingStateMachineDpEffectiveBuyPrice(int[] prices) {
         int maxProfit = 0, effectiveBuyPrice = Integer.MAX_VALUE;
         for (int i = 0; i < prices.length; i++) {
             effectiveBuyPrice = Math.min(effectiveBuyPrice, prices[i]); // the effective buy price up to i
