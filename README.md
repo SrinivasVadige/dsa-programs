@@ -205,6 +205,7 @@ Data Structures and Algorithm Programs
    * [State_Machine_DP Best Time to Buy and Sell Stock IV](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockIV.java)
    * [State_Machine_DP 🔥 Best Time to Buy and Sell Stock with Cooldown](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithCooldown.java)
    * [State_Machine_DP Best Time to Buy and Sell Stock with Transaction Fee](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockWithTransactionFee.java)
+   * [Best Time to Buy and Sell Stock using Strategy (not DP problem)](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
    * [State_Machine_DP House Robber](/Algorithms/DynamicProgramming/HouseRobber.java)
    * [State_Machine_DP Maximum Product SubArray](/Algorithms/DynamicProgramming/MaximumProductSubArray.java)
    * [State_Machine_DP Domino and Tromino Tiling](/Algorithms/DynamicProgramming/DominoAndTrominoTiling.java)
@@ -403,6 +404,7 @@ Data Structures and Algorithm Programs
     * [Product of Array Except Self](Algorithms/PrefixSum/ProductOfArrayExceptSelf.java)
     * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
     * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
+    * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
 
 20. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
 
@@ -429,6 +431,7 @@ Data Structures and Algorithm Programs
     * [Longest SubArray of 1's After Deleting One Element](Algorithms/SlidingWindow/LongestSubArrayOf1sAfterDeletingOneElement.java)
     * [Minimum Size Subarray Sum](Algorithms/SlidingWindow/MinimumSizeSubarraySum.java)
     * [Substring with Concatenation of All Words](Algorithms/SlidingWindow/SubstringWithConcatenationOfAllWords.java)
+    * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
 
 24. #### [Sorting](Algorithms/Sorting)
 
