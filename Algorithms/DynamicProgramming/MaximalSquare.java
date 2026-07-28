@@ -35,8 +35,8 @@ public class MaximalSquare {
 
         Here, we increase the size of the square by 1 cell at a time.
 
-     * @TimeComplexity O(M * N * 3^(min(M, N)))
-     * @SpaceComplexity O(3^(min(M, N))) for Set-based / O(min(M, N)) for Stack-based
+     * @TimeComplexity O(m × n × L^3) = O(m × n × min(m, n)^3) ==> where L = min(m, n)
+     * @SpaceComplexity O(L^2) = O(min(m, n)^2)
      */
     public static int maximalSquareUsingBruteForce1(char[][] matrix) {
         int rows = matrix.length, cols = matrix[0].length, max = 0;
@@ -347,34 +347,34 @@ public class MaximalSquare {
      */
     public static int maximalSquareUsingBruteForce2(char[][] matrix) {
         int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
-        int maxsqlen = 0;
+        int maxLen = 0;
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 if (matrix[i][j] == '1') {
-                    int sqlen = 1;
+                    int sqLen = 1;
                     boolean flag = true;
-                    while (sqlen + i < rows && sqlen + j < cols && flag) {
-                        for (int k = j; k <= sqlen + j; k++) {
-                            if (matrix[i + sqlen][k] == '0') {
+                    while (sqLen + i < rows && sqLen + j < cols && flag) {
+                        for (int k = j; k <= sqLen + j; k++) {
+                            if (matrix[i + sqLen][k] == '0') {
                                 flag = false;
                                 break;
                             }
                         }
-                        for (int k = i; k <= sqlen + i; k++) {
-                            if (matrix[k][j + sqlen] == '0') {
+                        for (int k = i; k <= sqLen + i; k++) {
+                            if (matrix[k][j + sqLen] == '0') {
                                 flag = false;
                                 break;
                             }
                         }
-                        if (flag) sqlen++;
+                        if (flag) sqLen++;
                     }
-                    if (maxsqlen < sqlen) {
-                        maxsqlen = sqlen;
+                    if (maxLen < sqLen) {
+                        maxLen = sqLen;
                     }
                 }
             }
         }
-        return maxsqlen * maxsqlen;
+        return maxLen * maxLen;
     }
 
 
