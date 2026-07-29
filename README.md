@@ -265,6 +265,7 @@ Data Structures and Algorithm Programs
    * [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
    * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
    * [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
+   * [Maximum Distance in Arrays](Algorithms/IntegerArray/MaximumDistanceInArrays.java)
 
 10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
 
@@ -298,7 +299,7 @@ Data Structures and Algorithm Programs
     * [IPO](/Algorithms/HeapAlgos/IPO.java)
     * [Find K Pairs With Smallest Sums](/Algorithms/HeapAlgos/FindKPairsWithSmallestSums.java)
 
-12. #### [IntegerArray](/Algorithms/IntegerArray)
+12. #### [Arrays / Integer Array](/Algorithms/IntegerArray)
 
     * [MaximumRepeatingNumber](Algorithms/IntegerArray/MaximumRepeatingNumber.java)
     * [Closest Equal Element Queries](Algorithms/IntegerArray/ClosestEqualElementQueries.java)
@@ -319,6 +320,7 @@ Data Structures and Algorithm Programs
     * [H-Index](Algorithms/IntegerArray/HIndex.java)
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
+    * [Maximum Distance in Arrays](Algorithms/IntegerArray/MaximumDistanceInArrays.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
@@ -380,7 +382,7 @@ Data Structures and Algorithm Programs
     * [Sudoku Solver](/Algorithms/BackTracking/SudokuSolver.java)
     * [Game of Life](Algorithms/Matrix/GameOfLife.java)
     * [Construct Quad Tree](/Algorithms/DivideAndConquer/ConstructQuadTree.java)
-   * [Maximal Square](/Algorithms/DynamicProgramming/MaximalSquare.java)
+    * [Maximal Square](/Algorithms/DynamicProgramming/MaximalSquare.java)
 
 17. #### [Misc](/Algorithms/MiscAlgos)
 
