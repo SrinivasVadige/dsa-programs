@@ -321,6 +321,7 @@ Data Structures and Algorithm Programs
     * [Insert Delete GetRandom O(1)](Algorithms/IntegerArray/InsertDeleteGetRandom.java)
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
     * [Maximum Distance in Arrays](Algorithms/IntegerArray/MaximumDistanceInArrays.java)
+    * [Wiggle Sort](Algorithms/IntegerArray/WiggleSort.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
