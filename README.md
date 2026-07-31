@@ -369,6 +369,7 @@ Data Structures and Algorithm Programs
     * [Sqrt(x)](Algorithms/Math/Sqrt.java)
     * [Pow(x, n)](Algorithms/Math/Pow.java)
     * [Max Points on a Line](Algorithms/Math/MaxPointsOnALine.java)
+    * [Confusing Number](Algorithms/Math/ConfusingNumber.java)
 
 16. #### [Matrix](/Algorithms/Matrix)
 
