@@ -322,6 +322,7 @@ Data Structures and Algorithm Programs
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
     * [Maximum Distance in Arrays](Algorithms/IntegerArray/MaximumDistanceInArrays.java)
     * [Wiggle Sort](Algorithms/IntegerArray/WiggleSort.java)
+    * [Perform String Shifts](Algorithms/IntegerArray/PerformStringShifts.java)
 
 13. #### [Intervals](/Algorithms/Intervals)
 
