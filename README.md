@@ -488,6 +488,7 @@ Data Structures and Algorithm Programs
     * [Text Justification](/Algorithms/Strings/TextJustification.java)
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
     * [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
+    * [One Edit Distance](/Algorithms/Strings/OneEditDistance.java)
 
 27. #### [Tries / Prefix Tree](/Algorithms/Tries)
 
