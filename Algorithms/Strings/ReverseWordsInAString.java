@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
  * @since 05 April 2025
  * @link 151. Reverse Words in a String <a href="https://leetcode.com/problems/reverse-words-in-a-string/">LeetCode link</a>
  * @topics String, Two Pointers
+ * @companies Google(4), Deutsche Bank(2), Microsoft(3), Apple(3), Meta(2), Amazon(2), Bloomberg(2), Nvidia(6), LinkedIn(5), Infosys(4), Oracle(4), Zopsmart(4), Accenture(4), IBM(3), TCS(3), TikTok(3), Zoho(3)
  */
-public class ReverseWordsInString {
+public class ReverseWordsInAString {
     public static void main(String[] args) {
         String s = "the sky is blue";
         System.out.println("reverseWords(s) => " + reverseWords(s));
