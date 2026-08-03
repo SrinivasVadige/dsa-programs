@@ -13,11 +13,13 @@ package Algorithms.Strings;
  * Each word is separated by exactly one space
  * Characters can be letters or digits
  * Array length: 1 to 100,000
+ * @see Algorithms.Strings.ReverseWordsInAString
  */
 public class ReverseWordsInAStringII {
     static void main() {
         char[] s = "the sky is blue".toCharArray();
         reverseWords(s);
+        System.out.println(new String(s));
     }
 
     /**
