@@ -440,6 +440,7 @@ Data Structures and Algorithm Programs
     * [Minimum Size Subarray Sum](Algorithms/SlidingWindow/MinimumSizeSubarraySum.java)
     * [Substring with Concatenation of All Words](Algorithms/SlidingWindow/SubstringWithConcatenationOfAllWords.java)
     * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
+    * [Longest Substring with At Most Two Distinct Characters](Algorithms/SlidingWindow/LongestSubstringWithAtMostTwoDistinctCharacters.java)
 
 24. #### [Sorting](Algorithms/Sorting)
 
