@@ -6,15 +6,18 @@ import java.util.List;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 10 May 2025
- * NOTE: we can use java in-built binary search functions 🔥 --> but they don't work for duplicates no lowerBound, upperBound
- * {@link java.util.Arrays#binarySearch(int[], int)}
- * {@link java.util.Arrays#binarySearch(int[], int, int, int)} --> startInclusive, endExclusive, target
- * {@link java.util.Arrays#binarySearch(Object[], Object)}
- * {@link java.util.Arrays#binarySearch(Object[], Object, Comparator)}
- * {@link java.util.Arrays#binarySearch(Object[], int, int, Object, Comparator)}
+
+
+ * NOTE: we can use java in-built binary search functions 🔥 --> but they don't work for duplicates no lowerBound, upperBound --- if just finds any occurrence
+ * {@link java.util.Arrays#binarySearch(int[], int key)}
+ * {@link java.util.Arrays#binarySearch(int[], int fromI, int toI_Ex, int key)} --> startInclusive, endExclusive, target
+ * {@link java.util.Arrays#binarySearch(Object[], Object key)}
+ * {@link java.util.Arrays#binarySearch(Object[], Object key, Comparator a->a[i])}
+ * {@link java.util.Arrays#binarySearch(Object[], int fromI, int toI_Ex, Object key, Comparator a->a[i])}
  * and
- * {@link java.util.Collections#binarySearch(List, Object)}
- * {@link java.util.Collections#binarySearch(List, Object, Comparator)}
+ * {@link java.util.Collections#binarySearch(List, Object key)}
+ * {@link java.util.Collections#binarySearch(List, Object key, Comparator a->a[i])}
+
 
   Binary Search has a time complexity of O(log n) but only works on sorted arrays
 
@@ -33,7 +36,51 @@ import java.util.List;
   Observe some patterns like num[i-1] < num[i] < num[i+1]
   You can split the array into two equal halves like
   A1 = l1{2, 4} r1{9, 12}
-  Then
+
+
+
+   🔥🔥🔥
+    NOTE:
+
+    1. int[] is an object/reference type, even though its elements are primitive ints.
+    Type	    Primitive or Object?
+    int	        Primitive
+    double	    Primitive
+    boolean     Primitive
+    Integer     Object/reference type
+    int[]	    Object/reference type
+    int[][]	    Object/reference type
+
+    That's why for int[][] 2D array
+    we use this {@link java.util.Arrays#binarySearch(Object[], Object)}
+    instead of {@link java.util.Arrays#binarySearch(int[], int)}
+    as key is int[] Object/reference type not primitive ---> int[][] == Object[] ---> as int[] is Object type
+
+
+    2. If key/target not found then it returns -(insertionPoint) - 1
+    Sorted array: [1, 3, 5, 7, 9]
+    Target = 4
+    Insertion Point = 2
+    Return value = -(2) - 1 = -3
+
+    int result = Arrays.binarySearch(nums, target);
+    if (result < 0) insertionPoint = -result - 1; // or Math.abs(result+1)
+
+    3. Treat target as key not as primitive item
+    If array is (int[][] intervals) then:
+    int i = Arrays.binarySearch(intervals, new int[]{toBeRemoved[0]}, Comparator.comparingInt(a -> a[0])); if (i < 0) i = -i-1;
+    but not
+    int i = Arrays.binarySearch(intervals, toBeRemoved[0], Comparator.comparingInt(a -> a[0])); if (i < 0) i = -i-1;
+    Because you're basically asking Java: Search an int[][] (whose elements are int[]) for an int.
+    so, it's like Arrays.binarySearch(arr, key, Comparator.comparingInt(a -> a[0]));
+    key must be type of arr[i] ---> this is why we use key terminology instead of target terminology
+    int startI = Arrays.binarySearch(intervals, toBeRemoved, Comparator.comparingInt(a -> a[0]));
+    if (startI < 0) startI = -startI-1;
+    int endI = Arrays.binarySearch(intervals, toBeRemoved, Comparator.comparingInt(a -> a[1]));
+    if (endI < 0) endI = -endI-1;
+    key[] must have the same minimum size that we mention in a[i] in comparator ---> if we mention a[1] then this toBeRemoved must be minimum size of 2 to handle this a[1] comparision
+    🔥🔥🔥
+
  */
 public class BinarySearch {
     private static String[] args;
@@ -41,34 +88,39 @@ public class BinarySearch {
     public static void main(String[] args) {
         BinarySearch.args = args;
         int[] nums = {1, 3, 5, 6};
-        int target = 7;
-        System.out.printf("binarySearch => %s \n", binarySearch(nums, target));
-        System.out.printf("findFirstUsingBinarySearch in duplicates => %s \n", findFirstUsingBinarySearch(nums, target));
-        System.out.printf("findLastUsingBinarySearch in duplicates => %s \n", findLastUsingBinarySearch(nums, target));
+        int target = 4;
+        System.out.printf("binarySearch => %s \n", binarySearch(nums, target)); // TRADITIONAL
+        System.out.printf("findFirstUsingBinarySearch in duplicates => %s \n", findFirstUsingBinarySearch(nums, target)); // LOWER BOUND
+        System.out.printf("findLastUsingBinarySearch in duplicates => %s \n", findLastUsingBinarySearch(nums, target)); // UPPER BOUND
         System.out.printf("binarySearchWithDuplicates => %s \n", binarySearchWithDuplicates(nums, target));
 
     }
 
 
     /**
+     * NOTE: It doesn't work for duplicates -> just returns the any occurrence or the insertionPosition like java in-built methods
+
          [1, 3, 5, 6] & target = 7
-         if target>all nums eles and not found then it'll return nums.length i.e "n" as 'r' is initialized to 'n-1' and after l & r completion in while(l<=r) it'll be r+1
+         if target > "all nums" & not found then 'l' returns nums.length i.e "n" as 'r' is initialized to 'n-1' and after l & r completion in while(l<=r) it'll be r+1
          and 'r' will return 'n-1' as it is initialized to 'n-1'
 
          [1, 3, 5, 6] & target = -1
-         similarly if target<all nums eles and not found then 'l' return 0 not -1, so 'l' is initialized to 0
+         similarly if target < "all nums" & not found then 'l' returns 0 not -1, so 'l' is initialized to 0
          and 'r' will return -1
+         as arr[l] = arr[0] != 1 ---> l=0 is insertionPosition
 
-
+         [1, 3, 5, 6] & target = 4
+         similarly if target is in the range of nums but not found then 'l' returns insertionPosition = 2
+         and 'r'=1 & the while loop will break as 'r' < 'l'
 
      NOTE: 🔥
         if target is found then it'll return the index of target
-        if target not found, then it'll return the index where it would be if it were inserted in order
+        if target not found, then it'll return the insertion position (index where it would be if it were inserted in order)
         so, check and as per your requirement to return l or -1 -- when target not found
 
      * but always prefer {@link #findFirstUsingBinarySearch} or {@link #binarySearchWithDuplicates}
      */
-    public static int binarySearch(int[] nums, int target) {
+    public static int binarySearch(int[] nums, int target) { // TRADITIONAL
         int l = 0, r = nums.length - 1, mid;
         while (l <= r) {
             mid = l+(r-l)/2; // (l+r)/2 causes overflow. So, use l+(r-l)/2
@@ -86,12 +138,13 @@ public class BinarySearch {
      * First Occurrence or LowerBound logic
 
      * For Duplicates and non-duplicates
-     * NOTE: if target has no duplicates then findLast == findFirst
-     * @see Algorithms.BinarySearch.FindElementPositionsInDupSortedArray
+     * NOTE: if target has no duplicates then findLast == findFirst == traditional binary search
+     * @see #findFirstUsingBinarySearch2
+     * @see Algorithms.BinarySearch.FindFirstAndLastPositionOfElementInSortedArray
 
         or we can use if (nums[mid] >= target) like below {@link #binarySearchWithDuplicates} method
      */
-    public static int findFirstUsingBinarySearch(int[] nums, int target) {
+    public static int findFirstUsingBinarySearch(int[] nums, int target) {  // LOWER BOUND
         int l = 0, r = nums.length - 1, res = -1;
         while (l <= r) {
             int mid = l+(r-l)/2;
@@ -110,9 +163,10 @@ public class BinarySearch {
 
     /**
      * Last Occurrence or UpperBound logic
-     * @see Algorithms.BinarySearch.FindElementPositionsInDupSortedArray
+     * @see #findLastUsingBinarySearch2
+     * @see Algorithms.BinarySearch.FindFirstAndLastPositionOfElementInSortedArray
      */
-    public static int findLastUsingBinarySearch(int[] nums, int target) {
+    public static int findLastUsingBinarySearch(int[] nums, int target) {  // UPPER BOUND
         int l = 0, r = nums.length - 1, res = -1;
         while (l <= r) {
             int mid = l+(r-l)/2;
@@ -166,6 +220,7 @@ public class BinarySearch {
     /**
      * 🔥
      * Works for both duplicates, non-duplicates nums and also when target is not present
+     * same as {@link #findFirstUsingBinarySearch} & {@link #findFirstUsingBinarySearch2}
      * 🔥
      * Here if target not found then it'll return the next biggest number.
      * same as above binarySearch() explanation
@@ -181,7 +236,7 @@ public class BinarySearch {
 
      NOTE: 🔥
         if target is found then it'll return the starting index of target
-        if target not found, then it'll return the index where it would be if it were inserted in order
+        if target not found, then it'll return insertion-position (the index where it would be if it were inserted in order)
         so, check and as per your requirement to return l or -1 -- when target not found
      */
     public static int binarySearchWithDuplicates(int[] nums, int target) {
@@ -218,7 +273,7 @@ public class BinarySearch {
      * THIS IS MY CUSTOM APPROACH FOR FIND FIRST AND FIND LAST -----------------------------
      * Here, l and r are 0 and nums.length-1 by default
 
-     * Same as {@link #binarySearchWithDuplicates}
+     * Same as {@link #binarySearchWithDuplicates} & {@link #findFirstUsingBinarySearch}
      * findFirst() checks (l == n || nums[l] != target) or (l<0 || l>=n || nums[l]!=target) which correctly handles:
      * 1. Empty array
      * 2. Out-of-bound
@@ -240,6 +295,7 @@ public class BinarySearch {
 
     /**
      * Here, l and r are "findFirst index" and nums.length-1 by default
+     * same as {@link #findLastUsingBinarySearch}
      */
     private int findLastUsingBinarySearch2(int[] nums, int target, int l, int r){
         if(l == -1) { // l is the index of findFirst, NOTE: if target has no duplicates then findLast == findFirst
@@ -295,8 +351,8 @@ public class BinarySearch {
         Focus on "Strictly monotonically increasing" or "Strictly monotonically decreasing"
 
                                                 *                    *
-                                            *      -∞     or     -∞      *
-                                        *                                     *
+                                            *      *      or     *        *
+                                        *              -∞    -∞               *
                                     *                                            *
                                 -∞                                                   -∞
 
@@ -313,8 +369,8 @@ public class BinarySearch {
         while (l<=r) {
             mid = l + (r-l)/2;
             // which neighbor is bigger?
-            if (mid > 0 && nums[mid] < nums[mid-1]) r=mid-1; // leftNeighbor is bigger
-            else if( mid < n-1 && nums[mid] < nums[mid+1]) l=mid+1; // rightNeighbor is bigger
+            if( mid < n-1 && nums[mid] < nums[mid+1]) l=mid+1; // rightNeighbor is bigger
+            else if (mid > 0 && nums[mid-1] > nums[mid]) r=mid-1; // leftNeighbor is bigger
             else return mid; // so, no neighbor is bigger
         }
         return -1;
