@@ -4,6 +4,10 @@ Data Structures and Algorithm Programs
 
 * Language: Java
 
+INTELLIJ IDE SETUP GUIDE: 
+1. Project Structure > Sources > add this dsa-programs as source dir
+2. Project Structure > Dependencies > select the java sdk
+
 <br></br>
 
 ## Table of Contents
