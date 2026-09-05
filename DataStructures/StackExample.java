@@ -38,6 +38,16 @@ Note:
 2. Use Deque for both Stack and Queue alternative.
 Deque<Integer> deque = new ArrayDeque<>()
 
+    🔥🔥🔥
+    HOW TO FIND THE STACK ALGO IN A DSA PROBLEM:
+    --------------------------------------------
+    If you see a recursion window like window within a window -> it's like window inside a window
+    Example:
+    1. Parentheses: ()[]{}, ([]){}, {{[][]}}
+    2. Ternary Operator
+    3. Calculator
+
+
 </pre>
  *
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
