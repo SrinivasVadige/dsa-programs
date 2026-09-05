@@ -40,7 +40,8 @@ import java.util.function.IntBinaryOperator;
 public class BasicCalculator2 {
     public static void main(String[] args) {
         String s = "3+5 / 2 ";
-        System.out.println("calculate using getNextNum -> " + calculateUsingGetNextNum(s));
+        System.out.println("calculate using getNextNum 1 -> " + calculateUsingGetNextNum1(s));
+        System.out.println("calculate using getNextNum 2 -> " + calculateUsingGetNextNum2(s));
         System.out.println("calculate using stack ->" + calculateUsingStack(s));
     }
 
@@ -56,7 +57,7 @@ public class BasicCalculator2 {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(1)
      */
-    public static int calculateUsingGetNextNum(String s) {
+    public static int calculateUsingGetNextNum1(String s) {
         // List<Integer> numsList = new ArrayList<>();
         int num = 0;
         int numSign = 1; // + is 1 and - is -1 ---> initial num & numSign is +0
@@ -102,13 +103,68 @@ public class BasicCalculator2 {
 
 
 
+
+    /**
+     * @TimeComplexity O(n)
+     * @SpaceComplexity O(1)
+     */
+    public static int calculateUsingGetNextNum2(String s) {
+        int n = s.length();
+        int res = 0;
+        int prevNum = 0;
+        int prevSign = 1;
+        for (int i=0; i<n; i++) {
+            char c = s.charAt(i);
+            if (c == ' ') continue;
+            else if (c == '+') {
+                res += prevSign * prevNum;
+                prevNum = 0;
+                prevSign = 1;
+            } else if (c == '-') {
+                res += prevSign * prevNum;
+                prevNum = 0;
+                prevSign = -1;
+            } else if (c == '/') {
+                int[] arr = getNextNum(i+1, s);
+                int nextNum = arr[0];
+                int nextI = arr[1];
+                prevNum /= nextNum;
+                i = nextI;
+            } else if (c == '*') {
+                int[] arr = getNextNum(i+1, s);
+                int nextNum = arr[0];
+                int nextI = arr[1];
+                prevNum *= nextNum;
+                i = nextI;
+            } else if (Character.isDigit(c)) {
+                prevNum = prevNum*10 + c-'0';
+            }
+        }
+
+        return res + prevSign * prevNum;
+    }
+
+    private static int[] getNextNum(int i, String s) {
+        int num = 0;
+        int n = s.length();
+        while (i < n && ( Character.isDigit(s.charAt(i)) || s.charAt(i) == ' ') ) {
+            if (s.charAt(i) != ' ') num = num*10 + s.charAt(i)-'0';
+            i++;
+        }
+        return new int[]{num, i-1};
+    }
+
+
+
+
+
     /**
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
      */
     public static int calculateUsingStack(String s) { // calculateUsingStack
         int n = s.length();
-        Stack<Integer> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>(); // instead of res, use this stack
         int num = 0;
         char prevOperation = '+'; // numSign
         for (int i=0; i<n; i++) {
