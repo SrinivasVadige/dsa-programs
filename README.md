@@ -204,6 +204,7 @@ INTELLIJ IDE SETUP GUIDE:
    * [DP_Approaches_Progression_Flow Interleaving String](/Algorithms/DynamicProgramming/InterleavingString.java)
    * [DP_Approaches_Progression_Flow Edit Distance - Levenshtein Distance Algorithm](/Algorithms/DynamicProgramming/EditDistance.java)
    * [DP_Approaches_Progression_Flow Maximal Square](/Algorithms/DynamicProgramming/MaximalSquare.java)
+   * [DP_Approaches_Progression_Flow Wiggle Subsequence](/Algorithms/DynamicProgramming/WiggleSubsequence.java)
    * [State_Machine_DP Best Time to Buy and Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
    * [State_Machine_DP Best Time to Buy and Sell Stock II](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockII.java)
    * [State_Machine_DP 🔥 Best Time to Buy and Sell Stock III](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStockIII.java)
