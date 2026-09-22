@@ -580,16 +580,17 @@ INTELLIJ IDE SETUP GUIDE:
 
 1) [From my LeetCode experience- leetcode/srinivasvadige](https://leetcode.com/u/srinivasvadige)
 2) Hackerrank
-3) Personal experience and research
-4) Official java documentations, blogs
-5) [WilliamFiset - YT Data structures playlist](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
-6) [takeuforward.org - Strivers A2Z DSA Course/Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2)
-7) [COURSERA DSA ROADMAP PART 1](https://www.coursera.org/learn/algorithms-part1)
-8) [COURSERA DSA ROADMAP PART 2](https://www.coursera.org/learn/algorithms-part2)
-9) [GFG DSA course](https://www.geeksforgeeks.org/fundamentals-of-algorithms)
-10) [FCC DSA course with 48hrs YT video](https://www.freecodecamp.org/news/learn-data-structures-and-algorithms-2)
-11) [GFG interview DSA FAQs](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions)
-12) [Columbia University DSA Research Papers](https://timroughgarden.org)
+3) TopCoder
+4) Personal experience and research
+5) Official java documentations, blogs
+6) [WilliamFiset - YT Data structures playlist](https://www.youtube.com/watch?v=Qmt0QwzEmh0&list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
+7) [takeuforward.org - Strivers A2Z DSA Course/Sheet](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2)
+8) [COURSERA DSA ROADMAP PART 1](https://www.coursera.org/learn/algorithms-part1)
+9) [COURSERA DSA ROADMAP PART 2](https://www.coursera.org/learn/algorithms-part2)
+10) [GFG DSA course](https://www.geeksforgeeks.org/fundamentals-of-algorithms)
+11) [FCC DSA course with 48hrs YT video](https://www.freecodecamp.org/news/learn-data-structures-and-algorithms-2)
+12) [GFG interview DSA FAQs](https://www.geeksforgeeks.org/top-10-algorithms-in-interview-questions)
+13) [Columbia University DSA Research Papers](https://timroughgarden.org)
 
 <br></br>
 <br></br>

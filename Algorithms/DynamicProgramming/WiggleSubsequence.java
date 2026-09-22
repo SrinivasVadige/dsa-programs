@@ -29,6 +29,17 @@ public class WiggleSubsequence {
     static void main(String[] args) {
         int[] nums = {1,17,5,10,13,15,10,5,16,8};
 
+
+        System.out.printf("wiggleMaxLength Using Backtracking1: %d\n", wiggleMaxLengthUsingBacktracking1(nums));
+        System.out.printf("wiggleMaxLength Using TopDownMemoDp1: %d\n", wiggleMaxLengthUsingTopDownMemoDp1(nums));
+
+        System.out.printf("wiggleMaxLength Using Backtracking2: %d\n", wiggleMaxLengthUsingBacktracking2(nums));
+        System.out.printf("wiggleMaxLength Using TopDownMemoDp2: %d\n", wiggleMaxLengthUsingTopDownMemoDp2(nums));
+        System.out.printf("wiggleMaxLength Using BottomUpTabulationDp2: %d\n", wiggleMaxLengthUsingBottomUpTabulationDp2(nums));
+        System.out.printf("wiggleMaxLength Using BottomUpTabulationDp2 Improved: %d\n", wiggleMaxLengthUsingBottomUpTabulationDp2Improved(nums));
+        System.out.printf("wiggleMaxLength Using BottomUpTabulationDp2 Improved OptimizedSpace: %d\n", wiggleMaxLengthUsingBottomUpTabulationDp2ImprovedOptimizedSpace(nums));
+
+        System.out.printf("wiggleMaxLength Using GreedyApproach: %d\n", wiggleMaxLengthUsingGreedyApproach(nums));
     }
 
 
@@ -58,10 +69,10 @@ public class WiggleSubsequence {
      * @TimeComplexity O(2^n)
      * @SpaceComplexity O(n) - recursion stack
      */
-    public int wiggleMaxLengthUsingBacktracking1(int[] nums) {
+    public static int wiggleMaxLengthUsingBacktracking1(int[] nums) {
         return Math.max(backtrack(nums, 0, -1, true), backtrack(nums, 0, -1, false));
     }
-    private int backtrack(int[] nums, int i, int prevI, boolean isPosDiff) {
+    private static int backtrack(int[] nums, int i, int prevI, boolean isPosDiff) {
         if (i == nums.length) return 0;
 
         if (prevI != -1) { // ignore isPositiveDiff if prevI==-1
@@ -80,11 +91,11 @@ public class WiggleSubsequence {
      * @TimeComplexity O(n^2)
      * @SpaceComplexity O(n) - recursion stack
      */
-    public int wiggleMaxLengthUsingTopDownMemoDp1(int[] nums) {
+    public static int wiggleMaxLengthUsingTopDownMemoDp1(int[] nums) {
         Map<String, Integer> memo = new HashMap<>();
         return Math.max(dfs(nums, 0, -1, true, memo), dfs(nums, 0, -1, false, memo));
     }
-    private int dfs(int[] nums, int i, int prevI, boolean isPosDiff, Map<String, Integer> memo) {
+    private static int dfs(int[] nums, int i, int prevI, boolean isPosDiff, Map<String, Integer> memo) {
         if (i == nums.length) return 0;
         String key = new StringBuilder().append(i).append(",").append(prevI).append(",").append(isPosDiff).toString();
 
@@ -110,11 +121,11 @@ public class WiggleSubsequence {
      * @TimeComplexity O(2^n)
      * @SpaceComplexity O(n) - recursion stack
      */
-    public int wiggleMaxLengthUsingBacktracking2(int[] nums) {
+    public static int wiggleMaxLengthUsingBacktracking2(int[] nums) {
         if (nums.length < 2) return nums.length;
         return 1+Math.max(calculate(nums, 0, true), calculate(nums, 0, false));
     }
-    private int calculate(int[] nums, int index, boolean isUp) {
+    private static int calculate(int[] nums, int index, boolean isUp) {
         int maxCount = 0;
         for (int i = index + 1; i < nums.length; i++) {
             if (isUp && nums[i] > nums[index] || !isUp && nums[i] < nums[index]) {
@@ -131,12 +142,12 @@ public class WiggleSubsequence {
      * @TimeComplexity O(n^2)
      * @SpaceComplexity O(n) - recursion stack
      */
-    public int wiggleMaxLengthUsingTopDownMemoDp2(int[] nums) {
+    public static int wiggleMaxLengthUsingTopDownMemoDp2(int[] nums) {
         Integer[][] memo = new Integer[nums.length][2];
         if (nums.length < 2) return nums.length;
         return 1+Math.max(calculate(nums, 0, 1, memo), calculate(nums, 0, 0, memo));
     }
-    private int calculate(int[] nums, int index, int isUp, Integer[][] memo) {
+    private static int calculate(int[] nums, int index, int isUp, Integer[][] memo) {
         if (memo[index][isUp] != null) return memo[index][isUp];
 
         int maxCount = 0;
@@ -156,7 +167,7 @@ public class WiggleSubsequence {
      * @TimeComplexity O(n^2)
      * @SpaceComplexity O(n)
      */
-    public int wiggleMaxLengthUsingBottomUpTabulationDp2(int[] nums) {
+    public static int wiggleMaxLengthUsingBottomUpTabulationDp2(int[] nums) {
         if (nums.length < 2) return nums.length;
         int[] up = new int[nums.length];
         int[] down = new int[nums.length];
@@ -178,7 +189,7 @@ public class WiggleSubsequence {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(n)
      */
-    public int wiggleMaxLengthUsingBottomUpTabulationDp2Improved(int[] nums) {
+    public static int wiggleMaxLengthUsingBottomUpTabulationDp2Improved(int[] nums) {
         if (nums.length < 2) return nums.length;
         int[] up = new int[nums.length];
         int[] down = new int[nums.length];
@@ -205,7 +216,7 @@ public class WiggleSubsequence {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(1)
      */
-    public int wiggleMaxLengthUsingBottomUpTabulationDp2ImprovedOptimizedSpace(int[] nums) {
+    public static int wiggleMaxLengthUsingBottomUpTabulationDp2ImprovedOptimizedSpace(int[] nums) {
         if (nums.length < 2) return nums.length;
         int down = 1, up = 1;
         for (int i = 1; i < nums.length; i++) {
@@ -224,7 +235,7 @@ public class WiggleSubsequence {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(1)
      */
-    public int wiggleMaxLengthUsingGreedyApproach(int[] nums) {
+    public static int wiggleMaxLengthUsingGreedyApproach(int[] nums) {
         if (nums.length < 2) return nums.length;
         int prevDiff = nums[1] - nums[0];
         int count = prevDiff != 0 ? 2 : 1;
