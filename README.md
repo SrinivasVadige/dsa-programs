@@ -107,7 +107,7 @@ INTELLIJ IDE SETUP GUIDE:
    * [Koko Eating Bananas](/Algorithms/BinarySearch/KokoEatingBananas.java)
    * [H-Index](Algorithms/IntegerArray/HIndex.java)
 
-3. #### [BinarySearchTrees BST](Algorithms/BinaryTrees)
+3. #### [BinarySearchTrees BST](Algorithms/BinarySearchTrees)
    * [Binary Search Tree Iterator](/Algorithms/BinarySearchTrees/BinarySearchTreeIterator.java) 
    * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinarySearchTrees/ConvertSortedArrayToBinarySearchTree.java)
    * [Delete Node in a BST](/Algorithms/BinarySearchTrees/DeleteNodeInBST.java)
