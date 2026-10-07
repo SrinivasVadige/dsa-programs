@@ -1,4 +1,4 @@
-package Algorithms.BinaryTrees;
+package Algorithms.BinarySearchTrees;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com

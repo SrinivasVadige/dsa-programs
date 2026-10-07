@@ -1,4 +1,4 @@
-package Algorithms.BinaryTrees;
+package Algorithms.BinarySearchTrees;
 
 import java.util.ArrayList;
 import java.util.Collections;

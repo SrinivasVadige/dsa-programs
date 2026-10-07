@@ -75,7 +75,6 @@ INTELLIJ IDE SETUP GUIDE:
 * ### [ALGORITHMS](Algorithms)
 
 1. #### [BackTracking](Algorithms/BackTracking)
-
    * [Combination Sum I & Backtracking Intro](/Algorithms/BackTracking/CombinationSum.java)
    * [Combination Sum II](/Algorithms/BackTracking/CombinationSumII.java)
    * [Combination Sum III](/Algorithms/BackTracking/CombinationSumIII.java)
@@ -95,7 +94,6 @@ INTELLIJ IDE SETUP GUIDE:
    * [Combinations](/Algorithms/BackTracking/Combinations.java)
 
 2. #### [Binary Search](Algorithms/BinarySearch)
-
    * [Median of Two Sorted Arrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
    * [Kth Element of Two Sorted Arrays](Algorithms/BinarySearch/KthElementOfTwoSortedArrays.java)
    * [Search in Rotated Sorted Array](/Algorithms/BinarySearch/SearchInRotatedSortedArray.java)
@@ -109,44 +107,44 @@ INTELLIJ IDE SETUP GUIDE:
    * [Koko Eating Bananas](/Algorithms/BinarySearch/KokoEatingBananas.java)
    * [H-Index](Algorithms/IntegerArray/HIndex.java)
 
-3. #### [BinaryTrees & BinarySearchTrees BST](Algorithms/BinaryTrees)
+3. #### [BinarySearchTrees BST](Algorithms/BinaryTrees)
+   * [Binary Search Tree Iterator](/Algorithms/BinarySearchTrees/BinarySearchTreeIterator.java) 
+   * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinarySearchTrees/ConvertSortedArrayToBinarySearchTree.java)
+   * [Delete Node in a BST](/Algorithms/BinarySearchTrees/DeleteNodeInBST.java)
+   * [Kth Smallest Element in a BST](/Algorithms/BinarySearchTrees/KthSmallestElementInBST.java)
+   * [Lowest Common Ancestor of a Binary Search Tree / LCA of BST](/Algorithms/BinarySearchTrees/LowestCommonAncestorOfBinarySearchTree.java)
+   * [Minimum Absolute Difference in BST](/Algorithms/BinarySearchTrees/MinimumAbsoluteDifferenceInBST.java)
+   * [Search in a Binary Search Tree](/Algorithms/BinarySearchTrees/SearchInBinarySearchTree.java)
+   * [Validate Binary Search Tree](/Algorithms/BinarySearchTrees/ValidateBinarySearchTree.java)
 
+4. #### [BinaryTrees](Algorithms/BinaryTrees)
    * [Invert Binary Tree](/Algorithms/BinaryTrees/InvertBinaryTree.java)
    * [BinaryTree In-Order Traversal](/Algorithms/BinaryTrees/BinaryTreeInOrderTraversal.java)
    * [Binary Tree Level Order Traversal](/Algorithms/BinaryTrees/BinaryTreeLevelOrderTraversal.java)
    * [Binary Tree Zigzag Level Order Traversal](/Algorithms/BinaryTrees/BinaryTreeZigzagLevelOrderTraversal.java)
-   * [Validate Binary Search Tree](/Algorithms/BinaryTrees/ValidateBinarySearchTree.java)
    * [Same Tree](/Algorithms/BinaryTrees/SameTree.java)
    * [Symmetric Tree](/Algorithms/BinaryTrees/SymmetricTree.java)
    * [Maximum Depth of Binary Tree](/Algorithms/BinaryTrees/MaximumDepthOfBinaryTree.java)
    * [Construct Binary Tree from Preorder and Inorder Traversal](/Algorithms/BinaryTrees/ConstructBinaryTreeFromPreorderAndInorderTraversal.java)
    * [Construct Binary Tree from Inorder and Postorder Traversal](/Algorithms/BinaryTrees/ConstructBinaryTreeFromInorderAndPostorderTraversal.java)
-   * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinaryTrees/ConvertSortedArrayToBinarySearchTree.java)
    * [Flatten BinaryTree to LinkedList](/Algorithms/BinaryTrees/FlattenBinaryTreeToLinkedList.java)
    * [Binary Tree Right Side View](/Algorithms/BinaryTrees/BinaryTreeRightSideView.java)
-   * [Kth Smallest Element in a BST](/Algorithms/BinaryTrees/KthSmallestElementInBST.java)
    * [Lowest Common Ancestor of a Binary Tree / LCA of BT](/Algorithms/BinaryTrees/LowestCommonAncestorOfBinaryTree.java)
-   * [Lowest Common Ancestor of a Binary Search Tree / LCA of BST](/Algorithms/BinaryTrees/LowestCommonAncestorOfBinarySearchTree.java)
    * [PathSum III](/Algorithms/BinaryTrees/PathSumIII.java)
    * [Diameter of BinaryTree](/Algorithms/BinaryTrees/DiameterOfBinaryTree.java)
    * [Leaf Similar Trees](/Algorithms/BinaryTrees/LeafSimilarTrees.java)
    * [Count Good Nodes in Binary Tree](/Algorithms/BinaryTrees/CountGoodNodesInBinaryTree.java)
    * [Longest ZigZag Path in a Binary Tree](/Algorithms/BinaryTrees/LongestZigZagPathInBinaryTree.java)
    * [Maximum Level Sum of a Binary Tree](/Algorithms/BinaryTrees/MaxLevelSumOfBT.java)
-   * [Search in a Binary Search Tree](/Algorithms/BinaryTrees/SearchInBinarySearchTree.java)
-   * [Delete Node in a BST](/Algorithms/BinaryTrees/DeleteNodeInBST.java)
    * [Populating Next Right Pointers in Each Node](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode.java)
    * [Populating Next Right Pointers in Each Node II](/Algorithms/BinaryTrees/PopulatingNextRightPointersInEachNode2.java)
    * [Path Sum](/Algorithms/BinaryTrees/PathSum.java)
    * [Sum Root to Leaf Numbers](/Algorithms/BinaryTrees/SumRootToLeafNumbers.java)
    * [Binary Tree Maximum Path Sum](/Algorithms/BinaryTrees/BinaryTreeMaximumPathSum.java)
-   * [Binary Search Tree Iterator](/Algorithms/BinaryTrees/BinarySearchTreeIterator.java)
    * [Count Complete Tree Nodes](/Algorithms/BinaryTrees/CountCompleteTreeNodes.java)
    * [Average of Levels in Binary Tree](/Algorithms/BinaryTrees/AverageOfLevelsInBinaryTree.java)
-   * [Minimum Absolute Difference in BST](/Algorithms/BinaryTrees/MinimumAbsoluteDifferenceInBST.java)
 
-4. #### [BitManipulation](Algorithms/BitManipulation)
-
+5. #### [BitManipulation](Algorithms/BitManipulation)
    * [Single Number](Algorithms/BitManipulation/SingleNumber.java)
    * [Single Number II](Algorithms/BitManipulation/SingleNumber2.java)
    * [Counting Bits](Algorithms/BitManipulation/CountingBits.java)
@@ -157,8 +155,7 @@ INTELLIJ IDE SETUP GUIDE:
    * [Number of 1 Bits](Algorithms/BitManipulation/NumberOf1Bits.java)
    * [Bitwise AND of Numbers Range](Algorithms/BitManipulation/BitwiseAndOfNumbersRange.java)
 
-5. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion)
-
+6. #### [Disjoint Set Union DSU / Union Find](Algorithms/DisjointSetUnion)
    * [Number of Connected Components in an Undirected Graph](/Algorithms/DisjointSetUnion/NumberOfConnectedComponents.java)
    * [Number Of Provinces](/Algorithms/DisjointSetUnion/NumberOfProvinces.java)
    * [Number of Islands](Algorithms/Graphs/NumberOfIslands.java)
@@ -175,8 +172,7 @@ INTELLIJ IDE SETUP GUIDE:
    * [Minimize Hamming Distance After Swap Operations](Algorithms/DisjointSetUnion/MinimizeHammingDistanceAfterSwapOperations.java)
    * [Evaluate Division](Algorithms/Graphs/EvaluateDivision.java)
    
-6. #### [Divide and Conquer](Algorithms/DivideAndConquer)
-
+7. #### [Divide and Conquer](Algorithms/DivideAndConquer)
    * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
    * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
    * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
@@ -185,14 +181,13 @@ INTELLIJ IDE SETUP GUIDE:
    * [Top K Frequent Elements](Algorithms/HeapAlgos/TopKFrequentElements.java)
    * [Median of Two Sorted Arrays](/Algorithms/BinarySearch/MedianOfTwoSortedArrays.java)
    * [Merge k Sorted Lists](/Algorithms/LinkedListAlgos/MergeKSortedLists.java)
-   * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/BinaryTreeUsingPreOrderInOrderTraversals.java)
-   * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinaryTrees/ConvertSortedArrayToBinarySearchTree.java)
+   * [BinaryTree using PreOrder & InOrder Traversals](/Algorithms/BinaryTrees/ConstructBinaryTreeFromPreorderAndInorderTraversal.java)
+   * [Convert Sorted Array to Binary Search Tree](/Algorithms/BinarySearchTrees/ConvertSortedArrayToBinarySearchTree.java)
    * [Sort List](/Algorithms/LinkedListAlgos/SortList.java)
    * [Generate Parentheses](/Algorithms/BackTracking/GenerateParentheses.java)
    * [Construct Quad Tree](/Algorithms/DivideAndConquer/ConstructQuadTree.java)
 
-7. #### [DynamicProgramming](Algorithms/DynamicProgramming)
-
+8. #### [DynamicProgramming](Algorithms/DynamicProgramming)
    * [DP_Recursive_Backtracking Fibonacci](Algorithms/DynamicProgramming/DP_Recursive_Backtracking_Fibonacci.java)
    * [DP_TopDown_Memoization Fibonacci](Algorithms/DynamicProgramming/DP_TopDown_Memoization_Fibonacci.java)
    * [DP_BottomUp_Tabulation Fibonacci](Algorithms/DynamicProgramming/DP_BottomUp_Tabulation_Fibonacci.java)
@@ -233,11 +228,10 @@ INTELLIJ IDE SETUP GUIDE:
    * [Maximum possible stability of any subset of servers](/Algorithms/DynamicProgramming/MaximumPossibleStability.java)
    * [N-th Tribonacci Number](/Algorithms/DynamicProgramming/NthTribonacciNumber.java)
    * [Min Cost Climbing Stairs](/Algorithms/DynamicProgramming/MinCostClimbingStairs.java)
-   * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
-   * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
+   * [JumpGame I](/Algorithms/GreedyAlgos/JumpGame.java)
+   * [JumpGame II](/Algorithms/GreedyAlgos/JumpGame2.java)
 
-8. #### [Graphs](/Algorithms/Graphs)
-
+9. #### [Graphs](/Algorithms/Graphs)
    * [Graphs Intro](/DataStructures/Graphs.java)
    * [Course Schedule -  Khan's Algorithm using Topological Sort](Algorithms/Graphs/CourseSchedule.java)
    * [Course Schedule II](Algorithms/Graphs/CourseSchedule2.java)
@@ -255,24 +249,21 @@ INTELLIJ IDE SETUP GUIDE:
    * [Minimum Genetic Mutation](Algorithms/Graphs/MinimumGeneticMutation.java)
    * [Word Ladder](Algorithms/Graphs/WordLadder.java)
 
-9. #### [GreedyAlgorithms](Algorithms/GreedyAlgorithms)
+10. #### [GreedyAlgorithms](Algorithms/GreedyAlgos)
+    * [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgos/MinimumNumberOfSwapsToSort.java)
+    * [JumpGame I](/Algorithms/GreedyAlgos/JumpGame.java)
+    * [JumpGame II](/Algorithms/GreedyAlgos/JumpGame2.java)
+    * [Best Time To Buy And Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
+    * [Partition Labels](/Algorithms/GreedyAlgos/PartitionLabels.java)
+    * [H-Index](Algorithms/IntegerArray/HIndex.java)
+    * [Gas Station](/Algorithms/GreedyAlgos/GasStation.java)
+    * [Candy](/Algorithms/GreedyAlgos/Candy.java)
+    * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
+    * [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgos/MaximumFrequencyAfterSubarrayOperation.java)
+    * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgos/MaximizeYSumByPickingTripletOfDistinctXValues.java)
+    * [Reorganize String](Algorithms/GreedyAlgos/ReorganizeString.java)
 
-   * [OptimizingBoxWeights](/Algorithms/GreedyAlgorithms/OptimizingBoxWeights.java)
-   * [MinimumNumberOfSwapsToSort](/Algorithms/GreedyAlgorithms/MinimumNumberOfSwapsToSort.java)
-   * [JumpGame I](/Algorithms/GreedyAlgorithms/JumpGame.java)
-   * [JumpGame II](/Algorithms/GreedyAlgorithms/JumpGame2.java)
-   * [Best Time To Buy And Sell Stock](/Algorithms/DynamicProgramming/BestTimeToBuyAndSellStock.java)
-   * [Partition Labels](/Algorithms/GreedyAlgorithms/PartitionLabels.java)
-   * [H-Index](Algorithms/IntegerArray/HIndex.java)
-   * [Gas Station](/Algorithms/GreedyAlgorithms/GasStation.java)
-   * [Candy](/Algorithms/GreedyAlgorithms/Candy.java)
-   * [Maximum SubArray - Kadane's Algorithm & DC](Algorithms/DivideAndConquer/MaximumSubArray.java)
-   * [Maximum Frequency After Subarray Operation](Algorithms/GreedyAlgorithms/MaximumFrequencyAfterSubarrayOperation.java)
-   * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
-   * [Reorganize String](Algorithms/GreedyAlgorithms/ReorganizeString.java)
-
-10. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
-
+11. #### [Hashing (HashMap, HashSet)](Algorithms/Hashing)
     * [Group Anagrams](Algorithms/Hashing/GroupAnagrams.java)
     * [RansomNote](Algorithms/Hashing/RansomNote.java)
     * [Longest Consecutive Sequence](Algorithms/Hashing/LongestConsecutiveSequence.java)
@@ -283,7 +274,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Determine if Two Strings Are Close](Algorithms/Hashing/DetermineIfTwoStringsAreClose.java)
     * [Equal Row and Column Pairs](Algorithms/Hashing/EqualRowAndColumnPairs.java)
     * [LRU Cache](/Algorithms/LinkedListAlgos/LRUCache.java)
-    * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgorithms/MaximizeYSumByPickingTripletOfDistinctXValues.java)
+    * [Maximize Y‑Sum by Picking a Triplet of Distinct X‑Values](Algorithms/GreedyAlgos/MaximizeYSumByPickingTripletOfDistinctXValues.java)
     * [Analyze User Website Visit Pattern](/Algorithms/Hashing/AnalyzeUserWebsiteVisitPattern.java)
     * [Isomorphic Strings](Algorithms/Hashing/IsomorphicStrings.java)
     * [WordPattern](Algorithms/Hashing/WordPattern.java)
@@ -292,8 +283,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Contains Duplicates](Algorithms/Hashing/ContainsDuplicate.java)
     * [Contains Duplicates II](Algorithms/Hashing/ContainsDuplicate2.java)
 
-11. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
-
+12. #### [Heap / PriorityQueue (minHeap & maxHeap)](/Algorithms/HeapAlgos)
     * [Kth Largest Element In an Array](Algorithms/HeapAlgos/KthLargestElementInArray.java)
     * [Top K Frequent Elements](Algorithms/HeapAlgos/TopKFrequentElements.java)
     * [Find Median from Data Stream](Algorithms/HeapAlgos/FindMedianFromDataStream.java)
@@ -303,8 +293,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [IPO](/Algorithms/HeapAlgos/IPO.java)
     * [Find K Pairs With Smallest Sums](/Algorithms/HeapAlgos/FindKPairsWithSmallestSums.java)
 
-12. #### [Arrays / Integer Array](/Algorithms/IntegerArray)
-
+13. #### [Arrays / Integer Array](/Algorithms/IntegerArray)
     * [MaximumRepeatingNumber](Algorithms/IntegerArray/MaximumRepeatingNumber.java)
     * [Closest Equal Element Queries](Algorithms/IntegerArray/ClosestEqualElementQueries.java)
     * [Maximum Unique SubArray Sum After Deletion](Algorithms/IntegerArray/MaximumUniqueSubArraySumAfterDeletion.java)
@@ -326,8 +315,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
     * [Maximum Distance in Arrays](Algorithms/IntegerArray/MaximumDistanceInArrays.java)
 
-13. #### [Intervals](/Algorithms/Intervals)
-
+14. #### [Intervals](/Algorithms/Intervals)
     * [Teemo Attacking](Algorithms/Intervals/TeemoAttacking.java)
     * [Merge Intervals](Algorithms/Intervals/MergeIntervals.java)
     * [Meeting Rooms](Algorithms/Intervals/MeetingRooms.java)
@@ -337,8 +325,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Summary Ranges](Algorithms/Intervals/SummaryRanges.java)
     * [Insert Interval](Algorithms/Intervals/InsertInterval.java)
 
-14. #### [LinkedList Algos](/Algorithms/LinkedListAlgos)
-
+15. #### [LinkedList Algos](/Algorithms/LinkedListAlgos)
     * [MiddleOfTheLinkedList](/Algorithms/LinkedListAlgos/MiddleOfTheLinkedList.java)
     * [Reverse LinkedList](/Algorithms/LinkedListAlgos/ReverseLinkedList.java)
     * [Reverse LinkedList 2](/Algorithms/LinkedListAlgos/ReverseLinkedList2.java)
@@ -364,8 +351,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Rotate List](/Algorithms/LinkedListAlgos/RotateList.java)
     * [Partition List](/Algorithms/LinkedListAlgos/PartitionList.java)
 
-15. #### [Math](/Algorithms/Math)
-
+16. #### [Math](/Algorithms/Math)
     * [Palindrome Number](Algorithms/Math/PalindromeNumber.java)
     * [Plus One](Algorithms/Math/PlusOne.java)
     * [Factorial Trailing Zeroes](Algorithms/Math/FactorialTrailingZeroes.java)
@@ -373,8 +359,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Pow(x, n)](Algorithms/Math/Pow.java)
     * [Max Points on a Line](Algorithms/Math/MaxPointsOnALine.java)
 
-16. #### [Matrix](/Algorithms/Matrix)
-
+17. #### [Matrix](/Algorithms/Matrix)
     * [Gifting Groups](/Algorithms/Matrix/GiftingGroups.java)
     * [Rotate Image](/Algorithms/Matrix/RotateImage.java)
     * [Spiral Matrix](/Algorithms/Matrix/SpiralMatrix.java)
@@ -388,8 +373,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Construct Quad Tree](/Algorithms/DivideAndConquer/ConstructQuadTree.java)
     * [Maximal Square](/Algorithms/DynamicProgramming/MaximalSquare.java)
 
-17. #### [Misc](/Algorithms/MiscAlgos)
-
+18. #### [Misc](/Algorithms/MiscAlgos)
     * [Majority Element](Algorithms/DivideAndConquer/MajorityElement.java)
     * [Find the Duplicate Number](Algorithms/MiscAlgos/FindTheDuplicateNumber.java)
     * [Sort Colors - 0,1,2](Algorithms/MiscAlgos/SortColors.java)
@@ -397,14 +381,12 @@ INTELLIJ IDE SETUP GUIDE:
     * [First Missing Positive](Algorithms/MiscAlgos/FirstMissingPositive.java)
     * [Reverse Integer](Algorithms/MiscAlgos/ReverseInteger.java)
 
-18. #### [Monotonic Stack](/Algorithms/MonotonicStack)
-
+19. #### [Monotonic Stack](/Algorithms/MonotonicStack)
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
 
-19. #### [PrefixSum](/Algorithms/PrefixSum)
-
+20. #### [PrefixSum](/Algorithms/PrefixSum)
     * [Range Sum Query - Immutable & PrefixSum intro](Algorithms/PrefixSum/RangeSumQueryImmutable.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
@@ -415,21 +397,19 @@ INTELLIJ IDE SETUP GUIDE:
     * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
     * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
 
-20. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
-
+21. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
     * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
 
-21. #### [Recursion](/Algorithms/Recursion)
-22. #### [Searching](Algorithms/Searching)
+22. #### [Recursion](/Algorithms/Recursion)
 
+23. #### [Searching](Algorithms/Searching)
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
     * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
 
-23. #### [Sliding Window](Algorithms/SlidingWindow)
-
+24. #### [Sliding Window](Algorithms/SlidingWindow)
     * [Maximum Average SubArray I & Fixed Sliding Window Intro](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Longest Substring Without Repeating Characters & Dynamic Sliding Window Intro](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
     * [Find all the Anagrams in a String](/Algorithms/SlidingWindow/FindAllAnagramsInString.java)
@@ -444,8 +424,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Substring with Concatenation of All Words](Algorithms/SlidingWindow/SubstringWithConcatenationOfAllWords.java)
     * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
 
-24. #### [Sorting](Algorithms/Sorting)
-
+25. #### [Sorting](Algorithms/Sorting)
     * [SelectionSort](Algorithms/Sorting/SelectionSort.java)
     * [BubbleSort](Algorithms/Sorting/BubbleSort.java)
     * [BucketSort](Algorithms/Sorting/BucketSort.java)
@@ -459,8 +438,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [ShellSort](Algorithms/Sorting/ShellSort.java)
     * [TimSort](Algorithms/Sorting/TimSort.java)
 
-25. #### [Stack](/Algorithms/StackAlgos)
-
+26. #### [Stack](/Algorithms/StackAlgos)
     * [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
     * [DailyTemperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
@@ -473,9 +451,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
     * [Basic Calculator II](Algorithms/StackAlgos/BasicCalculator2.java)
 
-26. #### [Strings](/Algorithms/Strings)
-
-    * [Parentheses perfection kit](/Algorithms/Strings/ParenthesesPerfectionKit.java)
+27. #### [Strings](/Algorithms/Strings)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
     * [Longest Common Prefix](/Algorithms/Strings/LongestCommonPrefix.java)
     * [Longest Palindrome After Substring Concatenation I](/Algorithms/Strings/LongestPalindromeAfterSubstringConcatenationI.java)
@@ -492,15 +468,13 @@ INTELLIJ IDE SETUP GUIDE:
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
     * [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
 
-27. #### [Tries / Prefix Tree](/Algorithms/Tries)
-
+28. #### [Tries / Prefix Tree](/Algorithms/Tries)
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
     * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
     * [Design Add and Search Words Data Structure](Algorithms/Tries/DesignAddAndSearchWordsDataStructure.java)
     * [Word Search II](Algorithms/Tries/WordSearch2.java)
 
-28. #### [Two Pointers](/Algorithms/TwoPointers)
-
+29. #### [Two Pointers](/Algorithms/TwoPointers)
     * [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
     * [3Sum](/Algorithms/TwoPointers/ThreeSum.java)

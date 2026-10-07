@@ -1,4 +1,4 @@
-package Algorithms.GreedyAlgorithms;
+package Algorithms.GreedyAlgos;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com

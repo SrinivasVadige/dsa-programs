@@ -1,5 +1,7 @@
 package Algorithms.BinaryTrees;
 
+import Algorithms.BinarySearchTrees.LowestCommonAncestorOfBinarySearchTree;
+
 import java.util.*;
 
 /**
@@ -7,7 +9,7 @@ import java.util.*;
  * @since 02 Feb 2025
  * @link 236. Lowest Common Ancestor of a Binary Tree <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">LeetCode Link</a>
  * @topics Tree, DFS, Binary Tree
- * @see Algorithms.BinaryTrees.LowestCommonAncestorOfBinarySearchTree
+ * @see LowestCommonAncestorOfBinarySearchTree
  */
 public class LowestCommonAncestorOfBinaryTree {
     public static class TreeNode {int val; TreeNode left, right; TreeNode(int val) {this.val = val;} TreeNode(int val, TreeNode left, TreeNode right) {this.val = val;this.left = left;this.right = right;}
