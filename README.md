@@ -382,8 +382,9 @@ INTELLIJ IDE SETUP GUIDE:
     * [Reverse Integer](Algorithms/MiscAlgos/ReverseInteger.java)
 
 19. #### [Monotonic Stack](/Algorithms/MonotonicStack)
-    * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
-    * [Daily Temperatures & Monotonic Stack Intro](Algorithms/MonotonicStack/DailyTemperatures.java)
+    * [Next Greater Element NGE (GFG) & Monotonic Stack Intro](Algorithms/MonotonicStack/NextGreaterElement.java)
+    * [Next Greater Element I](Algorithms/MonotonicStack/NextGreaterElement1.java) 
+    * [Daily Temperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
 
 20. #### [PrefixSum](/Algorithms/PrefixSum)
