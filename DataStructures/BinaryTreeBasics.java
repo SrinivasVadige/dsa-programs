@@ -917,6 +917,111 @@ and so on... the loop is the same for 3, 6, 8 as "root.left" is always null for 
     }
 
 
+
+    static class MorrisIterator implements Iterator<Integer> {
+        private TreeNode current;
+
+        public MorrisIterator(TreeNode root) {
+            current = root;
+        }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        /*
+
+                5 <────────┐
+               /           │
+              3            │
+             / \           │
+            2   4 ─────────┘
+
+            pre = 4
+            pre.right == null
+
+            pre.right = current;  // 4.right = 5
+            current = current.left; // current = 3
+
+            cause left_most_in_order node is the smallest node of all the nodes in this BST => mark it as current
+
+
+
+                 5 <───────┐
+                /          │
+               3           │
+             / ↑ \         │
+            2 ─┘  4 ───────┘
+
+            finally current = 2
+
+
+         */
+        public Integer next() {
+            Integer val = null;
+            while (current != null) {
+                if (current.left == null) {
+                    val = current.val;
+                    current = current.right;
+                    break;
+                } else {
+                    TreeNode pre = current.left; // predecessor => right_most_node (this node can have left nodes) of curr.left
+                    while (pre.right != null && pre.right != current) {
+                        pre = pre.right;
+                    }
+                    if (pre.right == null) {
+                        pre.right = current;
+                        current = current.left; // dont break here => trav left until we find the next inorder node => Because the inorder traversal must visit 2, 3, and 4 before visiting 5
+                    } else {
+                        pre.right = null;
+                        val = current.val;
+                        current = current.right;
+                        break;
+                    }
+                }
+            }
+            return val;
+        }
+    }
+    static class ReversedMorrisIterator implements Iterator<Integer> {
+        private TreeNode current;
+
+        public ReversedMorrisIterator(TreeNode root) {
+            current = root;
+        }
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public Integer next() {
+            Integer val = null;
+            while (current != null) {
+                if (current.right == null) {
+                    val = current.val;
+                    current = current.left;
+                    break;
+                } else {
+                    TreeNode pre = current.right; // predecessor => right_most_node (this node can have left nodes) of curr.left
+                    while (pre.left != null && pre.left != current) {
+                        pre = pre.left;
+                    }
+                    if (pre.left == null) {
+                        pre.left = current;
+                        current = current.right;
+                    } else {
+                        pre.left = null;
+                        val = current.val;
+                        current = current.left;
+                        break;
+                    }
+                }
+            }
+            return val;
+        }
+    }
+
+
     public static void morrisPreOrderTraversal(final TreeNode root) {
         if (root == null) return;
         TreeNode curr = root;
