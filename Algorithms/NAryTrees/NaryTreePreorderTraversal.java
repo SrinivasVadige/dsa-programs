@@ -27,8 +27,8 @@ public class NaryTreePreorderTraversal {
         Node root = Node.createNode(nodes);
         System.out.printf("Given: %s\n", root);
 
-        System.out.printf("preorder Using Dfs1: %s\n", preorderUsingDfs1(root));
-        System.out.printf("preorder Using Dfs2: %s\n", preorderUsingDfs2(root));
+        System.out.printf("preorder Using Recursive Dfs: %s\n", preorderUsingRecursiveDfs(root));
+        System.out.printf("preorder Using Iterative Dfs: %s\n", preorderUsingIterativeDfs(root));
     }
 
 
@@ -36,7 +36,7 @@ public class NaryTreePreorderTraversal {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(h) where h is the height of the tree
      */
-    public static List<Integer> preorderUsingDfs1(Node root) {
+    public static List<Integer> preorderUsingRecursiveDfs(Node root) {
         List<Integer> list = new ArrayList<>();
         dfs(root, list);
         return list;
@@ -56,7 +56,7 @@ public class NaryTreePreorderTraversal {
      * @TimeComplexity O(n)
      * @SpaceComplexity O(h) where h is the height of the tree
      */
-    public static List<Integer> preorderUsingDfs2(Node root) {
+    public static List<Integer> preorderUsingIterativeDfs(Node root) {
         List<Integer> list = new ArrayList<>();
         Stack<Node> stack = new Stack<>();
         if (root != null) stack.push(root);
