@@ -387,7 +387,10 @@ INTELLIJ IDE SETUP GUIDE:
     * [Daily Temperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Trapping Rain Water](/Algorithms/TwoPointers/TrappingRainWater.java)
 
-20. #### [PrefixSum](/Algorithms/PrefixSum)
+20. #### [N-ary Trees](/Algorithms/NAryTrees)
+    * [N-ary Tree Preorder Traversal](Algorithms/NAryTrees/NaryTreePreorderTraversal.java)
+
+21. #### [PrefixSum](/Algorithms/PrefixSum)
     * [Range Sum Query - Immutable & PrefixSum intro](Algorithms/PrefixSum/RangeSumQueryImmutable.java)
     * [SubArraySumEqualsK (contiguous sub-array sum)](Algorithms/PrefixSum/SubArraySumEqualsK.java)
     * [ContiguousBinaryArray](/Algorithms/PrefixSum/ContiguousBinaryArray.java)
@@ -398,19 +401,19 @@ INTELLIJ IDE SETUP GUIDE:
     * [Maximum Sum Circular Subarray](Algorithms/DivideAndConquer/MaximumSumCircularSubarray.java)
     * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
 
-21. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
+22. #### [Queue, Deque & (NOTE: PriorityQueue is Heap)](/Algorithms/QueueAlgos)
     * [Recent Counter](Algorithms/QueueAlgos/RecentCounter.java)
     * [Dota2 Senate](/Algorithms/QueueAlgos/Dota2Senate.java)
 
-22. #### [Recursion](/Algorithms/Recursion)
+23. #### [Recursion](/Algorithms/Recursion)
 
-23. #### [Searching](Algorithms/Searching)
+24. #### [Searching](Algorithms/Searching)
     * [BinaryRecursionSearch](Algorithms/Searching/BinaryRecursionSearch.java)
     * [BinarySearch](Algorithms/Searching/BinarySearch.java)
     * [LinearSearch](Algorithms/Searching/LinearSearch.java)
     * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
 
-24. #### [Sliding Window](Algorithms/SlidingWindow)
+25. #### [Sliding Window](Algorithms/SlidingWindow)
     * [Maximum Average SubArray I & Fixed Sliding Window Intro](Algorithms/SlidingWindow/MaximumAverageSubArrayI.java)
     * [Longest Substring Without Repeating Characters & Dynamic Sliding Window Intro](/Algorithms/SlidingWindow/LongestSubstringWithoutRepeatingCharacters.java)
     * [Find all the Anagrams in a String](/Algorithms/SlidingWindow/FindAllAnagramsInString.java)
@@ -425,7 +428,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Substring with Concatenation of All Words](Algorithms/SlidingWindow/SubstringWithConcatenationOfAllWords.java)
     * [Best Time to Buy and Sell Stock using Strategy](Algorithms/SlidingWindow/BestTimeToBuyAndSellStockUsingStrategy.java)
 
-25. #### [Sorting](Algorithms/Sorting)
+26. #### [Sorting](Algorithms/Sorting)
     * [SelectionSort](Algorithms/Sorting/SelectionSort.java)
     * [BubbleSort](Algorithms/Sorting/BubbleSort.java)
     * [BucketSort](Algorithms/Sorting/BucketSort.java)
@@ -439,7 +442,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [ShellSort](Algorithms/Sorting/ShellSort.java)
     * [TimSort](Algorithms/Sorting/TimSort.java)
 
-26. #### [Stack](/Algorithms/StackAlgos)
+27. #### [Stack](/Algorithms/StackAlgos)
     * [Valid Parentheses](Algorithms/StackAlgos/ValidParentheses.java)
     * [DailyTemperatures](Algorithms/MonotonicStack/DailyTemperatures.java)
     * [Largest Rectangle in Histogram](Algorithms/StackAlgos/LargestRectangleHistogram.java)
@@ -452,7 +455,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Basic Calculator](Algorithms/StackAlgos/BasicCalculator.java)
     * [Basic Calculator II](Algorithms/StackAlgos/BasicCalculator2.java)
 
-27. #### [Strings](/Algorithms/Strings)
+28. #### [Strings](/Algorithms/Strings)
     * [Binary String to Palindrome](/Algorithms/Strings/BinaryStringToPalindrome.java)
     * [Longest Common Prefix](/Algorithms/Strings/LongestCommonPrefix.java)
     * [Longest Palindrome After Substring Concatenation I](/Algorithms/Strings/LongestPalindromeAfterSubstringConcatenationI.java)
@@ -469,13 +472,13 @@ INTELLIJ IDE SETUP GUIDE:
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
     * [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
 
-28. #### [Tries / Prefix Tree](/Algorithms/Tries)
+29. #### [Tries / Prefix Tree](/Algorithms/Tries)
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
     * [Search Suggestions System](Algorithms/Tries/SearchSuggestionsSystem.java)
     * [Design Add and Search Words Data Structure](Algorithms/Tries/DesignAddAndSearchWordsDataStructure.java)
     * [Word Search II](Algorithms/Tries/WordSearch2.java)
 
-29. #### [Two Pointers](/Algorithms/TwoPointers)
+30. #### [Two Pointers](/Algorithms/TwoPointers)
     * [Container With MostWater - maxArea](/Algorithms/TwoPointers/ContainerWithMostWater.java)
     * [Move Zeros](/Algorithms/TwoPointers/MoveZeros.java)
     * [3Sum](/Algorithms/TwoPointers/ThreeSum.java)
