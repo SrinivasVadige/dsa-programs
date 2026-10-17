@@ -31,11 +31,11 @@ public class NaryTreePostorderTraversal {
         Node root = Node.createNode(nodes);
         System.out.printf("Given: %s%n", root);
 
-        System.out.printf("postorder Using IterativeDfs4: %s%n", postorderUsingIterativeDfs4(root));
         System.out.printf("postorder Using RecursiveDfs: %s%n", postorderUsingRecursiveDfs(root));
         System.out.printf("postorder Using IterativeDfs1: %s%n", postorderUsingIterativeDfs1(root));
         System.out.printf("postorder Using IterativeDfs2: %s%n", postorderUsingIterativeDfs2(root));
         System.out.printf("postorder Using IterativeDfs3: %s%n", postorderUsingIterativeDfs3(root));
+        System.out.printf("postorder Using IterativeDfs4: %s%n", postorderUsingIterativeDfs4(root));
     }
 
 

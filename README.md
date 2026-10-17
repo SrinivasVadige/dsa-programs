@@ -390,6 +390,7 @@ INTELLIJ IDE SETUP GUIDE:
 20. #### [N-ary Trees](/Algorithms/NAryTrees)
     * [N-ary Tree Preorder Traversal](Algorithms/NAryTrees/NaryTreePreorderTraversal.java)
     * [N-ary Tree Postorder Traversal](Algorithms/NAryTrees/NaryTreePostorderTraversal.java)
+    * [N-ary Tree Level Order Traversal](Algorithms/NAryTrees/NaryTreeLevelOrderTraversal.java)
 
 21. #### [PrefixSum](/Algorithms/PrefixSum)
     * [Range Sum Query - Immutable & PrefixSum intro](Algorithms/PrefixSum/RangeSumQueryImmutable.java)
