@@ -64,7 +64,7 @@ public class DisjointSetUnionOrUnionFindClass {
     private static class UnionFind {
         int[] parent;
         int[] size;
-        int numOfParents;
+        int numOfComponents;
 
         UnionFind(int n) {
             parent = new int[n];
@@ -73,7 +73,7 @@ public class DisjointSetUnionOrUnionFindClass {
                 parent[i] = i;
                 size[i] = 1;
             }
-            numOfParents = n;
+            numOfComponents = n;
         }
 
         public void union(int x, int y) {
@@ -89,7 +89,7 @@ public class DisjointSetUnionOrUnionFindClass {
                 size[rootX] += size[rootY];
             }
 
-            numOfParents--;
+            numOfComponents--;
         }
 
         public int find(int x) {
