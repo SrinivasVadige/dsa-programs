@@ -1,4 +1,4 @@
-package Algorithms.DisjointSetUnion;
+package Algorithms.DisjointSetUnionOrUnionFind;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

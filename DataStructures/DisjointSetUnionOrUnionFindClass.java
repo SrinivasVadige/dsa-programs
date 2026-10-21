@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
  * @since 20 March 2025
- *
+
  * Disjoint Set Union (DSU) or Union Find Data Structure
 
    The Disjoint sets are sets that have no elements in common. Set A: {1, 2, 3}; Set B: {4, 5, 6};
@@ -58,12 +58,52 @@ import java.util.Set;
    4. Don't create cycles
 
  */
-public class DisjointSetUnion {
-    // UnionFind class TO COPY PASTE THIS & USE IT IN YOUR CODE
-    class UnionFind {
+public class DisjointSetUnionOrUnionFindClass {
+
+    // UnionFind class TO COPY & PASTE THIS & USE IT IN YOUR CODE
+    private static class UnionFind {
+        int[] parent;
+        int[] size;
+        int numOfParents;
+
+        UnionFind(int n) {
+            parent = new int[n];
+            size = new int[n];
+            for (int i=0; i<n; i++) {
+                parent[i] = i;
+                size[i] = 1;
+            }
+            numOfParents = n;
+        }
+
+        public void union(int x, int y) {
+            int rootX = find(x);
+            int rootY = find(y);
+
+            if (rootX == rootY) return;
+            if (size[rootX] < size[rootY]) {
+                parent[rootX] = rootY;
+                size[rootY] += size[rootX];
+            } else {
+                parent[rootY] = rootX;
+                size[rootX] += size[rootY];
+            }
+
+            numOfParents--;
+        }
+
+        public int find(int x) {
+            if (parent[x] == x) return x;
+            return parent[x] = find(parent[x]);
+        }
+    }
+
+
+
+    public static class UnionFindWithRank {
         int[] parent;
         int[] rank;
-        public UnionFind(int n) {
+        public UnionFindWithRank(int n) {
             parent = new int[n];
             rank = new int[n];
             for (int i = 0; i < n; i++) parent[i] = i;
@@ -87,8 +127,10 @@ public class DisjointSetUnion {
             }
         }
     }
+
+
     public static void main(String[] args) {
-        DisjointSetUnion uf = new DisjointSetUnion(10);
+        DisjointSetUnionOrUnionFindClass uf = new DisjointSetUnionOrUnionFindClass(10);
         uf.union(0, 1);
         uf.union(2, 3);
         uf.union(4, 5);
@@ -123,7 +165,7 @@ public class DisjointSetUnion {
 
 
 
-    public DisjointSetUnion(int size) {
+    public DisjointSetUnionOrUnionFindClass(int size) {
         parent = new int[size];
         rank = new int[size];
         this.size = new int[size];

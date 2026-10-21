@@ -1,4 +1,4 @@
-package Algorithms.DisjointSetUnion;
+package Algorithms.DisjointSetUnionOrUnionFind;
 
 /**
  * @author Srinivas Vadige, srinivas.vadige@gmail.com
