@@ -72,7 +72,8 @@ Note: Please do not copy the description during the contest to maintain the inte
 public class CountMagicalSubstringPairs1 {
     public static void main(String[] args) {
         String s = "abaccdc";
-
+        System.out.printf("countMagicalPairsUsingHashMapBruteForce_TLE: %d%n", countMagicalPairsUsingHashMapBruteForce_TLE(s));
+        System.out.printf("countMagicalPairsUsingSplitStringAtEachIndex: %d%n", countMagicalPairsUsingSplitStringAtEachIndex(s));
     }
 
 
@@ -104,7 +105,7 @@ public class CountMagicalSubstringPairs1 {
     * @TimeComplexity O(n^2)
     * @SpaceComplexity O(n)
     */
-    public int countMagicalPairsUsingHashMapBruteForce_TLE(String s) {
+    public static int countMagicalPairsUsingHashMapBruteForce_TLE(String s) {
         Map<Character, Integer> s1counter = new HashMap<>();
         int res = 0;
         int n = s.length();
@@ -121,7 +122,7 @@ public class CountMagicalSubstringPairs1 {
         }
         return res;
     }
-    private int getS2counter(int l, int n, String s, int s1count) {
+    private static int getS2counter(int l, int n, String s, int s1count) {
         Map<Character, Integer> s2counter = new HashMap<>();
         int sameSizeCount = 0;
         while (l < n && s2counter.size() <= s1count) {
@@ -182,7 +183,7 @@ public class CountMagicalSubstringPairs1 {
     * @TimeComplexity O(kn), where k is number of unique chars in s
     * @SpaceComplexity O(kn)
     */
-    public int countMagicalPairs2(String s) {
+    public static int countMagicalPairsUsingSplitStringAtEachIndex(String s) {
         int n = s.length();
         final int K_LETTERS = 26; // Assumes lowercase English letters
 
