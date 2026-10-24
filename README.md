@@ -516,6 +516,7 @@ INTELLIJ IDE SETUP GUIDE:
     * [Text Justification](/Algorithms/Strings/TextJustification.java)
     * [Longest Common Prefix Between Adjacent Strings After Removals](/Algorithms/Strings/LongestCommonPrefixBetweenAdjacentStringsAfterRemovals.java)
     * [Process String with Special Operations I](/Algorithms/Strings/ProcessStringWithSpecialOperations1.java)
+    * [Count Magical Substring Pairs I](/Algorithms/Strings/CountMagicalSubstringPairs1.java)
 
 30. #### [Tries / Prefix Tree](/Algorithms/Tries)
     * [Implement Trie (Prefix Tree)](Algorithms/Tries/ImplementTriePrefixTree.java)
